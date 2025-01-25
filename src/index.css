@@ -1,19 +1,27 @@
 @import "tailwindcss";
 
-:root {
-  font-family: "Alte Haas Grotesk", Arial, sans-serif;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Alte Haas Grotesk Regular";
+  src: url("./assets/fonts/AlteHaasGroteskRegular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Alte Haas Grotesk Bold";
+  src: url("./assets/fonts/AlteHaasGroteskBold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
 }
 
 @theme {
   /* fonts */
-  --font-alte-haas: "Alte Haas Grotesk", Arial, sans-serif;
+  --font-alte-haas-regular: "Alte Haas Grotesk Regular", Verdana, Arial,
+    sans-serif;
+  --font-alte-haas-bold: "Alte Haas Grotesk Bold", Verdana, Arial, sans-serif;
 
   /* text */
-  --text-default: 0.8rem;
+  --text-default: 1rem;
   --text-nav: 1.5rem;
   --text-headline: 1rem;
   --text-label: 1rem;
@@ -55,13 +63,16 @@
 }
 
 body {
-  @apply bg-light text-dark font-alte-haas text-default;
+  @apply bg-dark text-dark font-alte-haas-bold text-default;
 }
 
 .flex-center {
   @apply flex items-center justify-center;
 }
 
+.text-meta {
+  @apply text-device-md text-uwu;
+}
 /*
 Namespace	Utility classes
 --color-*	Color utilities like bg-red-500, text-sky-300, and many more

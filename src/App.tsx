@@ -4,9 +4,13 @@ import DeviceBox from "./components/deviceBox";
 function App() {
   return (
     <>
-      <div>Microinteractions</div>
-      <div className="flex">
-        <DeviceBox />
+      <div className="flex p-8">
+        <DeviceBox
+          deviceName="Deckenleuchte"
+          icon="FaLightbulb"
+          activeColor="bg-yellow"
+          hasAdditionalInfo={true}
+        />
       </div>
     </>
   );
