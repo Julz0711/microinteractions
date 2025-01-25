@@ -1,34 +1,49 @@
 @import "tailwindcss";
 
 :root {
-  font-family: 'Alte Haas Grotesk', Arial, sans-serif;
+  font-family: "Alte Haas Grotesk", Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  
 }
 
 @theme {
   /* fonts */
-  --font-alte-haas: 'Alte Haas Grotesk', Arial, sans-serif;
+  --font-alte-haas: "Alte Haas Grotesk", Arial, sans-serif;
+
+  /* text */
+  --text-default: 0.8rem;
+  --text-nav: 1.5rem;
+  --text-headline: 1rem;
+  --text-label: 1rem;
+  --text-device-sm: 0.625rem;
+  --text-device-md: 0.75rem;
 
   /* colors */
-  --color-light: rgba(248,248,248,1);
-  --color-uwu: rgba(149,159,163,1);
-  --color-dark: rgba(29,28,27,1);
-  --color-inactive: rgba(228,228,228,1);
-  --color-yellow: rgba(241,202,51,1);
-  --color-orange: rgba(239,133,85,1);
-  --color-red: rgba(190,55,95,1);
-  --color-purple: rgba(96,36,108,1);
-  --color-blue: rgba(38,51,129,1);
-  --color-blue: rgba(28,165,142,1);
+  --color-light: rgba(248, 248, 248, 1);
+  --color-uwu: rgba(149, 159, 163, 1);
+  --color-dark: rgba(29, 28, 27, 1);
+  --color-inactive: rgba(228, 228, 228, 1);
+  --color-yellow: rgba(241, 202, 51, 1);
+  --color-orange: rgba(239, 133, 85, 1);
+  --color-red: rgba(190, 55, 95, 1);
+  --color-purple: rgba(96, 36, 108, 1);
+  --color-blue: rgba(38, 51, 129, 1);
+  --color-blue: rgba(28, 165, 142, 1);
 
   /* breakpoints */
 
   /* spacing */
+  --spacing-100: 0.25rem;
+  --spacing-200: 0.375rem;
+  --spacing-300: 0.5rem;
+  --spacing-400: 0.625rem;
+  --spacing-500: 0.75rem;
+  --spacing-600: 0.825rem;
+  --spacing-700: 1rem;
+  --spacing-800: 1.25rem;
+  --spacing-900: 1.5rem;
 
   /* shadow */
   --shadow-active: 0px 0px 16px 0px rgba(48, 46, 41, 0.15);
@@ -37,6 +52,14 @@
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
   --radius-lg: 2rem;
+}
+
+body {
+  @apply bg-light text-dark font-alte-haas text-default;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
 }
 
 /*
