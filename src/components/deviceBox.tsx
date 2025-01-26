@@ -1,6 +1,7 @@
 import DynamicIcon from "./dynamicIcon";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useMicrointeractionContext } from "../context/MicrointeractionContext";
 
 interface DeviceBoxProps {
   deviceName: string;
@@ -23,6 +24,7 @@ const DeviceBox: React.FC<DeviceBoxProps> = ({
   additionalInfo = "Additional Info",
 }) => {
   const [isActive, setIsActive] = useState(false);
+  const { hasMicrointeractions } = useMicrointeractionContext();
 
   const toggleActiveState = () => {
     setIsActive((prev) => !prev);
@@ -31,9 +33,15 @@ const DeviceBox: React.FC<DeviceBoxProps> = ({
   return (
     <motion.div
       onClick={toggleActiveState}
-      initial={onActiveAnimationBox.initial}
-      transition={onActiveAnimationBox.transition}
-      animate={isActive ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+      initial={hasMicrointeractions ? onActiveAnimationBox.initial : undefined}
+      transition={
+        hasMicrointeractions ? onActiveAnimationBox.transition : undefined
+      }
+      animate={
+        hasMicrointeractions && isActive
+          ? { scale: [1, 1.05, 1] }
+          : { scale: 1 }
+      }
       className={`flex-center font-bold gap-400 py-400 px-600 shadow-active rounded-md cursor-pointer select-none ${
         isActive ? "bg-light" : "bg-inactive"
       }`}
