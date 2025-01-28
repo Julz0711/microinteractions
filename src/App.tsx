@@ -1,34 +1,31 @@
 import "./App.css";
-import DeviceBox from "./components/deviceBox";
-import { useMicrointeractionContext } from "./context/MicrointeractionContext";
+import Test from "./components/test";
+import TopNavigation from "./components/topNavigation";
 
 function App() {
-  const { hasMicrointeractions, setHasMicrointeractions } =
-    useMicrointeractionContext();
-
   return (
-    <div className="flex flex-col p-8 gap-8">
-      <div className="flex gap-4">
-        <button
-          onClick={() => setHasMicrointeractions(false)} // Set to false
-          className="bg-red text-white border-2 border-red px-4 py-2 rounded-md cursor-pointer hover:bg-dark hover:text-red"
-        >
-          Disable Microinteractions
-        </button>
-        <button
-          onClick={() => setHasMicrointeractions(true)} // Optional: Enable it again
-          className="bg-green text-white border-2 border-green px-4 py-2 rounded-md cursor-pointer hover:bg-dark hover:text-green"
-        >
-          Enable Microinteractions
-        </button>
+    <div className="h-screen w-screen grid grid-cols-2 gap-4 p-8 bg-dark">
+      {/* Dummy Phone Section */}
+      <div className="flex flex-col gap-8 p-8 items-start justify-start border border-gray-300 rounded-[2rem] shadow-lg bg-light">
+        {/* Phone Content */}
+        <TopNavigation />
+        <Test />
       </div>
-      <div className="flex">
-        <DeviceBox
-          deviceName="Deckenleuchte"
-          icon="FaLightbulb"
-          activeColor="bg-yellow"
-          hasAdditionalInfo={true}
-        />
+
+      {/* Introduction Section */}
+      <div className="p-8 border-light border-2 rounded-[2rem] shadow-md">
+        <h1 className="text-2xl text-light font-bold mb-4">
+          Microinteractions A/B-TEst
+        </h1>
+        <p className="text-light mb-4">
+          This is a simulation of a mobile phone for testing purposes. On the
+          left, you can interact with the "phone" interface.
+        </p>
+        <p className="text-light">
+          The content inside the phone is scrollable. However, the rest of the
+          screen remains static, allowing you to focus on the simulation
+          experience.
+        </p>
       </div>
     </div>
   );
