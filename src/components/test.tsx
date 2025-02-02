@@ -20,7 +20,7 @@ const test = () => {
         >
           Enable Microinteractions
         </button>
-        <p className="text-dark ">
+        <p className="text-uwu ">
           hasMicrointeractions:{" "}
           <span className="font-bold">
             {hasMicrointeractions ? "true" : "false"}
