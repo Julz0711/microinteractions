@@ -1,6 +1,6 @@
 import React from "react";
 import TopNavigation from "./components/topNavigation";
-import Test from "./components/test";
+import AppRouter from "./routes/Router";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,10 +9,11 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="h-screen w-screen flex items-center justify-center gap-4 p-8 bg-dark">
-      {/* Dummy Phone Section */}
-      <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 px-8 pb-8 items-start justify-start border border-gray-300 rounded-[2rem] shadow-lg bg-light">
-        {/* Phone Content */}
+      <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 px-800 pb-800 items-start justify-start border rounded-[2rem] bg-light">
         <TopNavigation />
+        <div className="pt-32">
+          <AppRouter />
+        </div>
         {children}
       </div>
 

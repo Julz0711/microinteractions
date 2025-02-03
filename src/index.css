@@ -24,6 +24,7 @@
   /* text */
   --text-default: 1rem;
   --text-nav: 1.5rem;
+  --text-sidescroll-nav: 0.75rem;
   --text-headline: 1rem;
   --text-label: 1rem;
   --text-device-sm: 0.625rem;

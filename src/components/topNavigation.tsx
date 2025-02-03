@@ -1,6 +1,4 @@
-import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { twMerge } from "tailwind-merge";
 
 const topNavigation = () => {
   const location = useLocation();
@@ -15,26 +13,24 @@ const topNavigation = () => {
   }`;
 
   return (
-    <div className="absolute inset-0">
-      <nav className="sticky pt-8 z-10 backdrop-blur-sm">
-        <div className="px-800 flex justify-between items-center">
-          <div className="flex gap-900">
-            <Link to="/dashboard" className={linkClasses("/dashboard")}>
-              Dashboard
-            </Link>
-            <Link to="/devices" className={linkClasses("/devices")}>
-              Geräte
-            </Link>
-          </div>
-
-          <div className="flex items-center">
-            <Link to="/profile" className={profileButtonClasses}>
-              JG
-            </Link>
-          </div>
+    <nav className="absolute top-0 left-0 w-full pt-8 z-10 backdrop-blur-sm">
+      <div className="px-800 flex justify-between items-center">
+        <div className="flex gap-900">
+          <Link to="/dashboard" className={linkClasses("/dashboard")}>
+            Dashboard
+          </Link>
+          <Link to="/devices" className={linkClasses("/devices")}>
+            Geräte
+          </Link>
         </div>
-      </nav>
-    </div>
+
+        <div className="flex items-center">
+          <Link to="/profile" className={profileButtonClasses}>
+            JG
+          </Link>
+        </div>
+      </div>
+    </nav>
   );
 };
 

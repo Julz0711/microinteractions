@@ -1,7 +1,11 @@
 import React from "react";
 
 const loadingSpinner = () => {
-  return <span className="loading loading-spinner text-red"></span>;
+  return (
+    <div className="bg-surfaceColor-background h-[100vh] w-[100vw] absolute inset-0 flex items-center justify-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  );
 };
 
 export default loadingSpinner;
