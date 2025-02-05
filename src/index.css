@@ -64,8 +64,16 @@
   --radius-lg: 2rem;
 }
 
+h1 {
+  @apply font-alte-haas-bold text-default;
+}
+
 body {
-  @apply bg-dark text-dark font-alte-haas-bold text-default;
+  @apply bg-dark text-dark font-alte-haas-regular text-default;
+}
+
+.btn {
+  @apply rounded-sm font-alte-haas-bold shadow-none border-none;
 }
 
 .flex-center {
@@ -73,7 +81,7 @@ body {
 }
 
 .text-meta {
-  @apply text-device-md text-uwu;
+  @apply text-device-md font-alte-haas-bold text-uwu;
 }
 /*
 Namespace	Utility classes

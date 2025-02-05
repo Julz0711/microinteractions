@@ -8,6 +8,8 @@ const NotFound = lazy(() => import("../pages/NotFound"));
 const Profile = lazy(() => import("../pages/Profile"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
+const NewDevice = lazy(() => import("../pages/NewDevice"));
+const NewRoom = lazy(() => import("../pages/NewRoom"));
 
 const AppRouter = () => {
   return (
@@ -15,10 +17,12 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/devices" element={<Devices />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/geraete" element={<Devices />} />
+        <Route path="/profil" element={<Profile />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/registrieren" element={<Register />} />
+        <Route path="/neues-geraet" element={<NewDevice />} />
+        <Route path="/neuer-raum" element={<NewRoom />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

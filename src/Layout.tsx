@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="h-screen w-screen flex items-center justify-center gap-4 p-8 bg-dark">
       <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 px-800 pb-800 items-start justify-start border rounded-[2rem] bg-light">
         <TopNavigation />
-        <div className="pt-32">
+        <div className="pt-28 w-full">
           <AppRouter />
         </div>
         {children}

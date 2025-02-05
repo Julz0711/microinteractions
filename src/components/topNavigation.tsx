@@ -4,11 +4,11 @@ const topNavigation = () => {
   const location = useLocation();
 
   const linkClasses = (path: string) =>
-    `transition-colors text-nav ${
+    `transition-colors text-nav font-alte-haas-bold ${
       location.pathname === path ? "text-dark" : "text-uwu"
     } `;
 
-  const profileButtonClasses = `w-12 h-12 text-light text-[.75rem] rounded-full flex items-center justify-center transition-colors ${
+  const profileButtonClasses = `w-12 h-12 font-alte-haas-bold text-light text-[.75rem] rounded-full flex items-center justify-center transition-colors ${
     location.pathname === "/profile" ? "bg-dark" : "bg-uwu"
   }`;
 

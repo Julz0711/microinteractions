@@ -36,14 +36,11 @@ export default function ScrollableNavBar() {
 
   return (
     <div className="relative w-full flex items-center overflow-hidden">
-      <div
-        ref={containerRef}
-        className="flex flex-row space-x-900 cursor-pointer"
-      >
+      <div ref={containerRef} className="flex flex-row space-x-900">
         {rooms.map((room, index) => (
           <div
             key={index}
-            className="text-sidescroll-nav w-full hover:text-gray-600 transition-all nowrap"
+            className="text-sidescroll-nav w-full font-alte-haas-bold hover:text-uwu transition-all nowrap"
           >
             {room}
           </div>
