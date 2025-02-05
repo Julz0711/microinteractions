@@ -29,6 +29,8 @@
   --text-label: 1rem;
   --text-device-sm: 0.625rem;
   --text-device-md: 0.75rem;
+  --text-icon-sm: 0.75rem;
+  --text-icon-md: 1rem;
 
   /* colors */
   --color-light: rgba(248, 248, 248, 1);
@@ -73,7 +75,7 @@ body {
 }
 
 .btn {
-  @apply rounded-sm font-alte-haas-bold shadow-none border-none;
+  @apply rounded-sm font-alte-haas-bold shadow-none border-none py-4 px-6;
 }
 
 .flex-center {
@@ -83,6 +85,11 @@ body {
 .text-meta {
   @apply text-device-md font-alte-haas-bold text-uwu;
 }
+
+.text-h2 {
+  @apply text-headline font-alte-haas-bold;
+}
+
 /*
 Namespace	Utility classes
 --color-*	Color utilities like bg-red-500, text-sky-300, and many more

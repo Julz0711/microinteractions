@@ -15,8 +15,8 @@ const AppRouter = () => {
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard hasDevices={false} />} />
+        <Route path="/dashboard" element={<Dashboard hasDevices={true} />} />
         <Route path="/geraete" element={<Devices />} />
         <Route path="/profil" element={<Profile />} />
         <Route path="/login" element={<Login />} />
