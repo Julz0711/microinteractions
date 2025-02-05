@@ -2,17 +2,25 @@ import ScrollableNavBar from "../components/scrollableNavBar";
 import GlowBoyz from "../assets/img/glow_boys.png";
 import Button from "../components/button";
 import HeadlineWithLink from "../components/headlineWithLink";
+import DeviceBox from "../components/deviceBox";
 
 interface DashboardProps {
   hasDevices?: boolean;
 }
 
-const devices = [
+const favoriteDevices = [
   {
     id: 1,
-    icon: "fa-lightbulb",
+    icon: "FaLightbulb",
     name: "Leselampe",
     active: true,
+    color: "bg-yellow",
+  },
+  {
+    id: 2,
+    icon: "FaLightbulb",
+    name: "Deckenleuchte",
+    active: false,
     color: "bg-yellow",
   },
 ];
@@ -36,7 +44,22 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
           </div>
           <div>
             <HeadlineWithLink headline="Favoriten" link="/szenen" />
+            <div className="flex flex-row gap-600">
+              {favoriteDevices.map((device) => (
+                <div key={device.id}>
+                  <DeviceBox
+                    deviceName={device.name}
+                    icon={device.icon}
+                    activeColor={device.color}
+                    hasAdditionalInfo={true}
+                    hasToggle={true}
+                    isActive={device.active}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
+
           <div>
             <HeadlineWithLink headline="Zeitpläne" link="/szenen" />
           </div>

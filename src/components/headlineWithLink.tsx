@@ -9,7 +9,7 @@ interface HeadlineProps {
 
 const HeadlineWithLink: React.FC<HeadlineProps> = ({ headline, link }) => {
   return (
-    <Link to={link}>
+    <Link to={link} className="hover:text-uwu">
       <h2 className="text-h2">
         <span className="flex flex-row items-center gap-1">
           {headline}

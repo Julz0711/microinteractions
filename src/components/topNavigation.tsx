@@ -19,7 +19,7 @@ const topNavigation = () => {
           <Link to="/dashboard" className={linkClasses("/dashboard")}>
             Dashboard
           </Link>
-          <Link to="/devices" className={linkClasses("/devices")}>
+          <Link to="/geraete" className={linkClasses("/geraete")}>
             Geräte
           </Link>
         </div>

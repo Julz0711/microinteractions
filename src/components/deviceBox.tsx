@@ -10,6 +10,7 @@ interface DeviceBoxProps {
   hasAdditionalInfo?: boolean;
   additionalInfo?: string;
   hasToggle?: boolean;
+  isActive?: boolean;
 }
 
 const onActiveAnimationBox = {
@@ -24,13 +25,14 @@ const DeviceBox: React.FC<DeviceBoxProps> = ({
   hasAdditionalInfo = false,
   additionalInfo = "Additional Info",
   hasToggle = false,
+  isActive = false,
 }) => {
-  const [isActive, setIsActive] = useState(false);
-  const [isToggleOn, setIsToggleOn] = useState(false);
+  const [isBoxActive, setIsBoxActive] = useState(isActive);
+  const [isToggleOn, setIsToggleOn] = useState(isActive);
   const { hasMicrointeractions } = useMicrointeractionContext();
 
   const toggleActiveState = () => {
-    setIsActive((prev) => !prev);
+    setIsBoxActive((prev) => !prev);
   };
 
   const toggleButtonState = () => {
@@ -45,16 +47,16 @@ const DeviceBox: React.FC<DeviceBoxProps> = ({
         hasMicrointeractions ? onActiveAnimationBox.transition : undefined
       }
       animate={
-        hasMicrointeractions && isActive
+        hasMicrointeractions && isBoxActive
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
-      className={`relative flex justify-center ${
+      className={`relative flex justify-start min-w-32 ${
         hasToggle
           ? "h-32 items-end py-600 px-600"
           : "items-center py-400 px-600 cursor-pointer"
       } font-bold gap-400 rounded-md select-none ${
-        isActive ? "shadow-active bg-light" : "bg-inactive"
+        isBoxActive ? "shadow-active bg-light" : "bg-inactive"
       }`}
     >
       {hasToggle && (
@@ -72,7 +74,9 @@ const DeviceBox: React.FC<DeviceBoxProps> = ({
       <div
         className={`${
           hasToggle ? "absolute top-600 left-600" : ""
-        } text-light p-400 rounded-full ${isActive ? activeColor : "bg-dark"}`}
+        } text-light p-400 rounded-full ${
+          isBoxActive ? activeColor : "bg-dark"
+        }`}
       >
         <DynamicIcon iconName={icon} />
       </div>
