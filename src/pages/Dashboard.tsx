@@ -3,6 +3,8 @@ import GlowBoyz from "../assets/img/glow_boys.png";
 import Button from "../components/button";
 import HeadlineWithLink from "../components/headlineWithLink";
 import DeviceBox from "../components/deviceBox";
+import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
+import { hierarchyStep } from "../types/dashboard.types";
 
 interface DashboardProps {
   hasDevices?: boolean;
@@ -34,7 +36,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
       </div>
       {hasDevices ? (
         <div className="w-full py-4 flex flex-col gap-4 justify-start items-start">
-          {/*<DeviceGrid />*/}
+          <DashboardGrid hierarchy={hierarchyStep.Device} />
           <div>
             <p className="text-meta">{activeDeviceAmount} Aktive Geräte</p>
             <div>hier alle aktiven</div>
