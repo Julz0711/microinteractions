@@ -5,27 +5,11 @@ import HeadlineWithLink from "../components/headlineWithLink";
 import DeviceBox from "../components/deviceBox";
 import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
 import { hierarchyStep } from "../types/dashboard.types";
+import { devices } from "../data/data";
 
 interface DashboardProps {
   hasDevices?: boolean;
 }
-
-const favoriteDevices = [
-  {
-    id: 1,
-    icon: "FaLightbulb",
-    name: "Leselampe",
-    active: true,
-    color: "bg-yellow",
-  },
-  {
-    id: 2,
-    icon: "FaLightbulb",
-    name: "Deckenleuchte",
-    active: false,
-    color: "bg-yellow",
-  },
-];
 
 const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   const activeDeviceAmount = 9;
@@ -47,18 +31,38 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
           <div className="flex flex-col gap-400">
             <HeadlineWithLink headline="Favoriten" link="/szenen" />
             <div className="flex flex-row gap-600">
-              {favoriteDevices.map((device) => (
-                <div key={device.id}>
-                  <DeviceBox
-                    deviceName={device.name}
-                    icon={device.icon}
-                    activeColor={device.color}
-                    hasAdditionalInfo={true}
-                    hasToggle={true}
-                    isActive={device.active}
-                  />
-                </div>
-              ))}
+              {devices
+                .filter(
+                  (device: {
+                    id: string;
+                    name: string;
+                    icon: string;
+                    color: string;
+                    active: boolean;
+                    isFavorite: boolean;
+                  }) => device.isFavorite
+                )
+                .map(
+                  (device: {
+                    id: string;
+                    name: string;
+                    icon: string;
+                    color: string;
+                    active: boolean;
+                    isFavorite: boolean;
+                  }) => (
+                    <div key={device.id}>
+                      <DeviceBox
+                        deviceName={device.name}
+                        icon={device.icon}
+                        activeColor={device.color}
+                        hasAdditionalInfo={true}
+                        hasToggle={true}
+                        isActive={device.active}
+                      />
+                    </div>
+                  )
+                )}
             </div>
           </div>
           <div className="flex flex-col gap-400">
