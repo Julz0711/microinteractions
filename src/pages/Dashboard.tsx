@@ -33,16 +33,16 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
         <ScrollableNavBar />
       </div>
       {hasDevices ? (
-        <div className="w-full py-4 flex flex-col gap-4 justify-start items-start">
+        <div className="w-full py-4 flex flex-col gap-900 justify-start items-start">
           {/*<DeviceGrid />*/}
           <div>
             <p className="text-meta">{activeDeviceAmount} Aktive Geräte</p>
             <div>hier alle aktiven</div>
           </div>
-          <div>
+          <div className="flex flex-col gap-400">
             <HeadlineWithLink headline="Szenen" link="/szenen" />
           </div>
-          <div>
+          <div className="flex flex-col gap-400">
             <HeadlineWithLink headline="Favoriten" link="/szenen" />
             <div className="flex flex-row gap-600">
               {favoriteDevices.map((device) => (
@@ -59,8 +59,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
               ))}
             </div>
           </div>
-
-          <div>
+          <div className="flex flex-col gap-400">
             <HeadlineWithLink headline="Zeitpläne" link="/szenen" />
           </div>
         </div>
