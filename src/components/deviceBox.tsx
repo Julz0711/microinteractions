@@ -88,9 +88,17 @@ const DeviceBox = ({
         }
       >
         <span>{deviceName}</span>
-        {hasAdditionalInfo ? (
-          <div className="text-meta">{additionalInfo}</div>
-        ) : null}
+        <div>
+          {hasAdditionalInfo ? (
+            <div className="text-meta">
+              {isBoxActive
+                ? additionalInfo.length > 0
+                  ? additionalInfo
+                  : "Aus"
+                : "Aus"}
+            </div>
+          ) : null}
+        </div>
       </div>
     </motion.div>
   );

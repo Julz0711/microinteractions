@@ -6,6 +6,7 @@ export const devices = [
     active: true,
     isFavorite: true,
     color: "bg-yellow",
+    additional: "100%",
   },
   {
     icon: "FaLightbulb",
@@ -14,6 +15,7 @@ export const devices = [
     active: false,
     isFavorite: true,
     color: "bg-yellow",
+    additional: "100%",
   },
   {
     icon: "FaLightbulb",
@@ -22,6 +24,7 @@ export const devices = [
     active: false,
     isFavorite: false,
     color: "bg-yellow",
+    additional: "100%",
   },
   {
     icon: "FaLightbulb",
@@ -30,5 +33,6 @@ export const devices = [
     active: true,
     isFavorite: false,
     color: "bg-yellow",
+    additional: "100%",
   },
 ];
