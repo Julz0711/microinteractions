@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMicrointeractionContext } from "../../context/MicrointeractionContext";
-import DynamicIcon from "../dynamicIcon";
+import DynamicIcon from "../DynamicIcon";
 
 interface DeviceProps {
   deviceName: string;

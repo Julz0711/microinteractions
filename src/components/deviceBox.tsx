@@ -1,4 +1,4 @@
-import DynamicIcon from "./dynamicIcon";
+import DynamicIcon from "./DynamicIcon";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useMicrointeractionContext } from "../context/MicrointeractionContext";

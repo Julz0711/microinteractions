@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import LoadingSpinner from "../components/loadingSpinner";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const Devices = lazy(() => import("../pages/Devices"));

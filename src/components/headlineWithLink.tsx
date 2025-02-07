@@ -1,5 +1,5 @@
 import React from "react";
-import DynamicIcon from "./dynamicIcon";
+import DynamicIcon from "./DynamicIcon";
 import { Link } from "react-router-dom";
 
 interface HeadlineProps {
