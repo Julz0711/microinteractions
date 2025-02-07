@@ -39,6 +39,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
                     color: string;
                     active: boolean;
                     isFavorite: boolean;
+                    additional: string;
                   }) => device.isFavorite
                 )
                 .map(
@@ -49,6 +50,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
                       color: string;
                       active: boolean;
                       isFavorite: boolean;
+                      additional: string;
                     },
                     index
                   ) => (
@@ -60,6 +62,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
                         hasAdditionalInfo={true}
                         hasToggle={true}
                         isActive={device.active}
+                        additionalInfo={device.additional}
                       />
                     </div>
                   )

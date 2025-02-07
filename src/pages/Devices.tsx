@@ -28,6 +28,7 @@ const Devices = () => {
                   hasAdditionalInfo={true}
                   hasToggle={true}
                   isActive={device.active}
+                  additionalInfo={device.additional}
                 />
               </div>
             ))}
