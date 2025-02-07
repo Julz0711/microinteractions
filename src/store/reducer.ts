@@ -6,7 +6,7 @@ interface AppState {
 }
 
 const initialState: AppState = {
-  hasMicrointeractions: true,
+  hasMicrointeractions: false,
   category: "",
 };
 

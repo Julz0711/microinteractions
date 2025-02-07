@@ -1,8 +1,8 @@
 import DynamicIcon from "./DynamicIcon";
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { RootState } from "@reduxjs/toolkit/query";
 import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 interface DeviceBoxProps {
   deviceName: string;
