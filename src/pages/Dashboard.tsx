@@ -34,7 +34,6 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
               {devices
                 .filter(
                   (device: {
-                    id: string;
                     name: string;
                     icon: string;
                     color: string;
@@ -43,15 +42,17 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
                   }) => device.isFavorite
                 )
                 .map(
-                  (device: {
-                    id: string;
-                    name: string;
-                    icon: string;
-                    color: string;
-                    active: boolean;
-                    isFavorite: boolean;
-                  }) => (
-                    <div key={device.id}>
+                  (
+                    device: {
+                      name: string;
+                      icon: string;
+                      color: string;
+                      active: boolean;
+                      isFavorite: boolean;
+                    },
+                    index
+                  ) => (
+                    <div key={index}>
                       <DeviceBox
                         deviceName={device.name}
                         icon={device.icon}

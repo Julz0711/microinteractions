@@ -18,7 +18,7 @@ const onActiveAnimationBox = {
   transition: { duration: 0.3, easing: "ease" },
 };
 
-const DeviceBox: React.FC<DeviceBoxProps> = ({
+const DeviceBox = ({
   deviceName = "Placeholder",
   icon = "FaSmile",
   activeColor = "bg-yellow",
@@ -26,7 +26,7 @@ const DeviceBox: React.FC<DeviceBoxProps> = ({
   additionalInfo = "Additional Info",
   hasToggle = false,
   isActive = false,
-}) => {
+}: DeviceBoxProps) => {
   const [isBoxActive, setIsBoxActive] = useState(isActive);
   const [isToggleOn, setIsToggleOn] = useState(isActive);
   const { hasMicrointeractions } = useMicrointeractionContext();

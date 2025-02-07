@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-const topNavigation = () => {
+export const TopNavigation = () => {
   const location = useLocation();
 
   const linkClasses = (path: string) =>
@@ -13,7 +13,7 @@ const topNavigation = () => {
   }`;
 
   return (
-    <nav className="absolute top-0 left-0 w-full pt-8 z-10 backdrop-blur-sm">
+    <nav className="sticky top-0 left-0 w-full pt-8 z-10 backdrop-blur-sm bg-linear-to-b from-light to-transparent">
       <div className="px-800 flex justify-between items-center">
         <div className="flex gap-900">
           <Link to="/dashboard" className={linkClasses("/dashboard")}>
@@ -33,5 +33,3 @@ const topNavigation = () => {
     </nav>
   );
 };
-
-export default topNavigation;
