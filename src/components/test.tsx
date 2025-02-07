@@ -1,9 +1,12 @@
 import DeviceBox from "./DeviceBox";
-import { useMicrointeractionContext } from "../context/MicrointeractionContext";
+import { useSelector } from "react-redux";
+import { setHasMicrointeractions } from "../store/reducer";
+import { RootState } from "../store/store";
 
 const Test = () => {
-  const { hasMicrointeractions, setHasMicrointeractions } =
-    useMicrointeractionContext();
+  const hasMicrointeractions = useSelector(
+    (state: RootState) => state.app.hasMicrointeractions
+  );
   return (
     <div className="flex flex-col gap-8">
       <div className="flex gap-4">
