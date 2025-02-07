@@ -1,8 +1,8 @@
-import ScrollableNavBar from "../components/scrollableNavBar";
+import ScrollableNavBar from "../components/ScrollableNavBar";
 import GlowBoyz from "../assets/img/glow_boys.png";
-import Button from "../components/button";
-import HeadlineWithLink from "../components/headlineWithLink";
-import DeviceBox from "../components/deviceBox";
+import Button from "../components/Button";
+import HeadlineWithLink from "../components/HeadlineWithLink";
+import DeviceBox from "../components/DeviceBox";
 import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
 import { hierarchyStep } from "../types/dashboard.types";
 import { devices } from "../data/data";

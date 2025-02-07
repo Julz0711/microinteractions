@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
-import DynamicIcon from "./dynamicIcon";
+import DynamicIcon from "./DynamicIcon";
 
 interface ButtonProps {
   label: string;

@@ -27,7 +27,7 @@ export const devices = [
     icon: "FaLightbulb",
     name: "Deckenleuchte",
     room: "Küche",
-    active: false,
+    active: true,
     isFavorite: false,
     color: "bg-yellow",
   },

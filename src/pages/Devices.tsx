@@ -1,4 +1,4 @@
-import DeviceBox from "../components/deviceBox";
+import DeviceBox from "../components/DeviceBox";
 import { devices } from "../data/data";
 
 const Devices = () => {

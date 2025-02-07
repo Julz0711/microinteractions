@@ -1,8 +1,7 @@
-import React from "react";
-import DeviceBox from "./deviceBox";
+import DeviceBox from "./DeviceBox";
 import { useMicrointeractionContext } from "../context/MicrointeractionContext";
 
-const test = () => {
+const Test = () => {
   const { hasMicrointeractions, setHasMicrointeractions } =
     useMicrointeractionContext();
   return (
@@ -50,4 +49,4 @@ const test = () => {
   );
 };
 
-export default test;
+export default Test;
