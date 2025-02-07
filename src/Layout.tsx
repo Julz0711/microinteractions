@@ -1,6 +1,7 @@
 import React from "react";
 import TopNavigation from "./components/TopNavigation";
 import AppRouter from "./routes/Router";
+import { TopNavigation } from "./components/topNavigation";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,9 +10,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="h-screen w-screen flex items-center justify-center gap-4 p-8 bg-dark">
-      <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 px-800 pb-800 items-start justify-start border rounded-[2rem] bg-light">
+      <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 pb-800 items-start justify-start border rounded-[2rem] bg-light">
         <TopNavigation />
-        <div className="pt-28 w-full">
+        <div className="px-5 w-full">
           <AppRouter />
         </div>
         {children}
