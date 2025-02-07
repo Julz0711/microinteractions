@@ -90,6 +90,46 @@ body {
   @apply text-headline font-alte-haas-bold;
 }
 
+/* New Button */
+@keyframes fly-out-0 {
+  from {
+    transform: translate(50px, 50px);
+  }
+  to {
+    transform: translate(0, -10px);
+  }
+}
+
+@keyframes fly-out-1 {
+  from {
+    transform: translate(0, 50px);
+  }
+  to {
+    transform: translate(0, -10px);
+  }
+}
+
+@keyframes fly-out-2 {
+  from {
+    transform: translate(-50px, 50px);
+  }
+  to {
+    transform: translate(0, -10px);
+  }
+}
+
+.animate-fly-out-0 {
+  animation: fly-out-0 0.5s forwards;
+}
+
+.animate-fly-out-1 {
+  animation: fly-out-1 0.5s forwards;
+}
+
+.animate-fly-out-2 {
+  animation: fly-out-2 0.5s forwards;
+}
+
 /*
 Namespace	Utility classes
 --color-*	Color utilities like bg-red-500, text-sky-300, and many more

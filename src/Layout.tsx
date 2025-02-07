@@ -1,20 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { TopNavigation } from "./components/TopNavigation";
 import AppRouter from "./routes/Router";
+import { NewButton } from "./components/NewButton";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
     <div className="h-screen w-screen flex items-center justify-center gap-4 p-8 bg-dark">
-      <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 pb-800 items-start justify-start border rounded-[2rem] bg-light">
+      <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 pb-5 items-start justify-start border rounded-[2rem] bg-light">
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="absolute inset-0 z-30 bg-dark/30 backdrop-blur-[2px]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+          )}
+        </AnimatePresence>
         <TopNavigation />
         <div className="px-5 w-full">
           <AppRouter />
         </div>
         {children}
+        <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       </div>
 
       {/* Introduction Section 
