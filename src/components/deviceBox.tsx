@@ -2,7 +2,7 @@ import DynamicIcon from "./DynamicIcon";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { AppState } from "../store/store";
 
 interface DeviceBoxProps {
   deviceName: string;
@@ -31,7 +31,7 @@ const DeviceBox = ({
   const [isBoxActive, setIsBoxActive] = useState(isActive);
   const [isToggleOn, setIsToggleOn] = useState(isActive);
   const hasMicrointeractions = useSelector(
-    (state: RootState) => state.app.hasMicrointeractions
+    (state: AppState) => state.app.hasMicrointeractions
   );
 
   const toggleActiveState = () => {

@@ -4,7 +4,6 @@ import Button from "../components/Button";
 import HeadlineWithLink from "../components/HeadlineWithLink";
 import DeviceBox from "../components/DeviceBox";
 import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
-import { hierarchyStep } from "../types/dashboard.types";
 import { devices } from "../data/data";
 
 interface DashboardProps {
@@ -20,7 +19,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
       </div>
       {hasDevices ? (
         <div className="w-full py-4 flex flex-col gap-4 justify-start items-start">
-          <DashboardGrid hierarchy={hierarchyStep.Device} />
+          <DashboardGrid />
           <div>
             <p className="text-meta">{activeDeviceAmount} Aktive Geräte</p>
             <div>hier alle aktiven</div>

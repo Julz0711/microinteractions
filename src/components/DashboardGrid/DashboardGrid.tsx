@@ -1,23 +1,25 @@
+import { useSelector } from "react-redux";
+import { AppState } from "../../store/store";
 import { hierarchyStep } from "../../types/dashboard.types";
 import { CategoryGrid } from "./CategoryGrid";
 import { Device } from "./Device";
 import { SmartHomeGrid } from "./SmartHomeGrid";
+import { useEffect } from "react";
 
-interface DashboardGridProps {
-  hierarchy: hierarchyStep;
-}
+export const DashboardGrid = () => {
+  const { hierarchy } = useSelector((state: AppState) => state.app);
 
-export const DashboardGrid = ({ hierarchy }: DashboardGridProps) => {
+  useEffect(() => {
+    console.log("Hierarchy: ", hierarchy === hierarchyStep.CategoryGrid);
+  }, [hierarchy]);
   return (
-    <>
-      <SmartHomeGrid hierarchy={hierarchyStep.SmartHomeGrid} />
-      {hierarchy === hierarchyStep.CategoryGrid ||
-        (hierarchy === hierarchyStep.Device && (
-          <CategoryGrid hierarchy={hierarchyStep.SmartHomeGrid} />
-        ))}
+    <div className="h-[50vh] w-full">
+      <SmartHomeGrid />
+      {(hierarchy === hierarchyStep.CategoryGrid ||
+        hierarchy === hierarchyStep.Device) && <CategoryGrid />}
       {hierarchy === hierarchyStep.Device && (
         <Device deviceName={""} icon={""} />
       )}
-    </>
+    </div>
   );
 };
