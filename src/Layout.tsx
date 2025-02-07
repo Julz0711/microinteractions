@@ -1,6 +1,6 @@
 import React from "react";
 import AppRouter from "./routes/Router";
-import { TopNavigation } from "./components/topNavigation";
+import { TopNavigation } from "./components/TopNavigation";
 
 interface LayoutProps {
   children: React.ReactNode;
