@@ -16,7 +16,7 @@ interface DeviceBoxProps {
 
 const onActiveAnimationBox = {
   initial: { scale: 1 },
-  transition: { duration: 0.3, easing: "ease" },
+  transition: { duration: 0.4, easing: "ease" },
 };
 
 const DeviceBox = ({
@@ -54,13 +54,17 @@ const DeviceBox = ({
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
-      className={`relative flex justify-start min-w-32 ${
+      className={` relative flex justify-start min-w-32 ${
         hasToggle
           ? "h-32 items-end py-600 px-600"
           : "items-center py-400 px-600 cursor-pointer"
       } font-bold gap-400 rounded-md select-none ${
-        isBoxActive ? "shadow-active bg-light" : "bg-inactive"
-      }`}
+        hasMicrointeractions
+          ? isBoxActive
+            ? "device-box-active"
+            : "device-box-inactive"
+          : ""
+      } ${isBoxActive ? "shadow-active bg-light" : "bg-inactive"}`}
     >
       {hasToggle && (
         <input

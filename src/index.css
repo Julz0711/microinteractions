@@ -130,6 +130,29 @@ body {
   animation: fly-out-2 0.5s forwards;
 }
 
+@property --p {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+.device-box-active {
+  --p: 0%;
+  transition: --p 0.5s;
+  background: linear-gradient(
+    var(--color-inactive) var(--p),
+    var(--color-light) 0%
+  );
+}
+
+.device-box-inactive {
+  --p: 100%;
+  transition: --p 0.5s;
+  background: linear-gradient(
+    var(--color-inactive) var(--p),
+    var(--color-light)
+  );
+}
 /*
 Namespace	Utility classes
 --color-*	Color utilities like bg-red-500, text-sky-300, and many more

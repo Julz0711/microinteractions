@@ -29,7 +29,7 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
       transition: {
         duration: hasMicrointeractions ? 0.2 : 0,
         ease: "easeOut",
-        delay: index * 0.15,
+        delay: hasMicrointeractions ? index * 0.15 : 0,
       },
     }),
   };
