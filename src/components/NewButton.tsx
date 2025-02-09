@@ -1,34 +1,39 @@
-import { useState } from "react";
 import DynamicIcon from "./DynamicIcon";
 import { motion } from "framer-motion";
+import { AppState } from "../store/store";
+import { useSelector } from "react-redux";
 
 type Props = {
   isMenuOpen: boolean;
   toggleMenu: () => void;
 };
 
-const buttonOptions = ["Raum", "Gerät", "Szene"];
-const buttonVariants = {
-  hidden: (index: number) => ({
-    scaleX: 0.5,
-    scaleY: 0.5,
-    y: 60,
-    x: index === 0 ? 80 : index === 2 ? -80 : 0,
-  }),
-  visible: (index: number) => ({
-    scaleX: 1,
-    scaleY: 1,
-    y: -10,
-    x: 0,
-    transition: {
-      duration: 0.2,
-      ease: "easeOut",
-      delay: index * 0.15,
-    },
-  }),
-};
-
 export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
+
+  const buttonOptions = ["Raum", "Gerät", "Szene"];
+  const buttonVariants = {
+    hidden: (index: number) => ({
+      scaleX: 0.5,
+      scaleY: 0.5,
+      y: 60,
+      x: index === 0 ? 80 : index === 2 ? -80 : 0,
+    }),
+    visible: (index: number) => ({
+      scaleX: 1,
+      scaleY: 1,
+      y: -10,
+      x: 0,
+      transition: {
+        duration: hasMicrointeractions ? 0.2 : 0,
+        ease: "easeOut",
+        delay: index * 0.15,
+      },
+    }),
+  };
+
   return (
     <div className="z-50 absolute font-alte-haas-bold left-[50%] translate-x-[-50%] bottom-12">
       <button
@@ -45,7 +50,7 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
             <motion.button
               key={index}
               custom={index}
-              initial="hidden"
+              initial={"hidden"}
               animate="visible"
               variants={buttonVariants}
               className="bg-red text-light px-4 py-3 rounded-md cursor-pointer hover:bg-purple"

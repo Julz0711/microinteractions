@@ -1,9 +1,11 @@
 import DeviceBox from "./DeviceBox";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setHasMicrointeractions } from "../store/reducer";
 import { AppState } from "../store/store";
 
 const Test = () => {
+  const dispatch = useDispatch();
+
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
@@ -11,13 +13,13 @@ const Test = () => {
     <div className="flex flex-col gap-8">
       <div className="flex gap-4">
         <button
-          onClick={() => setHasMicrointeractions(false)} // Set to false
+          onClick={() => dispatch(setHasMicrointeractions(false))} // Set to false
           className="bg-red text-white border-4 border-red px-4 py-2 rounded-md cursor-pointer hover:bg-transparent hover:text-red"
         >
           Disable Microinteractions
         </button>
         <button
-          onClick={() => setHasMicrointeractions(true)} // Optional: Enable it again
+          onClick={() => dispatch(setHasMicrointeractions(true))} // Optional: Enable it again
           className="bg-green text-white border-4 border-green px-4 py-2 rounded-md cursor-pointer hover:bg-transparent hover:text-green"
         >
           Enable Microinteractions
