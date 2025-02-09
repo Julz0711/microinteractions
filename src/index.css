@@ -58,7 +58,7 @@
   --spacing-900: 1.5rem;
 
   /* shadow */
-  --shadow-active: 0px 0px 16px 0px rgba(48, 46, 41, 0.15);
+  --shadow-active: 0px 4px 16px 0px rgba(48, 46, 41, 0.2);
 
   /* radius */
   --radius-sm: 0.5rem;
@@ -136,6 +136,8 @@ body {
   initial-value: 0%;
 }
 
+/* Device Box */
+
 .device-box-active {
   --p: 0%;
   transition: --p 0.5s;
@@ -152,6 +154,17 @@ body {
     var(--color-inactive) var(--p),
     var(--color-light)
   );
+}
+
+/* New Device */
+@keyframes sonarWaveAnimation {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
 }
 /*
 Namespace	Utility classes

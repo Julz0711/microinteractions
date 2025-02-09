@@ -1,9 +1,7 @@
-import React from "react";
-import * as FaIcons6 from "react-icons/fa6";
-import * as FaIcons from "react-icons/fa";
+import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-
-type IconLibrary = Record<string, React.ElementType>;
+import { ReactSVG } from "react-svg";
+import Close from "../../public/icons/Close.svg";
 
 interface DynamicIconProps {
   iconName: string;
@@ -12,13 +10,26 @@ interface DynamicIconProps {
 }
 
 const DynamicIcon: React.FC<DynamicIconProps> = ({ iconName, size, color }) => {
-  const IconComponent =
-    (FaIcons as IconLibrary)[iconName] || (FaIcons6 as IconLibrary)[iconName];
+  const [iconUrl, setIconUrl] = useState<string | null>(null);
 
-  return IconComponent ? (
-    <IconComponent className={twMerge(size, color)} />
+  useEffect(() => {
+    const importIcon = async () => {
+      try {
+        const icon = await import(`../../public/icons/${iconName}.svg`);
+        setIconUrl(icon.default);
+      } catch (error) {
+        console.error(`Icon ${iconName} not found`);
+        setIconUrl(null);
+      }
+    };
+
+    importIcon();
+  }, [iconName]);
+
+  return iconUrl ? (
+    <ReactSVG src={iconUrl} className={twMerge(size, color)} />
   ) : (
-    <span>X</span>
+    <ReactSVG src={Close} className={twMerge(size, color)} />
   );
 };
 

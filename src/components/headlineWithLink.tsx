@@ -13,7 +13,7 @@ const HeadlineWithLink: React.FC<HeadlineProps> = ({ headline, link }) => {
       <h2 className="text-h2">
         <span className="flex flex-row items-center gap-1">
           {headline}
-          <DynamicIcon iconName="FaChevronRight" size="text-icon-sm" />
+          <DynamicIcon iconName="bluetooth" size="text-icon-sm" />
         </span>
       </h2>
     </Link>

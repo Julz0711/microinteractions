@@ -3,6 +3,7 @@ import { TopNavigation } from "./components/TopNavigation";
 import AppRouter from "./routes/Router";
 import { NewButton } from "./components/NewButton";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom"; // Import useLocation from react-router-dom
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,6 +11,13 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const showNewButton = ![
+    "/neuer-raum",
+    "/neues-geraet",
+    "/neue-szene",
+  ].includes(location.pathname);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -29,12 +37,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             />
           )}
         </AnimatePresence>
-        <TopNavigation />
+        {showNewButton && <TopNavigation />}
         <div className="px-5 w-full">
           <AppRouter />
         </div>
         {children}
-        <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+        {showNewButton && (
+          <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+        )}
       </div>
 
       {/* Introduction Section 

@@ -54,7 +54,7 @@ const DeviceBox = ({
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
-      className={` relative flex justify-start min-w-32 ${
+      className={`relative flex justify-start min-w-32 overflow-hidden ${
         hasToggle
           ? "h-32 items-end py-600 px-600"
           : "items-center py-400 px-600 cursor-pointer"
@@ -81,16 +81,17 @@ const DeviceBox = ({
       <div
         className={`${
           hasToggle ? "absolute top-600 left-600" : ""
-        } text-light p-400 rounded-full ${
-          isBoxActive ? activeColor : "bg-dark"
-        }`}
+        } text-light rounded-full ${isBoxActive ? activeColor : "bg-dark"}`}
       >
-        <DynamicIcon iconName={icon} />
+        <div className="z-90">
+          <DynamicIcon iconName={icon} />
+        </div>
       </div>
+
       <div
         className={
           hasAdditionalInfo
-            ? "flex flex-col items-start justify-start gap-0"
+            ? "z-20 flex flex-col items-start justify-start gap-0"
             : ""
         }
       >

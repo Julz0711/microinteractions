@@ -2,6 +2,7 @@ import DynamicIcon from "./DynamicIcon";
 import { motion } from "framer-motion";
 import { AppState } from "../store/store";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 type Props = {
   isMenuOpen: boolean;
@@ -13,7 +14,11 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
     (state: AppState) => state.app.hasMicrointeractions
   );
 
-  const buttonOptions = ["Raum", "Gerät", "Szene"];
+  const buttonOptions = [
+    { label: "Raum", link: "/neuer-raum" },
+    { label: "Gerät", link: "/neues-geraet" },
+    { label: "Szene", link: "/neue-scene" },
+  ];
   const buttonVariants = {
     hidden: (index: number) => ({
       scaleX: 0.5,
@@ -47,16 +52,17 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
       {isMenuOpen && (
         <div className="z-50 absolute bottom-16 left-1/2 transform -translate-x-1/2 flex gap-2">
           {buttonOptions.map((option, index) => (
-            <motion.button
-              key={index}
-              custom={index}
-              initial={"hidden"}
-              animate="visible"
-              variants={buttonVariants}
-              className="bg-red text-light px-4 py-3 rounded-md cursor-pointer hover:bg-purple"
-            >
-              {option}
-            </motion.button>
+            <Link to={option.link} key={index} onClick={toggleMenu}>
+              <motion.button
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={buttonVariants}
+                className="bg-red text-light px-4 py-3 rounded-md cursor-pointer hover:bg-purple"
+              >
+                {option.label}
+              </motion.button>
+            </Link>
           ))}
         </div>
       )}

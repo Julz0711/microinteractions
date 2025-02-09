@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <Link to={link} className={twMerge("btn btn-neutral", color)}>
-      {hasIcon && icon && <DynamicIcon iconName={icon} />}
+      {hasIcon && icon && <DynamicIcon iconName={"bluetooth"} />}
       {label}
     </Link>
   );
