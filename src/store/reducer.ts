@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { hierarchyStep } from "../types/dashboard.types";
+import { Category, HierarchyStep } from "../types/dashboard.types";
 
 interface AppState {
   hasMicrointeractions: boolean;
-  category: string;
-  hierarchy: hierarchyStep;
+  category: Category | null;
+  hierarchy: HierarchyStep;
 }
 
 const initialState: AppState = {
   hasMicrointeractions: true,
-  category: "",
-  hierarchy: hierarchyStep.SmartHomeGrid,
+  category: null,
+  hierarchy: HierarchyStep.SmartHomeGrid,
 };
 
 const appSlice = createSlice({
@@ -20,10 +20,10 @@ const appSlice = createSlice({
     setHasMicrointeractions(state: AppState, action: PayloadAction<boolean>) {
       state.hasMicrointeractions = action.payload;
     },
-    setCategory(state: AppState, action: PayloadAction<string>) {
+    setCategory(state: AppState, action: PayloadAction<Category | null>) {
       state.category = action.payload;
     },
-    setHierarchy(state: AppState, action: PayloadAction<hierarchyStep>) {
+    setHierarchy(state: AppState, action: PayloadAction<HierarchyStep>) {
       state.hierarchy = action.payload;
     },
   },
