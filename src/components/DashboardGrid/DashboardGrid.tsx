@@ -11,8 +11,8 @@ export const DashboardGrid = () => {
   return (
     <div className="h-[50vh] w-full flex flex-col items-center justify-center">
       <SmartHomeGrid />
-      {/* {(hierarchy === HierarchyStep.CategoryGrid ||
-        hierarchy === HierarchyStep.Device) && <CategoryGrid />} */}
+      {(hierarchy === HierarchyStep.CategoryGrid ||
+        hierarchy === HierarchyStep.Device) && <CategoryGrid />}
       {hierarchy === HierarchyStep.Device && (
         <Device deviceName={""} icon={""} />
       )}
