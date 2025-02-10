@@ -4,7 +4,7 @@ import { setCategory, setHierarchy } from "../../store/reducer";
 import { AppState } from "../../store/store";
 import { CategoryButton } from "./DashboardUI/CategoryButton";
 
-export const SmartHomeGrid = () => {
+export const RoomGrid = () => {
   const dispatch = useDispatch();
   const { hierarchy, category } = useSelector((state: AppState) => state.app);
 

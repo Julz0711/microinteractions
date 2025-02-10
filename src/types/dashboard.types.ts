@@ -1,12 +1,12 @@
 export enum HierarchyStep {
-  SmartHomeGrid,
-  CategoryGrid,
-  Device,
+  SmartHomeGrid = "SmartHomeGrid",
+  CategoryGrid = "CategoryGrid",
+  Device = "Device",
 }
 
 export enum Category {
-  Lights,
-  Heat,
-  Entertainment,
-  Air,
+  Lights = "Lights",
+  Heat = "Heat",
+  Entertainment = "Entertainment",
+  Air = "Air",
 }
