@@ -1,3 +1,3 @@
 export const CategoryGrid = () => {
-  return <div>CategoryGrid</div>;
+  return <div className="absolute pointer-events-none">CategoryGrid</div>;
 };

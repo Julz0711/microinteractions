@@ -2,11 +2,12 @@ import { twMerge } from "tailwind-merge";
 import { Category } from "../../../types/dashboard.types";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap"; // Import GSAP
+import { useSelector } from "react-redux";
+import { AppState } from "../../../store/store";
 
 export interface ICategoryButtonProps {
-  category: Category;
+  thisCategory: Category;
   onClick: (category: Category) => void;
-  activeCategory?: Category | null;
   index: number;
 }
 
@@ -14,9 +15,11 @@ export function CategoryButton(props: ICategoryButtonProps) {
   const [buttonColorClass, setbuttonColorClass] = useState("");
   const [active, setActive] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const { category } = useSelector((state: AppState) => state.app);
+  const padding = 10;
 
   useEffect(() => {
-    switch (props.category as unknown as string) {
+    switch (props.thisCategory as unknown as string) {
       case "Heat":
         setbuttonColorClass("bg-red");
         break;
@@ -30,59 +33,65 @@ export function CategoryButton(props: ICategoryButtonProps) {
         setbuttonColorClass("bg-orange");
         break;
     }
-
-    console.log("props.activeCategory", props.activeCategory);
-    const styleXPos =
-      props.activeCategory !== null
-        ? "90%"
-        : Math.floor(props.index % 2) * 50 + "%";
-    const styleYPos = Math.floor(props.index / 2) * 50 + "%";
-    gsap.set(buttonRef.current, { left: styleXPos, top: styleYPos });
-  }, [props.activeCategory]);
+  }, [props.thisCategory]);
 
   useEffect(() => {
-    const styleXPos = Math.floor(props.index % 2) * 50 + "%";
-    const styleYPos = Math.floor(props.index / 2) * 50 + "%";
-    if (props.activeCategory === props.category) {
+    const styleXPos =
+      Math.floor(props.index % 2) * 160 +
+      Math.floor(props.index % 2) * padding +
+      "px";
+    const styleYPos =
+      Math.floor(props.index / 2) * 160 +
+      Math.floor(props.index / 2) * padding +
+      "px";
+    const styleXPosHidden = Math.floor(props.index % 2) * 30 + 50 + "vw";
+    if (category === props.thisCategory) {
       setActive(true);
       gsap.to(buttonRef.current, {
+        ease: "power2.out",
         left: "50%",
         top: "50%",
         xPercent: -50,
         yPercent: -50,
-        duration: 0.2,
+        duration: 0.4,
       });
-    } else if (props.activeCategory !== null) {
+    } else if (category !== null) {
       setActive(false);
       gsap.to(buttonRef.current, {
-        left: "90%",
+        ease: "power2.out",
+        left: styleXPosHidden,
         top: styleYPos,
         xPercent: -50,
         yPercent: -50,
-        duration: 0.2,
+        duration: 0.4,
       });
     } else {
       setActive(false);
       gsap.to(buttonRef.current, {
+        ease: "power2.out",
         left: styleXPos,
         top: styleYPos,
-        xPercent: 0,
-        yPercent: 0,
-        duration: 0.2,
+        duration: 0.4,
+        xPercent: -50,
+        yPercent: -50,
       });
     }
-  }, [props.activeCategory, props.category, props.index]);
+  }, [category]);
+
+  const handleClick = () => {
+    props.onClick(props.thisCategory);
+  };
 
   return (
     <button
-      onClick={() => props.onClick(props.category)}
+      onClick={handleClick}
       ref={buttonRef}
       className={twMerge(
-        "h-24 w-24 flex items-center justify-center transition-all absolute ",
+        "h-40 w-40 flex items-center justify-center absolute rounded-md ",
         buttonColorClass
       )}
     >
-      {props.category}
+      {props.thisCategory}
     </button>
   );
 }
