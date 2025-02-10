@@ -21,7 +21,7 @@ const onActiveAnimationBox = {
 
 const DeviceBox = ({
   deviceName = "Placeholder",
-  icon = "FaSmile",
+  icon = "Bluetooth",
   activeColor = "bg-yellow",
   hasAdditionalInfo = false,
   additionalInfo = "Additional Info",
@@ -80,11 +80,11 @@ const DeviceBox = ({
       )}
       <div
         className={`${
-          hasToggle ? "absolute top-600 left-600" : ""
+          hasToggle ? "absolute top-600 left-600 p-1" : ""
         } text-light rounded-full ${isBoxActive ? activeColor : "bg-dark"}`}
       >
-        <div className="z-90">
-          <DynamicIcon iconName={icon} />
+        <div className="z-90 p-1">
+          <DynamicIcon iconName={"Bluetooth"} color="text-light" size={"16"} />
         </div>
       </div>
 

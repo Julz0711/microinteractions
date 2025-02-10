@@ -75,7 +75,11 @@ body {
 }
 
 .btn {
-  @apply rounded-sm font-alte-haas-bold shadow-none border-none py-4 px-6;
+  @apply rounded-sm shadow-none border-none py-4 px-6;
+}
+
+.btn-lg {
+  @apply rounded-md font-alte-haas-bold text-lg border-none py-6 px-8;
 }
 
 .flex-center {
@@ -159,31 +163,13 @@ body {
 /* New Device */
 @keyframes sonarWaveAnimation {
   from {
+    width: 0;
+    height: 0;
     opacity: 0.4;
   }
   to {
-    transform: scale(3);
+    width: 500%;
+    height: 500%;
     opacity: 0;
   }
 }
-/*
-Namespace	Utility classes
---color-*	Color utilities like bg-red-500, text-sky-300, and many more
---font-*	Font family utilities like font-sans
---text-*	Font size utilities like text-xl
---font-weight-*	Font weight utilities like font-bold
---tracking-*	Letter spacing utilities like tracking-wide
---leading-*	Line height utilities like leading-tight
---breakpoint-*	Responsive breakpoint variants like sm:*
---container-*	Container query variants like @sm:* and size utilities like max-w-md
---spacing-*	Spacing and sizing utilities like px-4, max-h-16, and many more
---radius-*	Border radius utilities like rounded-sm
---shadow-*	Box shadow utilities like shadow-md
---inset-shadow-*	Inset box shadow utilities like inset-shadow-xs
---drop-shadow-*	Drop shadow filter utilities like drop-shadow-md
---blur-*	Blur filter utilities like blur-md
---perspective-*	Perspective utilities like perspective-near
---aspect-*	Aspect ratio utilities like aspect-video
---ease-*	Transition timing function utilities like ease-out
---animate-*	Animation utilities like animate-spin
-*/
