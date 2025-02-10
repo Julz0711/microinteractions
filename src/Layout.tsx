@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="h-screen w-screen flex items-center justify-center gap-4 p-8 bg-dark">
-      <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 pb-5 items-start justify-start border rounded-[2rem] bg-light">
+      <div className="relative overflow-hidden w-[400px] h-[850px] flex flex-col gap-8 items-start justify-start border rounded-[2rem] bg-light">
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -38,7 +38,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           )}
         </AnimatePresence>
         {showNewButton && <TopNavigation />}
-        <div className="px-5 w-full">
+        <div className="px-5 pb-5 w-full h-full">
           <AppRouter />
         </div>
         {children}

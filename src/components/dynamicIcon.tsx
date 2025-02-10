@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ReactSVG } from "react-svg";
-import Close from "../../public/icons/Close.svg";
+import Close from "../assets/icons/Close.svg";
 
 interface DynamicIconProps {
   iconName: string;
@@ -15,7 +15,7 @@ const DynamicIcon: React.FC<DynamicIconProps> = ({ iconName, size, color }) => {
   useEffect(() => {
     const importIcon = async () => {
       try {
-        const icon = await import(`../../public/icons/${iconName}.svg`);
+        const icon = await import(`../assets/icons/${iconName}.svg`);
         setIconUrl(icon.default);
       } catch (error) {
         console.error(`Icon ${iconName} not found`);
@@ -27,7 +27,18 @@ const DynamicIcon: React.FC<DynamicIconProps> = ({ iconName, size, color }) => {
   }, [iconName]);
 
   return iconUrl ? (
-    <ReactSVG src={iconUrl} className={twMerge(size, color)} />
+    <ReactSVG
+      src={iconUrl}
+      className={twMerge(size, color)}
+      beforeInjection={(svg) => {
+        svg.setAttribute("style", `width: ${size}; height: ${size};`);
+        svg.setAttribute("fill", "currentColor");
+        svg.querySelectorAll("path").forEach((path) => {
+          path.setAttribute("fill", "currentColor");
+          path.setAttribute("stroke", "currentColor");
+        });
+      }}
+    />
   ) : (
     <ReactSVG src={Close} className={twMerge(size, color)} />
   );

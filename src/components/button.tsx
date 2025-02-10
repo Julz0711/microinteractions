@@ -9,6 +9,7 @@ interface ButtonProps {
   icon?: string;
   color: string;
   link: string;
+  isLarge?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,9 +18,13 @@ const Button: React.FC<ButtonProps> = ({
   icon = null,
   color = "bg-dark",
   link = "/",
+  isLarge = false,
 }) => {
   return (
-    <Link to={link} className={twMerge("btn btn-neutral", color)}>
+    <Link
+      to={link}
+      className={twMerge("btn btn-neutral", color, isLarge ? "btn-lg" : "")}
+    >
       {hasIcon && icon && <DynamicIcon iconName={"bluetooth"} />}
       {label}
     </Link>
