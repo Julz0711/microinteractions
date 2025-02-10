@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { Category } from "../../../types/dashboard.types";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap"; // Import GSAP
 import { useSelector } from "react-redux";
 import { AppState } from "../../../store/store";
@@ -17,6 +17,7 @@ export function CategoryButton(props: ICategoryButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { category } = useSelector((state: AppState) => state.app);
   const padding = 10;
+  const [basePosition, setbasePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     switch (props.thisCategory as unknown as string) {
@@ -36,21 +37,27 @@ export function CategoryButton(props: ICategoryButtonProps) {
   }, [props.thisCategory]);
 
   useEffect(() => {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    const xDirection = basePosition.x - windowWidth / 2;
+    const yDirection = basePosition.y - windowHeight / 2;
+    const length = Math.sqrt(xDirection ** 2 + yDirection ** 2);
+    const xNormalized = xDirection / length;
+    const yNormalized = yDirection / length;
     const styleXPos =
-      Math.floor(props.index % 2) * 160 +
-      Math.floor(props.index % 2) * padding +
-      "px";
+      Math.floor(props.index % 2) * 160 + Math.floor(props.index % 2) * padding;
     const styleYPos =
-      Math.floor(props.index / 2) * 160 +
-      Math.floor(props.index / 2) * padding +
-      "px";
-    const styleXPosHidden = Math.floor(props.index % 2) * 30 + 50 + "vw";
+      Math.floor(props.index / 2) * 160 + Math.floor(props.index / 2) * padding;
+    const styleXPosHidden = styleXPos + xNormalized * 250;
     if (category === props.thisCategory) {
       setActive(true);
       gsap.to(buttonRef.current, {
         ease: "power2.out",
         left: "50%",
-        top: "50%",
+        top: "70%",
+        height: "5rem",
+        width: "5rem",
         xPercent: -50,
         yPercent: -50,
         duration: 0.4,
@@ -59,8 +66,10 @@ export function CategoryButton(props: ICategoryButtonProps) {
       setActive(false);
       gsap.to(buttonRef.current, {
         ease: "power2.out",
-        left: styleXPosHidden,
-        top: styleYPos,
+        left: styleXPosHidden + "px",
+        top: styleYPos + "px",
+        height: "10rem",
+        width: "10rem",
         xPercent: -50,
         yPercent: -50,
         duration: 0.4,
@@ -69,11 +78,16 @@ export function CategoryButton(props: ICategoryButtonProps) {
       setActive(false);
       gsap.to(buttonRef.current, {
         ease: "power2.out",
-        left: styleXPos,
-        top: styleYPos,
+        left: styleXPos + "px",
+        top: styleYPos + "px",
+        height: "10rem",
+        width: "10rem",
         duration: 0.4,
         xPercent: -50,
         yPercent: -50,
+        onComplete: () => {
+          setbasePosition(getCenter());
+        },
       });
     }
   }, [category]);
@@ -82,16 +96,23 @@ export function CategoryButton(props: ICategoryButtonProps) {
     props.onClick(props.thisCategory);
   };
 
+  const getCenter = () => {
+    const rect = buttonRef.current!.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    return { x: centerX, y: centerY };
+  };
+
   return (
     <button
       onClick={handleClick}
       ref={buttonRef}
       className={twMerge(
-        "h-40 w-40 flex items-center justify-center absolute rounded-md ",
+        "h-40 w-40 flex text-light font-bold items-center justify-center absolute rounded-md",
         buttonColorClass
       )}
     >
-      {props.thisCategory}
+      {active ? "X" : <>{props.thisCategory}</>}
     </button>
   );
 }
