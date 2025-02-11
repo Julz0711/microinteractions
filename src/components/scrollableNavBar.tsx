@@ -40,7 +40,7 @@ export default function ScrollableNavBar() {
         {rooms.map((room, index) => (
           <div
             key={index}
-            className="text-sidescroll-nav w-full font-alte-haas-bold hover:text-uwu transition-all nowrap"
+            className="text-sidescroll-nav w-full font-bold hover:text-uwu transition-all nowrap"
           >
             {room}
           </div>
