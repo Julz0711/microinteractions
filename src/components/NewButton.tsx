@@ -40,7 +40,7 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
   };
 
   return (
-    <div className="z-50 sticky font-alte-haas-bold left-[50%] translate-x-[-50%] bottom-12">
+    <div className="z-50 sticky font-bold left-[50%] translate-x-[-50%] bottom-12">
       <button
         onClick={toggleMenu}
         className={`z-60 relative bg-dark text-light px-6 py-4 rounded-md transition cursor-pointer duration-150  ${

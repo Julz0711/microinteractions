@@ -21,7 +21,7 @@ const NewDevice = () => {
     <div className="flex flex-col justify-around gap-8 h-full">
       <div className="grow-0">
         <TopContextBar
-          leftIcon={undefined}
+          leftIcon={"Bluetooth"}
           headline={"Gerätescan"}
           metaDescription={"3 neue Geräte gefunden"}
           rightIcon={"Bluetooth"}

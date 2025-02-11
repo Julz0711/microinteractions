@@ -25,7 +25,7 @@ export const TopContextBar = ({
   };
 
   return (
-    <div className="z-90 w-full left-0 top-0 items-center pt-8">
+    <div className="sticky bg-light pb-2 z-10 w-full left-0 top-0 items-center pt-8">
       <div className="relative flex flex-col py-1 items-center">
         {leftIcon ? (
           <button

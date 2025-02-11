@@ -1,50 +1,8 @@
-import React from "react";
 import { TopContextBar } from "../components/TopContextBar";
 import GlowBoys from "../assets/img/glow_boys_coloured.png";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import DynamicIcon from "../components/DynamicIcon";
-
-const InputField = ({
-  type,
-  name,
-  placeholder,
-  value,
-  change,
-  blur,
-  icon,
-  error,
-}: {
-  type: string;
-  name: string;
-  placeholder: string;
-  value: string;
-  change: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  blur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  icon: string;
-  error?: string;
-}) => {
-  return (
-    <div className="w-full">
-      <div className="relative w-full">
-        <input
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          value={value}
-          onChange={change}
-          onBlur={blur}
-          required
-          className={`w-full pl-12 pr-4 py-3 bg-inactive rounded-md border-none focus:outline-none focus:ring-2 focus:ring-purple`}
-        />
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <DynamicIcon iconName={icon} size="20" color="text-dark" />
-        </div>
-      </div>
-      {error && <p className="mt-1 pl-2 text-sm text-red">{error}</p>}
-    </div>
-  );
-};
+import InputField from "../components/InputField";
 
 const Register = () => {
   const validationSchema = Yup.object({
@@ -79,7 +37,7 @@ const Register = () => {
   });
 
   return (
-    <div className="h-full flex flex-col justify-around gap-4">
+    <div className="h-full flex flex-col justify-around overflow-y-scroll no-scrollbar gap-4 pb-8">
       <TopContextBar
         headline={"Registrierung"}
         metaDescription={"Account erstellen"}
@@ -92,7 +50,7 @@ const Register = () => {
 
       <div className="grow-0 flex flex-col gap-4 justify-center items-center px-4">
         <div className="w-3/4 mx-auto">
-          <div className="text-xl text-center font-alte-haas-bold">
+          <div className="text-xl text-center font-bold">
             Bereit für Dein smartes Zuhause?
           </div>
         </div>
@@ -158,7 +116,7 @@ const Register = () => {
           />
           <button
             type="submit"
-            className="px-4 py-4 text-xl font-alte-haas-bold bg-red text-white rounded-md cursor-pointer duration-150 hover:bg-purple"
+            className="px-4 py-4 text-xl font-bold bg-red text-white rounded-md cursor-pointer duration-150 hover:bg-purple disabled:pointer-events-none disabled:bg-uwu"
             disabled={!formik.isValid}
           >
             Account erstellen

@@ -16,11 +16,27 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 @theme {
   /* fonts */
   --font-alte-haas-regular: "Alte Haas Grotesk Regular", Verdana, Arial,
     sans-serif;
   --font-alte-haas-bold: "Alte Haas Grotesk Bold", Verdana, Arial, sans-serif;
+  --font-poppins-regular: "Poppins Regular", Verdana, Arial, sans-serif;
+  --font-poppins-bold: "Poppins Bold", Verdana, Arial, sans-serif;
 
   /* text */
   --text-default: 1rem;
@@ -68,11 +84,11 @@
 }
 
 h1 {
-  @apply font-alte-haas-bold text-default;
+  @apply font-bold text-default;
 }
 
 body {
-  @apply bg-dark text-dark font-alte-haas-regular text-default;
+  @apply bg-dark text-dark font-normal text-default;
 }
 
 .btn {
@@ -80,7 +96,7 @@ body {
 }
 
 .btn-lg {
-  @apply rounded-md font-alte-haas-bold text-lg border-none py-6 px-8;
+  @apply rounded-md font-bold text-lg border-none py-6 px-8;
 }
 
 .flex-center {
@@ -88,17 +104,26 @@ body {
 }
 
 .text-meta {
-  @apply text-device-md font-alte-haas-bold text-uwu;
+  @apply text-device-md font-bold text-uwu;
 }
 
 .text-h2 {
-  @apply text-headline font-alte-haas-bold;
+  @apply text-headline font-bold;
 }
 
 @layer utilities {
+  .font-bold {
+    @apply font-poppins-bold;
+  }
+
+  .font-normal {
+    @apply font-poppins-regular;
+  }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
