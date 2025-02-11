@@ -6,7 +6,7 @@ export enum HierarchyStep {
 
 export enum Category {
   Lights = "Lights",
-  Heat = "Heat",
   Entertainment = "Entertainment",
+  Heat = "Heat",
   Air = "Air",
 }
