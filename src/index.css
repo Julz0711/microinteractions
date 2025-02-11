@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@tailwind utilities;
 
 @font-face {
   font-family: "Alte Haas Grotesk Regular";
@@ -92,6 +93,16 @@ body {
 
 .text-h2 {
   @apply text-headline font-alte-haas-bold;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 /* New Button */
