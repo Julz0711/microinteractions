@@ -9,14 +9,18 @@ type Props = {
   metaDescription: string;
   rightIcon?: React.ReactNode;
   rightIconBg?: boolean;
+  rightIconLink?: string;
+  leftIconClick?: () => void;
 };
 
 export const TopContextBar = ({
   leftIcon,
+  leftIconClick,
   headline,
   metaDescription,
   rightIcon,
   rightIconBg = false,
+  rightIconLink = undefined,
 }: Props) => {
   const navigate = useNavigate();
 
@@ -29,7 +33,7 @@ export const TopContextBar = ({
       <div className="relative flex flex-col py-1 items-center">
         {leftIcon ? (
           <button
-            onClick={goBack}
+            onClick={leftIconClick ? leftIconClick : goBack}
             className="absolute left-0 top-0 flex items-center justify-center p-2 bg-dark rounded-md w-12 h-12 text-light cursor-pointer"
           >
             <div>
@@ -40,10 +44,15 @@ export const TopContextBar = ({
           </button>
         ) : null}
 
-        <h1 className="text-lg font-bold">{headline}</h1>
+        <div className="text-lg font-bold">{headline}</div>
         <p className="text-meta text-gray-500">{metaDescription}</p>
         {rightIcon ? (
           <button
+            onClick={() => {
+              if (rightIconLink) {
+                navigate(rightIconLink);
+              }
+            }}
             className={twMerge(
               "absolute right-0 top-0 flex items-center justify-center p-2 rounded-md w-12 h-12 cursor-pointer",
               rightIconBg ? "bg-dark text-light" : "text-uwu"

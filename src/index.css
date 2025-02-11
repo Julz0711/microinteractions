@@ -84,7 +84,7 @@
 }
 
 h1 {
-  @apply font-bold text-default;
+  @apply font-bold text-default text-[1.5rem];
 }
 
 body {
@@ -97,6 +97,10 @@ body {
 
 .btn-lg {
   @apply rounded-md font-bold text-lg border-none py-6 px-8;
+}
+
+.btn-full {
+  @apply w-full px-4 py-4 text-xl font-bold bg-red text-white rounded-md cursor-pointer duration-150 hover:bg-purple disabled:pointer-events-none disabled:bg-uwu;
 }
 
 .flex-center {

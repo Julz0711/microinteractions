@@ -43,6 +43,7 @@ const Register = () => {
         metaDescription={"Account erstellen"}
         rightIcon={"Bluetooth"}
         rightIconBg={true}
+        rightIconLink="/dashboard"
       />
       <div className="w-4/5 mx-auto grow">
         <img src={GlowBoys} alt="Registrierung Header" className="w-full" />
@@ -114,11 +115,7 @@ const Register = () => {
                 : ""
             }
           />
-          <button
-            type="submit"
-            className="px-4 py-4 text-xl font-bold bg-red text-white rounded-md cursor-pointer duration-150 hover:bg-purple disabled:pointer-events-none disabled:bg-uwu"
-            disabled={!formik.isValid}
-          >
+          <button type="submit" className="btn-full" disabled={!formik.isValid}>
             Account erstellen
           </button>
         </form>

@@ -4,6 +4,8 @@ import { TopContextBar } from "../components/TopContextBar";
 import { twMerge } from "tailwind-merge";
 import DynamicIcon from "../components/DynamicIcon";
 import Button from "../components/Button";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const NewDevice = () => {
   const sonarWave =
@@ -16,7 +18,19 @@ const NewDevice = () => {
     { top: 40, left: 100 },
     { top: 100, left: -20 },
   ];
+  const iconVariants = {
+    hidden: { opacity: 0, scale: 0.15 },
+    visible: (index: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: index * (0.85 * index),
+        duration: 0.5,
+      },
+    }),
+  };
 
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col justify-around gap-8 h-full">
       <div className="grow-0">
@@ -73,17 +87,24 @@ const NewDevice = () => {
               )}
             ></div>
             {positions.map((position, index) => (
-              <div
+              <motion.div
+                onClick={() => {
+                  navigate("/geraet-registrieren");
+                }}
                 key={index}
-                className="absolute w-12 h-12 flex items-center justify-center rounded-full bg-red"
+                className="cursor-pointer absolute w-12 h-12 flex items-center justify-center rounded-full bg-red"
                 style={{ top: position.top, left: position.left }}
+                custom={index}
+                initial="hidden"
+                animate="visible"
+                variants={iconVariants}
               >
                 <DynamicIcon
                   iconName={"Bluetooth"}
                   color="text-light"
                   size={"24"}
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

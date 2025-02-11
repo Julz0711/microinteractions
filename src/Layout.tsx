@@ -3,7 +3,7 @@ import { TopNavigation } from "./components/TopNavigation";
 import AppRouter from "./routes/Router";
 import { NewButton } from "./components/NewButton";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom"; // Import useLocation from react-router-dom
+import { useLocation } from "react-router-dom";
 
 interface LayoutProps {}
 
@@ -17,6 +17,7 @@ const Layout: React.FC<LayoutProps> = () => {
     "/neues-geraet",
     "/neue-szene",
     "/registrieren",
+    "/geraet-registrieren",
     "/login",
   ].includes(location.pathname);
 
