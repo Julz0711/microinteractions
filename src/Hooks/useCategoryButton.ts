@@ -8,36 +8,44 @@ export interface IuseCategoryProps {
   thisCategory: Category;
   index: number;
   onClick: (category: Category) => void;
+  canvasRef: React.RefObject<HTMLDivElement>;
 }
 
 export function useCategoryButton(props: IuseCategoryProps) {
   const [buttonColorClass, setbuttonColorClass] = useState("");
   const [active, setActive] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
   const { category } = useSelector((state: AppState) => state.app);
   const padding = 10;
   const [basePosition, setbasePosition] = useState({ x: 0, y: 0 });
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [flexClasses, setflexClasses] = useState("");
 
   useEffect(() => {
     switch (props.thisCategory) {
-      case Category.Heat:
-        setbuttonColorClass("bg-red");
+      case Category.Lights:
+        setbuttonColorClass("bg-orange");
+        setSize({ width: 145, height: 145 });
+        setflexClasses("flex justify-end items-end");
         break;
       case Category.Entertainment:
         setbuttonColorClass("bg-purple");
+        setSize({ width: 135, height: 160 });
+        break;
+      case Category.Heat:
+        setbuttonColorClass("bg-red");
+        setSize({ width: 160, height: 160 });
         break;
       case Category.Air:
         setbuttonColorClass("bg-green");
-        break;
-      case Category.Lights:
-        setbuttonColorClass("bg-orange");
+        setSize({ width: 160, height: 110 });
         break;
     }
   }, [props.thisCategory]);
 
   useEffect(() => {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+    const windowWidth = props.canvasRef.current!.clientWidth;
+    const windowHeight = props.canvasRef.current!.clientHeight;
 
     const xDirection = basePosition.x - windowWidth / 2;
     const yDirection = basePosition.y - windowHeight / 2;
@@ -47,8 +55,10 @@ export function useCategoryButton(props: IuseCategoryProps) {
     const styleXPos =
       Math.floor(props.index % 2) * 160 + Math.floor(props.index % 2) * padding;
     const styleYPos =
-      Math.floor(props.index / 2) * 160 + Math.floor(props.index / 2) * padding;
-    const styleXPosHidden = styleXPos + xNormalized * 250;
+      Math.floor(props.index / 2) * 160 +
+      Math.floor(props.index / 2) * padding -
+      (props.index % 2) * 30;
+    const styleXPosHidden = styleXPos + xNormalized * 400;
     if (category === props.thisCategory) {
       setActive(true);
       gsap.to(buttonRef.current, {
@@ -88,7 +98,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
         xPercent: -50,
         yPercent: -50,
         onComplete: () => {
-          setbasePosition(getCenter());
+          setbasePosition({ x: styleXPos, y: styleYPos });
         },
       });
     }
@@ -98,12 +108,12 @@ export function useCategoryButton(props: IuseCategoryProps) {
     props.onClick(props.thisCategory);
   };
 
-  const getCenter = () => {
-    const rect = buttonRef.current!.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    return { x: centerX, y: centerY };
+  return {
+    buttonColorClass,
+    handleClick,
+    buttonRef,
+    active,
+    size,
+    flexClasses,
   };
-
-  return { buttonColorClass, handleClick, buttonRef, active };
 }

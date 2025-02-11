@@ -1,3 +1,5 @@
+import { Category } from "../types/dashboard.types";
+
 export const devices = [
   {
     icon: "FaLightbulb",
@@ -7,6 +9,7 @@ export const devices = [
     isFavorite: true,
     color: "bg-yellow",
     additional: "100%",
+    category: Category.Lights,
   },
   {
     icon: "FaLightbulb",
@@ -16,6 +19,7 @@ export const devices = [
     isFavorite: true,
     color: "bg-yellow",
     additional: "100%",
+    category: Category.Lights,
   },
   {
     icon: "FaLightbulb",
@@ -25,6 +29,7 @@ export const devices = [
     isFavorite: false,
     color: "bg-yellow",
     additional: "100%",
+    category: Category.Lights,
   },
   {
     icon: "FaLightbulb",
@@ -34,5 +39,6 @@ export const devices = [
     isFavorite: false,
     color: "bg-yellow",
     additional: "100%",
+    category: Category.Lights,
   },
 ];

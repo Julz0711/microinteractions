@@ -3,10 +3,12 @@ import { Category, HierarchyStep } from "../../types/dashboard.types";
 import { setCategory, setHierarchy } from "../../store/reducer";
 import { AppState } from "../../store/store";
 import { CategoryButton } from "./DashboardUI/CategoryButton";
+import { useRef } from "react";
 
 export const RoomGrid = () => {
   const dispatch = useDispatch();
   const { hierarchy, category } = useSelector((state: AppState) => state.app);
+  const canvasRef = useRef<HTMLDivElement>(null);
 
   const handleSetHierarchy = (selectedCategory: Category) => {
     if (
@@ -23,13 +25,14 @@ export const RoomGrid = () => {
     }
   };
   return (
-    <div className={"w-40 h-80 transition-all relative"}>
+    <div ref={canvasRef} className={"w-40 h-80 transition-all relative"}>
       {Object.values(Category)
         .filter((key) => isNaN(Number(key)))
         .map((cat, index) => (
           <CategoryButton
             key={index}
             index={index}
+            canvasRef={canvasRef}
             onClick={handleSetHierarchy}
             thisCategory={cat as Category}
           />
