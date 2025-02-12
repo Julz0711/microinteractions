@@ -10,5 +10,7 @@ export const getColor = (category: Category) => {
       return "bg-red";
     case Category.Air:
       return "bg-green";
+    case Category.Household:
+      return "bg-blue";
   }
 };

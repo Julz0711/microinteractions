@@ -1,7 +1,7 @@
 import ScrollableNavBar from "../components/ScrollableNavBar";
 import GlowBoyz from "../assets/img/glow_boys.png";
 import Button from "../components/Button";
-import HeadlineWithLink from "../components/headlineWithLink.tsx";
+import HeadlineWithLink from "../components/HeadlineWithLink.tsx";
 import DevicePreview from "../components/DevicePreview";
 import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
 import { devices } from "../data/data";
