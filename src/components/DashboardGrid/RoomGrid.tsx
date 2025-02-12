@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Category, HierarchyStep } from "../../types/dashboard.types";
 import { setCategory, setHierarchy } from "../../store/reducer";
 import { AppState } from "../../store/store";
-import { CategoryButton } from "./DashboardUI/CategoryButton";
+import { CategoryGrid } from "./CategoryGrid";
 import { useRef } from "react";
 
 export const RoomGrid = () => {
@@ -29,7 +29,7 @@ export const RoomGrid = () => {
       {Object.values(Category)
         .filter((key) => isNaN(Number(key)))
         .map((cat, index) => (
-          <CategoryButton
+          <CategoryGrid
             key={index}
             index={index}
             canvasRef={canvasRef}

@@ -1,9 +1,9 @@
 import { twMerge } from "tailwind-merge";
-import { Category, HierarchyStep } from "../../../types/dashboard.types";
-import { useCategoryButton } from "../../../Hooks/useCategoryButton";
+import { Category, HierarchyStep } from "../../types/dashboard.types";
+import { useCategoryButton } from "../../Hooks/useCategoryButton";
 import { useSelector } from "react-redux";
-import { AppState } from "../../../store/store";
-import { DeviceGrid } from "../DeviceGrid";
+import { AppState } from "../../store/store";
+import { DeviceGrid } from "./DeviceGrid";
 
 export interface ICategoryButtonProps {
   thisCategory: Category;
@@ -12,7 +12,7 @@ export interface ICategoryButtonProps {
   canvasRef: React.RefObject<HTMLDivElement>;
 }
 
-export function CategoryButton(props: ICategoryButtonProps) {
+export function CategoryGrid(props: ICategoryButtonProps) {
   const {
     buttonColorClass,
     handleClick,
@@ -31,11 +31,15 @@ export function CategoryButton(props: ICategoryButtonProps) {
   const { hierarchy, category } = useSelector((state: AppState) => state.app);
 
   return (
-    <div
-      onClick={handleClick}
-      ref={buttonRef}
-      className={twMerge("h-40 w-40 absolute", flexClasses)}
-    >
+    <div ref={buttonRef} className={twMerge("absolute", flexClasses)}>
+      <div
+        onClick={handleClick}
+        className={twMerge(
+          "absolute",
+          active ? "h-20 w-20" : "w-full h-full ",
+          flexClasses
+        )}
+      ></div>
       <div
         className={twMerge(
           buttonColorClass,
