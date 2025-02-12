@@ -71,7 +71,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
         width: "5rem",
         xPercent: -50,
         yPercent: 20,
-        duration: 0.4,
+        duration: 0.3,
         onComplete: () => {
           setactiveAnimationFinished(true);
         },
@@ -87,7 +87,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
         width: "10rem",
         xPercent: -50,
         yPercent: -50,
-        duration: 0.4,
+        duration: 0.3,
       });
     } else {
       setActive(false);
@@ -98,7 +98,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
         top: styleYPos + "px",
         height: "10rem",
         width: "10rem",
-        duration: 0.4,
+        duration: 0.3,
         xPercent: -50,
         yPercent: -50,
         onComplete: () => {

@@ -56,7 +56,7 @@ export const DeviceGrid = (props: DeviceGridProps) => {
       transition: {
         duration: hasMicrointeractions ? 0.2 : 0,
         ease: "easeOut",
-        delay: 0.1 + index * 0.05,
+        delay: index * 0.05,
       },
     }),
   };
@@ -71,10 +71,6 @@ export const DeviceGrid = (props: DeviceGridProps) => {
             initial="hidden"
             animate="visible"
             variants={buttonVariants}
-            className={twMerge(
-              buttonColorClass,
-              "p-4 flex text-light font-bold items-center justify-center max-w-full max-h-full rounded-md"
-            )}
           >
             <DeviceBox device={device} />
           </motion.button>

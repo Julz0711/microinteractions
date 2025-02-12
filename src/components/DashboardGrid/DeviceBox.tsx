@@ -4,6 +4,7 @@ import DynamicIcon from "../DynamicIcon";
 import { AppState } from "../../store/store";
 import { useSelector } from "react-redux";
 import { Device } from "../../types/types";
+import { getColor } from "../../helpers/helpers";
 
 interface DeviceProps {
   device: Device;
@@ -31,7 +32,7 @@ export const DeviceBox = ({ device }: DeviceProps) => {
 
   return (
     <motion.div
-      onClick={!device.hasToggle ? toggleActiveState : undefined}
+      onClick={toggleActiveState}
       initial={hasMicrointeractions ? onActiveAnimationBox.initial : undefined}
       transition={
         hasMicrointeractions ? onActiveAnimationBox.transition : undefined
@@ -41,44 +42,38 @@ export const DeviceBox = ({ device }: DeviceProps) => {
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
-      className={`relative flex justify-start min-w-32 ${
-        device.hasToggle
-          ? "h-32 items-end py-600 px-600"
-          : "items-center py-400 px-600 cursor-pointer"
-      } font-bold gap-400 rounded-md select-none ${
-        isBoxActive ? "shadow-active bg-light" : "bg-inactive"
-      }`}
+      className={`relative flex justify-start min-w-32 h-32 items-end px-4"
+       font-bold gap-400 rounded-md select-none ${
+         isBoxActive ? "shadow-active bg-light" : "bg-inactive"
+       }`}
     >
-      {device.hasToggle && (
-        <input
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleButtonState();
-            toggleActiveState();
-          }}
-          type="checkbox"
-          className="absolute toggle toggle-lg rounded-full before:rounded-full top-600 border-none right-600 text-light bg-uwu checked:bg-green"
-          defaultChecked={isToggleOn}
-        />
-      )}
+      <input
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleButtonState();
+          toggleActiveState();
+        }}
+        type="checkbox"
+        className="absolute toggle toggle-lg rounded-full before:rounded-full top-600 border-none right-600 text-light bg-uwu checked:bg-green"
+        defaultChecked={isToggleOn}
+      />
       <div
-        className={`${
-          device.hasToggle ? "absolute top-600 left-600" : ""
-        } text-light p-400 rounded-full ${
-          isBoxActive ? device.activeColor : "bg-dark"
-        }`}
+        className={`absolute top-600 left-600" : ""
+         text-light p-400 rounded-full ${
+           isBoxActive ? getColor(device.category) : "bg-dark"
+         }`}
       >
         <DynamicIcon iconName={device.icon} />
       </div>
       <div
         className={
-          device.hasAdditionalInfo
+          device.additionalInfo
             ? "flex flex-col items-start justify-start gap-0"
             : ""
         }
       >
-        <span>{device.deviceName}</span>
-        {device.hasAdditionalInfo ? (
+        <span>{device.name}</span>
+        {device.additionalInfo ? (
           <div className="text-meta">{device.additionalInfo}</div>
         ) : null}
       </div>
