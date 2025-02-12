@@ -1,8 +1,8 @@
 import ScrollableNavBar from "../components/ScrollableNavBar";
 import GlowBoyz from "../assets/img/glow_boys.png";
 import Button from "../components/Button";
-import HeadlineWithLink from "../components/HeadlineWithLink";
-import DeviceBox from "../components/DeviceBox";
+import HeadlineWithLink from "../components/headlineWithLink.tsx";
+import DevicePreview from "../components/DevicePreview";
 import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
 import { devices } from "../data/data";
 
@@ -31,41 +31,12 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
             <HeadlineWithLink headline="Favoriten" link="/szenen" />
             <div className="flex flex-row gap-600">
               {devices
-                .filter(
-                  (device: {
-                    name: string;
-                    icon: string;
-                    color: string;
-                    active: boolean;
-                    isFavorite: boolean;
-                    additional: string;
-                  }) => device.isFavorite
-                )
-                .map(
-                  (
-                    device: {
-                      name: string;
-                      icon: string;
-                      color: string;
-                      active: boolean;
-                      isFavorite: boolean;
-                      additional: string;
-                    },
-                    index
-                  ) => (
-                    <div key={index}>
-                      <DeviceBox
-                        deviceName={device.name}
-                        icon={device.icon}
-                        activeColor={device.color}
-                        hasAdditionalInfo={true}
-                        hasToggle={true}
-                        isActive={device.active}
-                        additionalInfo={device.additional}
-                      />
-                    </div>
-                  )
-                )}
+                .filter((device) => device.isFavorite)
+                .map((device, index) => (
+                  <div key={index}>
+                    <DevicePreview device={device} hasToggle={true} />
+                  </div>
+                ))}
             </div>
           </div>
           <div className="flex flex-col gap-400">

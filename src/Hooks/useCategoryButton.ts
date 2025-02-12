@@ -20,6 +20,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
   const [basePosition, setbasePosition] = useState({ x: 0, y: 0 });
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [flexClasses, setflexClasses] = useState("");
+  const [activeAnimationFinished, setactiveAnimationFinished] = useState(false);
 
   useEffect(() => {
     switch (props.thisCategory) {
@@ -69,8 +70,11 @@ export function useCategoryButton(props: IuseCategoryProps) {
         height: "5rem",
         width: "5rem",
         xPercent: -50,
-        yPercent: -50,
+        yPercent: 20,
         duration: 0.4,
+        onComplete: () => {
+          setactiveAnimationFinished(true);
+        },
       });
     } else if (category !== null) {
       // Hidden State
@@ -99,6 +103,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
         yPercent: -50,
         onComplete: () => {
           setbasePosition({ x: styleXPos, y: styleYPos });
+          setactiveAnimationFinished(false);
         },
       });
     }
@@ -115,5 +120,6 @@ export function useCategoryButton(props: IuseCategoryProps) {
     active,
     size,
     flexClasses,
+    activeAnimationFinished,
   };
 }

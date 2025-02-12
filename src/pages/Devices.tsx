@@ -1,4 +1,4 @@
-import DeviceBox from "../components/DeviceBox";
+import DevicePreview from "../components/DevicePreview";
 import { devices } from "../data/data";
 
 const Devices = () => {
@@ -21,7 +21,7 @@ const Devices = () => {
           <div className="mt-2 grid grid-cols-2 gap-4">
             {devices.map((device: any) => (
               <div>
-                <DeviceBox
+                <DevicePreview
                   deviceName={device.name}
                   icon={device.icon}
                   activeColor={device.color}

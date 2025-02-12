@@ -20,6 +20,7 @@ export function CategoryButton(props: ICategoryButtonProps) {
     active,
     size,
     flexClasses,
+    activeAnimationFinished,
   } = useCategoryButton({
     thisCategory: props.thisCategory,
     index: props.index,
@@ -45,7 +46,9 @@ export function CategoryButton(props: ICategoryButtonProps) {
         {active ? "X" : <>{props.thisCategory}</>}
         {props.thisCategory === category &&
           (hierarchy === HierarchyStep.CategoryGrid ||
-            hierarchy === HierarchyStep.Device) && <DeviceGrid />}
+            hierarchy === HierarchyStep.Device) && (
+            <DeviceGrid activeAnimationFinished={activeAnimationFinished} />
+          )}
       </div>
     </div>
   );

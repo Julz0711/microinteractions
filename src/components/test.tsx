@@ -1,4 +1,4 @@
-import DeviceBox from "./DeviceBox";
+import DevicePreview from "./DevicePreview";
 import { useDispatch, useSelector } from "react-redux";
 import { setHasMicrointeractions } from "../store/reducer";
 import { AppState } from "../store/store";
@@ -32,8 +32,8 @@ const Test = () => {
         </p>
       </div>
       <div className="flex nowrap gap-800">
-        <span>
-          <DeviceBox
+        {/* <span>
+          <DevicePreview
             deviceName="Deckenleuchte"
             icon="FaLightbulb"
             activeColor="bg-yellow"
@@ -41,14 +41,14 @@ const Test = () => {
           />
         </span>
         <span>
-          <DeviceBox
+          <DevicePreview
             deviceName="Deckenleuchte"
             icon="FaLightbulb"
             activeColor="bg-yellow"
             hasAdditionalInfo={true}
             hasToggle={true}
           />
-        </span>
+        </span> */}
       </div>
     </div>
   );

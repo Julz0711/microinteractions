@@ -1,35 +1,24 @@
+import DynamicIcon from "./DynamicIcon";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import DynamicIcon from "../DynamicIcon";
-import { AppState } from "../../store/store";
 import { useSelector } from "react-redux";
+import { AppState } from "../store/store";
+import { Device } from "../types/types";
+import { getColor } from "../helpers/helpers";
 
-interface DeviceProps {
-  deviceName: string;
-  icon: string;
-  activeColor?: string;
-  hasAdditionalInfo?: boolean;
-  additionalInfo?: string;
+interface DeviceBoxProps {
+  device: Device;
   hasToggle?: boolean;
-  isActive?: boolean;
 }
 
 const onActiveAnimationBox = {
   initial: { scale: 1 },
-  transition: { duration: 0.3, easing: "ease" },
+  transition: { duration: 0.4, easing: "ease" },
 };
 
-export const Device = ({
-  deviceName = "Placeholder",
-  icon = "FaSmile",
-  activeColor = "bg-yellow",
-  hasAdditionalInfo = false,
-  additionalInfo = "Additional Info",
-  hasToggle = false,
-  isActive = false,
-}: DeviceProps) => {
-  const [isBoxActive, setIsBoxActive] = useState(isActive);
-  const [isToggleOn, setIsToggleOn] = useState(isActive);
+const DevicePreview = ({ device, hasToggle }: DeviceBoxProps) => {
+  const [isBoxActive, setIsBoxActive] = useState(device.isActive);
+  const [isToggleOn, setIsToggleOn] = useState(device.isActive);
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
@@ -54,13 +43,17 @@ export const Device = ({
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
-      className={`relative flex justify-start min-w-32 ${
+      className={`relative flex justify-start min-w-32 overflow-hidden ${
         hasToggle
           ? "h-32 items-end py-600 px-600"
           : "items-center py-400 px-600 cursor-pointer"
       } font-bold gap-400 rounded-md select-none ${
-        isBoxActive ? "shadow-active bg-light" : "bg-inactive"
-      }`}
+        hasMicrointeractions
+          ? isBoxActive
+            ? "device-box-active"
+            : "device-box-inactive"
+          : ""
+      } ${isBoxActive ? "shadow-active bg-light" : "bg-inactive"}`}
     >
       {hasToggle && (
         <input
@@ -76,25 +69,38 @@ export const Device = ({
       )}
       <div
         className={`${
-          hasToggle ? "absolute top-600 left-600" : ""
-        } text-light p-400 rounded-full ${
-          isBoxActive ? activeColor : "bg-dark"
+          hasToggle ? "absolute top-600 left-600 p-1" : ""
+        } text-light rounded-full ${
+          isBoxActive ? getColor(device.category) : "bg-dark"
         }`}
       >
-        <DynamicIcon iconName={icon} />
+        <div className="z-90 p-1">
+          <DynamicIcon iconName={"Bluetooth"} color="text-light" size={"16"} />
+        </div>
       </div>
+
       <div
         className={
-          hasAdditionalInfo
-            ? "flex flex-col items-start justify-start gap-0"
+          device.additionalInfo
+            ? "z-20 flex flex-col items-start justify-start gap-0"
             : ""
         }
       >
-        <span>{deviceName}</span>
-        {hasAdditionalInfo ? (
-          <div className="text-meta">{additionalInfo}</div>
-        ) : null}
+        <span>{device.name}</span>
+        <div>
+          {device.additionalInfo ? (
+            <div className="text-meta">
+              {isBoxActive
+                ? device.additionalInfo.length > 0
+                  ? device.additionalInfo
+                  : "Aus"
+                : "Aus"}
+            </div>
+          ) : null}
+        </div>
       </div>
     </motion.div>
   );
 };
+
+export default DevicePreview;

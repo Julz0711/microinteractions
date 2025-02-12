@@ -4,13 +4,24 @@ import { AppState } from "../../store/store";
 import { useEffect, useState } from "react";
 import { Category } from "../../types/dashboard.types";
 import { devices } from "../../data/data";
+import { motion } from "framer-motion";
+import { option } from "framer-motion/client";
+import { DeviceBox } from "./DeviceBox";
 
-export const DeviceGrid = () => {
+export interface DeviceGridProps {
+  activeAnimationFinished: boolean;
+}
+
+export const DeviceGrid = (props: DeviceGridProps) => {
   const { category } = useSelector((state: AppState) => state.app);
   const [buttonColorClass, setbuttonColorClass] = useState("");
   const [active, setActive] = useState(false);
   const filteredDevices = devices.filter(
     (device) => device.category === category
+  );
+
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
   );
 
   useEffect(() => {
@@ -30,24 +41,45 @@ export const DeviceGrid = () => {
     }
   }, [category]);
 
-  const handleClick = () => {
-    setActive(!active);
+  const buttonVariants = {
+    hidden: (index: number) => ({
+      scaleX: 0,
+      scaleY: 0,
+      y: 180 - Math.floor(index / 2) * 60,
+      x: 80 - (index % 2) * 160,
+    }),
+    visible: (index: number) => ({
+      scaleX: 1,
+      scaleY: 1,
+      y: -10,
+      x: 0,
+      transition: {
+        duration: hasMicrointeractions ? 0.2 : 0,
+        ease: "easeOut",
+        delay: 0.1 + index * 0.05,
+      },
+    }),
   };
 
   return (
-    <div className="flex flex-wrap gap-4 absolute w-80 left-0 right-0 -top-20 m-auto">
-      {filteredDevices.map((device, index) => (
-        <div
-          key={index}
-          className={twMerge(
-            buttonColorClass,
-            "flex text-light font-bold items-center justify-center max-w-full max-h-full rounded-md"
-          )}
-          onClick={handleClick}
-        >
-          {active ? "X" : <>device</>}
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-2 gap-4 absolute w-80 left-1/2 bottom-24 -translate-x-1/2 -z-10">
+        {filteredDevices.map((device, index) => (
+          <motion.button
+            key={index}
+            custom={index}
+            initial="hidden"
+            animate="visible"
+            variants={buttonVariants}
+            className={twMerge(
+              buttonColorClass,
+              "p-4 flex text-light font-bold items-center justify-center max-w-full max-h-full rounded-md"
+            )}
+          >
+            <DeviceBox device={device} />
+          </motion.button>
+        ))}
+      </div>
+    </>
   );
 };
