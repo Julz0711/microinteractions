@@ -21,15 +21,7 @@ const Devices = () => {
           <div className="mt-2 grid grid-cols-2 gap-4">
             {devices.map((device: any) => (
               <div>
-                <DevicePreview
-                  deviceName={device.name}
-                  icon={device.icon}
-                  activeColor={device.color}
-                  hasAdditionalInfo={true}
-                  hasToggle={true}
-                  isActive={device.active}
-                  additionalInfo={device.additional}
-                />
+                <DevicePreview device={device} hasToggle={true} />
               </div>
             ))}
           </div>

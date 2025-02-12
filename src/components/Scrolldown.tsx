@@ -1,35 +1,44 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-type Props = {
+interface ScrolldownProps {
   items: string[];
-  onSelect: (item: string) => void;
-};
+  color: string; // Tailwind color class for the active item
+  onSelect: (item: string) => void; // Callback to notify when an item is selected
+}
 
-const Scrolldown = ({ items, onSelect }: Props) => {
+export default function Scrolldown({
+  items,
+  color,
+  onSelect,
+}: ScrolldownProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleClick = (index: number) => {
+  // Handle item click (selecting an item)
+  const handleItemClick = (index: number) => {
     setActiveIndex(index);
     onSelect(items[index]);
   };
 
   return (
-    <div className="h-24 overflow-y-scroll flex flex-col items-center scroll-smooth w-full">
-      <div className="flex flex-col items-center w-full">
+    <div className="relative w-full">
+      {/* Carousel Container */}
+      <div className="carousel carousel-vertical rounded-box h-32 w-full">
         {items.map((item, index) => (
           <div
             key={index}
-            className={`p-2 text-center w-full rounded-sm cursor-pointer ${
-              index === activeIndex ? 'bg-uwu' : 'bg-light'
-            }`}
-            onClick={() => handleClick(index)}
+            className={twMerge(
+              "carousel-item h-1/3 flex flex-col items-center justify-center cursor-pointer",
+              activeIndex === index
+                ? twMerge(color, "font-bold text-light")
+                : "bg-inactive"
+            )}
+            onClick={() => handleItemClick(index)} // Handle click to select item
           >
-            {item}
+            <div className="text-lg">{item}</div>
           </div>
         ))}
       </div>
     </div>
   );
-};
-
-export default Scrolldown;
+}
