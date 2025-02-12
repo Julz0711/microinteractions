@@ -2,7 +2,7 @@ import { Category } from "../types/dashboard.types";
 
 export const devices = [
   {
-    icon: "FaLightbulb",
+    icon: "Bluetooth",
     name: "Leselampe",
     room: "Wohnzimmer",
     isActive: true,
@@ -11,7 +11,7 @@ export const devices = [
     category: Category.Lights,
   },
   {
-    icon: "FaLightbulb",
+    icon: "Bluetooth",
     name: "Deckenleuchte",
     room: "Wohnzimmer",
     isActive: false,
@@ -20,7 +20,7 @@ export const devices = [
     category: Category.Lights,
   },
   {
-    icon: "FaLightbulb",
+    icon: "Bluetooth",
     name: "Deckenleuchte 2",
     room: "Wohnzimmer",
     isActive: false,
@@ -29,12 +29,39 @@ export const devices = [
     category: Category.Lights,
   },
   {
-    icon: "FaLightbulb",
+    icon: "Bluetooth",
     name: "Deckenleuchte",
     room: "Küche",
     isActive: true,
     isFavorite: false,
     additionalInfo: "100%",
     category: Category.Lights,
+  },
+  {
+    icon: "Bluetooth",
+    name: "Heizung Fenster",
+    room: "Wohnzimmer",
+    isActive: true,
+    isFavorite: true,
+    additionalInfo: "100%",
+    category: Category.Heat,
+  },
+  {
+    icon: "Bluetooth",
+    name: "Heizung Fenster 2",
+    room: "Wohnzimmer",
+    isActive: false,
+    isFavorite: true,
+    additionalInfo: "100%",
+    category: Category.Heat,
+  },
+  {
+    icon: "Bluetooth",
+    name: "Heizung Wand",
+    room: "Wohnzimmer",
+    isActive: false,
+    isFavorite: false,
+    additionalInfo: "100%",
+    category: Category.Heat,
   },
 ];

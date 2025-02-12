@@ -15,11 +15,9 @@ export const RoomGrid = () => {
       hierarchy === HierarchyStep.CategoryGrid &&
       category === selectedCategory
     ) {
-      // If the clicked category is already active, deactivate it and go back to SmartHomeGrid
       dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
       dispatch(setCategory(null));
     } else {
-      // Otherwise, set the hierarchy to CategoryGrid and activate the selected category
       dispatch(setHierarchy(HierarchyStep.CategoryGrid));
       dispatch(setCategory(selectedCategory));
     }

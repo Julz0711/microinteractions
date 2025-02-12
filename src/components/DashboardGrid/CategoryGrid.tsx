@@ -4,6 +4,7 @@ import { useCategoryButton } from "../../Hooks/useCategoryButton";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import { DeviceGrid } from "./DeviceGrid";
+import { getColor } from "../../helpers/helpers";
 
 export interface ICategoryButtonProps {
   thisCategory: Category;
@@ -14,7 +15,6 @@ export interface ICategoryButtonProps {
 
 export function CategoryGrid(props: ICategoryButtonProps) {
   const {
-    buttonColorClass,
     handleClick,
     buttonRef,
     active,
@@ -31,7 +31,10 @@ export function CategoryGrid(props: ICategoryButtonProps) {
   const { hierarchy, category } = useSelector((state: AppState) => state.app);
 
   return (
-    <div ref={buttonRef} className={twMerge("absolute", flexClasses)}>
+    <div
+      ref={buttonRef}
+      className={twMerge("categorybutton absolute", flexClasses)}
+    >
       <div
         onClick={handleClick}
         className={twMerge(
@@ -42,7 +45,7 @@ export function CategoryGrid(props: ICategoryButtonProps) {
       ></div>
       <div
         className={twMerge(
-          buttonColorClass,
+          getColor(props.thisCategory),
           "flex text-light font-bold items-center justify-center max-w-full max-h-full rounded-md"
         )}
         style={{ width: size.width, height: size.height }}
@@ -51,7 +54,10 @@ export function CategoryGrid(props: ICategoryButtonProps) {
         {props.thisCategory === category &&
           (hierarchy === HierarchyStep.CategoryGrid ||
             hierarchy === HierarchyStep.Device) && (
-            <DeviceGrid activeAnimationFinished={activeAnimationFinished} />
+            <DeviceGrid
+              activeAnimationFinished={activeAnimationFinished}
+              canvasRef={props.canvasRef}
+            />
           )}
       </div>
     </div>

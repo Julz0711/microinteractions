@@ -12,7 +12,6 @@ export interface IuseCategoryProps {
 }
 
 export function useCategoryButton(props: IuseCategoryProps) {
-  const [buttonColorClass, setbuttonColorClass] = useState("");
   const [active, setActive] = useState(false);
   const buttonRef = useRef<HTMLDivElement>(null);
   const { category } = useSelector((state: AppState) => state.app);
@@ -25,20 +24,16 @@ export function useCategoryButton(props: IuseCategoryProps) {
   useEffect(() => {
     switch (props.thisCategory) {
       case Category.Lights:
-        setbuttonColorClass("bg-orange");
         setSize({ width: 145, height: 145 });
         setflexClasses("flex justify-end items-end");
         break;
       case Category.Entertainment:
-        setbuttonColorClass("bg-purple");
         setSize({ width: 135, height: 160 });
         break;
       case Category.Heat:
-        setbuttonColorClass("bg-red");
         setSize({ width: 160, height: 160 });
         break;
       case Category.Air:
-        setbuttonColorClass("bg-green");
         setSize({ width: 160, height: 110 });
         break;
     }
@@ -58,7 +53,8 @@ export function useCategoryButton(props: IuseCategoryProps) {
     const styleYPos =
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding -
-      (props.index % 2) * 30;
+      (props.index % 2) * 30 +
+      60;
     const styleXPosHidden = styleXPos + xNormalized * 400;
     if (category === props.thisCategory) {
       setActive(true);
@@ -114,7 +110,6 @@ export function useCategoryButton(props: IuseCategoryProps) {
   };
 
   return {
-    buttonColorClass,
     handleClick,
     buttonRef,
     active,

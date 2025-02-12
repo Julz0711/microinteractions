@@ -1,42 +1,42 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "daisyui";
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Alte Haas Grotesk Regular';
-  src: url('./assets/fonts/AlteHaasGroteskRegular.ttf') format('truetype');
+  font-family: "Alte Haas Grotesk Regular";
+  src: url("./assets/fonts/AlteHaasGroteskRegular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Alte Haas Grotesk Bold';
-  src: url('./assets/fonts/AlteHaasGroteskBold.ttf') format('truetype');
+  font-family: "Alte Haas Grotesk Bold";
+  src: url("./assets/fonts/AlteHaasGroteskBold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Poppins Regular';
-  src: url('./assets/fonts/Poppins-Regular.ttf') format('truetype');
+  font-family: "Poppins Regular";
+  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Poppins Bold';
-  src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
+  font-family: "Poppins Bold";
+  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @theme {
   /* fonts */
-  --font-alte-haas-regular: 'Alte Haas Grotesk Regular', Verdana, Arial,
+  --font-alte-haas-regular: "Alte Haas Grotesk Regular", Verdana, Arial,
     sans-serif;
-  --font-alte-haas-bold: 'Alte Haas Grotesk Bold', Verdana, Arial, sans-serif;
-  --font-poppins-regular: 'Poppins Regular', Verdana, Arial, sans-serif;
-  --font-poppins-bold: 'Poppins Bold', Verdana, Arial, sans-serif;
+  --font-alte-haas-bold: "Alte Haas Grotesk Bold", Verdana, Arial, sans-serif;
+  --font-poppins-regular: "Poppins Regular", Verdana, Arial, sans-serif;
+  --font-poppins-bold: "Poppins Bold", Verdana, Arial, sans-serif;
 
   /* text */
   --text-default: 1rem;
@@ -175,7 +175,7 @@ body {
 }
 
 @property --p {
-  syntax: '<percentage>';
+  syntax: "<percentage>";
   inherits: false;
   initial-value: 0%;
 }
@@ -197,6 +197,52 @@ body {
   background: linear-gradient(
     var(--color-inactive) var(--p),
     var(--color-light)
+  );
+}
+
+.device-box-dashboard-inactive {
+  --p: 100%;
+  transition: --p 0.5s;
+  background: linear-gradient(
+    0deg,
+    var(--color-inactive) var(--p),
+    var(--color-light)
+  );
+}
+
+.device-box-lights {
+  --p: 0%;
+  transition: --p 0.5s;
+  background: linear-gradient(
+    var(--color-inactive) var(--p),
+    var(--color-orange) 0%
+  );
+}
+
+.device-box-heat {
+  --p: 0%;
+  transition: --p 0.5s;
+  background: linear-gradient(
+    var(--color-inactive) var(--p),
+    var(--color-red) 0%
+  );
+}
+
+.device-box-entertainment {
+  --p: 0%;
+  transition: --p 0.5s;
+  background: linear-gradient(
+    var(--color-inactive) var(--p),
+    var(--color-purple) 0%
+  );
+}
+
+.device-box-air {
+  --p: 0%;
+  transition: --p 0.5s;
+  background: linear-gradient(
+    var(--color-inactive) var(--p),
+    var(--color-green) 0%
   );
 }
 
