@@ -1,5 +1,5 @@
 import { Category } from "../../../types/dashboard.types";
-import { getName } from "../../../helpers/helpers";
+import { getCategoryName } from "../../../helpers/helpers";
 import { useActiveDevices } from "../../../Hooks/useActiveDevices";
 import { twMerge } from "tailwind-merge";
 import { CategoryStats } from "./CategoryStats";
@@ -23,7 +23,7 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
           activeDevices > 0 ? "text-light" : "text-dark"
         )}
       >
-        {getName(props.thisCategory)}
+        {getCategoryName(props.thisCategory)}
       </div>
       <CategoryStats category={props.thisCategory} />
       <div className="h-6 flex gap-2 font-bold opacity-60 w-full justify-end">

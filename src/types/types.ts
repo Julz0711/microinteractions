@@ -9,3 +9,11 @@ export type Device = {
   additionalInfo: string;
   category: Category;
 };
+
+export enum Room {
+  LivingRoom = "livingRoom",
+  Bedroom = "bedroom",
+  Kitchen = "kitchen",
+  Bathroom = "bathroom",
+  Hallway = "hallway",
+}

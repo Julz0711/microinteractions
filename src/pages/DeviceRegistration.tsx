@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TopContextBar } from "../components/TopContextBar";
 import InputField from "../components/InputField";
 import Homepod from "../assets/img/homepod.png";
@@ -7,7 +7,12 @@ import DynamicIcon from "../components/DynamicIcon";
 import { AppState } from "../store/store";
 import { useSelector } from "react-redux";
 import Scrolldown from "../components/Scrolldown";
-import { getColor } from "../helpers/helpers";
+import {
+  getColor,
+  getAllCategoryNames,
+  getAllRoomNames,
+} from "../helpers/helpers";
+import StepProgress from "../components/StepProgress";
 import { Category } from "../types/dashboard.types";
 
 const IntroText = ({ header, desc }: { header: string; desc: string }) => {
@@ -27,15 +32,22 @@ const DeviceRegistration = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [error, setError] = useState("");
 
+  const categoryNames = getAllCategoryNames();
+  const roomNames = getAllRoomNames();
+
   const [formData, setFormData] = useState<{
     deviceName: string;
     category: Category;
     room: string;
   }>({
     deviceName: "",
-    category: "" as Category,
-    room: "",
+    category: categoryNames[0] as Category,
+    room: roomNames[0],
   });
+
+  const categoryColor = formData.category
+    ? getColor(formData.category)
+    : "bg-dark";
 
   const handleNext = () => {
     setCurrentStep((prev) => Math.min(prev + 1, 4));
@@ -62,15 +74,19 @@ const DeviceRegistration = () => {
     setError("Dieses Feld darf nicht leer sein.");
   };
 
-  const handleSelect = (field: string, item: string) => {
-    setFormData((prev) => ({ ...prev, [field]: item as Category }));
+  const handleSelect = (field: keyof typeof formData, item: string) => {
+    console.log("Selected category:", item); // Logs the category being selected
+    setFormData((prev) => ({
+      ...prev,
+      [field]: field === "category" ? (item as Category) : item,
+    }));
   };
 
   const renderStep = () => {
     switch (currentStep) {
       case 1:
         return (
-          <div className="flex flex-col gap-8 items-center">
+          <div className="flex flex-col gap-4 items-center">
             <IntroText
               header={"Gerätename"}
               desc={
@@ -103,21 +119,15 @@ const DeviceRegistration = () => {
         );
       case 2:
         return (
-          <div className="w-full flex flex-col gap-8 items-center">
+          <div className="w-full flex flex-col gap-4 items-center">
             <IntroText
               header={"Kategorie"}
               desc={"Zu welcher Kategorie gehört Dein Gerät? "}
             />
             <div className="w-3/4">
               <Scrolldown
-                color={getColor(formData.category)}
-                items={[
-                  "Entertainment",
-                  "Licht",
-                  "Haushalt",
-                  "Luft",
-                  "Temperatur",
-                ]}
+                color={categoryColor}
+                items={getAllCategoryNames()}
                 onSelect={(item: string) => handleSelect("category", item)}
               />
             </div>
@@ -125,21 +135,15 @@ const DeviceRegistration = () => {
         );
       case 3:
         return (
-          <div className="w-full flex flex-col gap-8 items-center">
+          <div className="w-full flex flex-col gap-4 items-center">
             <IntroText
               header={"Raumauswahl"}
               desc={"In welchem Raum befindet sich dein Gerät?"}
             />
             <div className="w-3/4">
               <Scrolldown
-                color={"bg-uwu"}
-                items={[
-                  "Wohnzimmer",
-                  "Küche",
-                  "Sclafzimmer",
-                  "Büro",
-                  "Badezimmer",
-                ]}
+                color={"bg-dark"}
+                items={getAllRoomNames()}
                 onSelect={(item: string) => handleSelect("room", item)}
               />
             </div>
@@ -147,14 +151,14 @@ const DeviceRegistration = () => {
         );
       case 4:
         return (
-          <div className="w-full flex flex-col gap-8 items-center">
+          <div className="w-full flex flex-col gap-4 items-center">
             <IntroText
               header={"Übersicht"}
               desc={"Überprüfe deine Angaben bitte erneut."}
             />
             <table className="w-3/4 table-auto border-separate border-spacing-x-4 border-spacing-y-2">
               <tbody>
-                <tr className="">
+                <tr>
                   <td className="text-right text-meta">Name</td>
                   <td className="text-left font-bold text-xl">
                     {formData.deviceName}
@@ -183,7 +187,7 @@ const DeviceRegistration = () => {
   };
 
   return (
-    <div className="h-full flex flex-col justify-between gap-8 pb-5">
+    <div className="h-full flex flex-col justify-between gap-8 pb-5 overflow-y-scroll no-scrollbar">
       <TopContextBar
         leftIcon={"Bluetooth"}
         leftIconClick={currentStep > 1 ? handleBack : undefined}
@@ -193,23 +197,20 @@ const DeviceRegistration = () => {
       <div className="flex flex-col items-center gap-8 h-full">
         <div
           className={twMerge(
-            "p-4 rounded-lg grow-0",
-            currentStep === 1 ? "bg-inactive" : getColor(formData.category),
+            "p-4 rounded-lg grow-0 flex flex-col items-center gap-0",
+            currentStep === 1 ? "bg-inactive" : categoryColor,
             !formData.category && "bg-uwu"
           )}
         >
-          <img src={Homepod}></img>
+          <img src={Homepod} className="w-2/3"></img>
           {currentStep > 1 && (
             <div className="w-full text-center font-bold text-light">
               {formData.deviceName}
             </div>
           )}
         </div>
-        <div className="grow-0 w-full bg-gray-200 rounded-full h-2.5">
-          <div
-            className="bg-blue-600 h-2.5 rounded-full"
-            style={{ width: `${(currentStep / 4) * 100}%` }}
-          ></div>
+        <div className="w-full">
+          <StepProgress currentStep={currentStep} />
         </div>
         <div className="w-full flex flex-col justify-between grow gap-8">
           <div className="grow flex items-center justify-center">
@@ -240,3 +241,12 @@ const DeviceRegistration = () => {
 };
 
 export default DeviceRegistration;
+
+{
+  /*
+  Microinteractions
+  Submit
+  Celebretory Gif
+  Back to Dashboard
+  "*/
+}
