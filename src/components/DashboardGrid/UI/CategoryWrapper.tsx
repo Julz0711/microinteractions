@@ -1,16 +1,16 @@
 import { twMerge } from "tailwind-merge";
-import { Category } from "../../types/dashboard.types";
-import { useCategoryGrid } from "../../Hooks/useCategoryGrid";
-import { CategoryContent } from "./UI/CategoryContent";
-import { CategoryClickBox } from "./UI/CategoryClickBox";
+import { Category } from "../../../types/dashboard.types";
+import { useCategoryGrid } from "../../../Hooks/useCategoryGrid";
+import { CategoryContent } from "./CategoryContent";
+import { CategoryClickBox } from "./CategoryClickBox";
 
-export interface CategoryBoxProps {
+export interface CategoryWrapperProps {
   thisCategory: Category;
   index: number;
   canvasRef: React.RefObject<HTMLDivElement>;
 }
 
-export function CategoryBox(props: CategoryBoxProps) {
+export function CategoryWrapper(props: CategoryWrapperProps) {
   const {
     handleSetHierarchy,
     buttonRef,

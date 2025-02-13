@@ -6,7 +6,7 @@ import DevicePreview from "../components/DevicePreview";
 import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
 import { devices } from "../data/data";
 import { MdRoom } from "react-icons/md";
-import { CategoryBox } from "../components/DashboardGrid/UI/CategoryBox.tsx";
+import { CategoryWrapper } from "../components/DashboardGrid/UI/CategoryWrapper.tsx";
 import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
 
 interface DashboardProps {

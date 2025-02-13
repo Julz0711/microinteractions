@@ -1,6 +1,6 @@
 import { Category } from "../../types/dashboard.types";
 import { useRef } from "react";
-import { CategoryBox } from "./CategoryGrid";
+import { CategoryWrapper } from "./UI/CategoryWrapper";
 
 export const RoomGrid = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -15,7 +15,7 @@ export const RoomGrid = () => {
       {Object.values(Category)
         .filter((key) => isNaN(Number(key)))
         .map((cat, index) => (
-          <CategoryBox
+          <CategoryWrapper
             key={index}
             index={index}
             canvasRef={canvasRef}
