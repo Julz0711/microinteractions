@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { AppState } from "../../store/store";
+import { AppState } from "../../../store/store";
 import { useSelector } from "react-redux";
-import { Device } from "../../types/types";
+import { Device } from "../../../types/types";
 import { twMerge } from "tailwind-merge";
-import DynamicIcon from "../DynamicIcon";
-import { useButtonVariants } from "../../Hooks/DeviceGrid/useButtonVariants";
-import { useDeviceState } from "../../Hooks/DeviceGrid/useDeviceState";
-import { useDeviceAnimation } from "../../Hooks/DeviceGrid/useDeviceAnimation";
-import { getColor } from "../../helpers/helpers";
+import DynamicIcon from "../../DynamicIcon";
+import { useButtonVariants } from "../../../Hooks/DeviceGrid/useButtonVariants";
+import { useDeviceState } from "../../../Hooks/DeviceGrid/useDeviceState";
+import { useDeviceAnimation } from "../../../Hooks/DeviceGrid/useDeviceAnimation";
+import { getColor } from "../../../helpers/helpers";
 
 interface DeviceProps {
   device: Device;
@@ -42,8 +42,9 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
       ref={scope}
       initial={{
         scale: 0,
+        opacity: 0,
         left: 120,
-        top: 400 - Math.floor(index / 2) * 100,
+        top: 500 - Math.floor(index / 2) * 100,
       }}
       variants={buttonVariants}
       className={twMerge(
@@ -58,7 +59,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
       )}
     >
       {isMenuOpen && (
-        <div className="text-dark h-60 w-44 p-4">
+        <div className="text-dark h-58 w-44 p-4">
           <div>{device.name}</div>
         </div>
       )}
@@ -70,7 +71,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
           className="my-4 flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
         >
           <DynamicIcon
-            iconName={"close"}
+            iconName={"Close"}
             color={isDeviceActive ? "text-yellow " : "text-uwu"}
           />
         </button>

@@ -5,6 +5,9 @@ import HeadlineWithLink from "../components/HeadlineWithLink.tsx";
 import DevicePreview from "../components/DevicePreview";
 import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
 import { devices } from "../data/data";
+import { MdRoom } from "react-icons/md";
+import { CategoryBox } from "../components/DashboardGrid/UI/CategoryBox.tsx";
+import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
 
 interface DashboardProps {
   hasDevices?: boolean;
@@ -19,7 +22,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
       </div>
       {hasDevices ? (
         <div className="w-full py-4 flex flex-col gap-4 justify-start items-start">
-          <DashboardGrid />
+          <RoomGrid />
           <div>
             <p className="text-meta">{activeDeviceAmount} Aktive Geräte</p>
             <div>hier alle aktiven</div>

@@ -1,70 +1,46 @@
 import { twMerge } from "tailwind-merge";
-import { Category, HierarchyStep } from "../../types/dashboard.types";
-import { useCategoryButton } from "../../Hooks/useCategoryButton";
-import { useSelector } from "react-redux";
-import { AppState } from "../../store/store";
-import { DeviceGrid } from "./DeviceGrid";
-import { getColor } from "../../helpers/helpers";
-import DynamicIcon from "../DynamicIcon";
+import { Category } from "../../types/dashboard.types";
+import { useCategoryGrid } from "../../Hooks/useCategoryGrid";
+import { CategoryContent } from "./UI/CategoryContent";
+import { CategoryClickBox } from "./UI/CategoryClickBox";
 
-export interface ICategoryButtonProps {
+export interface CategoryBoxProps {
   thisCategory: Category;
-  onClick: (category: Category) => void;
   index: number;
   canvasRef: React.RefObject<HTMLDivElement>;
 }
 
-export function CategoryGrid(props: ICategoryButtonProps) {
+export function CategoryBox(props: CategoryBoxProps) {
   const {
-    handleClick,
+    handleSetHierarchy,
     buttonRef,
     active,
     size,
     flexClasses,
     activeAnimationFinished,
-  } = useCategoryButton({
+  } = useCategoryGrid({
     thisCategory: props.thisCategory,
     index: props.index,
-    onClick: props.onClick,
     canvasRef: props.canvasRef,
   });
-
-  const { hierarchy, category } = useSelector((state: AppState) => state.app);
 
   return (
     <div
       ref={buttonRef}
-      className={twMerge("categorybutton absolute", flexClasses)}
+      className={twMerge("categoryWrapper absolute", flexClasses)}
     >
-      <div
-        onClick={handleClick}
-        className={twMerge(
-          "absolute",
-          active ? "h-20 w-20" : "w-full h-full ",
-          flexClasses
-        )}
-      ></div>
-      <div
-        className={twMerge(
-          getColor(props.thisCategory),
-          "flex text-light font-bold items-center justify-center max-w-full max-h-full rounded-md"
-        )}
-        style={{ width: size.width, height: size.height }}
-      >
-        {active ? (
-          <DynamicIcon iconName="close" color="text-light" />
-        ) : (
-          <>{props.thisCategory}</>
-        )}
-        {props.thisCategory === category &&
-          (hierarchy === HierarchyStep.CategoryGrid ||
-            hierarchy === HierarchyStep.Device) && (
-            <DeviceGrid
-              activeAnimationFinished={activeAnimationFinished}
-              canvasRef={props.canvasRef}
-            />
-          )}
-      </div>
+      <CategoryClickBox
+        handleClick={handleSetHierarchy}
+        active={active}
+        flexClasses={flexClasses}
+      />
+      <CategoryContent
+        thisCategory={props.thisCategory}
+        canvasRef={props.canvasRef}
+        size={size}
+        active={active}
+        activeAnimationFinished={activeAnimationFinished}
+      />
     </div>
   );
 }

@@ -1,37 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Category, HierarchyStep } from "../../types/dashboard.types";
-import { setCategory, setHierarchy } from "../../store/reducer";
-import { AppState } from "../../store/store";
-import { CategoryGrid } from "./CategoryGrid";
+import { Category } from "../../types/dashboard.types";
 import { useRef } from "react";
+import { CategoryBox } from "./CategoryGrid";
 
 export const RoomGrid = () => {
-  const dispatch = useDispatch();
-  const { hierarchy, category } = useSelector((state: AppState) => state.app);
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  const handleSetHierarchy = (selectedCategory: Category) => {
-    if (
-      hierarchy === HierarchyStep.CategoryGrid &&
-      category === selectedCategory
-    ) {
-      dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
-      dispatch(setCategory(null));
-    } else {
-      dispatch(setHierarchy(HierarchyStep.CategoryGrid));
-      dispatch(setCategory(selectedCategory));
-    }
-  };
   return (
-    <div ref={canvasRef} className={"w-40 h-full transition-all relative"}>
+    <div
+      ref={canvasRef}
+      className={
+        "w-full h-[600px] transition-all relative flex flex-col items-center justify-center"
+      }
+    >
       {Object.values(Category)
         .filter((key) => isNaN(Number(key)))
         .map((cat, index) => (
-          <CategoryGrid
+          <CategoryBox
             key={index}
             index={index}
             canvasRef={canvasRef}
-            onClick={handleSetHierarchy}
             thisCategory={cat as Category}
           />
         ))}

@@ -1,25 +1,39 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../store/store";
-import { Category } from "../types/dashboard.types";
+import { Category, HierarchyStep } from "../types/dashboard.types";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
+import { setHierarchy, setCategory } from "../store/reducer";
 
-export interface IuseCategoryProps {
+export interface IuseCategoryGridProps {
   thisCategory: Category;
   index: number;
-  onClick: (category: Category) => void;
   canvasRef: React.RefObject<HTMLDivElement>;
 }
 
-export function useCategoryButton(props: IuseCategoryProps) {
+export function useCategoryGrid(props: IuseCategoryGridProps) {
   const [active, setActive] = useState(false);
   const buttonRef = useRef<HTMLDivElement>(null);
-  const { category } = useSelector((state: AppState) => state.app);
   const padding = 20;
   const [basePosition, setbasePosition] = useState({ x: 0, y: 0 });
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [flexClasses, setflexClasses] = useState("");
   const [activeAnimationFinished, setactiveAnimationFinished] = useState(false);
+  const dispatch = useDispatch();
+  const { hierarchy, category } = useSelector((state: AppState) => state.app);
+
+  const handleSetHierarchy = () => {
+    if (
+      hierarchy === HierarchyStep.CategoryGrid &&
+      category === props.thisCategory
+    ) {
+      dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
+      dispatch(setCategory(null));
+    } else {
+      dispatch(setHierarchy(HierarchyStep.CategoryGrid));
+      dispatch(setCategory(props.thisCategory));
+    }
+  };
 
   useEffect(() => {
     switch (props.thisCategory) {
@@ -40,10 +54,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
   }, [props.thisCategory]);
 
   useEffect(() => {
-    const windowWidth = props.canvasRef.current!.clientWidth;
-    const windowHeight = props.canvasRef.current!.clientHeight;
-
-    const xDirection = basePosition.x - windowWidth / 2 < 0 ? -1 : 1;
+    const xDirection = Math.floor(props.index % 2) === 0 ? -1 : 1;
     const styleXPos =
       Math.floor(props.index % 2) * 160 + Math.floor(props.index % 2) * padding;
     const styleYPos =
@@ -59,10 +70,10 @@ export function useCategoryButton(props: IuseCategoryProps) {
         // Active State
         ease: "power2.out",
         left: "50%",
+        xPercent: -50,
         top: "70%",
         height: "5rem",
         width: "5rem",
-        xPercent: -50,
         duration: 0.3,
         onComplete: () => {
           setactiveAnimationFinished(true);
@@ -74,6 +85,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
       gsap.to(buttonRef.current, {
         ease: "power2.out",
         left: styleXPosHidden + "px",
+        xPercent: 0,
         top: styleYPos + "px",
         height: "10rem",
         width: "10rem",
@@ -85,11 +97,11 @@ export function useCategoryButton(props: IuseCategoryProps) {
         // Default State
         ease: "power2.out",
         left: styleXPos + "px",
+        xPercent: 0,
         top: styleYPos + "px",
         height: "10rem",
         width: "10rem",
         duration: 0.3,
-        xPercent: -50,
         onComplete: () => {
           setbasePosition({ x: styleXPos, y: styleYPos });
           setactiveAnimationFinished(false);
@@ -98,12 +110,8 @@ export function useCategoryButton(props: IuseCategoryProps) {
     }
   }, [category]);
 
-  const handleClick = () => {
-    props.onClick(props.thisCategory);
-  };
-
   return {
-    handleClick,
+    handleSetHierarchy,
     buttonRef,
     active,
     size,

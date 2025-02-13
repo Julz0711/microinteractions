@@ -14,3 +14,18 @@ export const getColor = (category: Category) => {
       return "bg-blue";
   }
 };
+
+export const getName = (category: Category) => {
+  switch (category) {
+    case Category.Lights:
+      return "Beleuchtung";
+    case Category.Entertainment:
+      return "Entertainment";
+    case Category.Heat:
+      return "Temperatur";
+    case Category.Air:
+      return "Luft";
+    case Category.Household:
+      return "Household";
+  }
+};

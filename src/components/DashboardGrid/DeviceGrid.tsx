@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import { devices } from "../../data/data";
-import { motion } from "framer-motion";
-import { DeviceBox } from "./DeviceBox";
+import { DeviceBox } from "./UI/DeviceBox";
 
 export interface DeviceGridProps {
   activeAnimationFinished: boolean;
@@ -16,7 +15,7 @@ export const DeviceGrid = (props: DeviceGridProps) => {
   );
 
   return (
-    <div className="absolute w-[276px] h-80 left-1/2 bottom-24 -translate-x-1/2 -z-10">
+    <div className="absolute w-[276px] h-80 left-1/2 bottom-24 -translate-x-1/2">
       {filteredDevices.map((device, index) => (
         <DeviceBox
           key={index}

@@ -18,6 +18,7 @@ const getButtonVariants = (
     left: styleXPos + "px",
     top: styleYPos + "px",
     x: "0%",
+    opacity: 1,
     height: "8rem",
     width: "8rem",
   },
@@ -25,6 +26,7 @@ const getButtonVariants = (
     left: "50%",
     x: "-50%",
     top: "0%",
+    opacity: 1,
     height: "auto",
     width: "auto",
   },
@@ -32,6 +34,7 @@ const getButtonVariants = (
     left: styleXPosHidden + "px",
     top: styleYPos + "px",
     x: "0%",
+    opacity: 1,
     height: "8rem",
     width: "8rem",
     yPercent: -50,
@@ -55,9 +58,9 @@ export function useButtonVariants(props: IuseButtonVariantsProps) {
         Math.floor(props.index / 2) * 150 +
         Math.floor(props.index / 2) * padding;
 
-      const xDirection = styleXPos - windowWidth / 2 < 0 ? -1 : 1;
+      const xDirection = Math.floor(props.index % 2) === 0 ? -1 : 1;
       const styleXPosHidden =
-        styleXPos + xDirection * 200 * (1 + Math.floor(props.index / 2));
+        styleXPos + xDirection * 400 * (1 + Math.floor(props.index / 2));
       setButtonVariants(
         getButtonVariants(styleXPos, styleYPos, styleXPosHidden)
       );
