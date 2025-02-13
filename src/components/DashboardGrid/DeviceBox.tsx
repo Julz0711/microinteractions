@@ -42,8 +42,8 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
       ref={scope}
       initial={{
         scale: 0,
-        left: 100,
-        top: 200,
+        left: 120,
+        top: 400 - Math.floor(index / 2) * 100,
       }}
       variants={buttonVariants}
       className={twMerge(
@@ -54,19 +54,23 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
           : isDeviceActive
           ? getColor(device.category).toLowerCase()
           : "bg-" + device.category.toLowerCase(),
-        "motion absolute min-w-32 h-32 gap-4 font-bold rounded-md select-none flex flex-col justify-center items-center"
+        "motion absolute gap-4 font-bold rounded-md select-none flex flex-col justify-center items-center"
       )}
     >
-      <div className={twMerge(isMenuOpen ? "block" : "hidden")}>MENU</div>
+      {isMenuOpen && (
+        <div className="text-dark h-60 w-44 p-4">
+          <div>{device.name}</div>
+        </div>
+      )}
       <div className="flex gap-4 justify-center">
         <button
           onClick={() => {
             toggleMenuState();
           }}
-          className="flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
+          className="my-4 flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
         >
           <DynamicIcon
-            iconName={"x"}
+            iconName={"close"}
             color={isDeviceActive ? "text-yellow " : "text-uwu"}
           />
         </button>
@@ -74,7 +78,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
           onClick={() => {
             toggleActiveState();
           }}
-          className="flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
+          className="my-4 flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
         >
           <DynamicIcon
             iconName={device.icon}
