@@ -1,3 +1,4 @@
+import { tr } from "framer-motion/client";
 import { Category } from "../types/dashboard.types";
 
 export const devices = [
@@ -77,7 +78,7 @@ export const devices = [
     icon: "Bluetooth",
     name: "Sonos Speaker",
     room: "Wohnzimmer",
-    isActive: false,
+    isActive: true,
     isFavorite: false,
     additionalInfo: "100%",
     category: Category.Entertainment,
@@ -86,7 +87,7 @@ export const devices = [
     icon: "Bluetooth",
     name: "Ventilator",
     room: "Wohnzimmer",
-    isActive: false,
+    isActive: true,
     isFavorite: true,
     additionalInfo: "100%",
     category: Category.Air,

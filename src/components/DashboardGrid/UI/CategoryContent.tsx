@@ -7,6 +7,7 @@ import { DeviceGrid } from "../DeviceGrid";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../store/store";
 import { CategoryOverview } from "./CategoryOverview";
+import { useActiveDevices } from "../../../Hooks/useActiveDevices";
 
 export interface ICategoryContentProps {
   thisCategory: Category;
@@ -18,10 +19,13 @@ export interface ICategoryContentProps {
 
 export function CategoryContent(props: ICategoryContentProps) {
   const { hierarchy, category } = useSelector((state: AppState) => state.app);
+  const activeDevices = useActiveDevices({
+    thisCategory: props.thisCategory,
+  });
   return (
     <div
       className={twMerge(
-        getColor(props.thisCategory),
+        activeDevices > 0 ? getColor(props.thisCategory) : "bg-inactive",
         "flex items-center justify-center max-w-full max-h-full rounded-md",
         props.thisCategory === Category.Household
           ? "relative top-[-50px] left-0"
