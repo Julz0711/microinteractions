@@ -35,7 +35,6 @@ const DynamicIcon: React.FC<DynamicIconProps> = ({ iconName, size, color }) => {
         svg.setAttribute("fill", "currentColor");
         svg.querySelectorAll("path").forEach((path) => {
           path.setAttribute("fill", "currentColor");
-          path.setAttribute("stroke", "currentColor");
         });
       }}
     />
