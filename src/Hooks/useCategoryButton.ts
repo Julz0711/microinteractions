@@ -43,11 +43,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
     const windowWidth = props.canvasRef.current!.clientWidth;
     const windowHeight = props.canvasRef.current!.clientHeight;
 
-    const xDirection = basePosition.x - windowWidth / 2;
-    const yDirection = basePosition.y - windowHeight / 2;
-    const length = Math.sqrt(xDirection ** 2 + yDirection ** 2);
-    const xNormalized = xDirection / length;
-    const yNormalized = yDirection / length;
+    const xDirection = basePosition.x - windowWidth / 2 < 0 ? -1 : 1;
     const styleXPos =
       Math.floor(props.index % 2) * 160 + Math.floor(props.index % 2) * padding;
     const styleYPos =
@@ -55,7 +51,8 @@ export function useCategoryButton(props: IuseCategoryProps) {
       Math.floor(props.index / 2) * padding -
       (props.index % 2) * 30 +
       60;
-    const styleXPosHidden = styleXPos + xNormalized * 400;
+    const styleXPosHidden =
+      styleXPos + xDirection * 200 * (1 + Math.floor(props.index / 2));
     if (category === props.thisCategory) {
       setActive(true);
       gsap.to(buttonRef.current, {
@@ -66,7 +63,6 @@ export function useCategoryButton(props: IuseCategoryProps) {
         height: "5rem",
         width: "5rem",
         xPercent: -50,
-        yPercent: 20,
         duration: 0.3,
         onComplete: () => {
           setactiveAnimationFinished(true);
@@ -81,8 +77,6 @@ export function useCategoryButton(props: IuseCategoryProps) {
         top: styleYPos + "px",
         height: "10rem",
         width: "10rem",
-        xPercent: -50,
-        yPercent: -50,
         duration: 0.3,
       });
     } else {
@@ -96,7 +90,6 @@ export function useCategoryButton(props: IuseCategoryProps) {
         width: "10rem",
         duration: 0.3,
         xPercent: -50,
-        yPercent: -50,
         onComplete: () => {
           setbasePosition({ x: styleXPos, y: styleYPos });
           setactiveAnimationFinished(false);

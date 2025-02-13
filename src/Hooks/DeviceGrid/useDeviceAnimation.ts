@@ -23,7 +23,7 @@ export function useDeviceAnimation(props: IuseDeviceAnimationProps) {
           duration:
             props.buttonState === "open" || props.previousState === "open"
               ? 0.15
-              : 0.15 + 0.1 * props.index,
+              : 0.25 + 0.05 * props.index,
           ease: "easeOut" as Easing,
         }
       : {

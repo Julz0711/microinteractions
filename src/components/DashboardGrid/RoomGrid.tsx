@@ -23,7 +23,7 @@ export const RoomGrid = () => {
     }
   };
   return (
-    <div ref={canvasRef} className={"w-40 h-80 transition-all relative"}>
+    <div ref={canvasRef} className={"w-40 h-full transition-all relative"}>
       {Object.values(Category)
         .filter((key) => isNaN(Number(key)))
         .map((cat, index) => (
