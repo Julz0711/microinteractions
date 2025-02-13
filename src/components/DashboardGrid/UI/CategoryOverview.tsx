@@ -1,9 +1,6 @@
-import * as React from "react";
 import { Category } from "../../../types/dashboard.types";
 import DynamicIcon from "../../DynamicIcon";
-import { getName } from "../../../helpers/helpers";
-import { devices } from "../../../data/data";
-import { useEffect, useState } from "react";
+import { getCategoryName } from "../../../helpers/helpers";
 import { useActiveDevices } from "../../../Hooks/useActiveDevices";
 import { twMerge } from "tailwind-merge";
 
@@ -26,7 +23,7 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
           activeDevices > 0 ? "text-light" : "text-dark"
         )}
       >
-        {getName(props.thisCategory)}
+        {getCategoryName(props.thisCategory)}
       </div>
       <span className="p-4 bg-light rounded-full">
         <DynamicIcon iconName={"Lamp"} color="text-yellow" />
