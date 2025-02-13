@@ -24,7 +24,7 @@ export function useDeviceAnimation(props: IuseDeviceAnimationProps) {
           duration:
             props.buttonState === "active" || props.previousState === "active"
               ? 0.15
-              : 0.15 * props.index,
+              : 0.15 + 0.1 * props.index,
           ease: "easeOut" as Easing,
         }
       : {
