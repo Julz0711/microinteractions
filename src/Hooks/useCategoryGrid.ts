@@ -14,7 +14,7 @@ export interface IuseCategoryGridProps {
 export function useCategoryGrid(props: IuseCategoryGridProps) {
   const [active, setActive] = useState(false);
   const buttonRef = useRef<HTMLDivElement>(null);
-  const padding = 20;
+  const padding = 15;
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [flexClasses, setflexClasses] = useState("");
   const [activeAnimationFinished, setactiveAnimationFinished] = useState(false);
@@ -67,7 +67,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
     const styleYPos =
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding +
-      (props.index % 2) * 30 +
+      (props.index % 2) * 20 +
       60;
     const styleXPosHidden =
       styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
