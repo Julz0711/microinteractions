@@ -5,9 +5,7 @@ import { NewButton } from "./components/NewButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
-interface LayoutProps {}
-
-const Layout: React.FC<LayoutProps> = () => {
+const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [overlayHeight, setOverlayHeight] = useState("100%");
   const location = useLocation();
