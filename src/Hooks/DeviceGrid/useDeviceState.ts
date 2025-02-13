@@ -1,4 +1,3 @@
-import * as React from "react";
 import { setHierarchy } from "../../store/reducer";
 import { HierarchyStep } from "../../types/dashboard.types";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,14 +26,17 @@ export function useDeviceState(props: IuseDeviceStateProps) {
 
   const toggleMenuState = () => {
     setIsMenuOpen((prev) => !prev);
-    setButtonState("active");
+    setPreviousState(buttonState);
+    setButtonState("open");
     toggleHierarchyState();
   };
 
   useEffect(() => {
     if (hierarchy === HierarchyStep.Device && !isMenuOpen) {
+      setPreviousState(buttonState);
       setButtonState("hidden");
     } else if (hierarchy === HierarchyStep.CategoryGrid) {
+      setPreviousState(buttonState);
       setButtonState("visible");
       setIsMenuOpen(false);
     }

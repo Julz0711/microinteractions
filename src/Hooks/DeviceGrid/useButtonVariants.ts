@@ -21,7 +21,7 @@ const getButtonVariants = (
     height: "8rem",
     width: "8rem",
   },
-  active: {
+  open: {
     left: "50%",
     x: "-50%",
     top: "40%",

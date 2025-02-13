@@ -1,9 +1,7 @@
 import { Easing, useAnimate } from "framer-motion";
-import * as React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
-import { use } from "framer-motion/client";
 
 export interface IuseDeviceAnimationProps {
   buttonState: any;
@@ -23,7 +21,7 @@ export function useDeviceAnimation(props: IuseDeviceAnimationProps) {
     const animationOptions = hasMicrointeractions
       ? {
           duration:
-            props.buttonState === "active" || props.previousState === "active"
+            props.buttonState === "open" || props.previousState === "open"
               ? 0.15
               : 0.15 + 0.1 * props.index,
           ease: "easeOut" as Easing,
