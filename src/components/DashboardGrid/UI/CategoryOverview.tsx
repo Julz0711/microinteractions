@@ -20,7 +20,12 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
         "flex flex-col justify-between p-4 w-full h-full items-center"
       )}
     >
-      <div className="text-[11px] text-light font-bold w-full">
+      <div
+        className={twMerge(
+          "text-[11px]  font-bold w-full",
+          activeDevices > 0 ? "text-light" : "text-dark"
+        )}
+      >
         {getName(props.thisCategory)}
       </div>
       <span className="p-4 bg-light rounded-full">
