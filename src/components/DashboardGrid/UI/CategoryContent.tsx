@@ -22,7 +22,10 @@ export function CategoryContent(props: ICategoryContentProps) {
     <div
       className={twMerge(
         getColor(props.thisCategory),
-        "flex items-center justify-center max-w-full max-h-full rounded-md"
+        "flex items-center justify-center max-w-full max-h-full rounded-md",
+        props.thisCategory === Category.Household
+          ? "relative top-[-50px] left-0"
+          : ""
       )}
       style={{ width: props.size.width, height: props.size.height }}
     >

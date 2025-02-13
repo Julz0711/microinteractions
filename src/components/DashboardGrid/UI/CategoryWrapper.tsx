@@ -33,6 +33,7 @@ export function CategoryWrapper(props: CategoryWrapperProps) {
         handleClick={handleSetHierarchy}
         active={active}
         flexClasses={flexClasses}
+        category={props.thisCategory}
       />
       <CategoryContent
         thisCategory={props.thisCategory}

@@ -59,7 +59,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
       )}
     >
       {isMenuOpen && (
-        <div className="text-dark h-58 w-44 p-4">
+        <div className="text-light h-58 w-44 p-4">
           <div>{device.name}</div>
         </div>
       )}

@@ -15,7 +15,6 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
   const [active, setActive] = useState(false);
   const buttonRef = useRef<HTMLDivElement>(null);
   const padding = 20;
-  const [basePosition, setbasePosition] = useState({ x: 0, y: 0 });
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [flexClasses, setflexClasses] = useState("");
   const [activeAnimationFinished, setactiveAnimationFinished] = useState(false);
@@ -43,6 +42,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         break;
       case Category.Entertainment:
         setSize({ width: 135, height: 160 });
+        setflexClasses("flex justify-start items-end");
         break;
       case Category.Heat:
         setSize({ width: 160, height: 160 });
@@ -50,20 +50,27 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       case Category.Air:
         setSize({ width: 160, height: 110 });
         break;
+      case Category.Household:
+        setSize({ width: 90, height: 90 });
+        setflexClasses("flex justify-start");
+        break;
     }
   }, [props.thisCategory]);
 
   useEffect(() => {
     const xDirection = Math.floor(props.index % 2) === 0 ? -1 : 1;
     const styleXPos =
-      Math.floor(props.index % 2) * 160 + Math.floor(props.index % 2) * padding;
+      160 -
+      Math.floor(props.index % 2) * 160 +
+      Math.floor((props.index + 1) % 2) * padding;
+    console.log(styleXPos);
     const styleYPos =
       Math.floor(props.index / 2) * 160 +
-      Math.floor(props.index / 2) * padding -
+      Math.floor(props.index / 2) * padding +
       (props.index % 2) * 30 +
       60;
     const styleXPosHidden =
-      styleXPos + xDirection * 200 * (1 + Math.floor(props.index / 2));
+      styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
     if (category === props.thisCategory) {
       setActive(true);
       gsap.to(buttonRef.current, {
@@ -103,7 +110,6 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         width: "10rem",
         duration: 0.3,
         onComplete: () => {
-          setbasePosition({ x: styleXPos, y: styleYPos });
           setactiveAnimationFinished(false);
         },
       });
