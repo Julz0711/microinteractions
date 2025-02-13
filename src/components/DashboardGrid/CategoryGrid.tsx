@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import { DeviceGrid } from "./DeviceGrid";
 import { getColor } from "../../helpers/helpers";
+import DynamicIcon from "../DynamicIcon";
 
 export interface ICategoryButtonProps {
   thisCategory: Category;
@@ -50,7 +51,11 @@ export function CategoryGrid(props: ICategoryButtonProps) {
         )}
         style={{ width: size.width, height: size.height }}
       >
-        {active ? "X" : <>{props.thisCategory}</>}
+        {active ? (
+          <DynamicIcon iconName="close" color="text-light" />
+        ) : (
+          <>{props.thisCategory}</>
+        )}
         {props.thisCategory === category &&
           (hierarchy === HierarchyStep.CategoryGrid ||
             hierarchy === HierarchyStep.Device) && (

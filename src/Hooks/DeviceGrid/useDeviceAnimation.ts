@@ -3,6 +3,7 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
+import { use } from "framer-motion/client";
 
 export interface IuseDeviceAnimationProps {
   buttonState: any;
@@ -42,6 +43,7 @@ export function useDeviceAnimation(props: IuseDeviceAnimationProps) {
     props.buttonState,
     props.buttonVariants,
     props.index,
+    props.previousState,
     scope,
   ]);
   return { scope };

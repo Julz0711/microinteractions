@@ -32,19 +32,13 @@ export function useDeviceState(props: IuseDeviceStateProps) {
   };
 
   useEffect(() => {
-    setPreviousState(buttonState);
-  }, [buttonState]);
-
-  useEffect(() => {
     if (hierarchy === HierarchyStep.Device && !isMenuOpen) {
       setButtonState("hidden");
-    } else if (
-      props.buttonVariants &&
-      hierarchy === HierarchyStep.CategoryGrid
-    ) {
+    } else if (hierarchy === HierarchyStep.CategoryGrid) {
       setButtonState("visible");
+      setIsMenuOpen(false);
     }
-  }, [props.buttonVariants, hierarchy, isMenuOpen]);
+  }, [hierarchy, isMenuOpen]);
 
   useEffect(() => {
     if (!isFadedIn && props.buttonVariants) {
