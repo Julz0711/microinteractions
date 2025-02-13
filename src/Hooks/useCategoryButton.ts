@@ -15,7 +15,7 @@ export function useCategoryButton(props: IuseCategoryProps) {
   const [active, setActive] = useState(false);
   const buttonRef = useRef<HTMLDivElement>(null);
   const { category } = useSelector((state: AppState) => state.app);
-  const padding = 10;
+  const padding = 20;
   const [basePosition, setbasePosition] = useState({ x: 0, y: 0 });
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [flexClasses, setflexClasses] = useState("");

@@ -16,16 +16,15 @@ export const DeviceGrid = (props: DeviceGridProps) => {
   );
 
   return (
-    <>
-      <div className="absolute w-80 h-80 left-1/2 bottom-24 -translate-x-1/2 -z-10">
-        {filteredDevices.map((device, index) => (
-          <DeviceBox
-            device={device}
-            canvasRef={props.canvasRef}
-            index={index}
-          />
-        ))}
-      </div>
-    </>
+    <div className="absolute w-80 h-80 left-1/2 bottom-24 -translate-x-1/2 -z-10">
+      {filteredDevices.map((device, index) => (
+        <DeviceBox
+          key={index}
+          device={device}
+          canvasRef={props.canvasRef}
+          index={index}
+        />
+      ))}
+    </div>
   );
 };
