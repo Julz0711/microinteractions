@@ -19,6 +19,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
   const { buttonVariants } = useButtonVariants({ canvasRef, index });
   const {
     buttonState,
+    previousState,
     toggleActiveState,
     toggleMenuState,
     isDeviceActive,
@@ -27,7 +28,12 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
-  const { scope } = useDeviceAnimation({ buttonState, buttonVariants, index });
+  const { scope } = useDeviceAnimation({
+    buttonState,
+    previousState,
+    buttonVariants,
+    index,
+  });
 
   return (
     <motion.div

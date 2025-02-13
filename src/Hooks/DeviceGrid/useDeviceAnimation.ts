@@ -6,6 +6,7 @@ import { AppState } from "../../store/store";
 
 export interface IuseDeviceAnimationProps {
   buttonState: any;
+  previousState: any;
   buttonVariants: any;
   index: number;
 }
@@ -20,7 +21,10 @@ export function useDeviceAnimation(props: IuseDeviceAnimationProps) {
     if (props.buttonState == null) return;
     const animationOptions = hasMicrointeractions
       ? {
-          duration: 0.15 * props.index,
+          duration:
+            props.buttonState === "active" || props.previousState === "active"
+              ? 0.15
+              : 0.15 * props.index,
           ease: "easeOut" as Easing,
         }
       : {

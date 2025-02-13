@@ -3,7 +3,7 @@ import { setHierarchy } from "../../store/reducer";
 import { HierarchyStep } from "../../types/dashboard.types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Device } from "../../types/types";
 
 export interface IuseDeviceStateProps {
@@ -12,13 +12,12 @@ export interface IuseDeviceStateProps {
 }
 
 export function useDeviceState(props: IuseDeviceStateProps) {
-  const [isDeviceActive, setIsDeviceActive] = React.useState(
-    props.device.isActive
-  );
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isFadedIn, setisFadedIn] = React.useState(false);
+  const [isDeviceActive, setIsDeviceActive] = useState(props.device.isActive);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFadedIn, setisFadedIn] = useState(false);
   const { hierarchy } = useSelector((state: AppState) => state.app);
-  const [buttonState, setButtonState] = React.useState<string | null>(null);
+  const [buttonState, setButtonState] = useState<string | null>(null);
+  const [previousState, setPreviousState] = useState<string | null>(null);
 
   const dispatch = useDispatch();
 
@@ -31,6 +30,10 @@ export function useDeviceState(props: IuseDeviceStateProps) {
     setButtonState("active");
     toggleHierarchyState();
   };
+
+  useEffect(() => {
+    setPreviousState(buttonState);
+  }, [buttonState]);
 
   useEffect(() => {
     if (hierarchy === HierarchyStep.Device && !isMenuOpen) {
@@ -62,6 +65,7 @@ export function useDeviceState(props: IuseDeviceStateProps) {
 
   return {
     buttonState,
+    previousState,
     toggleActiveState,
     toggleMenuState,
     isDeviceActive,
