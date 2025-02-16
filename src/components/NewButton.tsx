@@ -18,13 +18,14 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
     { label: "Raum", link: "/neuer-raum" },
     { label: "Gerät", link: "/neues-geraet" },
     { label: "Szene", link: "/neue-scene" },
+    { label: "Zeitplan", link: "/neuer-zeitplan" },
   ];
   const buttonVariants = {
     hidden: (index: number) => ({
       scaleX: 0.5,
       scaleY: 0.5,
       y: 60,
-      x: index === 0 ? 80 : index === 2 ? -80 : 0,
+      x: index === 0 ? 120 : index === 1 ? 40 : index === 2 ? -40 : -120,
     }),
     visible: (index: number) => ({
       scaleX: 1,

@@ -14,6 +14,9 @@ import {
 } from "../helpers/helpers";
 import StepProgress from "../components/StepProgress";
 import { Category } from "../types/dashboard.types";
+import Lottie from "react-lottie";
+import confettiAnimation from "../assets/lottie/confetti.json";
+import { useNavigate } from "react-router-dom";
 
 const IntroText = ({ header, desc }: { header: string; desc: string }) => {
   return (
@@ -25,6 +28,7 @@ const IntroText = ({ header, desc }: { header: string; desc: string }) => {
 };
 
 const DeviceRegistration = () => {
+  const navigate = useNavigate();
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
@@ -50,7 +54,7 @@ const DeviceRegistration = () => {
     : "bg-dark";
 
   const handleNext = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, 4));
+    setCurrentStep((prev) => Math.min(prev + 1, 5));
   };
 
   const handleBack = () => {
@@ -75,7 +79,6 @@ const DeviceRegistration = () => {
   };
 
   const handleSelect = (field: keyof typeof formData, item: string) => {
-    console.log("Selected category:", item); // Logs the category being selected
     setFormData((prev) => ({
       ...prev,
       [field]: field === "category" ? (item as Category) : item,
@@ -181,6 +184,29 @@ const DeviceRegistration = () => {
             <p></p>
           </div>
         );
+      case 5:
+        return (
+          <div className="w-full flex flex-col gap-8 items-center">
+            <div className="absolute top-0 mx-auto pointer-events-none">
+              <Lottie
+                options={{
+                  loop: false,
+                  autoplay: true,
+                  animationData: confettiAnimation,
+                  rendererSettings: {
+                    preserveAspectRatio: "xMidYMid slice",
+                  },
+                }}
+                height={600}
+                width={600}
+              />
+            </div>
+            <div className="flex flex-col gap-1 items-center">
+              <div className="text-[3rem] font-bold text-green">Erfolg</div>
+              <div>Dein Gerät wurde erfolgreich hinzugefügt</div>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
@@ -188,54 +214,79 @@ const DeviceRegistration = () => {
 
   return (
     <div className="h-full flex flex-col justify-between gap-8 pb-5 overflow-y-scroll no-scrollbar">
-      <TopContextBar
-        leftIcon={"Bluetooth"}
-        leftIconClick={currentStep > 1 ? handleBack : undefined}
-        headline={"Gerät gefunden"}
-        metaDescription={"Neues Gerät hinzufügen"}
-      />
-      <div className="flex flex-col items-center gap-8 h-full">
-        <div
-          className={twMerge(
-            "p-4 rounded-lg grow-0 flex flex-col items-center gap-0",
-            currentStep === 1 ? "bg-inactive" : categoryColor,
-            !formData.category && "bg-uwu"
-          )}
-        >
-          <img src={Homepod} className="w-2/3"></img>
-          {currentStep > 1 && (
-            <div className="w-full text-center font-bold text-light">
-              {formData.deviceName}
+      {currentStep < 5 ? (
+        <>
+          <TopContextBar
+            leftIcon={"Bluetooth"}
+            leftIconClick={currentStep > 1 ? handleBack : undefined}
+            headline={"Gerät gefunden"}
+            metaDescription={"Neues Gerät hinzufügen"}
+          />
+          <div className="flex flex-col items-center gap-8 h-full">
+            <div
+              className={twMerge(
+                "p-4 rounded-lg grow-0 flex flex-col items-center gap-0",
+                currentStep === 1 ? "bg-inactive" : categoryColor,
+                !formData.category && "bg-uwu"
+              )}
+            >
+              <img src={Homepod} className="w-2/3"></img>
+              {currentStep > 1 && (
+                <div className="w-full text-center font-bold text-light">
+                  {formData.deviceName}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        <div className="w-full">
-          <StepProgress currentStep={currentStep} />
-        </div>
-        <div className="w-full flex flex-col justify-between grow gap-8">
-          <div className="grow flex items-center justify-center">
-            {renderStep()}
+            <div className="w-full">
+              <StepProgress currentStep={currentStep} />
+            </div>
+            <div className="w-full flex flex-col justify-between grow gap-8">
+              <div className="grow flex items-center justify-center">
+                {renderStep()}
+              </div>
+              <div className="grow-0">
+                {currentStep < 4 ? (
+                  <button
+                    className="btn-full"
+                    onClick={handleNext}
+                    disabled={formData.deviceName.trim() === ""}
+                  >
+                    Weiter
+                  </button>
+                ) : currentStep === 4 ? (
+                  <button className="btn-full" onClick={handleNext}>
+                    Gerät hinzufügen
+                  </button>
+                ) : (
+                  <button className="btn-full" onClick={handleNext}>
+                    Zum Dashboard
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="grow-0">
-            {currentStep < 4 ? (
-              <button
-                className="btn-full"
-                onClick={handleNext}
-                disabled={formData.deviceName.trim() === ""}
-              >
-                Weiter
-              </button>
-            ) : (
-              <button
-                className="bg-green btn-full"
-                onClick={() => alert("Gerät hinzugefügt!")}
-              >
-                Gerät hinzufügen
-              </button>
+        </>
+      ) : (
+        <div className="h-full flex flex-col justify-center items-center gap-16 py-5 overflow-y-scroll no-scrollbar">
+          <div
+            className={twMerge(
+              "p-4 rounded-lg w-64 grow-0 flex flex-col items-center gap-0",
+              categoryColor
+            )}
+          >
+            <img src={Homepod} className="w-2/3"></img>
+            {currentStep > 1 && (
+              <div className="w-full text-center font-bold text-light">
+                {formData.deviceName}
+              </div>
             )}
           </div>
+          {renderStep()}
+          <button className="btn-xl" onClick={() => navigate("/")}>
+            Zum Dashboard
+          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 };
