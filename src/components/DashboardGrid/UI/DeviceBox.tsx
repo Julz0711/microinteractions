@@ -7,7 +7,8 @@ import DynamicIcon from "../../DynamicIcon";
 import { useButtonVariants } from "../../../Hooks/DeviceGrid/useButtonVariants";
 import { useDeviceState } from "../../../Hooks/DeviceGrid/useDeviceState";
 import { useDeviceAnimation } from "../../../Hooks/DeviceGrid/useDeviceAnimation";
-import { getColor } from "../../../helpers/helpers";
+import { getColor, getShadow, getTextColor } from "../../../helpers/helpers";
+import { button } from "framer-motion/client";
 
 interface DeviceProps {
   device: Device;
@@ -50,42 +51,48 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
       className={twMerge(
         hasMicrointeractions
           ? isDeviceActive
-            ? "device-box-" + device.category.toLowerCase()
-            : "device-box-dashboard-inactive"
+            ? " shadow-lg device-box-" +
+              device.category.toLowerCase() +
+              " " +
+              getShadow(device.category)
+            : "shadow-xl device-box-dashboard-inactive"
           : isDeviceActive
           ? getColor(device.category).toLowerCase()
           : "bg-" + device.category.toLowerCase(),
-        "motion absolute gap-4 font-bold rounded-md select-none flex flex-col justify-center items-center"
+        "motion absolute gap-4 duration-300  font-bold rounded-md select-none flex flex-col justify-center items-center"
       )}
+      onClick={() => {
+        toggleMenuState();
+      }}
     >
       {isMenuOpen && (
-        <div className="text-light h-58 w-44 p-4">
+        <div className="text-light w-44 p-4">
           <div>{device.name}</div>
         </div>
       )}
-      <div className="flex gap-4 justify-center">
+      <div className="flex gap-2 justify-center flex-col items-center">
         <button
-          onClick={() => {
-            toggleMenuState();
-          }}
-          className="my-4 flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
-        >
-          <DynamicIcon
-            iconName={"Close"}
-            color={isDeviceActive ? "text-yellow " : "text-uwu"}
-          />
-        </button>
-        <button
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             toggleActiveState();
           }}
-          className="my-4 flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
+          className="flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
         >
           <DynamicIcon
-            iconName={device.icon}
-            color={isDeviceActive ? "text-yellow " : "text-uwu"}
+            iconName={"OnOff"}
+            color={isDeviceActive ? getTextColor(device.category) : "text-uwu"}
           />
         </button>
+        {buttonState === "visible" && (
+          <h3
+            className={twMerge(
+              "text-center text-[11px]",
+              isDeviceActive ? "text-light" : "text-uwu"
+            )}
+          >
+            {device.name}
+          </h3>
+        )}
       </div>
     </motion.div>
   );

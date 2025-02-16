@@ -20,6 +20,9 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
   const [activeAnimationFinished, setactiveAnimationFinished] = useState(false);
   const dispatch = useDispatch();
   const { hierarchy, category } = useSelector((state: AppState) => state.app);
+  const hasMicrointeractions = useSelector(
+    (app: AppState) => app.app.hasMicrointeractions
+  );
 
   const handleSetHierarchy = () => {
     if (
@@ -37,25 +40,46 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
   useEffect(() => {
     switch (props.thisCategory) {
       case Category.Lights:
-        setSize({ width: 145, height: 145 });
+        setSize(
+          hasMicrointeractions
+            ? { width: 145, height: 145 }
+            : { width: 160, height: 120 }
+        );
         setflexClasses("flex justify-end items-end");
         break;
       case Category.Entertainment:
-        setSize({ width: 135, height: 160 });
+        setSize(
+          hasMicrointeractions
+            ? { width: 135, height: 160 }
+            : { width: 160, height: 120 }
+        );
+
         setflexClasses("flex justify-start items-end");
         break;
       case Category.Heat:
-        setSize({ width: 160, height: 160 });
+        setSize(
+          hasMicrointeractions
+            ? { width: 160, height: 160 }
+            : { width: 160, height: 120 }
+        );
         break;
       case Category.Air:
-        setSize({ width: 160, height: 120 });
+        setSize(
+          hasMicrointeractions
+            ? { width: 160, height: 120 }
+            : { width: 160, height: 120 }
+        );
         break;
       case Category.Household:
-        setSize({ width: 90, height: 90 });
+        setSize(
+          hasMicrointeractions
+            ? { width: 90, height: 90 }
+            : { width: 160, height: 120 }
+        );
         setflexClasses("flex justify-start");
         break;
     }
-  }, [props.thisCategory]);
+  }, [hasMicrointeractions]);
 
   useEffect(() => {
     const xDirection = Math.floor(props.index % 2) === 0 ? -1 : 1;
@@ -63,11 +87,11 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       160 -
       Math.floor(props.index % 2) * 160 +
       Math.floor((props.index + 1) % 2) * padding;
-    console.log(styleXPos);
+    const offset = hasMicrointeractions ? (props.index % 2) * 20 : 0;
     const styleYPos =
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding +
-      (props.index % 2) * 20 +
+      offset +
       60;
     const styleXPosHidden =
       styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
@@ -81,7 +105,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         top: "70%",
         height: "5rem",
         width: "5rem",
-        duration: 0.3,
+        duration: hasMicrointeractions ? 0.3 : 0,
         onComplete: () => {
           setactiveAnimationFinished(true);
         },
@@ -96,7 +120,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         top: styleYPos + "px",
         height: "10rem",
         width: "10rem",
-        duration: 0.3,
+        duration: hasMicrointeractions ? 0.3 : 0,
       });
     } else {
       setActive(false);
@@ -108,13 +132,13 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         top: styleYPos + "px",
         height: "10rem",
         width: "10rem",
-        duration: 0.3,
+        duration: hasMicrointeractions ? 0.3 : 0,
         onComplete: () => {
           setactiveAnimationFinished(false);
         },
       });
     }
-  }, [category]);
+  }, [category, hasMicrointeractions]);
 
   return {
     handleSetHierarchy,
