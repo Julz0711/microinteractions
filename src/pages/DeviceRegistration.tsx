@@ -297,7 +297,6 @@ export default DeviceRegistration;
   /*
   Microinteractions
   Submit
-  Celebretory Gif
   Back to Dashboard
   "*/
 }

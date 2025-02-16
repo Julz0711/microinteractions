@@ -32,7 +32,7 @@ const NewDevice = () => {
 
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col justify-around gap-8 h-full">
+    <div className="flex flex-col justify-around gap-8 pb-5 h-full">
       <div className="grow-0">
         <TopContextBar
           leftIcon={"Bluetooth"}
