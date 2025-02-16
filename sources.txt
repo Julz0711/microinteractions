@@ -1,2 +1,23 @@
 Konfetti animation
 https://lottiefiles.com/free-animation/confetti-Ljf8PgS2P4
+
+lottiefiles
+
+daisyui
+
+gsap
+
+embla carousel
+
+yup 
+
+formik
+
+framer motion
+
+redux
+
+tailwind
+
+node/vite/react
+

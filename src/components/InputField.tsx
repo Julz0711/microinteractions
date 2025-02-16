@@ -47,23 +47,35 @@ const InputField: React.FC<InputFieldProps> = ({
       <div className="relative w-full">
         {hasMicrointeractions ? (
           <div
-            className={`absolute top-4 font-bold transform -translate-y-1/2 duration-150 ${
-              value || isFocused ? "top-0 text-xs" : "hidden"
+            className={`absolute transform duration-150 pointer-events-none ${
+              value || isFocused
+                ? "top-2 text-xs font-bold opacity-100"
+                : "top-1/2 font-normal opacity-50 -translate-y-1/2"
             } ${isFocused ? "text-purple" : "text-uwu"} ${
               hasIcon ? "pl-12" : "pl-4"
             }`}
           >
             {placeholder}
           </div>
-        ) : null}
+        ) : (
+          <div
+            className={twMerge(
+              "absolute top-1/2 -translate-y-1/2 pointer-events-none text-uwu font-regular",
+              hasIcon ? "pl-12" : "pl-4",
+              isFocused || value ? "opacity-0" : "opacity-100"
+            )}
+          >
+            {placeholder}
+          </div>
+        )}
         <input
           type={type}
           name={name}
-          placeholder={!isFocused ? placeholder : ""}
           value={value}
           onChange={change}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          autoComplete="off"
           required
           className={twMerge(
             `w-full pl-12 pr-4 ring-2 bg-inactive duration-150 font-regular border-none rounded-md focus:outline-none focus:ring-4 focus:ring-purple`,

@@ -9,6 +9,7 @@ import { getColor } from "../helpers/helpers";
 interface DeviceBoxProps {
   device: Device;
   hasToggle?: boolean;
+  hasRoomName?: boolean;
 }
 
 const onActiveAnimationBox = {
@@ -16,7 +17,7 @@ const onActiveAnimationBox = {
   transition: { duration: 0.4, easing: "ease" },
 };
 
-const DevicePreview = ({ device, hasToggle }: DeviceBoxProps) => {
+const DevicePreview = ({ device, hasToggle, hasRoomName }: DeviceBoxProps) => {
   const [isBoxActive, setIsBoxActive] = useState(device.isActive);
   const [isToggleOn, setIsToggleOn] = useState(device.isActive);
   const hasMicrointeractions = useSelector(
@@ -87,7 +88,7 @@ const DevicePreview = ({ device, hasToggle }: DeviceBoxProps) => {
         }
       >
         <span>{device.name}</span>
-        <div>
+        <div className="flex flex-row gap-200 items-center">
           {device.additionalInfo ? (
             <div className="text-meta">
               {isBoxActive
@@ -97,6 +98,12 @@ const DevicePreview = ({ device, hasToggle }: DeviceBoxProps) => {
                 : "Aus"}
             </div>
           ) : null}
+          {hasRoomName && (
+            <div className="text-meta flex flex-row gap-200 items-center">
+              <span>•</span>
+              <div>{device.room ? device.room : ""}</div>
+            </div>
+          )}
         </div>
       </div>
     </motion.div>

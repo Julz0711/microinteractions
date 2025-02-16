@@ -15,7 +15,7 @@ export const devices = [
     icon: "Bluetooth",
     name: "Deckenleuchte",
     room: "Wohnzimmer",
-    isActive: false,
+    isActive: true,
     isFavorite: true,
     additionalInfo: "100%",
     category: Category.Lights,

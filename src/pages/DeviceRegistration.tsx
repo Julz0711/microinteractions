@@ -188,22 +188,24 @@ const DeviceRegistration = () => {
         return (
           <div className="w-full flex flex-col gap-8 items-center">
             <div className="absolute top-0 mx-auto pointer-events-none">
-              <Lottie
-                options={{
-                  loop: false,
-                  autoplay: true,
-                  animationData: confettiAnimation,
-                  rendererSettings: {
-                    preserveAspectRatio: "xMidYMid slice",
-                  },
-                }}
-                height={600}
-                width={600}
-              />
+              {hasMicrointeractions && (
+                <Lottie
+                  options={{
+                    loop: false,
+                    autoplay: true,
+                    animationData: confettiAnimation,
+                    rendererSettings: {
+                      preserveAspectRatio: "xMidYMid slice",
+                    },
+                  }}
+                  height={600}
+                  width={600}
+                />
+              )}
             </div>
             <div className="flex flex-col gap-1 items-center">
-              <div className="text-[3rem] font-bold text-green">Erfolg</div>
-              <div>Dein Gerät wurde erfolgreich hinzugefügt</div>
+              <div className="text-[3rem] font-bold text-green">Geschafft!</div>
+              <div>Dein Gerät wurde erfolgreich hinzugefügt.</div>
             </div>
           </div>
         );
@@ -225,7 +227,7 @@ const DeviceRegistration = () => {
           <div className="flex flex-col items-center gap-8 h-full">
             <div
               className={twMerge(
-                "p-4 rounded-lg grow-0 flex flex-col items-center gap-0",
+                "p-4 rounded-lg grow-0 flex flex-col items-center gap-0 duration-200",
                 currentStep === 1 ? "bg-inactive" : categoryColor,
                 !formData.category && "bg-uwu"
               )}
@@ -237,9 +239,11 @@ const DeviceRegistration = () => {
                 </div>
               )}
             </div>
-            <div className="w-full">
-              <StepProgress currentStep={currentStep} />
-            </div>
+            {hasMicrointeractions && (
+              <div className="w-full">
+                <StepProgress currentStep={currentStep} />
+              </div>
+            )}
             <div className="w-full flex flex-col justify-between grow gap-8">
               <div className="grow flex items-center justify-center">
                 {renderStep()}
