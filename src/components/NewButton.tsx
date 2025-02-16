@@ -41,10 +41,10 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
   };
 
   return (
-    <div className="z-50 sticky font-bold left-[50%] translate-x-[-50%] bottom-12">
+    <>
       <button
         onClick={toggleMenu}
-        className={`z-60 relative bg-dark text-light px-6 py-4 rounded-md transition cursor-pointer duration-150  ${
+        className={`font-bold z-60 relative bg-dark text-light px-6 py-4 rounded-md transition cursor-pointer duration-150  ${
           isMenuOpen ? "bg-dark hover:bg-dark" : "bg-red hover:bg-purple"
         }`}
       >
@@ -59,7 +59,7 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
                 initial="hidden"
                 animate="visible"
                 variants={buttonVariants}
-                className="bg-red text-light px-4 py-3 rounded-md cursor-pointer hover:bg-purple"
+                className="bg-red font-bold text-light px-4 py-3 rounded-md cursor-pointer hover:bg-purple"
               >
                 {option.label}
               </motion.button>
@@ -67,6 +67,6 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 };

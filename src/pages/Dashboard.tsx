@@ -14,6 +14,7 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   const activeDevices = devices.filter((device) => device.isActive);
+  const favoriteDevices = devices.filter((device) => device.isFavorite);
   const activeDeviceAmount = activeDevices.length;
   const OPTIONS: EmblaOptionsType = { dragFree: true };
   const ACTIVE_DEVICES_SLIDES = activeDevices.map((device, index) => (
@@ -21,33 +22,39 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
       <DevicePreview device={device} hasToggle={false} hasRoomName={true} />
     </div>
   ));
+  const FAVORITES_DEVICES_SLIDES = favoriteDevices.map((device, index) => (
+    <div key={index} className="pointer-events-none">
+      <DevicePreview device={device} hasToggle={true} hasRoomName={true} />
+    </div>
+  ));
   return (
     <div>
       <ScrollableNavBar />
       {hasDevices ? (
-        <div className="w-full py-4 flex flex-col gap-4 justify-start items-start">
+        <div className="w-full py-4 flex flex-col gap-8 justify-start items-start">
           <RoomGrid />
-          <div className="w-full relative">
+          <div className="w-full">
             <p className="text-meta mb-2">{activeDeviceAmount} Aktive Geräte</p>
-            <EmblaCarousel slides={ACTIVE_DEVICES_SLIDES} options={OPTIONS} />
+            <EmblaCarousel
+              width="flex-[0_0_auto]"
+              slides={ACTIVE_DEVICES_SLIDES}
+              options={OPTIONS}
+            />
           </div>
-          <div className="flex flex-col gap-400">
-            <HeadlineWithLink headline="Szenen" link="/szenen" />
+          <div className="flex flex-col gap-2">
+            <HeadlineWithLink headline="Szenen" link="/dashboard" />
           </div>
-          <div className="flex flex-col gap-400">
-            <HeadlineWithLink headline="Favoriten" link="/szenen" />
-            <div className="flex flex-row gap-600">
-              {devices
-                .filter((device) => device.isFavorite)
-                .map((device, index) => (
-                  <div key={index}>
-                    <DevicePreview device={device} hasToggle={true} />
-                  </div>
-                ))}
+          <div className="w-full">
+            <div className="mb-2">
+              <HeadlineWithLink headline="Favoriten" link="/dashboard" />
             </div>
+            <EmblaCarousel
+              slides={FAVORITES_DEVICES_SLIDES}
+              options={OPTIONS}
+            />
           </div>
-          <div className="flex flex-col gap-400">
-            <HeadlineWithLink headline="Zeitpläne" link="/szenen" />
+          <div className="flex flex-col gap-2">
+            <HeadlineWithLink headline="Zeitpläne" link="/dashboard" />
           </div>
         </div>
       ) : (
