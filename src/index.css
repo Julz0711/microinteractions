@@ -278,3 +278,21 @@ body {
 .animate-fan {
   animation: fanAnimation 2.5s infinite linear;
 }
+
+/* Light Animation */
+
+@keyframes lightAnimation {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.animate-light {
+  animation: lightAnimation 2.5s infinite linear;
+}

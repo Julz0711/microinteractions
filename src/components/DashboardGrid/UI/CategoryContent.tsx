@@ -1,6 +1,6 @@
 import * as React from "react";
 import { twMerge } from "tailwind-merge";
-import { getColor } from "../../../helpers/helpers";
+import { getColor, getShadow } from "../../../helpers/helpers";
 import { Category, HierarchyStep } from "../../../types/dashboard.types";
 import DynamicIcon from "../../DynamicIcon";
 import { DeviceGrid } from "../DeviceGrid";
@@ -22,11 +22,18 @@ export function CategoryContent(props: ICategoryContentProps) {
   const activeDevices = useActiveDevices({
     thisCategory: props.thisCategory,
   });
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
 
   return (
     <div
       className={twMerge(
-        activeDevices > 0 ? getColor(props.thisCategory) : "bg-inactive",
+        activeDevices > 0
+          ? getColor(props.thisCategory) +
+              " shadow-lg " +
+              getShadow(props.thisCategory)
+          : "bg-inactive",
         "flex items-center justify-center max-w-full max-h-full rounded-md",
         props.thisCategory === Category.Household
           ? "relative top-[-40px] left-0"

@@ -4,7 +4,8 @@ import { twMerge } from "tailwind-merge";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../store/store";
 import "./WaveAnimation.css";
-import "./CategoryStats.css";
+import Rhapsody from "../../../assets/bohemian_rhapsody.jpg";
+import { Temperature } from "../../SVGAnimations/Temperature";
 
 export interface ICategoryStatsProps {
   category: Category;
@@ -17,39 +18,42 @@ export function CategoryStats(props: ICategoryStatsProps) {
   switch (props.category) {
     case Category.Lights:
       return (
-        <span className="p-4 bg-light rounded-full">
+        <div className="p-4 bg-light rounded-full flex items-center justify-center">
           <DynamicIcon iconName={"Lamp"} color="text-yellow" />
-        </span>
+          <span className="rounded-full bg-radial from-yellow to-transparent to-60% w-12 h-12 absolute animate-light opacity-35"></span>
+        </div>
       );
     case Category.Heat:
       return hasMicrointeractions ? (
         <div className="flex items-center justify-center w-full pt-2 relative">
-          <DynamicIcon
-            iconName={"Temp"}
-            color="text-light absolute -top-2"
-            size="35px"
-          />
-          <span className="text-light text-sm font-bold absolute">22°C</span>
-          <svg
-            width="80"
-            height="80"
-            viewBox="0 0 250 250"
-            className="circular-progress"
-          >
-            <circle className="bg"></circle>
-            <circle className="fg"></circle>
-          </svg>
+          <Temperature />
         </div>
       ) : (
         <DynamicIcon iconName={"Thermometer"} color="text-red" />
       );
     case Category.Entertainment:
       return (
-        <div className="flex gap-2">
-          <DynamicIcon iconName={"PreviousSong"} color="text-light" />
-          <DynamicIcon iconName={"Pause"} color="text-light" />
-          <DynamicIcon iconName={"NextSong"} color="text-light" />
-        </div>
+        <>
+          <div className="flex gap-2 max-w-full relative">
+            <img
+              src={Rhapsody}
+              alt="Bohemian Rhapsody"
+              className="w-10 h-10 rounded-sm"
+            />
+            <div className="flex flex-col justify-center max-w-full overflow-x-hidden">
+              <span className="text-light whitespace-nowrap text-[11px] font-bold">
+                Bohemian Rhapsody
+              </span>
+              <span className="absolute right-0 bg-gradient-to-l from-purple to-transparent w-10 h-10"></span>
+              <span className="text-light text-xs">Queen</span>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <DynamicIcon iconName={"PreviousSong"} color="text-light" />
+            <DynamicIcon iconName={"Pause"} color="text-light" />
+            <DynamicIcon iconName={"NextSong"} color="text-light" />
+          </div>
+        </>
       );
     case Category.Air:
       return (

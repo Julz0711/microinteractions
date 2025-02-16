@@ -1,5 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { Category } from "../../../types/dashboard.types";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../store/store";
 
 export interface ICategoryClickBoxProps {
   handleClick: () => void;
@@ -7,8 +9,11 @@ export interface ICategoryClickBoxProps {
   flexClasses: string;
   category: Category;
 }
-
 export function CategoryClickBox(props: ICategoryClickBoxProps) {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
+
   return (
     <button
       onClick={props.handleClick}
