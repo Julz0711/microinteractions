@@ -94,7 +94,7 @@ export const devices = [
   },
   {
     icon: "Bluetooth",
-    name: "Julz Haushaltgerät weil er es unbedingt haben wollte",
+    name: "Staubsauger Roboter",
     room: "Wohnzimmer",
     isActive: false,
     isFavorite: true,

@@ -48,7 +48,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         setSize({ width: 160, height: 160 });
         break;
       case Category.Air:
-        setSize({ width: 160, height: 110 });
+        setSize({ width: 160, height: 120 });
         break;
       case Category.Household:
         setSize({ width: 90, height: 90 });
