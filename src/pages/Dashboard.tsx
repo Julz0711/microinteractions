@@ -23,7 +23,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
     </div>
   ));
   const FAVORITES_DEVICES_SLIDES = favoriteDevices.map((device, index) => (
-    <div key={index} className="pointer-events-none">
+    <div key={index} className="">
       <DevicePreview device={device} hasToggle={true} hasRoomName={true} />
     </div>
   ));
