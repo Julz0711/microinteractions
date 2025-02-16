@@ -6,3 +6,23 @@ https://www.30secondsofcode.org/css/s/circular-progress-bar/
 
 Bohemian Rhapsody Cover:
 https://www.discogs.com/de/release/12688080-Queen-Bohemian-Rhapsody-The-Original-Soundtrack
+lottiefiles
+
+daisyui
+
+gsap
+
+embla carousel
+
+yup 
+
+formik
+
+framer motion
+
+redux
+
+tailwind
+
+node/vite/react
+

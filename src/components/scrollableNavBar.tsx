@@ -1,51 +1,19 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { Draggable } from "gsap/Draggable";
-
-gsap.registerPlugin(Draggable);
-
-const rooms = [
-  "Wohnzimmer",
-  "Schlafzimmer",
-  "Küche",
-  "Büro",
-  "Garage",
-  "Garten",
-];
+import { getAllRoomNames } from "../helpers/helpers";
+import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel.tsx";
+import { EmblaOptionsType } from "embla-carousel";
+import { twMerge } from "tailwind-merge";
 
 export default function ScrollableNavBar() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const OPTIONS: EmblaOptionsType = { dragFree: true };
+  const ROOM_SLIDES = getAllRoomNames().map((room, index) => (
+    <button
+      key={index}
+      onClick={() => console.log(room)}
+      className={twMerge("text-uwu cursor-pointer")}
+    >
+      {room}
+    </button>
+  ));
 
-  useEffect(() => {
-    if (containerRef.current) {
-      const wrapper = document.querySelector(".scrollable-nav-bar");
-
-      if (wrapper) {
-        Draggable.create(containerRef.current, {
-          type: "x",
-          bounds: {
-            minX: -wrapper.scrollWidth * 0.2,
-            maxX: 0,
-          },
-          inertia: true,
-          dragResistance: 0.1,
-        });
-      }
-    }
-  }, []);
-
-  return (
-    <div className="relative w-full flex items-center overflow-hidden">
-      <div ref={containerRef} className="flex flex-row space-x-900">
-        {rooms.map((room, index) => (
-          <div
-            key={index}
-            className="text-sidescroll-nav w-full font-bold hover:text-uwu transition-all nowrap"
-          >
-            {room}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <EmblaCarousel slides={ROOM_SLIDES} options={OPTIONS} />;
 }

@@ -1,31 +1,35 @@
 import ScrollableNavBar from "../components/ScrollableNavBar";
 import GlowBoyz from "../assets/img/glow_boys.png";
-import Button from "../components/Button";
+import Button from "../components/Button.tsx";
 import HeadlineWithLink from "../components/HeadlineWithLink.tsx";
 import DevicePreview from "../components/DevicePreview";
-import { DashboardGrid } from "../components/DashboardGrid/DashboardGrid";
 import { devices } from "../data/data";
-import { MdRoom } from "react-icons/md";
-import { CategoryWrapper } from "../components/DashboardGrid/UI/CategoryWrapper.tsx";
 import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
+import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel.tsx";
+import { EmblaOptionsType } from "embla-carousel";
 
 interface DashboardProps {
   hasDevices?: boolean;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
-  const activeDeviceAmount = 9;
+  const activeDevices = devices.filter((device) => device.isActive);
+  const activeDeviceAmount = activeDevices.length;
+  const OPTIONS: EmblaOptionsType = { dragFree: true };
+  const ACTIVE_DEVICES_SLIDES = activeDevices.map((device, index) => (
+    <div key={index} className="pointer-events-none">
+      <DevicePreview device={device} hasToggle={false} hasRoomName={true} />
+    </div>
+  ));
   return (
     <div>
-      <div className="scrollable-nav-bar overflow-x-auto w-full">
-        <ScrollableNavBar />
-      </div>
+      <ScrollableNavBar />
       {hasDevices ? (
         <div className="w-full py-4 flex flex-col gap-4 justify-start items-start">
           <RoomGrid />
-          <div>
-            <p className="text-meta">{activeDeviceAmount} Aktive Geräte</p>
-            <div>hier alle aktiven</div>
+          <div className="w-full relative">
+            <p className="text-meta mb-2">{activeDeviceAmount} Aktive Geräte</p>
+            <EmblaCarousel slides={ACTIVE_DEVICES_SLIDES} options={OPTIONS} />
           </div>
           <div className="flex flex-col gap-400">
             <HeadlineWithLink headline="Szenen" link="/szenen" />
