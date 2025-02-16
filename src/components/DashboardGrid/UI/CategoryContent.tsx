@@ -22,19 +22,23 @@ export function CategoryContent(props: ICategoryContentProps) {
   const activeDevices = useActiveDevices({
     thisCategory: props.thisCategory,
   });
+
   return (
     <div
       className={twMerge(
         activeDevices > 0 ? getColor(props.thisCategory) : "bg-inactive",
         "flex items-center justify-center max-w-full max-h-full rounded-md",
         props.thisCategory === Category.Household
-          ? "relative top-[-50px] left-0"
+          ? "relative top-[-40px] left-0"
           : ""
       )}
       style={{ width: props.size.width, height: props.size.height }}
     >
       {props.active ? (
-        <DynamicIcon iconName="Close" color="text-light" />
+        <DynamicIcon
+          iconName="Close"
+          color={activeDevices > 0 ? "text-light" : "text-dark"}
+        />
       ) : (
         <CategoryOverview thisCategory={props.thisCategory} />
       )}

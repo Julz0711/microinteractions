@@ -263,3 +263,18 @@ body {
     opacity: 0;
   }
 }
+
+/* Fan Animation */
+
+@keyframes fanAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fan {
+  animation: fanAnimation 2.5s infinite linear;
+}
