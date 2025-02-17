@@ -1,9 +1,18 @@
 import { Category } from "../../types/dashboard.types";
 import { useRef } from "react";
 import { CategoryWrapper } from "./UI/CategoryWrapper";
+import { devices } from "../../data/data";
+import { Room } from "../../types/types";
 
-export const RoomGrid = () => {
+interface RoomGridProps {
+  selectedRoom: Room | null;
+}
+
+export const RoomGrid: React.FC<RoomGridProps> = ({ selectedRoom }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
+  const filteredDevices = devices.filter(
+    (device) => device.room === selectedRoom
+  );
 
   return (
     <div

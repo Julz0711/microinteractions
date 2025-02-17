@@ -1,11 +1,12 @@
 import { tr } from "framer-motion/client";
 import { Category } from "../types/dashboard.types";
+import { Room } from "../types/types";
 
 export const devices = [
   {
     icon: "Bluetooth",
     name: "Leselampe",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
     additionalInfo: "100%",
@@ -14,7 +15,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Deckenleuchte",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
     additionalInfo: "100%",
@@ -23,7 +24,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Deckenleuchte 2",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: false,
     isFavorite: false,
     additionalInfo: "100%",
@@ -32,7 +33,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Deckenleuchte",
-    room: "Küche",
+    room: Room.Kitchen,
     isActive: true,
     isFavorite: false,
     additionalInfo: "100%",
@@ -41,7 +42,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Heizung Fenster",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
     additionalInfo: "100%",
@@ -50,7 +51,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Heizung Fenster 2",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: false,
     isFavorite: true,
     additionalInfo: "100%",
@@ -59,7 +60,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Heizung Wand",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: false,
     isFavorite: false,
     additionalInfo: "100%",
@@ -68,7 +69,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Fernseher",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: false,
     isFavorite: true,
     additionalInfo: "100%",
@@ -77,7 +78,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Sonos Speaker",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: true,
     isFavorite: false,
     additionalInfo: "100%",
@@ -86,7 +87,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Ventilator",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
     additionalInfo: "100%",
@@ -95,7 +96,7 @@ export const devices = [
   {
     icon: "Bluetooth",
     name: "Staubsauger Roboter",
-    room: "Wohnzimmer",
+    room: Room.LivingRoom,
     isActive: false,
     isFavorite: true,
     additionalInfo: "100%",

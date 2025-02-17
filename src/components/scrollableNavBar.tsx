@@ -2,18 +2,40 @@ import { getAllRoomNames } from "../helpers/helpers";
 import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel.tsx";
 import { EmblaOptionsType } from "embla-carousel";
 import { twMerge } from "tailwind-merge";
+import { Room } from "../types/types.ts";
+import { useEffect } from "react";
 
-export default function ScrollableNavBar() {
+interface ScrollableNavBarProps {
+  selectedRoom: Room | null;
+  onRoomSelect: (room: Room | null) => void;
+}
+
+export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
+  selectedRoom,
+  onRoomSelect,
+}) => {
   const OPTIONS: EmblaOptionsType = { dragFree: true };
+  const roomNames = getAllRoomNames();
+  const defaultRoom = roomNames.length > 0 ? (roomNames[0] as Room) : null;
+
+  useEffect(() => {
+    if (!selectedRoom && defaultRoom) {
+      onRoomSelect(defaultRoom);
+    }
+  }, [selectedRoom, defaultRoom, onRoomSelect]);
+
   const ROOM_SLIDES = getAllRoomNames().map((room, index) => (
     <button
       key={index}
-      onClick={() => console.log(room)}
-      className={twMerge("text-uwu cursor-pointer")}
+      onClick={() => onRoomSelect(room as Room)}
+      className={twMerge(
+        "cursor-pointer transition-colors duration-200 font-bold",
+        selectedRoom === (room as Room) ? "text-dark" : "text-uwu"
+      )}
     >
       {room}
     </button>
   ));
 
   return <EmblaCarousel slides={ROOM_SLIDES} options={OPTIONS} />;
-}
+};

@@ -1,4 +1,4 @@
-import ScrollableNavBar from "../components/ScrollableNavBar";
+import { ScrollableNavBar } from "../components/ScrollableNavBar";
 import GlowBoyz from "../assets/img/glow_boys.png";
 import Button from "../components/Button.tsx";
 import HeadlineWithLink from "../components/HeadlineWithLink.tsx";
@@ -7,6 +7,8 @@ import { devices } from "../data/data";
 import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
 import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel.tsx";
 import { EmblaOptionsType } from "embla-carousel";
+import { Room } from "../types/types";
+import { useEffect, useState } from "react";
 
 interface DashboardProps {
   hasDevices?: boolean;
@@ -27,12 +29,22 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
       <DevicePreview device={device} hasToggle={true} hasRoomName={true} />
     </div>
   ));
+
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+
+  useEffect(() => {
+    console.log(selectedRoom);
+  }, [selectedRoom]);
+
   return (
     <div>
-      <ScrollableNavBar />
+      <ScrollableNavBar
+        onRoomSelect={setSelectedRoom}
+        selectedRoom={selectedRoom}
+      />
       {hasDevices ? (
         <div className="w-full py-4 flex flex-col gap-8 justify-start items-start">
-          <RoomGrid />
+          <RoomGrid selectedRoom={selectedRoom} />
           <div className="w-full">
             <p className="text-meta mb-2">{activeDeviceAmount} Aktive Geräte</p>
             <EmblaCarousel

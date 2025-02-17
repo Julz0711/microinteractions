@@ -55,26 +55,47 @@ const DeviceRegistration = () => {
     ? getColor(formData.category)
     : "bg-dark";
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
+  const [activeRoomIndex, setActiveRoomIndex] = useState(0);
 
-  const handleItemClick = (index: number, category: string) => {
-    setActiveIndex(index);
+  const handleCategoryClick = (index: number, category: string) => {
+    setActiveCategoryIndex(index);
     handleSelect("category", category);
   };
 
+  const handleRoomClick = (index: number, room: string) => {
+    setActiveRoomIndex(index);
+    handleSelect("room", room);
+  };
+
   const OPTIONS: EmblaOptionsType = { dragFree: true };
-  const ROOM_SLIDES = getAllCategoryNames().map((category, index) => (
+  const CATEGORY_SLIDES = getAllCategoryNames().map((category, index) => (
     <button
       key={index}
       className={twMerge(
         "w-full rounded-md cursor-pointer px-6 py-4 font-bold duration-300",
-        activeIndex === index
+        activeCategoryIndex === index
           ? twMerge(categoryColor, "text-light")
           : "bg-inactive text-dark"
       )}
-      onClick={() => handleItemClick(index, category)}
+      onClick={() => handleCategoryClick(index, category)}
     >
       {category}
+    </button>
+  ));
+
+  const ROOM_SLIDES = getAllRoomNames().map((room, index) => (
+    <button
+      key={index}
+      className={twMerge(
+        "w-full rounded-md cursor-pointer px-6 py-4 font-bold duration-300",
+        activeRoomIndex === index
+          ? "bg-dark text-light"
+          : "bg-inactive text-dark"
+      )}
+      onClick={() => handleRoomClick(index, room)}
+    >
+      {room}
     </button>
   ));
 
@@ -152,18 +173,16 @@ const DeviceRegistration = () => {
               header={"Kategorie"}
               desc={"Zu welcher Kategorie gehört Dein Gerät? "}
             />
-            {/*}
-            <div className="w-3/4">
+            {/*
               <Scrolldown
                 color={categoryColor}
                 items={getAllCategoryNames()}
                 onSelect={(item: string) => handleSelect("category", item)}
               />
-            </div>
             */}
             <EmblaCarousel
               width="flex-[0_0_auto]"
-              slides={ROOM_SLIDES}
+              slides={CATEGORY_SLIDES}
               options={OPTIONS}
             />
           </div>
@@ -175,13 +194,18 @@ const DeviceRegistration = () => {
               header={"Raumauswahl"}
               desc={"In welchem Raum befindet sich dein Gerät?"}
             />
-            <div className="w-3/4">
+            {/*
               <Scrolldown
                 color={"bg-dark"}
                 items={getAllRoomNames()}
                 onSelect={(item: string) => handleSelect("room", item)}
               />
-            </div>
+              */}
+            <EmblaCarousel
+              width="flex-[0_0_auto]"
+              slides={ROOM_SLIDES}
+              options={OPTIONS}
+            />
           </div>
         );
       case 4:
