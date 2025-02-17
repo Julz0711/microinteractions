@@ -19,6 +19,7 @@ import confettiAnimation from "../assets/lottie/confetti.json";
 import { useNavigate } from "react-router-dom";
 import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";
+import { AnimatePresence, motion } from "framer-motion";
 
 const IntroText = ({ header, desc }: { header: string; desc: string }) => {
   return (
@@ -99,11 +100,15 @@ const DeviceRegistration = () => {
     </button>
   ));
 
+  const [direction, setDirection] = useState(1);
+
   const handleNext = () => {
+    setDirection(1);
     setCurrentStep((prev) => Math.min(prev + 1, 5));
   };
 
   const handleBack = () => {
+    setDirection(-1);
     setCurrentStep((prev) => Math.max(prev - 1, 1));
   };
 
@@ -270,6 +275,18 @@ const DeviceRegistration = () => {
     }
   };
 
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+    }),
+    center: { x: 0, opacity: 1 },
+    exit: (direction: number) => ({
+      x: direction > 0 ? "-100%" : "100%",
+      opacity: 0,
+    }),
+  };
+
   return (
     <div className="h-full flex flex-col justify-between gap-8 pb-5 no-scrollbar">
       {currentStep < 5 ? (
@@ -302,7 +319,20 @@ const DeviceRegistration = () => {
             )}
             <div className="w-full flex flex-col justify-between grow gap-8">
               <div className="grow flex items-center justify-center">
-                {renderStep()}
+                <AnimatePresence mode="popLayout" custom={direction}>
+                  <motion.div
+                    key={currentStep}
+                    variants={variants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    custom={direction}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="w-full flex flex-col items-center"
+                  >
+                    {renderStep()}
+                  </motion.div>
+                </AnimatePresence>
               </div>
               <div className="grow-0">
                 {currentStep < 4 ? (

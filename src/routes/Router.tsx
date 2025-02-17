@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { ReactNode, Suspense, lazy } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { motion } from "framer-motion";
 
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const Devices = lazy(() => import("../pages/Devices"));
@@ -13,22 +14,88 @@ const NewSchedule = lazy(() => import("../pages/NewSchedule"));
 const DeviceRegistration = lazy(() => import("../pages/DeviceRegistration"));
 const NewRoom = lazy(() => import("../pages/NewRoom"));
 
+const allRoutes = [
+  {
+    path: "/",
+    component: <Dashboard hasDevices={false} />,
+  },
+  {
+    path: "/dashboard",
+    component: <Dashboard hasDevices={true} />,
+  },
+  {
+    path: "/geraete",
+    component: <Devices />,
+  },
+  {
+    path: "/profil",
+    component: <Profile />,
+  },
+  {
+    path: "/login",
+    component: <Login />,
+  },
+  {
+    path: "/register",
+    component: <Register />,
+  },
+  {
+    path: "/neues-geraet",
+    component: <NewDevice />,
+  },
+  {
+    path: "/neuer-raum",
+    component: <NewRoom />,
+  },
+  {
+    path: "/neuer-zeitplan",
+    component: <NewSchedule />,
+  },
+  {
+    path: "/geraet-registrieren",
+    component: <DeviceRegistration />,
+  },
+  {
+    path: "*",
+    component: <NotFound />,
+  },
+];
+
+function PageWrapper({ children }: { children: ReactNode }) {
+  return (
+    <motion.div
+      key={location.pathname}
+      initial={{ opacity: 0, scale: 0.75 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.75 }}
+      transition={{ duration: 0.5 }}
+      className="w-full h-full"
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function routeMap({
+  path,
+  component,
+}: {
+  path: string;
+  component: any;
+  hasDevices?: boolean;
+}) {
+  return (
+    <Route
+      path={path}
+      element={<PageWrapper children={component}></PageWrapper>}
+    />
+  );
+}
+
 const AppRouter = () => {
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <Routes>
-        <Route path="/" element={<Dashboard hasDevices={false} />} />
-        <Route path="/dashboard" element={<Dashboard hasDevices={true} />} />
-        <Route path="/geraete" element={<Devices />} />
-        <Route path="/profil" element={<Profile />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registrieren" element={<Register />} />
-        <Route path="/neues-geraet" element={<NewDevice />} />
-        <Route path="/neuer-raum" element={<NewRoom />} />
-        <Route path="/neuer-zeitplan" element={<NewSchedule />} />
-        <Route path="/geraet-registrieren" element={<DeviceRegistration />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Routes>{allRoutes.map((route) => routeMap(route))}</Routes>
     </Suspense>
   );
 };

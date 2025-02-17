@@ -42,7 +42,10 @@ const Layout: React.FC = () => {
       <div className="layout relative no-scrollbar w-[400px] h-[850px] flex flex-col gap-8 items-start justify-start border rounded-[2rem] bg-light">
         {showNewButton && <TopNavigation />}
         <div className="px-5 w-full h-full">
-          <AppRouter />
+          <AnimatePresence mode="wait">
+            <AppRouter />
+          </AnimatePresence>
+
           {showNewButton && (
             <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-50">
               <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
