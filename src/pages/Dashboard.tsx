@@ -3,12 +3,13 @@ import GlowBoyz from "../assets/img/glow_boys.png";
 import Button from "../components/Button.tsx";
 import HeadlineWithLink from "../components/HeadlineWithLink.tsx";
 import DevicePreview from "../components/DevicePreview";
-import { devices } from "../data/data";
+import { devices, scenes, schedules } from "../data/data";
 import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
 import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel.tsx";
 import { EmblaOptionsType } from "embla-carousel";
 import { Room } from "../types/types";
 import { useEffect, useState } from "react";
+import ScenePreview from "../components/ScenePreview.tsx";
 
 interface DashboardProps {
   hasDevices?: boolean;
@@ -21,12 +22,27 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   const OPTIONS: EmblaOptionsType = { dragFree: true };
   const ACTIVE_DEVICES_SLIDES = activeDevices.map((device, index) => (
     <div key={index} className="pointer-events-none">
-      <DevicePreview device={device} hasToggle={false} hasRoomName={true} />
+      <DevicePreview
+        device={device}
+        hasToggle={false}
+        hasRoomName={true}
+        isSmall={true}
+      />
     </div>
   ));
   const FAVORITES_DEVICES_SLIDES = favoriteDevices.map((device, index) => (
-    <div key={index} className="">
-      <DevicePreview device={device} hasToggle={true} hasRoomName={true} />
+    <div key={index}>
+      <DevicePreview device={device} hasToggle={false} hasRoomName={true} />
+    </div>
+  ));
+  const SCENES_SLIDES = scenes.map((scene, index) => (
+    <div key={index}>
+      <ScenePreview scene={scene} />
+    </div>
+  ));
+  const SCHEDULES_SLIDES = schedules.map((schedule, index) => (
+    <div key={index}>
+      <ScenePreview scene={schedule} />
     </div>
   ));
 
@@ -37,36 +53,50 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   }, [selectedRoom]);
 
   return (
-    <div>
+    <div className="pb-2">
       <ScrollableNavBar
         onRoomSelect={setSelectedRoom}
         selectedRoom={selectedRoom}
       />
       {hasDevices ? (
-        <div className="w-full py-4 flex flex-col gap-8 justify-start items-start">
+        <div className="w-full py-4 flex flex-col gap-2 justify-start items-start">
           <RoomGrid selectedRoom={selectedRoom} />
-          <div className="w-full">
-            <p className="text-meta mb-2">{activeDeviceAmount} Aktive Geräte</p>
-            <EmblaCarousel
-              width="flex-[0_0_auto]"
-              slides={ACTIVE_DEVICES_SLIDES}
-              options={OPTIONS}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <HeadlineWithLink headline="Szenen" link="/dashboard" />
-          </div>
-          <div className="w-full">
-            <div className="mb-2">
-              <HeadlineWithLink headline="Favoriten" link="/dashboard" />
+          <div className="w-full flex flex-col gap-8">
+            <div className="w-full">
+              <p className="text-meta mb-2">
+                {activeDeviceAmount} Aktive Geräte
+              </p>
+              <EmblaCarousel
+                width="flex-[0_0_auto]"
+                slides={ACTIVE_DEVICES_SLIDES}
+                options={OPTIONS}
+              />
             </div>
-            <EmblaCarousel
-              slides={FAVORITES_DEVICES_SLIDES}
-              options={OPTIONS}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <HeadlineWithLink headline="Zeitpläne" link="/dashboard" />
+            <div className="w-full">
+              <div className="mb-2">
+                <HeadlineWithLink headline="Szenen" link="/dashboard" />
+              </div>
+              <EmblaCarousel
+                width="flex-[0_0_auto]"
+                slides={SCENES_SLIDES}
+                options={OPTIONS}
+              />
+            </div>
+            <div className="w-full">
+              <div className="mb-2">
+                <HeadlineWithLink headline="Favoriten" link="/dashboard" />
+              </div>
+              <EmblaCarousel
+                slides={FAVORITES_DEVICES_SLIDES}
+                options={OPTIONS}
+              />
+            </div>
+            <div className="w-full">
+              <div className="mb-2">
+                <HeadlineWithLink headline="Zeitpläne" link="/dashboard" />
+              </div>
+              <EmblaCarousel slides={SCHEDULES_SLIDES} options={OPTIONS} />
+            </div>
           </div>
         </div>
       ) : (

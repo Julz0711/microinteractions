@@ -10,6 +10,21 @@ export type Device = {
   category: Category;
 };
 
+export type Scene = {
+  name: string;
+  icon: string;
+  isActive: boolean;
+  color: string;
+};
+
+export type Schedule = {
+  name: string;
+  icon: string;
+  isActive: boolean;
+  additionalInfo: string;
+  color: string;
+};
+
 export enum Room {
   LivingRoom = "livingRoom",
   Bedroom = "bedroom",

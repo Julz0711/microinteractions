@@ -1,4 +1,3 @@
-import { tr } from "framer-motion/client";
 import { Category } from "../types/dashboard.types";
 import { Room } from "../types/types";
 
@@ -101,5 +100,49 @@ export const devices = [
     isFavorite: true,
     additionalInfo: "100%",
     category: Category.Household,
+  },
+];
+
+export const scenes = [
+  {
+    icon: "Bluetooth",
+    name: "Gaming",
+    isActive: true,
+    color: "bg-green",
+  },
+  {
+    icon: "Bluetooth",
+    name: "Home Office",
+    isActive: true,
+    color: "bg-orange",
+  },
+  {
+    icon: "Bluetooth",
+    name: "TV Abend",
+    isActive: false,
+    color: "bg-purple",
+  },
+  {
+    icon: "Bluetooth",
+    name: "Gute Nacht",
+    isActive: true,
+    color: "bg-blue",
+  },
+];
+
+export const schedules = [
+  {
+    icon: "Bluetooth",
+    name: "Morgenroutine Mo-Fr",
+    isActive: true,
+    additionalInfo: "3 Räume, 11 Geräte",
+    color: "bg-yellow",
+  },
+  {
+    icon: "Bluetooth",
+    name: "Morgenroutine Sa-So",
+    isActive: true,
+    additionalInfo: "2 Räume, 8 Geräte",
+    color: "bg-orange",
   },
 ];
