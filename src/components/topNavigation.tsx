@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 
-export const TopNavigation = () => {
+export const TopNavigation = ({ isScrolled }: { isScrolled: boolean }) => {
   const location = useLocation();
 
   const linkClasses = (path: string) =>
@@ -13,7 +14,12 @@ export const TopNavigation = () => {
   }`;
 
   return (
-    <nav className="sticky top-0 left-0 w-full pt-8 z-90 backdrop-blur-md pb-4 bg-linear-to-b from-light to-transparent">
+    <nav
+      className={twMerge(
+        "sticky top-0 left-0 w-full pt-8 pb-4 z-50 backdrop-blur-sm bg-gradient-to-b from-light to-[rgba(255,255,255,0.1)]",
+        isScrolled ? "shadow-lg" : ""
+      )}
+    >
       <div className="px-800 flex justify-between items-center">
         <div className="flex gap-900">
           <Link to="/dashboard" className={linkClasses("/dashboard")}>

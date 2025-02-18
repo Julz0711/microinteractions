@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TopContextBar } from "../components/TopContextBar";
 import InputField from "../components/InputField";
 import Homepod from "../assets/img/homepod.png";
@@ -6,7 +6,6 @@ import { twMerge } from "tailwind-merge";
 import DynamicIcon from "../components/DynamicIcon";
 import { AppState } from "../store/store";
 import { useSelector } from "react-redux";
-import Scrolldown from "../components/Scrolldown";
 import {
   getColor,
   getAllCategoryNames,

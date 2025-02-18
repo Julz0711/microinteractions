@@ -1,10 +1,13 @@
 import DynamicIcon from "./DynamicIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Device, Room } from "../types/types";
 import { getColor, getRoomName } from "../helpers/helpers";
+import Lottie from "react-lottie";
+import toggleLottie from "../assets/lottie/toggle_v4.json";
+import { twMerge } from "tailwind-merge";
 
 interface DeviceBoxProps {
   device: Device;
@@ -24,11 +27,22 @@ const DevicePreview = ({
   hasRoomName,
   isSmall,
 }: DeviceBoxProps) => {
-  const [isBoxActive, setIsBoxActive] = useState(device.isActive);
-  const [isToggleOn, setIsToggleOn] = useState(device.isActive);
+  const [isBoxActive, setIsBoxActive] = useState(false);
+  const [isToggleOn, setIsToggleOn] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState(1);
+
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
+
+  useEffect(() => {
+    setIsBoxActive(device.isActive);
+    setIsToggleOn(device.isActive);
+  }, [device.isActive]);
+
+  useEffect(() => {
+    setAnimationDirection(isBoxActive ? 1 : -1);
+  }, [isBoxActive]);
 
   const toggleActiveState = () => {
     setIsBoxActive((prev) => !prev);
@@ -36,6 +50,12 @@ const DevicePreview = ({
 
   const toggleButtonState = () => {
     setIsToggleOn((prev) => !prev);
+  };
+
+  const handleToggleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleButtonState();
+    toggleActiveState();
   };
 
   return (
@@ -67,18 +87,40 @@ const DevicePreview = ({
       } ${isBoxActive ? "shadow-active bg-light" : "bg-inactive"}`}
     >
       {hasToggle && (
-        <input
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleButtonState();
-            toggleActiveState();
-          }}
-          type="checkbox"
-          className={`absolute toggle ${
-            isSmall ? "toggle-md" : "toggle-lg"
-          } rounded-full before:rounded-full top-4 border-none right-3 text-light bg-uwu checked:bg-green`}
-          defaultChecked={isToggleOn}
-        />
+        <div>
+          {hasMicrointeractions ? (
+            <div
+              className="absolute top-4 right-3 cursor-pointer"
+              onClick={handleToggleClick}
+            >
+              <Lottie
+                options={{
+                  loop: false,
+                  autoplay: false,
+                  animationData: toggleLottie,
+                  rendererSettings: {
+                    preserveAspectRatio: "xMidYMid slice",
+                  },
+                }}
+                height={30}
+                width={65}
+                speed={2}
+                isStopped={false}
+                isPaused={false}
+                direction={animationDirection}
+              />
+            </div>
+          ) : (
+            <input
+              onClick={handleToggleClick}
+              type="checkbox"
+              className={`absolute toggle ${
+                isSmall ? "toggle-md" : "toggle-lg"
+              } rounded-full before:rounded-full top-4 border-none right-3 text-light bg-uwu checked:bg-green`}
+              defaultChecked={isToggleOn}
+            />
+          )}
+        </div>
       )}
       <div
         className={`${
@@ -103,7 +145,11 @@ const DevicePreview = ({
             : ""
         }
       >
-        <span className={isSmall ? "text-sm" : "text-base"}>{device.name}</span>
+        <span
+          className={twMerge(isSmall ? "text-sm" : "text-base", "truncate")}
+        >
+          {device.name}
+        </span>
         <div className="flex flex-row gap-1 items-center">
           {device.additionalInfo ? (
             <div

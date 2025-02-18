@@ -53,7 +53,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   }, [selectedRoom]);
 
   return (
-    <div className="pb-2">
+    <div>
       <ScrollableNavBar
         onRoomSelect={setSelectedRoom}
         selectedRoom={selectedRoom}

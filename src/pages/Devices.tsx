@@ -16,7 +16,7 @@ const Devices = () => {
   );
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 pb-5">
       {Object.entries(groupedDevices).map(([room, devices]) => (
         <div key={room}>
           <h2 className="font-bold">{getRoomName(room as Room)}</h2>

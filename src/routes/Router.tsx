@@ -1,7 +1,9 @@
-import { Routes, Route } from "react-router-dom";
-import { ReactNode, Suspense, lazy } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { ReactNode, Suspense, lazy, useEffect, useRef } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+import { AppState } from "../store/store";
 
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const Devices = lazy(() => import("../pages/Devices"));
@@ -62,13 +64,28 @@ const allRoutes = [
 ];
 
 function PageWrapper({ children }: { children: ReactNode }) {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
   return (
     <motion.div
       key={location.pathname}
-      initial={{ opacity: 0, scale: 0.75 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.75 }}
-      transition={{ duration: 0.5 }}
+      initial={
+        hasMicrointeractions
+          ? { opacity: 0, scale: 0.75 }
+          : { opacity: 1, scale: 1 }
+      }
+      animate={
+        hasMicrointeractions
+          ? { opacity: 1, scale: 1 }
+          : { opacity: 1, scale: 1 }
+      }
+      exit={
+        hasMicrointeractions
+          ? { opacity: 0, scale: 0.75 }
+          : { opacity: 1, scale: 1 }
+      }
+      transition={hasMicrointeractions ? { duration: 0.5 } : { duration: 0 }}
       className="w-full h-full"
     >
       {children}
@@ -92,11 +109,35 @@ function routeMap({
   );
 }
 
-const AppRouter = () => {
+const AppRouter = ({ onScroll }: { onScroll: (scrollY: number) => void }) => {
+  const location = useLocation();
+  const scrollableRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollableRef.current) {
+        onScroll(scrollableRef.current.scrollTop);
+      }
+    };
+
+    const scrollableElement = scrollableRef.current;
+    scrollableElement?.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollableElement?.removeEventListener("scroll", handleScroll);
+    };
+  }, [onScroll]);
+
   return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <Routes>{allRoutes.map((route) => routeMap(route))}</Routes>
-    </Suspense>
+    <div
+      ref={scrollableRef}
+      className="px-5 w-full h-full no-scrollbar overflow-y-scroll"
+    >
+      <Suspense fallback={<LoadingSpinner />}>
+        <AnimatePresence mode="wait">
+          <Routes>{allRoutes.map((route) => routeMap(route))}</Routes>
+        </AnimatePresence>
+      </Suspense>
+    </div>
   );
 };
 

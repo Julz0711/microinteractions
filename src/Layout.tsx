@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [overlayHeight, setOverlayHeight] = useState("100%");
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   const showNewButton = ![
@@ -37,22 +38,20 @@ const Layout: React.FC = () => {
     }
   }, [isMenuOpen]);
 
+  const handleScroll = (scrollY: number) => {
+    setIsScrolled(scrollY > 0);
+  };
+
   return (
-    <div className="h-screen w-screen flex items-center justify-center gap-4 p-8 bg-dark">
-      <div className="layout relative no-scrollbar w-[400px] h-[850px] flex flex-col gap-8 items-start justify-start border rounded-[2rem] bg-light">
-        {showNewButton && <TopNavigation />}
-        <div className="px-5 w-full h-full">
-          <AnimatePresence mode="wait">
-            <AppRouter />
-          </AnimatePresence>
-
-          {showNewButton && (
-            <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-50">
-              <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-            </div>
-          )}
-        </div>
-
+    <div className="h-screen w-screen flex items-center justify-center p-8 bg-dark">
+      <div className="layout relative no-scrollbar w-[400px] h-[850px] flex flex-col items-start justify-start border rounded-[2rem] bg-light">
+        {showNewButton && <TopNavigation isScrolled={isScrolled} />}
+        <AppRouter onScroll={handleScroll} />
+        {showNewButton && (
+          <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-50">
+            <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+          </div>
+        )}
         {showNewButton && (
           <AnimatePresence>
             {isMenuOpen && (
