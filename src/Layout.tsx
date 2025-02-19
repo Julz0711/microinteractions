@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { TopNavigation } from "./components/TopNavigation";
-import AppRouter from "./routes/Router";
-import { NewButton } from "./components/NewButton";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { TopNavigation } from './components/TopNavigation';
+import AppRouter from './routes/Router';
+import { NewButton } from './components/NewButton';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [overlayHeight, setOverlayHeight] = useState("100%");
+  const [overlayHeight, setOverlayHeight] = useState('100%');
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   const showNewButton = ![
-    "/neuer-raum",
-    "/neues-geraet",
-    "/neue-szene",
-    "/registrieren",
-    "/geraet-registrieren",
-    "/login",
+    '/neuer-raum',
+    '/neues-geraet',
+    '/neue-szene',
+    '/registrieren',
+    '/geraet-registrieren',
+    '/login'
   ].includes(location.pathname);
 
   const toggleMenu = () => {
@@ -25,16 +26,16 @@ const Layout: React.FC = () => {
   };
 
   useEffect(() => {
-    const layoutElement = document.querySelector(".layout");
+    const layoutElement = document.querySelector('.layout');
     if (layoutElement) {
       setOverlayHeight(`${layoutElement.scrollHeight}px`);
     }
     if (isMenuOpen) {
-      layoutElement?.classList.add("overflow-y-hidden");
-      layoutElement?.classList.remove("overflow-y-scroll");
+      layoutElement?.classList.add('overflow-y-hidden');
+      layoutElement?.classList.remove('overflow-y-scroll');
     } else {
-      layoutElement?.classList.remove("overflow-y-hidden");
-      layoutElement?.classList.add("overflow-y-scroll");
+      layoutElement?.classList.remove('overflow-y-hidden');
+      layoutElement?.classList.add('overflow-y-scroll');
     }
   }, [isMenuOpen]);
 
@@ -44,7 +45,11 @@ const Layout: React.FC = () => {
 
   return (
     <div className="h-screen w-screen flex items-center justify-center p-8 bg-dark">
-      <div className="layout relative no-scrollbar w-[400px] h-[850px] flex flex-col items-start justify-start border rounded-[2rem] bg-light">
+      <div
+        className={twMerge(
+          'layout relative no-scrollbar w-[400px] h-[850px] flex flex-col items-start justify-start border rounded-[2rem] bg-light'
+        )}
+      >
         {showNewButton && <TopNavigation isScrolled={isScrolled} />}
         <AppRouter onScroll={handleScroll} />
         {showNewButton && (
@@ -61,7 +66,7 @@ const Layout: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                style={{ height: overlayHeight, width: "100%" }}
+                style={{ height: overlayHeight, width: '100%' }}
               />
             )}
           </AnimatePresence>

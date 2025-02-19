@@ -1,66 +1,66 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import { ReactNode, Suspense, lazy, useEffect, useRef } from "react";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { motion, AnimatePresence } from "framer-motion";
-import { useSelector } from "react-redux";
-import { AppState } from "../store/store";
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { ReactNode, Suspense, lazy, useEffect, useRef } from 'react';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
+import { AppState } from '../store/store';
 
-const Dashboard = lazy(() => import("../pages/Dashboard"));
-const Devices = lazy(() => import("../pages/Devices"));
-const NotFound = lazy(() => import("../pages/NotFound"));
-const Profile = lazy(() => import("../pages/Profile"));
-const Login = lazy(() => import("../pages/Login"));
-const Register = lazy(() => import("../pages/Register"));
-const NewDevice = lazy(() => import("../pages/NewDevice"));
-const NewSchedule = lazy(() => import("../pages/NewSchedule"));
-const DeviceRegistration = lazy(() => import("../pages/DeviceRegistration"));
-const NewRoom = lazy(() => import("../pages/NewRoom"));
+const Dashboard = lazy(() => import('../pages/Dashboard'));
+const Devices = lazy(() => import('../pages/Devices'));
+const NotFound = lazy(() => import('../pages/NotFound'));
+const Profile = lazy(() => import('../pages/Profile'));
+const Login = lazy(() => import('../pages/Login'));
+const Register = lazy(() => import('../pages/Register'));
+const NewDevice = lazy(() => import('../pages/NewDevice'));
+const NewSchedule = lazy(() => import('../pages/NewSchedule'));
+const DeviceRegistration = lazy(() => import('../pages/DeviceRegistration'));
+const NewRoom = lazy(() => import('../pages/NewRoom'));
 
 const allRoutes = [
   {
-    path: "/",
-    component: <Dashboard hasDevices={false} />,
+    path: '/',
+    component: <Dashboard hasDevices={false} />
   },
   {
-    path: "/dashboard",
-    component: <Dashboard hasDevices={true} />,
+    path: '/dashboard',
+    component: <Dashboard hasDevices={true} />
   },
   {
-    path: "/geraete",
-    component: <Devices />,
+    path: '/geraete',
+    component: <Devices />
   },
   {
-    path: "/profil",
-    component: <Profile />,
+    path: '/profil',
+    component: <Profile />
   },
   {
-    path: "/login",
-    component: <Login />,
+    path: '/login',
+    component: <Login />
   },
   {
-    path: "/register",
-    component: <Register />,
+    path: '/register',
+    component: <Register />
   },
   {
-    path: "/neues-geraet",
-    component: <NewDevice />,
+    path: '/neues-geraet',
+    component: <NewDevice />
   },
   {
-    path: "/neuer-raum",
-    component: <NewRoom />,
+    path: '/neuer-raum',
+    component: <NewRoom />
   },
   {
-    path: "/neuer-zeitplan",
-    component: <NewSchedule />,
+    path: '/neuer-zeitplan',
+    component: <NewSchedule />
   },
   {
-    path: "/geraet-registrieren",
-    component: <DeviceRegistration />,
+    path: '/geraet-registrieren',
+    component: <DeviceRegistration />
   },
   {
-    path: "*",
-    component: <NotFound />,
-  },
+    path: '*',
+    component: <NotFound />
+  }
 ];
 
 function PageWrapper({ children }: { children: ReactNode }) {
@@ -95,7 +95,7 @@ function PageWrapper({ children }: { children: ReactNode }) {
 
 function routeMap({
   path,
-  component,
+  component
 }: {
   path: string;
   component: any;
@@ -121,16 +121,16 @@ const AppRouter = ({ onScroll }: { onScroll: (scrollY: number) => void }) => {
     };
 
     const scrollableElement = scrollableRef.current;
-    scrollableElement?.addEventListener("scroll", handleScroll);
+    scrollableElement?.addEventListener('scroll', handleScroll);
     return () => {
-      scrollableElement?.removeEventListener("scroll", handleScroll);
+      scrollableElement?.removeEventListener('scroll', handleScroll);
     };
   }, [onScroll]);
 
   return (
     <div
       ref={scrollableRef}
-      className="px-5 w-full h-full no-scrollbar overflow-y-scroll"
+      className="px-5 w-full h-full no-scrollbar overflow-y-scroll overflow-x-hidden"
     >
       <Suspense fallback={<LoadingSpinner />}>
         <AnimatePresence mode="wait">
