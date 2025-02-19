@@ -8,14 +8,21 @@ import { RoomGrid } from '../components/DashboardGrid/RoomGrid.tsx';
 import EmblaCarousel from '../components/EmblaCarousel/js/EmblaCarousel.tsx';
 import { EmblaOptionsType } from 'embla-carousel';
 import { Room } from '../types/types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ScenePreview from '../components/ScenePreview.tsx';
+import { useSelector } from 'react-redux';
+import { AppState } from '../store/store.ts';
+import Lottie from 'react-lottie';
+import glowBoyzAnimation from '../assets/lottie/glow_boyz_animation.json';
 
 interface DashboardProps {
   hasDevices?: boolean;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
   const activeDevices = devices.filter((device) => device.isActive);
   const favoriteDevices = devices.filter((device) => device.isFavorite);
   const activeDeviceAmount = activeDevices.length;
@@ -58,6 +65,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
         <div className="w-full flex flex-col gap-2 justify-start items-start">
           <RoomGrid selectedRoom={selectedRoom} />
           <div className="w-full flex flex-col gap-8">
+            {/*
             <div className="w-full">
               <p className="text-meta mb-2">
                 {activeDeviceAmount} Aktive Geräte
@@ -68,6 +76,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
                 options={OPTIONS}
               />
             </div>
+            */}
             <div className="w-full">
               <div className="mb-2">
                 <HeadlineWithLink headline="Szenen" link="/dashboard" />
@@ -97,7 +106,22 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
         </div>
       ) : (
         <div className="w-full flex flex-col gap-1 py-16 justify-center items-center">
-          <img src={GlowBoyz} className="w-64" />
+          {hasMicrointeractions ? (
+            <div className="grayscale-100">
+              <Lottie
+                options={{
+                  loop: true,
+                  autoplay: true,
+                  animationData: glowBoyzAnimation,
+                  rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid slice'
+                  }
+                }}
+              />
+            </div>
+          ) : (
+            <img src={GlowBoyz} className="w-64" />
+          )}
           <h1 className="text-lg mt-16">Noch keine Geräte registriert</h1>
           <p className="text-center">
             Bitte füge dein erstes Gerät zu diesem Raum hinzu
