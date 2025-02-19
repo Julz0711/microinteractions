@@ -1,42 +1,42 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui";
 @tailwind utilities;
 
 @font-face {
-  font-family: "Alte Haas Grotesk Regular";
-  src: url("./assets/fonts/AlteHaasGroteskRegular.ttf") format("truetype");
+  font-family: 'Alte Haas Grotesk Regular';
+  src: url('./assets/fonts/AlteHaasGroteskRegular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Alte Haas Grotesk Bold";
-  src: url("./assets/fonts/AlteHaasGroteskBold.ttf") format("truetype");
+  font-family: 'Alte Haas Grotesk Bold';
+  src: url('./assets/fonts/AlteHaasGroteskBold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Poppins Regular";
-  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-family: 'Poppins Regular';
+  src: url('./assets/fonts/Poppins-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Poppins Bold";
-  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-family: 'Poppins Bold';
+  src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 
 @theme {
   /* fonts */
-  --font-alte-haas-regular: "Alte Haas Grotesk Regular", Verdana, Arial,
+  --font-alte-haas-regular: 'Alte Haas Grotesk Regular', Verdana, Arial,
     sans-serif;
-  --font-alte-haas-bold: "Alte Haas Grotesk Bold", Verdana, Arial, sans-serif;
-  --font-poppins-regular: "Poppins Regular", Verdana, Arial, sans-serif;
-  --font-poppins-bold: "Poppins Bold", Verdana, Arial, sans-serif;
+  --font-alte-haas-bold: 'Alte Haas Grotesk Bold', Verdana, Arial, sans-serif;
+  --font-poppins-regular: 'Poppins Regular', Verdana, Arial, sans-serif;
+  --font-poppins-bold: 'Poppins Bold', Verdana, Arial, sans-serif;
 
   /* text */
   --text-default: 1rem;
@@ -46,7 +46,7 @@
   --text-label: 1rem;
   --text-device-sm: 0.625rem;
   --text-device-md: 0.75rem;
-  --text-icon-sm: 0.75rem;
+  --text-icon-sm: 0.5rem;
   --text-icon-md: 1rem;
 
   /* colors */
@@ -179,7 +179,7 @@ body {
 }
 
 @property --p {
-  syntax: "<percentage>";
+  syntax: '<percentage>';
   inherits: false;
   initial-value: 0%;
 }

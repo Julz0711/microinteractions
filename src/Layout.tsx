@@ -12,14 +12,18 @@ const Layout: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  const showNewButton = ![
+  const restrictedPaths = [
     '/neuer-raum',
     '/neues-geraet',
     '/neue-szene',
     '/registrieren',
     '/geraet-registrieren',
     '/login'
-  ].includes(location.pathname);
+  ];
+
+  const showNewButton = !restrictedPaths.some((path) =>
+    location.pathname.startsWith(path)
+  );
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -43,17 +47,21 @@ const Layout: React.FC = () => {
     setIsScrolled(scrollY > 0);
   };
 
+  useEffect(() => {
+    console.log(showNewButton);
+  }, [showNewButton]);
+
   return (
     <div className="h-screen w-screen flex items-center justify-center p-8 bg-dark">
       <div
         className={twMerge(
-          'layout relative no-scrollbar w-[400px] h-[850px] flex flex-col items-start justify-start border rounded-[2rem] bg-light'
+          'layout overflow-hidden relative no-scrollbar w-[400px] h-[850px] flex flex-col items-start justify-start border rounded-[2rem] bg-light'
         )}
       >
         {showNewButton && <TopNavigation isScrolled={isScrolled} />}
-        <AppRouter onScroll={handleScroll} />
+        <AppRouter onScroll={handleScroll} showNewButton={showNewButton} />
         {showNewButton && (
-          <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
             <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
           </div>
         )}
