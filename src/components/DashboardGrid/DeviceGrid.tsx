@@ -10,8 +10,9 @@ export interface DeviceGridProps {
 
 export const DeviceGrid = (props: DeviceGridProps) => {
   const { category } = useSelector((state: AppState) => state.app);
+  const room = useSelector((state: AppState) => state.app.room);
   const filteredDevices = devices.filter(
-    (device) => device.category === category
+    (device) => device.category === category && device.room === room
   );
 
   return (

@@ -4,6 +4,7 @@ import { Category, HierarchyStep } from "../types/dashboard.types";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { setHierarchy, setCategory } from "../store/reducer";
+import { useActiveDevices } from "./useActiveDevices";
 
 export interface IuseCategoryGridProps {
   thisCategory: Category;
@@ -23,6 +24,9 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
   const hasMicrointeractions = useSelector(
     (app: AppState) => app.app.hasMicrointeractions
   );
+  const activeDevices = useActiveDevices({
+    thisCategory: props.thisCategory,
+  });
 
   const handleSetHierarchy = () => {
     if (
@@ -53,7 +57,6 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
             ? { width: 135, height: 160 }
             : { width: 160, height: 120 }
         );
-
         setflexClasses("flex justify-start items-end");
         break;
       case Category.Heat:
@@ -62,6 +65,8 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
             ? { width: 160, height: 160 }
             : { width: 160, height: 120 }
         );
+
+      setflexClasses("flex justify-end items-start");
         break;
       case Category.Air:
         setSize(
@@ -69,7 +74,8 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
             ? { width: 160, height: 120 }
             : { width: 160, height: 120 }
         );
-        break;
+
+    break;
       case Category.Household:
         setSize(
           hasMicrointeractions
@@ -78,8 +84,9 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         );
         setflexClasses("flex justify-start");
         break;
-    }
-  }, [hasMicrointeractions]);
+      }
+
+  }, [hasMicrointeractions, activeDevices]);
 
   useEffect(() => {
     const xDirection = Math.floor(props.index % 2) === 0 ? -1 : 1;
@@ -87,12 +94,12 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       160 -
       Math.floor(props.index % 2) * 160 +
       Math.floor((props.index + 1) % 2) * padding;
-    const offset = hasMicrointeractions ? (props.index % 2) * 20 : 0;
+      console.log(activeDevices)
+    const offset = hasMicrointeractions ?  (props.index % 2) * 20 : 0;
     const styleYPos =
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding +
-      offset +
-      60;
+      offset + (hasMicrointeractions ? 60 : -20);
     const styleXPosHidden =
       styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
     if (category === props.thisCategory) {
@@ -138,7 +145,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         },
       });
     }
-  }, [category, hasMicrointeractions]);
+  }, [category, hasMicrointeractions, activeDevices]);
 
   return {
     handleSetHierarchy,

@@ -35,8 +35,8 @@ export function CategoryContent(props: ICategoryContentProps) {
               getShadow(props.thisCategory)
           : "bg-inactive",
         "flex items-center justify-center max-w-full max-h-full rounded-md",
-        props.thisCategory === Category.Household
-          ? "relative top-[-40px] left-0"
+        props.thisCategory === Category.Household && !props.active
+          ? "relative left-0 -translate-y-10"
           : ""
       )}
       style={{ width: props.size.width, height: props.size.height }}

@@ -10,6 +10,8 @@ import { EmblaOptionsType } from "embla-carousel";
 import { Room } from "../types/types";
 import { useEffect, useState } from "react";
 import ScenePreview from "../components/ScenePreview.tsx";
+import { useDispatch } from "react-redux";
+import { setRoom } from "../store/reducer.ts";
 
 interface DashboardProps {
   hasDevices?: boolean;
@@ -20,6 +22,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   const favoriteDevices = devices.filter((device) => device.isFavorite);
   const activeDeviceAmount = activeDevices.length;
   const OPTIONS: EmblaOptionsType = { dragFree: true };
+  const dispatch = useDispatch();
   const ACTIVE_DEVICES_SLIDES = activeDevices.map((device, index) => (
     <div key={index} className="pointer-events-none">
       <DevicePreview
@@ -48,14 +51,15 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
 
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
 
-  useEffect(() => {
-    console.log(selectedRoom);
-  }, [selectedRoom]);
+  const handleSelect = (room: Room | null) => {
+    setSelectedRoom(room);
+    dispatch(setRoom(room));
+  };
 
   return (
     <div>
       <ScrollableNavBar
-        onRoomSelect={setSelectedRoom}
+        onRoomSelect={handleSelect}
         selectedRoom={selectedRoom}
       />
       {hasDevices ? (

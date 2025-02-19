@@ -1,4 +1,4 @@
-import { getAllRoomNames } from "../helpers/helpers";
+import { getAllRoomNames, getRoomName } from "../helpers/helpers";
 import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel.tsx";
 import { EmblaOptionsType } from "embla-carousel";
 import { twMerge } from "tailwind-merge";
@@ -15,7 +15,7 @@ export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
   onRoomSelect,
 }) => {
   const OPTIONS: EmblaOptionsType = { dragFree: true };
-  const roomNames = getAllRoomNames();
+  const roomNames = Object.values(Room);
   const defaultRoom = roomNames.length > 0 ? (roomNames[0] as Room) : null;
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
     }
   }, [selectedRoom, defaultRoom, onRoomSelect]);
 
-  const ROOM_SLIDES = getAllRoomNames().map((room, index) => (
+  const ROOM_SLIDES = roomNames.map((room, index) => (
     <button
       key={index}
       onClick={() => onRoomSelect(room as Room)}
@@ -33,7 +33,7 @@ export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
         selectedRoom === (room as Room) ? "text-dark" : "text-uwu"
       )}
     >
-      {room}
+      {getRoomName(room)}
     </button>
   ));
 

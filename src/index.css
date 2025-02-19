@@ -250,6 +250,26 @@ body {
   );
 }
 
+.shadow-green {
+  box-shadow: 0px 4px 16px 0px  rgba(28, 165, 142, .7);
+}
+
+.shadow-orange {
+  box-shadow: 0px 4px 16px 0px  rgba(239, 133, 85, .8);
+}
+
+.shadow-red {
+  box-shadow: 0px 4px 16px 0px  rgba(190, 55, 95, .7);
+}
+
+.shadow-purple {
+  box-shadow: 0px 4px 16px 0px  rgba(96, 36, 108, .7);
+}
+
+.shadow-blue {
+  box-shadow: 0px 4px 16px 0px  rgba(38, 51, 129, .7);
+}
+
 /* New Device */
 @keyframes sonarWaveAnimation {
   from {
@@ -296,3 +316,4 @@ body {
 .animate-light {
   animation: lightAnimation 2.5s infinite linear;
 }
+

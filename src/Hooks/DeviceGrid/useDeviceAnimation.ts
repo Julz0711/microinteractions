@@ -18,18 +18,11 @@ export function useDeviceAnimation(props: IuseDeviceAnimationProps) {
 
   useEffect(() => {
     if (props.buttonState == null) return;
-    const animationOptions = hasMicrointeractions
-      ? {
-          duration:
-            props.buttonState === "open" || props.previousState === "open"
-              ? 0.15
-              : 0.25 + 0.05 * props.index,
-          ease: "easeOut" as Easing,
+    const animationDuration = hasMicrointeractions
+      ? 0.25 + 0.05 * props.index : 0.0;
+    const animationOptions = {
+          duration: animationDuration,
         }
-      : {
-          duration: 0.0,
-          ease: "easeOut" as Easing,
-        };
     animate(
       scope.current,
       props.buttonVariants[props.buttonState],

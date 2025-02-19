@@ -1,8 +1,12 @@
 import { Category } from "../../types/dashboard.types";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CategoryWrapper } from "./UI/CategoryWrapper";
 import { devices } from "../../data/data";
 import { Room } from "../../types/types";
+import { useSelector } from "react-redux";
+import { AppState } from "../../store/store";
+import { twMerge } from "tailwind-merge";
+
 
 interface RoomGridProps {
   selectedRoom: Room | null;
@@ -10,15 +14,37 @@ interface RoomGridProps {
 
 export const RoomGrid: React.FC<RoomGridProps> = ({ selectedRoom }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
-  const filteredDevices = devices.filter(
-    (device) => device.room === selectedRoom
-  );
+
+  const [isVisible, setIsVisible] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const room = useSelector((state: AppState) => state.app.room);
+  const hasMicrointeractions = useSelector((state: AppState) => state.app.hasMicrointeractions);
+
+
+  
+    useEffect(() => {
+      if (isLoaded) {
+        
+      setIsVisible(false);
+      const timeout = setTimeout(() => {
+        setIsVisible(true);
+      }, hasMicrointeractions ? 500 : 0);
+  
+      return () => clearTimeout(timeout);
+
+    } 
+    else {
+      setIsLoaded(true)
+    } ;
+    }, [room]);
 
   return (
     <div
       ref={canvasRef}
-      className={
-        "w-full h-[600px] transition-all relative flex flex-col items-center justify-center"
+      className={twMerge(
+        "w-full h-[500px] transition-all relative flex flex-col items-center justify-center duration-200 ",
+         isVisible ? "opacity-100 scale-100" : "opacity-0 scale-70 translate-y-[50px]")
+
       }
     >
       {Object.values(Category)
