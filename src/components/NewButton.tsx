@@ -44,7 +44,7 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
     <>
       <button
         onClick={toggleMenu}
-        className={`font-bold z-60 relative bg-dark text-light px-6 py-4 rounded-md transition cursor-pointer duration-150  ${
+        className={`font-bold shadow-[0_0_48px_rgba(0,0,0,0.5)] z-60 relative bg-dark text-light px-6 py-4 rounded-md transition cursor-pointer duration-150  ${
           isMenuOpen ? "bg-dark hover:bg-dark" : "bg-red hover:bg-purple"
         }`}
       >

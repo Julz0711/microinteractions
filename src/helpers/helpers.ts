@@ -41,7 +41,7 @@ export const getShadow = (category: Category) => {
 
   switch (normalizedCategory) {
     case Category.Lights:
-      return "shadow-orange";
+      return "shadow-[0_0_8px_var(--color-orange)]";
     case Category.Entertainment:
       return "shadow-purple";
     case Category.Heat:
