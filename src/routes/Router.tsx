@@ -1,72 +1,72 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { ReactNode, Suspense, lazy, useEffect, useRef } from 'react';
-import LoadingSpinner from '../components/LoadingSpinner';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useSelector } from 'react-redux';
-import { AppState } from '../store/store';
-import { twMerge } from 'tailwind-merge';
+import { Routes, Route, useLocation } from "react-router-dom";
+import { ReactNode, Suspense, lazy, useEffect, useRef } from "react";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+import { AppState } from "../store/store";
+import { twMerge } from "tailwind-merge";
 
-const Dashboard = lazy(() => import('../pages/Dashboard'));
-const Devices = lazy(() => import('../pages/Devices'));
-const NotFound = lazy(() => import('../pages/NotFound'));
-const Profile = lazy(() => import('../pages/Profile'));
-const Login = lazy(() => import('../pages/Login'));
-const Register = lazy(() => import('../pages/Register'));
-const NewDevice = lazy(() => import('../pages/NewDevice'));
-const NewSchedule = lazy(() => import('../pages/NewSchedule'));
-const DeviceRegistration = lazy(() => import('../pages/DeviceRegistration'));
-const NewRoom = lazy(() => import('../pages/NewRoom'));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Devices = lazy(() => import("../pages/Devices"));
+const NotFound = lazy(() => import("../pages/NotFound"));
+const Profile = lazy(() => import("../pages/Profile"));
+const Login = lazy(() => import("../pages/Login"));
+const Register = lazy(() => import("../pages/Register"));
+const NewDevice = lazy(() => import("../pages/NewDevice"));
+const NewSchedule = lazy(() => import("../pages/NewSchedule"));
+const DeviceRegistration = lazy(() => import("../pages/DeviceRegistration"));
+const NewRoom = lazy(() => import("../pages/NewRoom"));
 
 const allRoutes = [
   {
-    path: '/',
-    component: <Dashboard hasDevices={false} />
+    path: "/",
+    component: <Dashboard hasDevices={false} />,
   },
   {
-    path: '/dashboard',
-    component: <Dashboard hasDevices={true} />
+    path: "/dashboard",
+    component: <Dashboard hasDevices={true} />,
   },
   {
-    path: '/geraete',
-    component: <Devices />
+    path: "/geraete",
+    component: <Devices />,
   },
   {
-    path: '/profil',
-    component: <Profile />
+    path: "/profil",
+    component: <Profile />,
   },
   {
-    path: '/login',
-    component: <Login />
+    path: "/login",
+    component: <Login />,
   },
   {
-    path: '/register',
-    component: <Register />
+    path: "/registrieren",
+    component: <Register />,
   },
   {
-    path: '/neues-geraet',
-    component: <NewDevice />
+    path: "/neues-geraet",
+    component: <NewDevice />,
   },
   {
-    path: '/neuer-raum',
-    component: <NewRoom />
+    path: "/neuer-raum",
+    component: <NewRoom />,
   },
   {
-    path: '/neuer-zeitplan',
-    component: <NewSchedule />
+    path: "/neuer-zeitplan",
+    component: <NewSchedule />,
   },
   {
-    path: '/geraet-registrieren',
-    component: <DeviceRegistration />
+    path: "/geraet-registrieren",
+    component: <DeviceRegistration />,
   },
   {
-    path: '*',
-    component: <NotFound />
-  }
+    path: "*",
+    component: <NotFound />,
+  },
 ];
 
 function PageWrapper({
   children,
-  showNewButton
+  showNewButton,
 }: {
   children: ReactNode;
   showNewButton: boolean;
@@ -76,7 +76,7 @@ function PageWrapper({
   );
 
   useEffect(() => {
-    console.log('PageWrapper received showNewButton:', showNewButton);
+    console.log("PageWrapper received showNewButton:", showNewButton);
   }, [showNewButton]);
 
   return (
@@ -100,11 +100,11 @@ function PageWrapper({
       transition={hasMicrointeractions ? { duration: 0.5 } : { duration: 0 }}
       className="w-full h-full"
     >
-      <div className="h-full w-full overflow-x-hidden overflow-y-scroll no-scrollbar">
+      <div className="h-full w-full overflow-x-hidden overflow-y-auto no-scrollbar">
         <div
           className={twMerge(
-            'min-h-full px-5',
-            showNewButton ? 'pb-30' : 'pb-5 h-full'
+            "min-h-full px-5",
+            showNewButton ? "pb-36" : "pb-5 h-full"
           )}
         >
           {children}
@@ -116,7 +116,7 @@ function PageWrapper({
 
 const AppRouter = ({
   onScroll,
-  showNewButton
+  showNewButton,
 }: {
   onScroll: (scrollY: number) => void;
   showNewButton: boolean;
@@ -132,9 +132,9 @@ const AppRouter = ({
     };
 
     const scrollableElement = scrollableRef.current;
-    scrollableElement?.addEventListener('scroll', handleScroll);
+    scrollableElement?.addEventListener("scroll", handleScroll);
     return () => {
-      scrollableElement?.removeEventListener('scroll', handleScroll);
+      scrollableElement?.removeEventListener("scroll", handleScroll);
     };
   }, [onScroll]);
 

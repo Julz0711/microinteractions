@@ -1,24 +1,29 @@
-import { ScrollableNavBar } from '../components/ScrollableNavBar';
-import GlowBoyz from '../assets/img/glow_boys.png';
-import Button from '../components/Button.tsx';
-import HeadlineWithLink from '../components/HeadlineWithLink.tsx';
-import DevicePreview from '../components/DevicePreview';
-import { devices, scenes, schedules } from '../data/data';
-import { RoomGrid } from '../components/DashboardGrid/RoomGrid.tsx';
-import EmblaCarousel from '../components/EmblaCarousel/js/EmblaCarousel.tsx';
-import { EmblaOptionsType } from 'embla-carousel';
-import { Room } from '../types/types';
-import { useEffect, useState } from 'react';
-import ScenePreview from '../components/ScenePreview.tsx';
-import { useDispatch } from 'react-redux';
-import { setCategory, setHierarchy, setRoom } from '../store/reducer.ts';
-import { HierarchyStep } from '../types/dashboard.types.ts';
+import GlowBoyz from "../components/GlowBoyz";
+import HeadlineWithLink from "../components/headlineWithLink.tsx";
+import DevicePreview from "../components/DevicePreview";
+import { devices, scenes, schedules } from "../data/data";
+import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
+import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel.tsx";
+import { EmblaOptionsType } from "embla-carousel";
+import { Room } from "../types/types";
+import React, { useState } from "react";
+import ScenePreview from "../components/ScenePreview.tsx";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../store/store.ts";
+import { ReactSVG } from "react-svg";
+import DottedArrowDown from "../assets/icons/DottedArrowDown.svg";
+import { setRoom, setHierarchy, setCategory } from "../store/reducer.ts";
+import { HierarchyStep } from "../types/dashboard.types.ts";
+import { ScrollableNavBar } from "../components/scrollableNavBar.tsx";
 
 interface DashboardProps {
   hasDevices?: boolean;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
   const activeDevices = devices.filter((device) => device.isActive);
   const favoriteDevices = devices.filter((device) => device.isFavorite);
   const activeDeviceAmount = activeDevices.length;
@@ -61,14 +66,15 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
 
   return (
     <div>
-      <ScrollableNavBar
-        onRoomSelect={handleSelect}
-        selectedRoom={selectedRoom}
-      />
       {hasDevices ? (
         <div className="w-full flex flex-col gap-2 justify-start items-start">
+          <ScrollableNavBar
+            onRoomSelect={handleSelect}
+            selectedRoom={selectedRoom}
+          />
           <RoomGrid selectedRoom={selectedRoom} />
           <div className="w-full flex flex-col gap-8">
+            {/*
             <div className="w-full">
               <p className="text-meta mb-2">
                 {activeDeviceAmount} Aktive Geräte
@@ -79,6 +85,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
                 options={OPTIONS}
               />
             </div>
+            */}
             <div className="w-full">
               <div className="mb-2">
                 <HeadlineWithLink headline="Szenen" link="/dashboard" />
@@ -107,16 +114,24 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
           </div>
         </div>
       ) : (
-        <div className="w-full flex flex-col gap-1 py-16 justify-center items-center">
-          <img src={GlowBoyz} className="w-64" />
-          <h1 className="text-lg mt-16">Noch keine Geräte registriert</h1>
-          <p className="text-center">
-            Bitte füge dein erstes Gerät zu diesem Raum hinzu
-          </p>
-          <div className="mt-4 flex flex-row gap-2">
-            <Button color="bg-dark" label="Raum" link="/"></Button>
-            <Button color="bg-red" label="Gerät" link="/"></Button>
+        <div className="w-4/5 mx-auto flex flex-col gap-1 py-16 justify-center items-center">
+          <GlowBoyz isGray={true} />
+          <div className="text-lg font-bold mt-16">
+            Noch keine Geräte registriert
           </div>
+          <p className="text-center">
+            Bitte füge dein erstes Gerät zu einem Raum hinzu.
+          </p>
+          <ReactSVG
+            src={DottedArrowDown}
+            className="mt-4"
+            beforeInjection={(svg) => {
+              svg.setAttribute("style", `height: 158px`);
+              svg.querySelectorAll("path").forEach((path) => {
+                path.setAttribute("fill", "var(--color-uwu)");
+              });
+            }}
+          />
         </div>
       )}
     </div>
