@@ -1,5 +1,5 @@
 import GlowBoyz from "../components/GlowBoyz";
-import HeadlineWithLink from "../components/headlineWithLink.tsx";
+import HeadlineWithLink from "../components/HeadlineWithLink.tsx";
 import DevicePreview from "../components/DevicePreview";
 import { devices, scenes, schedules } from "../data/data";
 import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
@@ -8,8 +8,7 @@ import { EmblaOptionsType } from "embla-carousel";
 import { Room } from "../types/types";
 import React, { useState } from "react";
 import ScenePreview from "../components/ScenePreview.tsx";
-import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../store/store.ts";
+import { useDispatch } from "react-redux";
 import { ReactSVG } from "react-svg";
 import DottedArrowDown from "../assets/icons/DottedArrowDown.svg";
 import { setRoom, setHierarchy, setCategory } from "../store/reducer.ts";
@@ -21,15 +20,12 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
-  const hasMicrointeractions = useSelector(
-    (state: AppState) => state.app.hasMicrointeractions
-  );
-  const activeDevices = devices.filter((device) => device.isActive);
-  const favoriteDevices = devices.filter((device) => device.isFavorite);
-  const activeDeviceAmount = activeDevices.length;
-  const OPTIONS: EmblaOptionsType = { dragFree: true };
   const dispatch = useDispatch();
-  const ACTIVE_DEVICES_SLIDES = activeDevices.map((device, index) => (
+  const OPTIONS: EmblaOptionsType = { dragFree: true };
+  const favoriteDevices = devices.filter((device) => device.isFavorite);
+  //const activeDevices = devices.filter((device) => device.isActive);
+  //const activeDeviceAmount = activeDevices.length;
+  /*Const ACTIVE_DEVICES_SLIDES = activeDevices.map((device, index) => (
     <div key={index} className="pointer-events-none">
       <DevicePreview
         device={device}
@@ -38,7 +34,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
         isSmall={true}
       />
     </div>
-  ));
+  ));*/
   const FAVORITES_DEVICES_SLIDES = favoriteDevices.map((device, index) => (
     <div key={index}>
       <DevicePreview device={device} hasToggle={false} hasRoomName={true} />
@@ -126,7 +122,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
             src={DottedArrowDown}
             className="mt-4"
             beforeInjection={(svg) => {
-              svg.setAttribute("style", `height: 158px`);
+              svg.setAttribute("style", `height: 140px`);
               svg.querySelectorAll("path").forEach((path) => {
                 path.setAttribute("fill", "var(--color-uwu)");
               });

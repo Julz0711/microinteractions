@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { AppState } from "../store/store";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   isMenuOpen: boolean;
@@ -14,10 +15,10 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
   );
 
   const buttonOptions = [
-    { label: "Raum", link: "/neuer-raum" },
-    { label: "Gerät", link: "/neues-geraet" },
-    { label: "Szene", link: "/neue-scene" },
-    { label: "Zeitplan", link: "/neuer-zeitplan" },
+    { label: "Raum", link: "/neuer-raum", state: "disabled" },
+    { label: "Gerät", link: "/neues-geraet", state: "abled" },
+    { label: "Szene", link: "/neue-scene", state: "disabled" },
+    { label: "Zeitplan", link: "/neuer-zeitplan", state: "disabled" },
   ];
   const buttonVariants = {
     hidden: (index: number) => ({
@@ -58,7 +59,13 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
                 initial="hidden"
                 animate="visible"
                 variants={buttonVariants}
-                className="bg-red font-bold text-light px-4 py-3 rounded-md cursor-pointer hover:bg-purple"
+                className={twMerge(
+                  "font-bold px-4 py-3 rounded-md",
+                  option.state === "disabled"
+                    ? "cursor-no-drop bg-inactive text-uwu"
+                    : "cursor-pointer text-light bg-red hover:bg-purple"
+                )}
+                disabled={option.state === "disabled"}
               >
                 {option.label}
               </motion.button>

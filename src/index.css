@@ -108,7 +108,7 @@ h1 {
 }
 
 body {
-  @apply bg-dark text-dark font-normal text-default h-full w-full;
+  @apply bg-dark text-dark font-normal text-default h-full w-full select-none;
 }
 
 .btn {
