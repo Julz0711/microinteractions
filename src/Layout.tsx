@@ -56,7 +56,7 @@ const Layout: React.FC = () => {
     <div className="sm:h-screen sm:w-screen flex items-center justify-center sm:p-8">
       <div
         className={twMerge(
-          "layout overflow-hidden relative no-scrollbar sm:w-[400px] sm:h-[850px] max-h-screen w-screen flex flex-col items-start justify-start sm:rounded-[3rem] sm:border-8 sm:border-dark sm:ring-2 sm:ring-yellow bg-light"
+          "z-10 layout overflow-hidden relative no-scrollbar sm:w-[400px] sm:h-[850px] max-h-screen w-screen flex flex-col items-start justify-start sm:rounded-[3rem] sm:border-8 sm:border-dark sm:ring-2 sm:ring-yellow bg-light"
         )}
       >
         {showNewButton && <TopNavigation isScrolled={isScrolled} />}
