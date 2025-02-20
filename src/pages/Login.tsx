@@ -13,7 +13,7 @@ const Login = () => {
           Entdecke Dein Zuhause neu!
         </div>
       </div>
-      <div className="w-full flex flex-col gap-4 items-center pb-8">
+      <div className="w-full flex flex-col gap-4 items-center pb-4">
         <Button
           icon="Google"
           label={"Mit Google registrieren"}
@@ -26,7 +26,7 @@ const Login = () => {
           style={"btn-secondary"}
           link={"/registrieren"}
         ></Button>
-        <div>
+        <div className="mt-4">
           Du hast bereits einen Account?{" "}
           <span className="text-uwu font-bold cursor-pointer">Anmelden</span>
         </div>

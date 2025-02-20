@@ -140,7 +140,7 @@ body {
 }
 
 .text-h2 {
-  @apply text-headline font-bold;
+  @apply text-headline font-bold text-lg;
 }
 
 @layer utilities {

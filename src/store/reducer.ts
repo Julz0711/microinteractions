@@ -6,11 +6,13 @@ interface AppState {
   hasMicrointeractions: boolean;
   category: Category | null;
   hierarchy: HierarchyStep;
-  room: Room  | null;
+  room: Room | null;
 }
 
 const initialState: AppState = {
-  hasMicrointeractions: true,
+  hasMicrointeractions: JSON.parse(
+    localStorage.getItem("hasMicrointeractions") || "true"
+  ),
   category: null,
   hierarchy: HierarchyStep.SmartHomeGrid,
   room: Room.LivingRoom,
@@ -22,6 +24,10 @@ const appSlice = createSlice({
   reducers: {
     setHasMicrointeractions(state: AppState, action: PayloadAction<boolean>) {
       state.hasMicrointeractions = action.payload;
+      localStorage.setItem(
+        "hasMicrointeractions",
+        JSON.stringify(action.payload)
+      );
     },
     setCategory(state: AppState, action: PayloadAction<Category | null>) {
       state.category = action.payload;
@@ -30,7 +36,7 @@ const appSlice = createSlice({
       state.hierarchy = action.payload;
     },
     setRoom(state: AppState, action: PayloadAction<Room | null>) {
-      state.room = action.payload;  
+      state.room = action.payload;
     },
   },
 });
