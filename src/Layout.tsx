@@ -13,6 +13,7 @@ const Layout: React.FC = () => {
   const location = useLocation();
 
   const restrictedPaths = [
+    "/start",
     "/neuer-raum",
     "/neues-geraet",
     "/neue-szene",
@@ -52,10 +53,10 @@ const Layout: React.FC = () => {
   }, [showNewButton]);
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center p-8 bg-dark">
+    <div className="sm:h-screen sm:w-screen flex items-center justify-center sm:p-8">
       <div
         className={twMerge(
-          "layout overflow-hidden relative no-scrollbar w-[400px] h-[850px] flex flex-col items-start justify-start border rounded-[2rem] bg-light"
+          "layout overflow-hidden relative no-scrollbar sm:w-[400px] sm:h-[850px] max-h-screen w-screen flex flex-col items-start justify-start sm:rounded-[3rem] sm:border-8 sm:border-dark sm:ring-2 sm:ring-yellow bg-light"
         )}
       >
         {showNewButton && <TopNavigation isScrolled={isScrolled} />}
@@ -80,23 +81,6 @@ const Layout: React.FC = () => {
           </AnimatePresence>
         )}
       </div>
-
-      {/* Introduction Section 
-      <div className="p-8 border-light border-2 rounded-[2rem] shadow-md">
-        <h1 className="text-2xl text-light font-bold mb-4">
-          Microinteractions A/B-TEst
-        </h1>
-        
-        <p className="text-light mb-4">
-          This is a simulation of a mobile phone for testing purposes. On the
-          left, you can interact with the "phone" interface.
-        </p>
-        <p className="text-light">
-          The content inside the phone is scrollable. However, the rest of the
-          screen remains static, allowing you to focus on the simulation
-          experience.
-        </p>
-      </div>*/}
     </div>
   );
 };

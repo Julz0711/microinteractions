@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { twMerge } from "tailwind-merge";
 
+const Start = lazy(() => import("../pages/Start"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const Devices = lazy(() => import("../pages/Devices"));
 const NotFound = lazy(() => import("../pages/NotFound"));
@@ -21,6 +22,10 @@ const allRoutes = [
   {
     path: "/",
     component: <Dashboard hasDevices={false} />,
+  },
+  {
+    path: "/start",
+    component: <Start />,
   },
   {
     path: "/dashboard",

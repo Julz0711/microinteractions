@@ -1,9 +1,3 @@
-body {
-  height: 80vh;
-  display: grid;
-  place-items: center;
-}
-
 .circular-progress {
   --size: 250px;
   --half-size: calc(var(--size) / 2);

@@ -97,14 +97,18 @@
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
   --radius-lg: 2rem;
+
+  /* breakpoints */
+  --breakpoint-sm: 30rem;
+
 }
 
 h1 {
-  @apply font-bold text-default text-[1.5rem];
+  @apply font-bold text-[1.5rem];
 }
 
 body {
-  @apply bg-dark text-dark font-normal text-default;
+  @apply bg-dark text-dark font-normal text-default h-full w-full;
 }
 
 .btn {
