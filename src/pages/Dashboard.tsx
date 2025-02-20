@@ -11,7 +11,8 @@ import { Room } from '../types/types';
 import { useEffect, useState } from 'react';
 import ScenePreview from '../components/ScenePreview.tsx';
 import { useDispatch } from 'react-redux';
-import { setRoom } from '../store/reducer.ts';
+import { setCategory, setHierarchy, setRoom } from '../store/reducer.ts';
+import { HierarchyStep } from '../types/dashboard.types.ts';
 
 interface DashboardProps {
   hasDevices?: boolean;
@@ -54,6 +55,8 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   const handleSelect = (room: Room | null) => {
     setSelectedRoom(room);
     dispatch(setRoom(room));
+    dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
+    dispatch(setCategory(null));
   };
 
   return (
