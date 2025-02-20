@@ -1,4 +1,3 @@
-import DynamicIcon from "./DynamicIcon";
 import { motion } from "framer-motion";
 import { AppState } from "../store/store";
 import { useSelector } from "react-redux";

@@ -1,33 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import DynamicIcon from "./DynamicIcon";
 
 interface ButtonProps {
   label: string;
-  hasIcon?: boolean;
   icon?: string;
-  color: string;
+  style: string;
   link: string;
   isLarge?: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
   label = "Button",
-  hasIcon = false,
-  icon = null,
-  color = "bg-dark",
+  icon = "",
+  style = "bg-dark",
   link = "/",
   isLarge = false,
+  disabled = false,
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <Link
-      to={link}
-      className={twMerge("btn btn-neutral", color, isLarge ? "btn-lg" : "")}
+    <button
+      onClick={() => navigate(link)}
+      className={twMerge(
+        "btn-full flex flex-row items-center justify-center gap-4",
+        style,
+        isLarge ? "btn-lg" : ""
+      )}
+      disabled={disabled}
     >
-      {hasIcon && icon && <DynamicIcon iconName={"Bluetooth"} />}
+      {icon ? <DynamicIcon iconName={icon} size={"24"} /> : null}
       {label}
-    </Link>
+    </button>
   );
 };
 
