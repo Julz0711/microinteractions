@@ -1,13 +1,13 @@
-import DynamicIcon from "./DynamicIcon";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
-import { AppState } from "../store/store";
-import { Device, Room } from "../types/types";
-import { getColor, getRoomName } from "../helpers/helpers";
-import Lottie from "react-lottie";
-import toggleLottie from "../assets/lottie/toggle_v4.json";
-import { twMerge } from "tailwind-merge";
+import DynamicIcon from './DynamicIcon';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
+import { AppState } from '../store/store';
+import { Device, Room } from '../types/types';
+import { getColor, getRoomName } from '../helpers/helpers';
+import Lottie from 'react-lottie';
+import toggleLottie from '../assets/lottie/toggle_v4.json';
+import { twMerge } from 'tailwind-merge';
 
 interface DeviceBoxProps {
   device: Device;
@@ -18,14 +18,14 @@ interface DeviceBoxProps {
 
 const onActiveAnimationBox = {
   initial: { scale: 1 },
-  transition: { duration: 0.4, easing: "ease" },
+  transition: { duration: 0.4, easing: 'ease' }
 };
 
 const DevicePreview = ({
   device,
   hasToggle,
   hasRoomName,
-  isSmall,
+  isSmall
 }: DeviceBoxProps) => {
   const [isBoxActive, setIsBoxActive] = useState(false);
   const [isToggleOn, setIsToggleOn] = useState(false);
@@ -73,18 +73,18 @@ const DevicePreview = ({
       className={`relative flex justify-start min-w-32 overflow-hidden ${
         hasToggle
           ? isSmall
-            ? "h-24 items-end py-2 px-2"
-            : "h-32 items-end py-4 px-4"
+            ? 'h-24 items-end py-2 px-2'
+            : 'h-32 items-end py-4 px-4'
           : isSmall
-          ? "items-center pl-2 pr-3 py-2 cursor-pointer gap-2"
-          : "items-center pl-3 pr-4 py-3 cursor-pointer gap-3"
+          ? 'items-center pl-2 pr-3 py-2 cursor-pointer gap-2'
+          : 'items-center pl-3 pr-4 py-3 cursor-pointer gap-3'
       } font-bold rounded-md select-none ${
         hasMicrointeractions
           ? isBoxActive
-            ? "device-box-active"
-            : "device-box-inactive"
-          : ""
-      } ${isBoxActive ? "shadow-active bg-light" : "bg-inactive"}`}
+            ? 'device-box-active'
+            : 'device-box-inactive'
+          : ''
+      } ${isBoxActive ? 'shadow-active bg-light' : 'bg-inactive'}`}
     >
       {hasToggle && (
         <div>
@@ -99,8 +99,8 @@ const DevicePreview = ({
                   autoplay: false,
                   animationData: toggleLottie,
                   rendererSettings: {
-                    preserveAspectRatio: "xMidYMid slice",
-                  },
+                    preserveAspectRatio: 'xMidYMid slice'
+                  }
                 }}
                 height={30}
                 width={65}
@@ -115,7 +115,7 @@ const DevicePreview = ({
               onClick={handleToggleClick}
               type="checkbox"
               className={`absolute toggle ${
-                isSmall ? "toggle-md" : "toggle-lg"
+                isSmall ? 'toggle-md' : 'toggle-lg'
               } rounded-full before:rounded-full top-4 border-none right-3 text-light bg-uwu checked:bg-green`}
               defaultChecked={isToggleOn}
             />
@@ -124,16 +124,16 @@ const DevicePreview = ({
       )}
       <div
         className={`${
-          hasToggle ? "absolute top-3 left-3" : ""
+          hasToggle ? 'absolute top-3 left-3' : ''
         } text-light rounded-full ${
-          isBoxActive ? getColor(device.category) : "bg-dark"
-        } ${isSmall ? "p-1" : "p-2"}`}
+          isBoxActive ? getColor(device.category) : 'bg-dark'
+        } ${isSmall ? 'p-1' : 'p-2'}`}
       >
         <div className="z-90">
           <DynamicIcon
             iconName={device.icon}
             color="text-light"
-            size={isSmall ? "15" : "20"}
+            size={isSmall ? '15' : '20'}
           />
         </div>
       </div>
@@ -141,37 +141,35 @@ const DevicePreview = ({
       <div
         className={
           device.additionalInfo
-            ? "z-20 flex flex-col items-start justify-start gap-0"
-            : ""
+            ? 'z-20 flex flex-col items-start justify-start gap-0'
+            : ''
         }
       >
         <span
-          className={twMerge(isSmall ? "text-sm" : "text-base", "truncate")}
+          className={twMerge(isSmall ? 'text-sm' : 'text-base', 'truncate')}
         >
           {device.name}
         </span>
-        <div className="flex flex-row gap-1 items-center">
+        <div className="flex flex-row gap-1 items-center font-normal">
           {device.additionalInfo ? (
             <div
-              className={`text-uwu font-bold ${
-                isSmall ? "text-[0.65rem]" : "text-xs"
-              }`}
+              className={`text-uwu ${isSmall ? 'text-[0.65rem]' : 'text-xs'}`}
             >
               {isBoxActive
                 ? device.additionalInfo.length > 0
                   ? device.additionalInfo
-                  : "Aus"
-                : "Aus"}
+                  : 'Aus'
+                : 'Aus'}
             </div>
           ) : null}
           {hasRoomName && (
             <div
-              className={`text-meta flex flex-row gap-1 items-center ${
-                isSmall ? "text-[0.65rem]" : "text-xs"
+              className={`text-uwu font-normal flex flex-row gap-1 items-center ${
+                isSmall ? 'text-[0.65rem]' : 'text-xs'
               }`}
             >
               <span>•</span>
-              <div>{device.room ? getRoomName(device.room as Room) : ""}</div>
+              <div>{device.room ? getRoomName(device.room as Room) : ''}</div>
             </div>
           )}
         </div>

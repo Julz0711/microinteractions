@@ -4,6 +4,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { AppState } from '../store/store';
+import { twMerge } from 'tailwind-merge';
 
 const Dashboard = lazy(() => import('../pages/Dashboard'));
 const Devices = lazy(() => import('../pages/Devices'));
@@ -63,10 +64,21 @@ const allRoutes = [
   }
 ];
 
-function PageWrapper({ children }: { children: ReactNode }) {
+function PageWrapper({
+  children,
+  showNewButton
+}: {
+  children: ReactNode;
+  showNewButton: boolean;
+}) {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
+
+  useEffect(() => {
+    console.log('PageWrapper received showNewButton:', showNewButton);
+  }, [showNewButton]);
+
   return (
     <motion.div
       key={location.pathname}
@@ -88,28 +100,27 @@ function PageWrapper({ children }: { children: ReactNode }) {
       transition={hasMicrointeractions ? { duration: 0.5 } : { duration: 0 }}
       className="w-full h-full"
     >
-      {children}
+      <div className="h-full w-full overflow-x-hidden overflow-y-scroll no-scrollbar">
+        <div
+          className={twMerge(
+            'min-h-full px-5',
+            showNewButton ? 'pb-30' : 'pb-5 h-full'
+          )}
+        >
+          {children}
+        </div>
+      </div>
     </motion.div>
   );
 }
 
-function routeMap({
-  path,
-  component
+const AppRouter = ({
+  onScroll,
+  showNewButton
 }: {
-  path: string;
-  component: any;
-  hasDevices?: boolean;
-}) {
-  return (
-    <Route
-      path={path}
-      element={<PageWrapper children={component}></PageWrapper>}
-    />
-  );
-}
-
-const AppRouter = ({ onScroll }: { onScroll: (scrollY: number) => void }) => {
+  onScroll: (scrollY: number) => void;
+  showNewButton: boolean;
+}) => {
   const location = useLocation();
   const scrollableRef = useRef<HTMLDivElement>(null);
 
@@ -128,13 +139,22 @@ const AppRouter = ({ onScroll }: { onScroll: (scrollY: number) => void }) => {
   }, [onScroll]);
 
   return (
-    <div
-      ref={scrollableRef}
-      className="px-5 w-full h-full no-scrollbar overflow-y-scroll overflow-x-hidden"
-    >
+    <div ref={scrollableRef} className="overflow-hidden w-full h-full">
       <Suspense fallback={<LoadingSpinner />}>
         <AnimatePresence mode="wait">
-          <Routes>{allRoutes.map((route) => routeMap(route))}</Routes>
+          <Routes>
+            {allRoutes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={
+                  <PageWrapper showNewButton={showNewButton}>
+                    {route.component}
+                  </PageWrapper>
+                }
+              />
+            ))}
+          </Routes>
         </AnimatePresence>
       </Suspense>
     </div>
