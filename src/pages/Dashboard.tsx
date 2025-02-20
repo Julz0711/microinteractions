@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../store/store.ts";
 import { ReactSVG } from "react-svg";
 import DottedArrowDown from "../assets/icons/DottedArrowDown.svg";
+import { setRoom, setHierarchy, setCategory } from "../store/reducer.ts";
+import { HierarchyStep } from "../types/dashboard.types.ts";
 import { ScrollableNavBar } from "../components/scrollableNavBar.tsx";
 
 interface DashboardProps {
@@ -55,12 +57,19 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
 
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
 
+  const handleSelect = (room: Room | null) => {
+    setSelectedRoom(room);
+    dispatch(setRoom(room));
+    dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
+    dispatch(setCategory(null));
+  };
+
   return (
     <div>
       {hasDevices ? (
         <div className="w-full flex flex-col gap-2 justify-start items-start">
           <ScrollableNavBar
-            onRoomSelect={setSelectedRoom}
+            onRoomSelect={handleSelect}
             selectedRoom={selectedRoom}
           />
           <RoomGrid selectedRoom={selectedRoom} />

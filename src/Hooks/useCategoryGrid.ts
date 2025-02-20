@@ -94,7 +94,6 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       160 -
       Math.floor(props.index % 2) * 160 +
       Math.floor((props.index + 1) % 2) * padding;
-      console.log(activeDevices)
     const offset = hasMicrointeractions ?  (props.index % 2) * 20 : 0;
     const styleYPos =
       Math.floor(props.index / 2) * 160 +

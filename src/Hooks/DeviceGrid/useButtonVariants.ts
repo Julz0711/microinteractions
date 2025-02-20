@@ -48,13 +48,12 @@ export function useButtonVariants(props: IuseButtonVariantsProps) {
 
   React.useEffect(() => {
     const setbuttonVariants = () => {
-      const windowWidth = props.canvasRef.current!.clientWidth;
-      const windowHeight = props.canvasRef.current!.clientHeight;
 
       const styleXPos =
         Math.floor(props.index % 2) * 150 +
         Math.floor(props.index % 2) * padding;
       const styleYPos =
+      30 +
         Math.floor(props.index / 2) * 150 +
         Math.floor(props.index / 2) * padding;
 
