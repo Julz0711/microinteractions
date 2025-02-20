@@ -1,8 +1,9 @@
 import { TopContextBar } from "../components/TopContextBar";
-import GlowBoys from "../assets/img/glow_boys_coloured.png";
+import GlowBoys from "../components/GlowBoyz";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import InputField from "../components/InputField";
+import Button from "../components/Button";
 
 const Register = () => {
   const validationSchema = Yup.object({
@@ -37,19 +38,19 @@ const Register = () => {
   });
 
   return (
-    <div className="h-full flex flex-col justify-around overflow-y-scroll no-scrollbar gap-4 pb-8">
+    <div className="h-full flex flex-col justify-between gap-4">
       <TopContextBar
         headline={"Registrierung"}
         metaDescription={"Account erstellen"}
-        rightIcon={"Bluetooth"}
+        rightIcon={"Close"}
         rightIconBg={true}
         rightIconLink="/dashboard"
       />
-      <div className="w-4/5 mx-auto grow">
-        <img src={GlowBoys} alt="Registrierung Header" className="w-full" />
+      <div className="mx-auto w-5/8 grow">
+        <GlowBoys />
       </div>
 
-      <div className="grow-0 flex flex-col gap-4 justify-center items-center px-4">
+      <div className="flex flex-col gap-2 justify-center items-center">
         <div className="w-3/4 mx-auto">
           <div className="text-xl text-center font-bold">
             Bereit für Dein smartes Zuhause?
@@ -57,7 +58,7 @@ const Register = () => {
         </div>
         <form
           onSubmit={formik.handleSubmit}
-          className="flex flex-col gap-4 w-full mt-4"
+          className="flex flex-col gap-4 w-full mt-4 z-90"
         >
           <InputField
             type={"text"}
@@ -66,7 +67,7 @@ const Register = () => {
             value={formik.values.username}
             change={formik.handleChange}
             blur={formik.handleBlur}
-            icon={"Bluetooth"}
+            icon={"At"}
             error={
               formik.touched.username && formik.errors.username
                 ? formik.errors.username
@@ -80,7 +81,7 @@ const Register = () => {
             value={formik.values.email}
             change={formik.handleChange}
             blur={formik.handleBlur}
-            icon={"Bluetooth"}
+            icon={"Envelope"}
             error={
               formik.touched.email && formik.errors.email
                 ? formik.errors.email
@@ -94,7 +95,7 @@ const Register = () => {
             value={formik.values.password}
             change={formik.handleChange}
             blur={formik.handleBlur}
-            icon={"Bluetooth"}
+            icon={"Lock"}
             error={
               formik.touched.password && formik.errors.password
                 ? formik.errors.password
@@ -108,16 +109,19 @@ const Register = () => {
             value={formik.values.confirmPassword}
             change={formik.handleChange}
             blur={formik.handleBlur}
-            icon={"Bluetooth"}
+            icon={"Lock"}
             error={
               formik.touched.confirmPassword && formik.errors.confirmPassword
                 ? formik.errors.confirmPassword
                 : ""
             }
           />
-          <button type="submit" className="btn-full" disabled={!formik.isValid}>
-            Account erstellen
-          </button>
+          <Button
+            label={" Account erstellen"}
+            style={"btn-primary"}
+            link={"/registrieren"}
+            disabled={!formik.isValid}
+          ></Button>
         </form>
       </div>
     </div>

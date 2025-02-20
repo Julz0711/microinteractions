@@ -287,7 +287,7 @@ const DeviceRegistration = () => {
   };
 
   return (
-    <div className="h-full flex flex-col justify-between gap-8 pb-5 no-scrollbar">
+    <div className="h-full flex flex-col justify-between gap-8 no-scrollbar">
       {currentStep < 5 ? (
         <>
           <TopContextBar
@@ -336,18 +336,24 @@ const DeviceRegistration = () => {
               <div className="grow-0">
                 {currentStep < 4 ? (
                   <button
-                    className="btn-full"
+                    className="btn-full bg-red hover:bg-purple"
                     onClick={handleNext}
                     disabled={formData.deviceName.trim() === ""}
                   >
                     Weiter
                   </button>
                 ) : currentStep === 4 ? (
-                  <button className="btn-full" onClick={handleNext}>
+                  <button
+                    className="btn-full bg-green hover:bg-blue"
+                    onClick={handleNext}
+                  >
                     Gerät hinzufügen
                   </button>
                 ) : (
-                  <button className="btn-full" onClick={handleNext}>
+                  <button
+                    className="btn-full bg-dark hover:bg-dark/70"
+                    onClick={handleNext}
+                  >
                     Zum Dashboard
                   </button>
                 )}
