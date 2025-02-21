@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { TopNavigation } from "./components/TopNavigation";
 import AppRouter from "./routes/Router";
 import { NewButton } from "./components/NewButton";
-import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
+import { Overlay } from "./components/Overlay";
+import { TopNavigation } from "./components/topNavigation";
 
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [overlayHeight, setOverlayHeight] = useState("100%");
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
@@ -29,20 +28,6 @@ const Layout: React.FC = () => {
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
-
-  useEffect(() => {
-    const layoutElement = document.querySelector(".layout");
-    if (layoutElement) {
-      setOverlayHeight(`${layoutElement.scrollHeight}px`);
-    }
-    if (isMenuOpen) {
-      layoutElement?.classList.add("overflow-y-hidden");
-      layoutElement?.classList.remove("overflow-y-scroll");
-    } else {
-      layoutElement?.classList.remove("overflow-y-hidden");
-      layoutElement?.classList.add("overflow-y-scroll");
-    }
-  }, [isMenuOpen]);
 
   const handleScroll = (scrollY: number) => {
     setIsScrolled(scrollY > 0);
@@ -66,20 +51,7 @@ const Layout: React.FC = () => {
             <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
           </div>
         )}
-        {showNewButton && (
-          <AnimatePresence>
-            {isMenuOpen && (
-              <motion.div
-                className="absolute inset-0 z-80 bg-dark/30 backdrop-blur-[2px] h-full w-full"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                style={{ height: overlayHeight, width: "100%" }}
-              />
-            )}
-          </AnimatePresence>
-        )}
+        <Overlay isMenuOpen={isMenuOpen} />
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ const Debug = () => {
   const hierarchy = useSelector((state: AppState) => state.app.hierarchy);
   const room = useSelector((state: AppState) => state.app.room);
   const category = useSelector((state: AppState) => state.app.category);
+  const device = useSelector((state: AppState) => state.app.device);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -71,6 +72,12 @@ const Debug = () => {
                 category:{" "}
                 <span className="font-bold">
                   {category ? category : "none selected"}
+                </span>
+              </p>
+              <p className="text-light">
+                device:{" "}
+                <span className="font-bold">
+                  {device ? device.name : "none selected"}
                 </span>
               </p>
             </div>

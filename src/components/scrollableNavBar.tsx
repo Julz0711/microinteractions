@@ -16,16 +16,12 @@ export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
 }) => {
   const OPTIONS: EmblaOptionsType = { dragFree: true };
   const roomNames = Object.values(Room);
-  const defaultRoom = roomNames.length > 0 ? (roomNames[0] as Room) : null;
   const room = useSelector((state: AppState) => state.app.room);
-  const [selectedRoom, setSelectedRoom] = useState<Room | null>(defaultRoom);
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(room);
 
   useEffect(() => {
-    if (!room && defaultRoom) {
-      onRoomSelect(defaultRoom);
-      setSelectedRoom(defaultRoom);
-    }
-  }, [room, defaultRoom, onRoomSelect]);
+    setSelectedRoom(room);
+  }, [room]);
 
   const handleClick = (thisRoom: Room) => {
     setSelectedRoom(thisRoom);

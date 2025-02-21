@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Category, HierarchyStep } from "../types/dashboard.types";
-import { Room } from "../types/types";
+import { Device, Room } from "../types/types";
 
 interface AppState {
   hasMicrointeractions: boolean;
   category: Category | null;
   hierarchy: HierarchyStep;
   room: Room | null;
+  device: Device | null;
 }
 
 const initialState: AppState = {
@@ -16,6 +17,7 @@ const initialState: AppState = {
   category: null,
   hierarchy: HierarchyStep.SmartHomeGrid,
   room: (localStorage.getItem("room") as Room) || Room.LivingRoom,
+  device: null,
 };
 
 const appSlice = createSlice({
@@ -39,9 +41,17 @@ const appSlice = createSlice({
       state.room = action.payload;
       localStorage.setItem("room", action.payload || "");
     },
+    setDevice(state: AppState, action: PayloadAction<Device | null>) {
+      state.device = action.payload;
+    },
   },
 });
 
-export const { setHasMicrointeractions, setCategory, setHierarchy, setRoom } =
-  appSlice.actions;
+export const {
+  setHasMicrointeractions,
+  setCategory,
+  setHierarchy,
+  setRoom,
+  setDevice,
+} = appSlice.actions;
 export const appReducer = appSlice.reducer;
