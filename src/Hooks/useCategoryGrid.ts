@@ -99,7 +99,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding +
       offset +
-      (hasMicrointeractions ? 60 : -20);
+      (hasMicrointeractions ? 60 : 0);
     const styleXPosHidden =
       styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
     if (category === props.thisCategory) {

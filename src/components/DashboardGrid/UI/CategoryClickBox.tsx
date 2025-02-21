@@ -8,8 +8,6 @@ export interface ICategoryClickBoxProps {
   category: Category;
 }
 export function CategoryClickBox(props: ICategoryClickBoxProps) {
-
-
   return (
     <button
       onClick={props.handleClick}
@@ -17,7 +15,7 @@ export function CategoryClickBox(props: ICategoryClickBoxProps) {
         "w-full h-full absolute z-10",
         props.flexClasses,
         props.category === Category.Household
-          ? "absolute left-0 duration-75 -translate-y-10"
+          ? !props.active && " -translate-y-10" + " absolute left-0 duration-75"
           : ""
       )}
     />
