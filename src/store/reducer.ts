@@ -15,7 +15,7 @@ const initialState: AppState = {
   ),
   category: null,
   hierarchy: HierarchyStep.SmartHomeGrid,
-  room: Room.LivingRoom,
+  room: (localStorage.getItem("room") as Room) || Room.LivingRoom,
 };
 
 const appSlice = createSlice({
@@ -37,6 +37,7 @@ const appSlice = createSlice({
     },
     setRoom(state: AppState, action: PayloadAction<Room | null>) {
       state.room = action.payload;
+      localStorage.setItem("room", action.payload || "");
     },
   },
 });

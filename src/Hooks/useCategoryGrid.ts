@@ -27,6 +27,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
   const activeDevices = useActiveDevices({
     thisCategory: props.thisCategory,
   });
+  const room = useSelector((state: AppState) => state.app.room);
 
   const handleSetHierarchy = () => {
     if (
@@ -66,7 +67,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
             : { width: 160, height: 120 }
         );
 
-      setflexClasses("flex justify-end items-start");
+        setflexClasses("flex justify-end items-start");
         break;
       case Category.Air:
         setSize(
@@ -75,7 +76,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
             : { width: 160, height: 120 }
         );
 
-    break;
+        break;
       case Category.Household:
         setSize(
           hasMicrointeractions
@@ -84,9 +85,8 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         );
         setflexClasses("flex justify-start");
         break;
-      }
-
-  }, [hasMicrointeractions, activeDevices]);
+    }
+  }, [hasMicrointeractions]);
 
   useEffect(() => {
     const xDirection = Math.floor(props.index % 2) === 0 ? -1 : 1;
@@ -94,11 +94,12 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       160 -
       Math.floor(props.index % 2) * 160 +
       Math.floor((props.index + 1) % 2) * padding;
-    const offset = hasMicrointeractions ?  (props.index % 2) * 20 : 0;
+    const offset = hasMicrointeractions ? (props.index % 2) * 20 : 0;
     const styleYPos =
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding +
-      offset + (hasMicrointeractions ? 60 : -20);
+      offset +
+      (hasMicrointeractions ? 60 : -20);
     const styleXPosHidden =
       styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
     if (category === props.thisCategory) {
@@ -144,7 +145,50 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
         },
       });
     }
-  }, [category, hasMicrointeractions, activeDevices]);
+  }, [category, hasMicrointeractions]);
+
+  useEffect(() => {
+    const xDirection = Math.floor(props.index % 2) === 0 ? -1 : 1;
+    const styleXPos =
+      160 -
+      Math.floor(props.index % 2) * 160 +
+      Math.floor((props.index + 1) % 2) * padding;
+    const offset = hasMicrointeractions ? (props.index % 2) * 20 : 0;
+    const styleYPos =
+      Math.floor(props.index / 2) * 160 +
+      Math.floor(props.index / 2) * padding +
+      offset +
+      60;
+    const styleXPosHidden =
+      styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
+    // Hidden State
+    setActive(false);
+    if (hasMicrointeractions) {
+      gsap.to(buttonRef.current, {
+        ease: "power2.out",
+        left: styleXPosHidden + "px",
+        xPercent: 0,
+        top: styleYPos + "px",
+        height: "10rem",
+        width: "10rem",
+        duration: 0,
+      });
+
+      gsap.to(buttonRef.current, {
+        // Default State
+        ease: "power2.out",
+        left: styleXPos + "px",
+        xPercent: 0,
+        top: styleYPos + "px",
+        height: "10rem",
+        width: "10rem",
+        duration: hasMicrointeractions ? 0.3 : 0,
+        onComplete: () => {
+          setactiveAnimationFinished(false);
+        },
+      });
+    }
+  }, [room]);
 
   return {
     handleSetHierarchy,

@@ -20,21 +20,9 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
-  const dispatch = useDispatch();
   const OPTIONS: EmblaOptionsType = { dragFree: true };
   const favoriteDevices = devices.filter((device) => device.isFavorite);
-  //const activeDevices = devices.filter((device) => device.isActive);
-  //const activeDeviceAmount = activeDevices.length;
-  /*Const ACTIVE_DEVICES_SLIDES = activeDevices.map((device, index) => (
-    <div key={index} className="pointer-events-none">
-      <DevicePreview
-        device={device}
-        hasToggle={false}
-        hasRoomName={true}
-        isSmall={true}
-      />
-    </div>
-  ));*/
+  const [isRoomChanging, setIsRoomChanging] = useState(false);
   const FAVORITES_DEVICES_SLIDES = favoriteDevices.map((device, index) => (
     <div key={index}>
       <DevicePreview device={device} hasToggle={false} hasRoomName={true} />
@@ -51,24 +39,19 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
     </div>
   ));
 
-  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+  const [nextRoom, setNextRoom] = useState(Room.LivingRoom);
 
-  const handleSelect = (room: Room | null) => {
-    setSelectedRoom(room);
-    dispatch(setRoom(room));
-    dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
-    dispatch(setCategory(null));
+  const handleSelect = (room: Room) => {
+    setIsRoomChanging(true);
+    setNextRoom(room);
   };
 
   return (
     <div>
       {hasDevices ? (
         <div className="w-full flex flex-col gap-2 justify-start items-start">
-          <ScrollableNavBar
-            onRoomSelect={handleSelect}
-            selectedRoom={selectedRoom}
-          />
-          <RoomGrid selectedRoom={selectedRoom} />
+          <ScrollableNavBar onRoomSelect={handleSelect} />
+          <RoomGrid isRoomChanging={isRoomChanging} nextRoom={nextRoom} />
           <div className="w-full flex flex-col gap-8">
             {/*
             <div className="w-full">

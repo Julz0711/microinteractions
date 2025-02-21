@@ -1,39 +1,40 @@
-import { getAllRoomNames, getRoomName } from "../helpers/helpers";
+import { getRoomName } from "../helpers/helpers";
 import EmblaCarousel from "../components/EmblaCarousel/js/EmblaCarousel.tsx";
 import { EmblaOptionsType } from "embla-carousel";
 import { twMerge } from "tailwind-merge";
 import { Room } from "../types/types.ts";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { AppState } from "../store/store.ts";
 
 interface ScrollableNavBarProps {
-  selectedRoom: Room | null;
-  onRoomSelect: (room: Room | null) => void;
+  onRoomSelect: (room: Room) => void;
 }
 
 export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
-  selectedRoom,
   onRoomSelect,
 }) => {
   const OPTIONS: EmblaOptionsType = { dragFree: true };
   const roomNames = Object.values(Room);
   const defaultRoom = roomNames.length > 0 ? (roomNames[0] as Room) : null;
+  const room = useSelector((state: AppState) => state.app.room);
 
   useEffect(() => {
-    if (!selectedRoom && defaultRoom) {
+    if (!room && defaultRoom) {
       onRoomSelect(defaultRoom);
     }
-  }, [selectedRoom, defaultRoom, onRoomSelect]);
+  }, [room, defaultRoom, onRoomSelect]);
 
-  const ROOM_SLIDES = roomNames.map((room, index) => (
+  const ROOM_SLIDES = roomNames.map((thisRoom, index) => (
     <button
       key={index}
-      onClick={() => onRoomSelect(room as Room)}
+      onClick={() => onRoomSelect(thisRoom as Room)}
       className={twMerge(
         "cursor-pointer transition-colors duration-200 font-bold",
-        selectedRoom === (room as Room) ? "text-dark" : "text-uwu"
+        thisRoom === (room as Room) ? "text-dark" : "text-uwu"
       )}
     >
-      {getRoomName(room)}
+      {getRoomName(thisRoom)}
     </button>
   ));
 
