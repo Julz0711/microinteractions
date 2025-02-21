@@ -94,6 +94,24 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
           </h3>
         )}
       </div>
+      {isMenuOpen && (
+        <div className="fixed top-0 right-0 bg-dark w-full h-full">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleActiveState();
+            }}
+            className="flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
+          >
+            <DynamicIcon
+              iconName={"OnOff"}
+              color={
+                isDeviceActive ? getTextColor(device.category) : "text-uwu"
+              }
+            />
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 };
