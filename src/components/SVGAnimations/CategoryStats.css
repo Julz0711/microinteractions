@@ -40,6 +40,14 @@
   stroke: #f8f8f8;
 }
 
+.circular-progress circle.fg.inactive {
+  stroke: rgb(190, 55, 95);
+}
+.circular-progress circle.bg.inactive {
+  stroke: rgb(248, 248, 248);
+  opacity: 1;
+}
+
 @property --progress {
   syntax: "<number>";
   inherits: false;
