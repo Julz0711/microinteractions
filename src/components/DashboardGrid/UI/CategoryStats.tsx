@@ -29,12 +29,13 @@ export function CategoryStats(props: ICategoryStatsProps) {
       return hasMicrointeractions ? (
         <div
           className={twMerge(
-            "p-4 rounded-full flex items-center justify-center bg-light"
+            "p-4 rounded-full flex items-center justify-center",
+            hasActiveDevices ? "bg-light" : "bg-dark"
           )}
         >
           <DynamicIcon
             iconName={"Lamp"}
-            color={hasActiveDevices ? "text-yellow" : "text-yellow"}
+            color={hasActiveDevices ? "text-yellow" : "text-light"}
           />
           <span
             className={twMerge(
@@ -48,12 +49,29 @@ export function CategoryStats(props: ICategoryStatsProps) {
       );
     case Category.Heat:
       return hasMicrointeractions ? (
-        <div className="flex items-center justify-center w-full pt-2 relative">
-          <Temperature category={Category.Entertainment} />
-        </div>
+        <>
+          {hasActiveDevices ? (
+            <div className="flex items-center justify-center w-full pt-2 relative">
+              <Temperature category={Category.Entertainment} />
+            </div>
+          ) : (
+            <div
+              className={twMerge(
+                "p-4 rounded-full flex items-center justify-center bg-dark"
+              )}
+            >
+              <DynamicIcon iconName={"Controller"} color="text-light" />
+            </div>
+          )}
+        </>
       ) : (
         <div className="w-full flex flex-col">
-          <p className="text-xs text-uwu">
+          <p
+            className={twMerge(
+              "text-xs",
+              hasActiveDevices ? "text-light" : "text-uwu"
+            )}
+          >
             Heizung: <span className="font-bold">21°C</span>
           </p>
         </div>
@@ -86,16 +104,21 @@ export function CategoryStats(props: ICategoryStatsProps) {
           ) : (
             <div
               className={twMerge(
-                "p-4 rounded-full flex items-center justify-center bg-light"
+                "p-4 rounded-full flex items-center justify-center bg-dark"
               )}
             >
-              <DynamicIcon iconName={"Controller"} color="text-purple" />
+              <DynamicIcon iconName={"Controller"} color="text-light" />
             </div>
           )}
         </>
       ) : (
         <div className="w-full flex flex-col">
-          <p className="text-xs text-uwu">
+          <p
+            className={twMerge(
+              "text-xs",
+              hasActiveDevices ? "text-light" : "text-uwu"
+            )}
+          >
             Aktueller Song: <span className="font-bold">Bohemian Rapsody</span>
           </p>
         </div>
@@ -103,69 +126,79 @@ export function CategoryStats(props: ICategoryStatsProps) {
     case Category.Air:
       return hasMicrointeractions ? (
         <div className="flex gap-2 justify-center items-center">
-          <div className="flex gap-1 flex-col items-center">
-            <DynamicIcon
-              iconName={"Fan"}
-              color={twMerge(
-                "text-light",
-                hasActiveDevices ? "animate-fan text-light" : "text-green"
-              )}
-            />
-            <div className="flex gap-1">
-              <span
-                className={twMerge(
-                  "w-1 h-1 rounded-full",
-                  hasActiveDevices ? " bg-light" : "bg-green"
-                )}
-              ></span>
-              <span
-                className={twMerge(
-                  "w-1 h-1 rounded-full",
-                  hasActiveDevices ? " bg-light" : "bg-green"
-                )}
-              ></span>
-              <span
-                className={twMerge(
-                  "w-1 h-1 rounded-full",
-                  hasActiveDevices ? " bg-[#167565]  " : "bg-green"
-                )}
-              ></span>
-            </div>
-          </div>
-          <div className="relative">
+          {hasActiveDevices ? (
+            <>
+              <div className="flex gap-1 flex-col items-center">
+                <DynamicIcon
+                  iconName={"Fan"}
+                  color={twMerge("text-light", "animate-fan text-light")}
+                />
+                <div className="flex gap-1">
+                  <span
+                    className={twMerge("w-1 h-1 rounded-full", "bg-light")}
+                  ></span>
+                  <span
+                    className={twMerge("w-1 h-1 rounded-full", "bg-light")}
+                  ></span>
+                  <span
+                    className={twMerge("w-1 h-1 rounded-full", " bg-[#167565]")}
+                  ></span>
+                </div>
+              </div>
+              <div className="relative">
+                <div
+                  className={twMerge(
+                    " w-10 h-10 flex flex-col rounded-full overflow-hidden relative bg-green"
+                  )}
+                >
+                  <div
+                    className={twMerge(
+                      " bg-[url(/public/Wave.svg)] bg-repeat-x top-2 opacity-100 w-10 h-10 absolute ",
+                      hasMicrointeractions ? "waveAnimation" : ""
+                    )}
+                  ></div>
+                  <div
+                    className={twMerge(
+                      " bg-[url(/public/Wave.svg)] bg-repeat-x top-[5px] opacity-40 w-10 h-10 absolute ",
+                      hasMicrointeractions ? "waveAnimation2" : ""
+                    )}
+                  ></div>
+                  <div
+                    className={twMerge(
+                      "font-bold text-center mt-4 text-xs z-10 text-green"
+                    )}
+                  >
+                    60%
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
             <div
               className={twMerge(
-                " w-10 h-10 flex flex-col rounded-full overflow-hidden relative bg-green"
+                "p-4 rounded-full flex items-center justify-center bg-dark"
               )}
             >
-              <div
-                className={twMerge(
-                  " bg-[url(/public/Wave.svg)] bg-repeat-x top-2 opacity-100 w-10 h-10 absolute ",
-                  hasMicrointeractions ? "waveAnimation" : ""
-                )}
-              ></div>
-              <div
-                className={twMerge(
-                  " bg-[url(/public/Wave.svg)] bg-repeat-x top-[5px] opacity-40 w-10 h-10 absolute ",
-                  hasMicrointeractions ? "waveAnimation2" : ""
-                )}
-              ></div>
-              <div
-                className={twMerge(
-                  "font-bold text-center mt-4 text-xs z-10 text-green"
-                )}
-              >
-                60%
-              </div>
+              <DynamicIcon iconName={"Air"} color="text-light" />
             </div>
-          </div>
+          )}
         </div>
       ) : (
         <div className="w-full flex flex-col">
-          <p className="text-xs text-uwu">
+          <p
+            className={twMerge(
+              "text-xs",
+              hasActiveDevices ? "text-light" : "text-uwu"
+            )}
+          >
             Ventilator: <span className="font-bold">Mittel</span>
           </p>
-          <p className="text-xs text-uwu">
+          <p
+            className={twMerge(
+              "text-xs",
+              hasActiveDevices ? "text-light" : "text-uwu"
+            )}
+          >
             Luftfeuchtigkeit: <span className="font-bold">60%</span>
           </p>
         </div>

@@ -5,6 +5,7 @@ export const devices = [
   {
     icon: "Lamp",
     name: "Leselampe",
+    model: "Lileps Hue",
     room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
@@ -13,7 +14,8 @@ export const devices = [
   },
   {
     icon: "Lamp",
-    name: "Deckenleuchte",
+    name: "Deckenlampe",
+    model: "TP-Zelda",
     room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
@@ -22,7 +24,8 @@ export const devices = [
   },
   {
     icon: "Lamp",
-    name: "Deckenleuchte 2",
+    name: "Deckenlampe 2",
+    model: "Nanostick",
     room: Room.LivingRoom,
     isActive: false,
     isFavorite: false,
@@ -31,7 +34,8 @@ export const devices = [
   },
   {
     icon: "Lamp",
-    name: "Deckenleuchte",
+    name: "Ambient Light",
+    model: "Nanostick",
     room: Room.Kitchen,
     isActive: true,
     isFavorite: false,
@@ -41,6 +45,7 @@ export const devices = [
   {
     icon: "Temp",
     name: "Heizung Fenster",
+    model: "Heater Pro",
     room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
@@ -50,6 +55,7 @@ export const devices = [
   {
     icon: "Temp",
     name: "Heizung Fenster 2",
+    model: "Warmy",
     room: Room.LivingRoom,
     isActive: false,
     isFavorite: true,
@@ -59,6 +65,7 @@ export const devices = [
   {
     icon: "Temp",
     name: "Heizung Wand",
+    model: "Heater Pro",
     room: Room.LivingRoom,
     isActive: false,
     isFavorite: false,
@@ -68,6 +75,7 @@ export const devices = [
   {
     icon: "Temp",
     name: "Heizung Wand",
+    model: "Heater Pro",
     room: Room.Bedroom,
     isActive: false,
     isFavorite: false,
@@ -77,6 +85,7 @@ export const devices = [
   {
     icon: "Entertainment",
     name: "Fernseher",
+    model: "Ultra HD",
     room: Room.LivingRoom,
     isActive: false,
     isFavorite: true,
@@ -85,7 +94,8 @@ export const devices = [
   },
   {
     icon: "Entertainment",
-    name: "Sonos Speaker",
+    name: "Sohnos Speaker",
+    model: "Sohnos One",
     room: Room.LivingRoom,
     isActive: true,
     isFavorite: false,
@@ -95,6 +105,7 @@ export const devices = [
   {
     icon: "Air",
     name: "Ventilator",
+    model: "Fresh Air Pro",
     room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
@@ -104,6 +115,7 @@ export const devices = [
   {
     icon: "Pluh",
     name: "Staubsauger Roboter",
+    model: "Roomber",
     room: Room.LivingRoom,
     isActive: false,
     isFavorite: true,

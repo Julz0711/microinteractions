@@ -2,6 +2,7 @@ import { Category } from "./dashboard.types";
 
 export type Device = {
   name: string;
+  model: string;
   icon: string;
   room: string;
   isActive: boolean;

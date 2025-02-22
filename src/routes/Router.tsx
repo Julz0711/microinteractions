@@ -80,10 +80,6 @@ function PageWrapper({
     (state: AppState) => state.app.hasMicrointeractions
   );
 
-  useEffect(() => {
-    console.log("PageWrapper received showNewButton:", showNewButton);
-  }, [showNewButton]);
-
   return (
     <motion.div
       key={location.pathname}

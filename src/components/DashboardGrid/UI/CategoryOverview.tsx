@@ -24,7 +24,7 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
       <div
         className={twMerge(
           "text-[11px]  font-bold w-full",
-          activeDevices > 0 ? "text-light" : getTextColor(props.thisCategory)
+          activeDevices > 0 ? "text-light" : "text-dark"
         )}
       >
         {getCategoryName(props.thisCategory)}

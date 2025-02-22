@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Device, Room } from "../types/types";
-import { getColor, getRoomName } from "../helpers/helpers";
+import { getColor, getRoomName, getTextColor } from "../helpers/helpers";
 import Lottie from "react-lottie";
 import toggleLottie from "../assets/lottie/toggle_v4.json";
 import { twMerge } from "tailwind-merge";
@@ -124,14 +124,14 @@ const DevicePreview = ({
       <div
         className={`${
           hasToggle ? "absolute top-3 left-3" : ""
-        } text-light rounded-full ${
-          isBoxActive ? getColor(device.category) : "bg-dark"
-        } ${isSmall ? "p-1" : "p-2"}`}
+        } text-light rounded-full ${isBoxActive ? "bg-light" : "bg-uwu"} ${
+          isSmall ? "p-1" : "p-2"
+        }`}
       >
         <div className="z-90">
           <DynamicIcon
             iconName={device.icon}
-            color="text-light"
+            color={"text-dark"}
             size={isSmall ? "15" : "20"}
           />
         </div>

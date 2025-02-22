@@ -4,7 +4,7 @@ import DottedArrowDown from "../assets/icons/DottedArrowDown.svg";
 
 export function NoDevicesPlaceholder() {
   return (
-    <div className="w-4/5 mx-auto flex flex-col gap-1 py-16 justify-center items-center">
+    <div className="w-4/5 mx-auto flex flex-col gap-1 py-24 justify-center items-center">
       <GlowBoyz isGray={true} />
       <div className="text-lg font-bold mt-16">
         Noch keine Geräte registriert

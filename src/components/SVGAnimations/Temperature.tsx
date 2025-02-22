@@ -17,7 +17,6 @@ export function Temperature(props: TemperatureProps) {
 
   useEffect(() => {
     sethasActiveDevices(activeDevices > 0);
-    console.log("Active devices: ", activeDevices);
   }, [room, activeDevices]);
 
   return (
