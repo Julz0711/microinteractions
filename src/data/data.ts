@@ -129,25 +129,25 @@ export const scenes = [
     icon: "Controller",
     name: "Gaming",
     isActive: true,
-    color: "bg-green",
+    color: "green",
   },
   {
     icon: "Laptop",
     name: "Home Office",
     isActive: true,
-    color: "bg-yellow",
+    color: "yellow",
   },
   {
     icon: "Laptop",
     name: "TV Abend",
     isActive: false,
-    color: "bg-purple",
+    color: "purple",
   },
   {
     icon: "Moon",
     name: "Gute Nacht",
     isActive: true,
-    color: "bg-blue",
+    color: "blue",
   },
 ];
 
@@ -157,13 +157,13 @@ export const schedules = [
     name: "Morgenroutine Mo-Fr",
     isActive: true,
     additionalInfo: "3 Räume, 11 Geräte",
-    color: "bg-yellow",
+    color: "yellow",
   },
   {
     icon: "Sun",
     name: "Morgenroutine Sa-So",
     isActive: true,
     additionalInfo: "2 Räume, 8 Geräte",
-    color: "bg-orange",
+    color: "orange",
   },
 ];

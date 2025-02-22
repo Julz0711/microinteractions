@@ -124,15 +124,13 @@ const DevicePreview = ({
       <div
         className={`${
           hasToggle ? "absolute top-3 left-3" : ""
-        } text-light rounded-full ${isBoxActive ? "bg-light" : "bg-uwu"} ${
-          isSmall ? "p-1" : "p-2"
-        }`}
+        } text-light rounded-full`}
       >
         <div className="z-90">
           <DynamicIcon
             iconName={device.icon}
-            color={"text-dark"}
-            size={isSmall ? "15" : "20"}
+            color={isBoxActive ? getTextColor(device.category) : "text-black"}
+            size={isSmall ? "16" : "25"}
           />
         </div>
       </div>

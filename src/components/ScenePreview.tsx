@@ -45,14 +45,13 @@ const ScenePreview = ({ scene }: ScenePreviewProps) => {
           : ""
       } ${isBoxActive ? "shadow-active bg-light" : "bg-inactive"}`}
     >
-      <div
-        className={twMerge(
-          "rounded-full p-2",
-          isBoxActive ? scene.color : "bg-dark"
-        )}
-      >
+      <div className={twMerge("rounded-full p-1")}>
         <div className="z-90">
-          <DynamicIcon iconName={scene.icon} color="text-light" size={"20"} />
+          <DynamicIcon
+            iconName={scene.icon}
+            color={isBoxActive ? `text-${scene.color}` : "text-dark"}
+            size={"25"}
+          />
         </div>
       </div>
       <span>{scene.name}</span>
