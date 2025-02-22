@@ -7,6 +7,7 @@ type Props = {
   leftIcon?: React.ReactNode;
   headline: string;
   metaDescription: string;
+  metaDescriptionDark?: boolean;
   rightIcon?: React.ReactNode;
   rightIconBg?: boolean;
   rightIconLink?: string;
@@ -18,6 +19,7 @@ export const TopContextBar = ({
   leftIconClick,
   headline,
   metaDescription,
+  metaDescriptionDark = false,
   rightIcon,
   rightIconBg = false,
   rightIconLink = undefined,
@@ -45,7 +47,11 @@ export const TopContextBar = ({
         ) : null}
 
         <div className="text-lg font-bold">{headline}</div>
-        <p className="text-meta text-gray-500">{metaDescription}</p>
+        <p
+          className={twMerge(metaDescriptionDark ? "text-dark" : "text-meta ")}
+        >
+          {metaDescription}
+        </p>
         {rightIcon ? (
           <button
             onClick={() => {

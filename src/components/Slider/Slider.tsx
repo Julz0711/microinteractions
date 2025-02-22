@@ -20,7 +20,7 @@ export function Slider(props: ISliderProps) {
         max="100"
         value={SliderValue}
         className={twMerge(
-          "border-0 shadow-2xl w-80 left-1/2 top-1/2 absolute overflow-hidden cursor-row-resize",
+          "border-0 shadow-2xl w-80 left-1/2 top-1/2 absolute cursor-row-resize",
           props.hasGradient ? "gradient" : "solid"
         )}
         onChange={handleSliderChange}

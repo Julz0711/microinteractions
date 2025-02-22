@@ -43,10 +43,11 @@ export function DeviceOverlay() {
   return (
     <>
       {hierarchy === HierarchyStep.Device && device && (
-        <div className="fixed w-full h-full top-0 left-0 z-100 px-4">
+        <div className="fixed w-full h-full top-0 left-0 z-100 px-4 gap-8 flex flex-col">
           <TopContextBar
             headline={device.name}
             metaDescription={device.model}
+            metaDescriptionDark={true}
             rightIcon="Options"
             rightIconBg={true}
             leftIcon="ChevronLeft"
