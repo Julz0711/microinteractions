@@ -2,26 +2,42 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setHierarchy, setCategory } from "../../../store/reducer";
 import { AppState } from "../../../store/store";
-import { HierarchyStep } from "../../../types/dashboard.types";
+import { Category, HierarchyStep } from "../../../types/dashboard.types";
 import { TopContextBar } from "../../TopContextBar";
 import { useState } from "react";
+import { LightsComponent } from "../../DeviceSettings/LightsComponent";
+import { AirComponent } from "../../DeviceSettings/AirComponent";
+import { EntertainmentComponent } from "../../DeviceSettings/EntertainmentComponent";
+import { HeatComponent } from "../../DeviceSettings/HeatComponent";
+import { HouseholdComponent } from "../../DeviceSettings/HouseholdComponent";
 
-export interface IDeviceOverlayProps {}
-
-export function DeviceOverlay(props: IDeviceOverlayProps) {
+export function DeviceOverlay() {
   const dispatch = useDispatch();
 
   const hierarchy = useSelector((state: AppState) => state.app.hierarchy);
+  const category = useSelector((state: AppState) => state.app.category);
   const device = useSelector((state: AppState) => state.app.device);
-  const [SliderValue, setSliderValue] = useState(25);
 
   const handleCloseDevice = () => {
     dispatch(setHierarchy(HierarchyStep.CategoryGrid));
     setCategory(null);
   };
 
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderValue(Number(e.target.value));
+  const renderCategoryComponent = () => {
+    switch (category) {
+      case Category.Lights:
+        return <LightsComponent />;
+      case Category.Heat:
+        return <HeatComponent />;
+      case Category.Entertainment:
+        return <EntertainmentComponent />;
+      case Category.Air:
+        return <AirComponent />;
+      case Category.Household:
+        return <HouseholdComponent />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -36,22 +52,7 @@ export function DeviceOverlay(props: IDeviceOverlayProps) {
             leftIcon="ChevronLeft"
             leftIconClick={() => handleCloseDevice()}
           />
-          <input
-            type="range"
-            min={0}
-            max="100"
-            value={SliderValue}
-            className="range"
-            step="25"
-            onChange={handleSliderChange} // Handle slider change
-          />
-          <div className="range flex w-full justify-between px-2 text-xs">
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-            <span>|</span>
-          </div>
+          {renderCategoryComponent()}
         </div>
       )}
     </>

@@ -291,7 +291,7 @@ const DeviceRegistration = () => {
       {currentStep < 5 ? (
         <>
           <TopContextBar
-            leftIcon={"Bluetooth"}
+            leftIcon={"ChevronLeft"}
             leftIconClick={currentStep > 1 ? handleBack : undefined}
             headline={"Gerät gefunden"}
             metaDescription={"Neues Gerät hinzufügen"}

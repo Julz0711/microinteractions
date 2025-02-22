@@ -55,7 +55,7 @@ export const TopContextBar = ({
             }}
             className={twMerge(
               "absolute right-0 top-0 flex items-center justify-center p-2 rounded-md w-12 h-12 cursor-pointer",
-              rightIconBg ? "bg-dark text-light" : "text-uwu"
+              rightIconBg ? "bg-light text-dark" : "text-uwu"
             )}
           >
             {typeof rightIcon === "string" && (

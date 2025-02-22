@@ -80,7 +80,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       case Category.Household:
         setSize(
           hasMicrointeractions
-            ? { width: 90, height: 90 }
+            ? { width: 110, height: 110 }
             : { width: 160, height: 120 }
         );
         setflexClasses("flex justify-start");

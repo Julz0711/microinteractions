@@ -56,6 +56,22 @@ export function Overlay(props: IOverlayProps) {
           style={{ width: "100%" }}
         />
       )}
+
+      {(props.isMenuOpen || hierarchy == HierarchyStep.Device) && (
+        <motion.div
+          className={twMerge(
+            "fixed h-full w-full inset-0  bg-light/30 backdrop-blur-[15px]",
+            hierarchy == HierarchyStep.Device
+              ? "backdrop-blur-[40px] z-90 " + fadeColor
+              : "z-80"
+          )}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          style={{ width: "100%" }}
+        />
+      )}
     </AnimatePresence>
   );
 }
