@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Device, Room } from "../types/types";
-import { getColor, getRoomName, getTextColor } from "../helpers/helpers";
+import { getRoomName, getTextColor } from "../helpers/helpers";
 import Lottie from "react-lottie";
 import toggleLottie from "../assets/lottie/toggle_v4.json";
 import { twMerge } from "tailwind-merge";

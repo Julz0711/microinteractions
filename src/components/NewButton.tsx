@@ -3,6 +3,7 @@ import { AppState } from "../store/store";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import { twMerge } from "tailwind-merge";
+import DynamicIcon from "./DynamicIcon";
 
 type Props = {
   isMenuOpen: boolean;
@@ -48,7 +49,14 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
           isMenuOpen ? "bg-dark hover:bg-dark" : "bg-red hover:bg-purple"
         }`}
       >
-        New
+        <div
+          className={twMerge(
+            isMenuOpen ? "rotate-45" : "rotate-0",
+            "duration-200"
+          )}
+        >
+          <DynamicIcon iconName={"Close"} />
+        </div>
       </button>
       {isMenuOpen && (
         <div className="z-50 absolute bottom-16 left-1/2 transform -translate-x-1/2 flex gap-2">

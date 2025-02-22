@@ -1,5 +1,5 @@
-import { Routes, Route, useLocation } from "react-router-dom";
-import { ReactNode, Suspense, lazy, useEffect, useRef } from "react";
+import { Routes, Route } from "react-router-dom";
+import { ReactNode, Suspense, lazy } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
@@ -115,32 +115,9 @@ function PageWrapper({
   );
 }
 
-const AppRouter = ({
-  onScroll,
-  showNewButton,
-}: {
-  onScroll: (scrollY: number) => void;
-  showNewButton: boolean;
-}) => {
-  const location = useLocation();
-  const scrollableRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollableRef.current) {
-        onScroll(scrollableRef.current.scrollTop);
-      }
-    };
-
-    const scrollableElement = scrollableRef.current;
-    scrollableElement?.addEventListener("scroll", handleScroll);
-    return () => {
-      scrollableElement?.removeEventListener("scroll", handleScroll);
-    };
-  }, [onScroll]);
-
+const AppRouter = ({ showNewButton }: { showNewButton: boolean }) => {
   return (
-    <div ref={scrollableRef} className="overflow-hidden w-full h-full">
+    <div className="overflow-hidden w-full h-full">
       <Suspense fallback={<LoadingSpinner />}>
         <AnimatePresence mode="wait">
           <Routes>

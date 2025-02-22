@@ -1,7 +1,7 @@
-import DevicePreview from '../components/DevicePreview';
-import { devices } from '../data/data';
-import { getRoomName } from '../helpers/helpers';
-import { Room } from '../types/types';
+import DevicePreview from "../components/DevicePreview";
+import { devices } from "../data/data";
+import { getRoomName } from "../helpers/helpers";
+import { Room } from "../types/types";
 
 const Devices = () => {
   const groupedDevices = devices.reduce(
@@ -16,7 +16,7 @@ const Devices = () => {
   );
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 pt-24">
       {Object.entries(groupedDevices).map(([room, devices]) => (
         <div key={room}>
           <h2 className="font-bold">{getRoomName(room as Room)}</h2>

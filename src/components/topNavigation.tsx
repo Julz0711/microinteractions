@@ -17,7 +17,7 @@ export const TopNavigation = ({ isScrolled }: { isScrolled: boolean }) => {
     <nav
       className={twMerge(
         "fixed top-0 left-0 w-full pt-8 pb-4 z-50 backdrop-blur-sm bg-light duration-150",
-        isScrolled ? "shadow-[0_0_32px_rgba(0,0,0,0.25)]" : ""
+        isScrolled ? "shadow-[0_0_32px_rgba(0,0,0,0.25)" : ""
       )}
     >
       <div className="px-800 flex justify-between items-center">
