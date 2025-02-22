@@ -204,7 +204,27 @@ export function CategoryStats(props: ICategoryStatsProps) {
         </div>
       );
     case Category.Household:
-      return <span className="p-4 rounded-full"></span>;
+      return (
+        <span className="p-1 rounded-full">
+          {hasActiveDevices ? (
+            <></>
+          ) : (
+            <>
+              {hasMicrointeractions ? (
+                <div
+                  className={twMerge(
+                    "p-2 rounded-full flex items-center justify-center bg-dark"
+                  )}
+                >
+                  <DynamicIcon iconName={"Pluh"} color="text-light" />
+                </div>
+              ) : (
+                <></>
+              )}
+            </>
+          )}
+        </span>
+      );
     default:
       return <></>;
   }
