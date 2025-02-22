@@ -1,7 +1,7 @@
 input[type="range"].solid {
   -webkit-appearance: none;
   background-color: #ffffff44;
-  height: 3.5rem;
+  height: 5rem;
   border-radius: 1rem;
   overflow: hidden;
   transform: translate(-50%, -50%) rotate(-90deg);
@@ -21,7 +21,7 @@ input[type="range"].solid {
 input[type="range"].gradient {
   -webkit-appearance: none;
   background: linear-gradient(to right, #cdf1eb, #fafaf9, #ff9233);
-  height: 3.5rem;
+  height: 5rem;
   transform: translate(-50%, -50%) rotate(-90deg);
   border-radius: 1rem;
   padding: 0 20px;
