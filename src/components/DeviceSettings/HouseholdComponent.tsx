@@ -69,7 +69,7 @@ const HouseholdComponent = (props: IHouselComponentProps) => {
                 isHorizontal={true}
                 size={"100"}
                 clickable={false}
-                defaultValue={45}
+                value={45}
                 onChange={() => undefined}
               />
               <span className="text-blue font-bold">41% erledigt</span>

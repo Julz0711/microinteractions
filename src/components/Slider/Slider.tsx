@@ -1,25 +1,26 @@
 import { twMerge } from "tailwind-merge";
 import "./Slider.css";
 import { useState } from "react";
+import DynamicIcon from "../DynamicIcon";
 
 export interface ISliderProps {
   hasGradient: boolean;
   isHorizontal?: boolean;
   size: string;
   clickable: boolean;
-  defaultValue?: number;
+  value?: number;
   className?: string;
   isPx?: boolean;
   step?: number;
+  hasIcon?: boolean;
+  icon?: string;
+  iconColor?: string;
   onChange: (value: number) => void;
 }
 
 export function Slider(props: ISliderProps) {
-  const [SliderValue, setSliderValue] = useState(props.defaultValue);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChange(Number(event.target.value));
-    setSliderValue(Number(event.target.value));
   };
   return (
     <div
@@ -39,7 +40,7 @@ export function Slider(props: ISliderProps) {
         step={props.step}
         min={0}
         max={100}
-        value={SliderValue}
+        value={props.value}
         className={twMerge(
           props.className,
           props.isHorizontal
@@ -55,6 +56,15 @@ export function Slider(props: ISliderProps) {
         }
         onChange={props.clickable ? handleChange : undefined}
       />
+      {props.hasIcon && (
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-4">
+          <DynamicIcon
+            iconName={props.icon || ""}
+            size={"32"}
+            color={props.iconColor}
+          />
+        </div>
+      )}
     </div>
   );
 }
