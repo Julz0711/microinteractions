@@ -9,6 +9,8 @@ export interface ISliderProps {
   clickable: boolean;
   defaultValue?: number;
   className?: string;
+  isPx?: boolean;
+  step?: number;
   onChange: (value: number) => void;
 }
 
@@ -24,12 +26,17 @@ export function Slider(props: ISliderProps) {
       className={twMerge("relative w-20")}
       style={
         props.isHorizontal
-          ? { width: `${props.size}px` }
-          : { height: `${props.size}px` }
+          ? props.isPx
+            ? { width: `${props.size}px` }
+            : { width: `${props.size}%` }
+          : props.isPx
+          ? { height: `${props.size}px` }
+          : { height: `${props.size}%` }
       }
     >
       <input
         type="range"
+        step={props.step}
         min={0}
         max={100}
         value={SliderValue}
@@ -38,10 +45,14 @@ export function Slider(props: ISliderProps) {
           props.isHorizontal
             ? "left-0 top-0 w-full cursor-default"
             : `absolute -translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2`,
-          "border-0 shadow-2xl  h-20",
+          "border-0 shadow-2xl h-20",
           props.hasGradient ? "gradient" : "solid"
         )}
-        style={{ width: `${props.size}px` }}
+        style={
+          props.isPx
+            ? { width: `${props.size}px`, height: "80px" }
+            : { width: `${props.size}%`, height: "48px" }
+        }
         onChange={props.clickable ? handleChange : undefined}
       />
     </div>

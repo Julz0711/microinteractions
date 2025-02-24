@@ -106,7 +106,7 @@ const DevicePreview = ({
             : "h-32 items-end py-4 px-4"
           : isSmall
           ? "items-center pl-2 pr-3 py-2 cursor-pointer gap-2"
-          : "items-center pl-3 pr-4 py-3 cursor-pointer gap-3"
+          : "items-center pl-3 pr-4 py-3 cursor-pointer gap-2"
       } font-bold rounded-md select-none ${
         hasMicrointeractions
           ? isBoxActive

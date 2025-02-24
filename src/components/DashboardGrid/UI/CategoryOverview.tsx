@@ -40,22 +40,26 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
           activeDevices > 0 ? "opacity-60" : "opacity-100"
         )}
       >
-        <div
-          className={twMerge(
-            "text-light text-sm font-bold",
-            activeDevices > 0 ? "text-light" : "text-uwu"
-          )}
-        >
-          {activeDevices}/{allDevices}
-        </div>
-        <div
-          className={twMerge(
-            "text-xs font-bold",
-            activeDevices > 0 ? "text-light" : "text-uwu "
-          )}
-        >
-          Aktiv
-        </div>
+        {allDevices > 0 && (
+          <>
+            <div
+              className={twMerge(
+                "text-light text-sm font-bold",
+                activeDevices > 0 ? "text-light" : "text-uwu"
+              )}
+            >
+              {activeDevices}/{allDevices}
+            </div>
+            <div
+              className={twMerge(
+                "text-xs font-bold",
+                activeDevices > 0 ? "text-light" : "text-uwu "
+              )}
+            >
+              Aktiv
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -8,7 +8,6 @@ import Rhapsody from "../../../assets/bohemian_rhapsody.jpg";
 import { Temperature } from "../../SVGAnimations/Temperature";
 import { useActiveDevices } from "../../../Hooks/useActiveDevices";
 import { useEffect, useState } from "react";
-import { devices } from "../../../data/data";
 
 export interface ICategoryStatsProps {
   category: Category;
@@ -61,14 +60,22 @@ export function CategoryStats(props: ICategoryStatsProps) {
               <Temperature category={Category.Heat} />
             </div>
           ) : (
-            <div
-              className={twMerge(
-                "p-4 rounded-full flex items-center justify-center",
-                props.devices > 0 ? "bg-dark" : "bg-uwu"
+            <>
+              {props.devices > 0 ? (
+                <div
+                  className={twMerge(
+                    "p-4 rounded-full flex items-center justify-center",
+                    props.devices > 0 ? "bg-dark" : "bg-uwu"
+                  )}
+                >
+                  <DynamicIcon iconName={"Temp"} color="text-light" />
+                </div>
+              ) : (
+                <span className="text-uwu text-xs font-bold text-center">
+                  Keine Geräte registriert
+                </span>
               )}
-            >
-              <DynamicIcon iconName={"Temp"} color="text-light" />
-            </div>
+            </>
           )}
         </>
       ) : (
@@ -109,14 +116,22 @@ export function CategoryStats(props: ICategoryStatsProps) {
               </div>
             </>
           ) : (
-            <div
-              className={twMerge(
-                "p-4 rounded-full flex items-center justify-center",
-                props.devices > 0 ? "bg-dark" : "bg-uwu"
+            <>
+              {props.devices > 0 ? (
+                <div
+                  className={twMerge(
+                    "p-4 rounded-full flex items-center justify-center",
+                    props.devices > 0 ? "bg-dark" : "bg-uwu"
+                  )}
+                >
+                  <DynamicIcon iconName={"Entertainment"} color="text-light" />
+                </div>
+              ) : (
+                <span className="text-uwu text-xs font-bold text-center">
+                  Keine Geräte registriert
+                </span>
               )}
-            >
-              <DynamicIcon iconName={"Controller"} color="text-light" />
-            </div>
+            </>
           )}
         </>
       ) : (
@@ -182,14 +197,22 @@ export function CategoryStats(props: ICategoryStatsProps) {
               </div>
             </>
           ) : (
-            <div
-              className={twMerge(
-                "p-4 rounded-full flex items-center justify-center",
-                props.devices > 0 ? "bg-dark" : "bg-uwu"
+            <>
+              {props.devices > 0 ? (
+                <div
+                  className={twMerge(
+                    "p-4 rounded-full flex items-center justify-center",
+                    props.devices > 0 ? "bg-dark" : "bg-uwu"
+                  )}
+                >
+                  <DynamicIcon iconName={"Air"} color="text-light" />
+                </div>
+              ) : (
+                <span className="text-uwu text-xs font-bold text-center">
+                  Keine Geräte registriert
+                </span>
               )}
-            >
-              <DynamicIcon iconName={"Air"} color="text-light" />
-            </div>
+            </>
           )}
         </div>
       ) : (
@@ -214,9 +237,9 @@ export function CategoryStats(props: ICategoryStatsProps) {
       );
     case Category.Household:
       return (
-        <span className="p-1 rounded-full">
+        <div className="flex gap-2 justify-center items-center">
           <>
-            {hasMicrointeractions ? (
+            {hasMicrointeractions && props.devices > 0 ? (
               <div
                 className={twMerge(
                   "p-2 rounded-full flex items-center justify-center",
@@ -233,10 +256,12 @@ export function CategoryStats(props: ICategoryStatsProps) {
                 />
               </div>
             ) : (
-              <></>
+              <span className="text-uwu text-[10px] font-bold text-center">
+                Keine Geräte registriert
+              </span>
             )}
           </>
-        </span>
+        </div>
       );
     default:
       return <></>;

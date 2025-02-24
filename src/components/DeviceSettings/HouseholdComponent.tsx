@@ -2,7 +2,7 @@ import { ReactSVG } from "react-svg";
 import Ellipse from "../../assets/img/EllipseCut.svg";
 import DynamicIcon from "../DynamicIcon";
 import { Slider } from "../Slider/Slider";
-import styles from "./DeviceComponent.module.css";
+import styles from "./HouseholdComponent.module.css";
 import { twMerge } from "tailwind-merge";
 import Button from "../Button";
 
@@ -67,7 +67,7 @@ const HouseholdComponent = (props: IHouselComponentProps) => {
                 className={styles.solid}
                 hasGradient={false}
                 isHorizontal={true}
-                size={"full"}
+                size={"100"}
                 clickable={false}
                 defaultValue={45}
                 onChange={() => undefined}
