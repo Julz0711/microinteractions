@@ -14,7 +14,6 @@ export const DeviceGrid = (props: DeviceGridProps) => {
   const filteredDevices = devices.filter(
     (device) => device.category === category && device.room === room
   );
-
   return (
     <div className="absolute w-[276px] h-80 left-1/2 bottom-24 -translate-x-1/2">
       {filteredDevices.map((device, index) => (

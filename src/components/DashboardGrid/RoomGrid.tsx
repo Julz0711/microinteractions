@@ -27,6 +27,12 @@ export const RoomGrid: React.FC<RoomGridProps> = ({
   );
 
   useEffect(() => {
+    return () => {
+      dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
+    };
+  });
+
+  useEffect(() => {
     if (isLoaded) {
       setIsVisible(false);
       const timeout = setTimeout(
