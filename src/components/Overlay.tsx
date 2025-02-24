@@ -13,31 +13,39 @@ export function Overlay(props: IOverlayProps) {
   const hierarchy = useSelector((state: AppState) => state.app.hierarchy);
   const category = useSelector((state: AppState) => state.app.category);
   const isOn = useSelector((state: AppState) => state.app.isOn);
-  const [fadeColor, setfadeColor] = useState("bg-light/30");
+  const [fadeColor, setFadeColor] = useState("rgba(255, 255, 255, 0.3)");
+
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
 
   useEffect(() => {
-    if (hierarchy == HierarchyStep.Device && isOn) {
-      switch (category) {
-        case Category.Lights:
-          setfadeColor("bg-orange/25");
-          break;
-        case Category.Heat:
-          setfadeColor("bg-red/25");
-          break;
-        case Category.Entertainment:
-          setfadeColor("bg-purple/25");
-          break;
-        case Category.Air:
-          setfadeColor("bg-green/25");
-          break;
-        case Category.Household:
-          setfadeColor("bg-blue/25");
-          break;
-        default:
-          setfadeColor("bg-light/25");
+    if (hasMicrointeractions) {
+      if (hierarchy == HierarchyStep.Device && isOn) {
+        switch (category) {
+          case Category.Lights:
+            setFadeColor("rgba(239, 133, 85, 0.25)");
+            break;
+          case Category.Heat:
+            setFadeColor("rgba(190, 55, 95, 0.25)");
+            break;
+          case Category.Entertainment:
+            setFadeColor("rgba(96, 36, 108, 0.25)");
+            break;
+          case Category.Air:
+            setFadeColor("rgba(28, 165, 142, 0.25)");
+            break;
+          case Category.Household:
+            setFadeColor("rgba(38, 51, 129, 0.25)");
+            break;
+          default:
+            setFadeColor("rgba(255, 255, 255, 0.25)");
+        }
+      } else {
+        setFadeColor("rgba(255, 255, 255, 0.05)");
       }
     } else {
-      setfadeColor("bg-light/5");
+      setFadeColor("rgba(255, 255, 255, 0.3)"); // always white
     }
   }, [category, hierarchy, isOn]);
 
@@ -46,15 +54,17 @@ export function Overlay(props: IOverlayProps) {
       {(props.isMenuOpen || hierarchy == HierarchyStep.Device) && (
         <motion.div
           className={twMerge(
-            "fixed h-full w-full inset-0  bg-light/30 backdrop-blur-[2px]",
+            "fixed h-full w-full inset-0 backdrop-blur-[2px]",
             hierarchy == HierarchyStep.Device
-              ? "backdrop-blur-[20px] z-90 " + fadeColor
+              ? "backdrop-blur-[20px] z-90"
               : "z-80"
           )}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          initial={hasMicrointeractions ? { opacity: 0 } : { opacity: 1 }}
+          animate={{ opacity: 1, backgroundColor: fadeColor }}
+          exit={hasMicrointeractions ? { opacity: 0 } : { opacity: 1 }}
+          transition={
+            hasMicrointeractions ? { duration: 0.2 } : { duration: 0 }
+          }
           style={{ width: "100%" }}
         />
       )}
@@ -62,15 +72,17 @@ export function Overlay(props: IOverlayProps) {
       {(props.isMenuOpen || hierarchy == HierarchyStep.Device) && (
         <motion.div
           className={twMerge(
-            "fixed h-full w-full inset-0  bg-light/30 backdrop-blur-[15px]",
+            "fixed h-full w-full inset-0 backdrop-blur-[15px]",
             hierarchy == HierarchyStep.Device
-              ? "backdrop-blur-[40px] z-90 " + fadeColor
+              ? "backdrop-blur-[40px] z-90"
               : "z-80"
           )}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          initial={hasMicrointeractions ? { opacity: 0 } : { opacity: 1 }}
+          animate={{ opacity: 1, backgroundColor: fadeColor }}
+          exit={hasMicrointeractions ? { opacity: 0 } : { opacity: 1 }}
+          transition={
+            hasMicrointeractions ? { duration: 0.2 } : { duration: 0 }
+          }
           style={{ width: "100%" }}
         />
       )}

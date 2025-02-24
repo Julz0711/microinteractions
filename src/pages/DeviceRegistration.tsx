@@ -21,8 +21,16 @@ import { EmblaOptionsType } from "embla-carousel";
 import { AnimatePresence, motion } from "framer-motion";
 
 const IntroText = ({ header, desc }: { header: string; desc: string }) => {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
   return (
-    <div className="text-center w-4/5">
+    <div
+      className={twMerge(
+        "w-4/5",
+        hasMicrointeractions ? "text-center" : "text-left"
+      )}
+    >
       <h1>{header}</h1>
       <p>{desc}</p>
     </div>
@@ -75,7 +83,9 @@ const DeviceRegistration = () => {
       className={twMerge(
         "w-full rounded-md cursor-pointer px-6 py-4 font-bold duration-300",
         activeCategoryIndex === index
-          ? twMerge(categoryColor, "text-light")
+          ? hasMicrointeractions
+            ? twMerge(categoryColor, "text-light")
+            : "bg-dark text-light"
           : "bg-inactive text-dark"
       )}
       onClick={() => handleCategoryClick(index, category)}
@@ -146,7 +156,7 @@ const DeviceRegistration = () => {
                 "Benutze den vorgegebenen Namen oder erstelle einen eigenen"
               }
             />
-            <div className="relative w-3/4">
+            <div className="relative w-4/5">
               <InputField
                 type="text"
                 name="deviceName"
@@ -177,18 +187,32 @@ const DeviceRegistration = () => {
               header={"Kategorie"}
               desc={"Zu welcher Kategorie gehört Dein Gerät? "}
             />
-            {/*
-              <Scrolldown
-                color={categoryColor}
-                items={getAllCategoryNames()}
-                onSelect={(item: string) => handleSelect("category", item)}
+            {hasMicrointeractions ? (
+              <EmblaCarousel
+                width="flex-[0_0_auto]"
+                slides={CATEGORY_SLIDES}
+                options={OPTIONS}
               />
-            */}
-            <EmblaCarousel
-              width="flex-[0_0_auto]"
-              slides={CATEGORY_SLIDES}
-              options={OPTIONS}
-            />
+            ) : (
+              <div className="w-4/5 flex flex-col gap-2">
+                {getAllCategoryNames().map((category, index) => (
+                  <div key={index} className="font-bold w-full">
+                    <input
+                      type="radio"
+                      id={`category-${index}`}
+                      name="category"
+                      value={category}
+                      checked={activeCategoryIndex === index}
+                      onChange={() => handleCategoryClick(index, category)}
+                      className="mr-2 accent-red"
+                    />
+                    <label htmlFor={`category-${index}`} className="text-dark">
+                      {category}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         );
       case 3:
@@ -198,18 +222,32 @@ const DeviceRegistration = () => {
               header={"Raumauswahl"}
               desc={"In welchem Raum befindet sich dein Gerät?"}
             />
-            {/*
-              <Scrolldown
-                color={"bg-dark"}
-                items={getAllRoomNames()}
-                onSelect={(item: string) => handleSelect("room", item)}
+            {hasMicrointeractions ? (
+              <EmblaCarousel
+                width="flex-[0_0_auto]"
+                slides={ROOM_SLIDES}
+                options={OPTIONS}
               />
-              */}
-            <EmblaCarousel
-              width="flex-[0_0_auto]"
-              slides={ROOM_SLIDES}
-              options={OPTIONS}
-            />
+            ) : (
+              <div className="w-4/5 flex flex-col gap-2">
+                {getAllRoomNames().map((room, index) => (
+                  <div key={index} className="font-bold w-full">
+                    <input
+                      type="radio"
+                      id={`room-${index}`}
+                      name="room"
+                      value={room}
+                      checked={activeRoomIndex === index}
+                      onChange={() => handleRoomClick(index, room)}
+                      className="mr-2 accent-red"
+                    />
+                    <label htmlFor={`room-${index}`} className="text-dark">
+                      {room}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         );
       case 4:
@@ -300,12 +338,16 @@ const DeviceRegistration = () => {
             <div
               className={twMerge(
                 "p-4 rounded-lg grow-0 flex flex-col items-center gap-0 duration-300",
-                currentStep === 1 ? "bg-inactive" : categoryColor,
+                currentStep === 1
+                  ? "bg-inactive"
+                  : hasMicrointeractions
+                  ? categoryColor
+                  : "bg-dark",
                 !formData.category && "bg-uwu"
               )}
             >
               <img src={Homepod} className="w-2/3"></img>
-              {currentStep > 1 && (
+              {hasMicrointeractions && currentStep > 1 && (
                 <div className="w-full text-center font-bold text-light">
                   {formData.deviceName}
                 </div>
@@ -321,7 +363,7 @@ const DeviceRegistration = () => {
                 <AnimatePresence mode="popLayout" custom={direction}>
                   <motion.div
                     key={currentStep}
-                    variants={variants}
+                    variants={hasMicrointeractions ? variants : undefined}
                     initial="enter"
                     animate="center"
                     exit="exit"
