@@ -29,7 +29,7 @@ export function LightsComponent() {
           hasGradient={true}
           size={"60"}
           clickable={true}
-          onChange={handleSliderChange}
+          onChange={() => {}}
         />
       </div>
     </>
