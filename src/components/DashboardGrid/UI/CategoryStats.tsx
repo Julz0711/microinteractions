@@ -52,7 +52,7 @@ export function CategoryStats(props: ICategoryStatsProps) {
         <>
           {hasActiveDevices ? (
             <div className="flex items-center justify-center w-full pt-2 relative">
-              <Temperature category={Category.Entertainment} />
+              <Temperature category={Category.Heat} />
             </div>
           ) : (
             <div
@@ -60,7 +60,7 @@ export function CategoryStats(props: ICategoryStatsProps) {
                 "p-4 rounded-full flex items-center justify-center bg-dark"
               )}
             >
-              <DynamicIcon iconName={"Controller"} color="text-light" />
+              <DynamicIcon iconName={"Temp"} color="text-light" />
             </div>
           )}
         </>
