@@ -8,9 +8,11 @@ import Rhapsody from "../../../assets/bohemian_rhapsody.jpg";
 import { Temperature } from "../../SVGAnimations/Temperature";
 import { useActiveDevices } from "../../../Hooks/useActiveDevices";
 import { useEffect, useState } from "react";
+import { devices } from "../../../data/data";
 
 export interface ICategoryStatsProps {
   category: Category;
+  devices: number;
 }
 
 export function CategoryStats(props: ICategoryStatsProps) {
@@ -30,7 +32,11 @@ export function CategoryStats(props: ICategoryStatsProps) {
         <div
           className={twMerge(
             "p-4 rounded-full flex items-center justify-center",
-            hasActiveDevices ? "bg-light" : "bg-dark"
+            hasActiveDevices
+              ? "bg-light"
+              : props.devices > 0
+              ? "bg-dark"
+              : "bg-uwu"
           )}
         >
           <DynamicIcon
@@ -57,7 +63,8 @@ export function CategoryStats(props: ICategoryStatsProps) {
           ) : (
             <div
               className={twMerge(
-                "p-4 rounded-full flex items-center justify-center bg-dark"
+                "p-4 rounded-full flex items-center justify-center",
+                props.devices > 0 ? "bg-dark" : "bg-uwu"
               )}
             >
               <DynamicIcon iconName={"Temp"} color="text-light" />
@@ -104,7 +111,8 @@ export function CategoryStats(props: ICategoryStatsProps) {
           ) : (
             <div
               className={twMerge(
-                "p-4 rounded-full flex items-center justify-center bg-dark"
+                "p-4 rounded-full flex items-center justify-center",
+                props.devices > 0 ? "bg-dark" : "bg-uwu"
               )}
             >
               <DynamicIcon iconName={"Controller"} color="text-light" />
@@ -176,7 +184,8 @@ export function CategoryStats(props: ICategoryStatsProps) {
           ) : (
             <div
               className={twMerge(
-                "p-4 rounded-full flex items-center justify-center bg-dark"
+                "p-4 rounded-full flex items-center justify-center",
+                props.devices > 0 ? "bg-dark" : "bg-uwu"
               )}
             >
               <DynamicIcon iconName={"Air"} color="text-light" />
@@ -211,7 +220,11 @@ export function CategoryStats(props: ICategoryStatsProps) {
               <div
                 className={twMerge(
                   "p-2 rounded-full flex items-center justify-center",
-                  hasActiveDevices ? "bg-light" : "bg-dark"
+                  hasActiveDevices
+                    ? "bg-light"
+                    : props.devices > 0
+                    ? "bg-dark"
+                    : "bg-uwu"
                 )}
               >
                 <DynamicIcon

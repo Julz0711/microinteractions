@@ -22,9 +22,6 @@ export function CategoryContent(props: ICategoryContentProps) {
   const activeDevices = useActiveDevices({
     thisCategory: props.thisCategory,
   });
-  const hasMicrointeractions = useSelector(
-    (state: AppState) => state.app.hasMicrointeractions
-  );
 
   return (
     <div

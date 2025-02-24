@@ -33,7 +33,7 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
       >
         {getCategoryName(props.thisCategory)}
       </div>
-      <CategoryStats category={props.thisCategory} />
+      <CategoryStats category={props.thisCategory} devices={allDevices} />
       <div
         className={twMerge(
           "flex gap-1 font-bold w-full justify-end items-center",
