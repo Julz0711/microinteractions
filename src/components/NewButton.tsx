@@ -51,7 +51,7 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
       >
         <div
           className={twMerge(
-            isMenuOpen ? "rotate-45" : "rotate-0",
+            isMenuOpen ? "rotate-0" : "rotate-[-135deg]",
             "duration-200"
           )}
         >

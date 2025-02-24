@@ -8,6 +8,7 @@ interface AppState {
   hierarchy: HierarchyStep;
   room: Room | null;
   device: Device | null;
+  isOn: boolean;
 }
 
 const initialState: AppState = {
@@ -18,6 +19,7 @@ const initialState: AppState = {
   hierarchy: HierarchyStep.SmartHomeGrid,
   room: (localStorage.getItem("room") as Room) || Room.LivingRoom,
   device: null,
+  isOn: true,
 };
 
 const appSlice = createSlice({
@@ -44,6 +46,9 @@ const appSlice = createSlice({
     setDevice(state: AppState, action: PayloadAction<Device | null>) {
       state.device = action.payload;
     },
+    setIsOn(state, action: PayloadAction<boolean>) {
+      state.isOn = action.payload;
+    },
   },
 });
 
@@ -53,5 +58,6 @@ export const {
   setHierarchy,
   setRoom,
   setDevice,
+  setIsOn,
 } = appSlice.actions;
 export const appReducer = appSlice.reducer;

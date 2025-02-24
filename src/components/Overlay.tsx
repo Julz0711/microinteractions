@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from "framer-motion";
-import * as React from "react";
 import { twMerge } from "tailwind-merge";
 import { Category, HierarchyStep } from "../types/dashboard.types";
 import { useSelector } from "react-redux";
@@ -13,31 +12,34 @@ export interface IOverlayProps {
 export function Overlay(props: IOverlayProps) {
   const hierarchy = useSelector((state: AppState) => state.app.hierarchy);
   const category = useSelector((state: AppState) => state.app.category);
+  const isOn = useSelector((state: AppState) => state.app.isOn);
   const [fadeColor, setfadeColor] = useState("bg-light/30");
 
   useEffect(() => {
-    if (hierarchy == HierarchyStep.Device) {
+    if (hierarchy == HierarchyStep.Device && isOn) {
       switch (category) {
         case Category.Lights:
-          setfadeColor("bg-orange/30");
+          setfadeColor("bg-orange/25");
           break;
         case Category.Heat:
-          setfadeColor("bg-red/30");
+          setfadeColor("bg-red/25");
           break;
         case Category.Entertainment:
-          setfadeColor("bg-purple/30");
+          setfadeColor("bg-purple/25");
           break;
         case Category.Air:
-          setfadeColor("bg-green/30");
+          setfadeColor("bg-green/25");
           break;
         case Category.Household:
-          setfadeColor("bg-blue/30");
+          setfadeColor("bg-blue/25");
           break;
         default:
-          setfadeColor("bg-light/30");
+          setfadeColor("bg-light/25");
       }
+    } else {
+      setfadeColor("bg-light/5");
     }
-  }, [category, hierarchy]);
+  }, [category, hierarchy, isOn]);
 
   return (
     <AnimatePresence>
