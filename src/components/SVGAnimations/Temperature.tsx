@@ -23,18 +23,10 @@ export function Temperature(props: TemperatureProps) {
     <>
       <DynamicIcon
         iconName={"Temp"}
-        color={twMerge(
-          "absolute -top-2",
-          hasActiveDevices ? "text-light" : "text-red"
-        )}
+        color={twMerge("absolute -top-2 text-light")}
         size="35px"
       />
-      <span
-        className={twMerge(
-          "text-sm font-bold absolute",
-          hasActiveDevices ? "text-light" : "text-red"
-        )}
-      >
+      <span className={twMerge("text-sm font-bold absolute text-light")}>
         22°C
       </span>
       <svg
@@ -43,12 +35,8 @@ export function Temperature(props: TemperatureProps) {
         viewBox="0 0 250 250"
         className="circular-progress"
       >
-        <circle
-          className={twMerge("bg", hasActiveDevices ? "" : "inactive")}
-        ></circle>
-        <circle
-          className={twMerge("fg", hasActiveDevices ? "" : "inactive")}
-        ></circle>
+        <circle className={twMerge("bg")}></circle>
+        <circle className={twMerge("fg")}></circle>
       </svg>
     </>
   );

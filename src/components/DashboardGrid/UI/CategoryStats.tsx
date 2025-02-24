@@ -206,23 +206,23 @@ export function CategoryStats(props: ICategoryStatsProps) {
     case Category.Household:
       return (
         <span className="p-1 rounded-full">
-          {hasActiveDevices ? (
-            <></>
-          ) : (
-            <>
-              {hasMicrointeractions ? (
-                <div
-                  className={twMerge(
-                    "p-2 rounded-full flex items-center justify-center bg-dark"
-                  )}
-                >
-                  <DynamicIcon iconName={"Pluh"} color="text-light" />
-                </div>
-              ) : (
-                <></>
-              )}
-            </>
-          )}
+          <>
+            {hasMicrointeractions ? (
+              <div
+                className={twMerge(
+                  "p-2 rounded-full flex items-center justify-center",
+                  hasActiveDevices ? "bg-light" : "bg-dark"
+                )}
+              >
+                <DynamicIcon
+                  iconName={"Pluh"}
+                  color={hasActiveDevices ? "text-green" : "text-light"}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+          </>
         </span>
       );
     default:
