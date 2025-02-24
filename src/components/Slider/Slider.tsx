@@ -28,14 +28,14 @@ export function Slider(props: ISliderProps) {
       <input
         type="range"
         min={0}
-        max="100"
+        max={100}
         value={SliderValue}
         className={twMerge(
           props.className,
           props.isHorizontal
-            ? "left-0 top-0 w-full"
-            : `-translate-x-1/2 -translate-y-1/2 -rotate-90 left-1/2 top-1/2 w-${props.size}`,
-          "border-0 shadow-2xl absolute cursor-row-resize h-20",
+            ? "left-0 top-0 w-full cursor-default"
+            : `-translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2 w-${props.size}`,
+          "border-0 shadow-2xl absolute h-20",
           props.hasGradient ? "gradient" : "solid"
         )}
         onChange={props.clickable ? handleChange : undefined}
