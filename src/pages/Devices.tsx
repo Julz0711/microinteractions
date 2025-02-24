@@ -1,10 +1,30 @@
+import { useState } from "react";
 import DevicePreview from "../components/DevicePreview";
+import DynamicIcon from "../components/DynamicIcon";
+import InputField from "../components/InputField";
 import { devices } from "../data/data";
 import { getRoomName } from "../helpers/helpers";
 import { Room } from "../types/types";
 
+const filters = [
+  { name: "Status", selected: "Alle" },
+  { name: "Raum", selected: "Alle" },
+  { name: "Kategorie", selected: "Alle" },
+  { name: "Sortieren", selected: "Raum" },
+];
+
 const Devices = () => {
-  const groupedDevices = devices.reduce(
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredDevices = devices.filter((device) =>
+    device.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const groupedDevices = filteredDevices.reduce(
     (acc: { [key: string]: any[] }, device: any) => {
       if (!acc[device.room]) {
         acc[device.room] = [];
@@ -16,7 +36,32 @@ const Devices = () => {
   );
 
   return (
-    <div className="flex flex-col gap-8 pt-24">
+    <div className="flex flex-col gap-8 pt-26">
+      <div className="flex flex-col gap-4">
+        <InputField
+          type={"text"}
+          icon={"Lupe"}
+          name={"search"}
+          placeholder={"Suchen"}
+          value={searchQuery}
+          change={handleSearchChange}
+          blur={() => {}}
+          isSearch={true}
+        />
+        <div className="flex gap-2 items-center justify-end">
+          {filters.map((filter) => (
+            <div key={filter.name} className="flex gap-1 items-end">
+              <span className="text-[8px] text-uwu font-bold">
+                {filter.name}
+              </span>
+              <span className="text-xs flex font-bold flex-row items-center gap-[1px]">
+                {filter.selected}
+                <DynamicIcon iconName={"ChevronDown"} size={"12"} />
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
       {Object.entries(groupedDevices).map(([room, devices]) => (
         <div key={room}>
           <h2 className="font-bold">{getRoomName(room as Room)}</h2>
