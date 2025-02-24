@@ -17,13 +17,16 @@ export function Slider(props: ISliderProps) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChange(Number(event.target.value));
+    setSliderValue(Number(event.target.value));
   };
   return (
     <div
-      className={twMerge(
-        "relative",
-        props.isHorizontal ? `h-20 w-${props.size}` : `w-20 h-${props.size}`
-      )}
+      className={twMerge("relative w-20")}
+      style={
+        props.isHorizontal
+          ? { width: `${props.size}px` }
+          : { height: `${props.size}px` }
+      }
     >
       <input
         type="range"
@@ -34,10 +37,11 @@ export function Slider(props: ISliderProps) {
           props.className,
           props.isHorizontal
             ? "left-0 top-0 w-full cursor-default"
-            : `-translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2 w-${props.size}`,
-          "border-0 shadow-2xl absolute h-20",
+            : `absolute -translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2`,
+          "border-0 shadow-2xl  h-20",
           props.hasGradient ? "gradient" : "solid"
         )}
+        style={{ width: `${props.size}px` }}
         onChange={props.clickable ? handleChange : undefined}
       />
     </div>
