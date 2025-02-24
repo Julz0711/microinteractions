@@ -74,7 +74,7 @@ const Devices = () => {
           <h2 className="font-bold">{getRoomName(room as Room)}</h2>
           <div className="mt-2 grid grid-cols-2 gap-4">
             {devices.map((device: any) => (
-              <div>
+              <div key={device.id}>
                 <DevicePreview device={device} hasToggle={true} />
               </div>
             ))}

@@ -1,5 +1,5 @@
 import DynamicIcon from "./DynamicIcon";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
@@ -44,6 +44,35 @@ const DevicePreview = ({
     setAnimationDirection(isBoxActive ? 1 : -1);
   }, [isBoxActive]);
 
+  /* Text Overflow */
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const [textWidth, setTextWidth] = useState(0);
+  const [parentWidth, setParentWidth] = useState(0);
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (textRef.current) {
+        const parent = textRef.current.parentElement;
+        if (parent) {
+          const textW = textRef.current.scrollWidth;
+          const parentW = parent.clientWidth;
+          setTextWidth(textW);
+          setParentWidth(parentW);
+          setIsOverflowing(textW > parentW);
+        }
+      }
+    };
+
+    const timeout = setTimeout(checkOverflow, 100);
+
+    window.addEventListener("resize", checkOverflow);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("resize", checkOverflow);
+    };
+  }, [device.name]);
+
   const toggleActiveState = () => {
     setIsBoxActive((prev) => !prev);
   };
@@ -70,7 +99,7 @@ const DevicePreview = ({
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
-      className={`relative flex justify-start min-w-32 overflow-hidden ${
+      className={`relative flex justify-start min-w-32 w-full overflow-hidden ${
         hasToggle
           ? isSmall
             ? "h-24 items-end py-2 px-2"
@@ -148,15 +177,35 @@ const DevicePreview = ({
       <div
         className={
           device.additionalInfo
-            ? "z-20 flex flex-col items-start justify-start gap-0"
+            ? "z-20 flex flex-col items-start justify-start w-full gap-0"
             : ""
         }
       >
-        <span
-          className={twMerge(isSmall ? "text-sm" : "text-base", "truncate")}
-        >
-          {device.name}
-        </span>
+        <div className="relative w-full overflow-hidden">
+          <motion.span
+            ref={hasMicrointeractions ? textRef : undefined}
+            className="block whitespace-nowrap"
+            animate={
+              isOverflowing
+                ? { x: ["0px", `${-(textWidth - parentWidth)}px`, "0px"] }
+                : { x: "0px" }
+            }
+            transition={
+              isOverflowing
+                ? {
+                    repeat: Infinity,
+                    duration: 6,
+                    ease: "linear",
+                    times: [0, 0.45, 1],
+                  }
+                : undefined
+            }
+            whileHover={{ x: "0%", transition: { duration: 0.5 } }}
+          >
+            {device.name}
+          </motion.span>
+        </div>
+
         <div className="flex flex-row gap-1 items-center font-normal">
           {device.additionalInfo ? (
             <div
