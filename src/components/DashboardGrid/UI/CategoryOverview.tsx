@@ -36,13 +36,13 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
       <CategoryStats category={props.thisCategory} devices={allDevices} />
       <div
         className={twMerge(
-          "flex gap-1 font-bold w-full justify-end items-center",
+          "flex gap-1 w-full justify-end items-center",
           activeDevices > 0 ? "opacity-60" : "opacity-100"
         )}
       >
         <div
           className={twMerge(
-            "text-light text-lg",
+            "text-light text-sm font-bold",
             activeDevices > 0 ? "text-light" : "text-uwu"
           )}
         >
@@ -50,7 +50,7 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
         </div>
         <div
           className={twMerge(
-            "text-sm font-bold",
+            "text-xs font-bold",
             activeDevices > 0 ? "text-light" : "text-uwu "
           )}
         >

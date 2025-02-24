@@ -33,7 +33,7 @@ export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
       key={index}
       onClick={() => handleClick(thisRoom as Room)}
       className={twMerge(
-        "cursor-pointer transition-colors duration-200 font-bold",
+        "cursor-pointer transition-colors duration-200 font-bold text-xs tracking-wide",
         selectedRoom === thisRoom ? "text-dark" : "text-uwu"
       )}
     >

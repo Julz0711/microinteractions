@@ -202,7 +202,7 @@ const DevicePreview = ({
             }
             whileHover={{ x: "0%", transition: { duration: 0.5 } }}
           >
-            {device.name}
+            <span className="text-xs"> {device.name} </span>
           </motion.span>
         </div>
 

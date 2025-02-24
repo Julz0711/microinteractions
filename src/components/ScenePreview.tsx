@@ -54,7 +54,7 @@ const ScenePreview = ({ scene }: ScenePreviewProps) => {
           />
         </div>
       </div>
-      <span>{scene.name}</span>
+      <span className="text-xs">{scene.name}</span>
     </motion.div>
   );
 };
