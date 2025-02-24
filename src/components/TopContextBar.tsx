@@ -36,7 +36,7 @@ export const TopContextBar = ({
         {leftIcon ? (
           <button
             onClick={leftIconClick ? leftIconClick : goBack}
-            className="absolute left-0 top-0 flex items-center justify-center p-2 bg-dark rounded-md w-12 h-12 text-light cursor-pointer"
+            className="absolute duration-150 left-0 top-0 flex items-center justify-center p-2 bg-dark hover:bg-dark/80 rounded-md w-12 h-12 text-light cursor-pointer"
           >
             <div>
               {typeof leftIcon === "string" && (
@@ -48,7 +48,11 @@ export const TopContextBar = ({
 
         <div className="text-lg font-bold">{headline}</div>
         <p
-          className={twMerge(metaDescriptionDark ? "text-dark" : "text-meta ")}
+          className={twMerge(
+            metaDescriptionDark
+              ? "text-dark/80 font-bold text-xs"
+              : "text-meta "
+          )}
         >
           {metaDescription}
         </p>
@@ -60,8 +64,8 @@ export const TopContextBar = ({
               }
             }}
             className={twMerge(
-              "absolute right-0 top-0 flex items-center justify-center p-2 rounded-md w-12 h-12 cursor-pointer",
-              rightIconBg ? "bg-light text-dark" : "text-uwu"
+              "absolute duration-150 right-0 top-0 flex items-center justify-center p-2 rounded-md w-12 h-12 cursor-pointer",
+              rightIconBg ? "bg-light hover:bg-light/50 text-dark" : "text-uwu"
             )}
           >
             {typeof rightIcon === "string" && (

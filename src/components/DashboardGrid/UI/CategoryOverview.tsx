@@ -1,19 +1,23 @@
 import { Category } from "../../../types/dashboard.types";
-import {
-  getCategoryName,
-  getColor,
-  getTextColor,
-} from "../../../helpers/helpers";
+import { getCategoryName } from "../../../helpers/helpers";
 import { useActiveDevices } from "../../../Hooks/useActiveDevices";
 import { twMerge } from "tailwind-merge";
 import { CategoryStats } from "./CategoryStats";
+import { useAllDevices } from "../../../Hooks/useAllDevices";
+import { AppState } from "../../../store/store";
+import { useSelector } from "react-redux";
 
 export interface ICategoryOverviewProps {
   thisCategory: Category;
 }
 
 export function CategoryOverview(props: ICategoryOverviewProps) {
+  const room = useSelector((state: AppState) => state.app.room);
   const activeDevices = useActiveDevices({ thisCategory: props.thisCategory });
+  const allDevices = useAllDevices({
+    thisCategory: props.thisCategory,
+    thisRoom: room || "",
+  });
 
   return (
     <div
@@ -32,25 +36,25 @@ export function CategoryOverview(props: ICategoryOverviewProps) {
       <CategoryStats category={props.thisCategory} />
       <div
         className={twMerge(
-          "flex gap-2 font-bold w-full justify-end",
-          activeDevices > 0 ? "opacity-60 " : "opacity-100"
+          "flex gap-1 font-bold w-full justify-end items-center",
+          activeDevices > 0 ? "opacity-60" : "opacity-100"
         )}
       >
         <div
           className={twMerge(
-            "text-light text-2xl",
+            "text-light text-lg",
             activeDevices > 0 ? "text-light" : "text-uwu"
           )}
         >
-          {activeDevices}
+          {activeDevices}/{allDevices}
         </div>
         <div
           className={twMerge(
-            "text-sm text-[10px] font-normal",
-            activeDevices > 0 ? "text-light" : "text-uwu font-bold"
+            "text-sm font-bold",
+            activeDevices > 0 ? "text-light" : "text-uwu "
           )}
         >
-          Aktive <br /> Geräte
+          Aktiv
         </div>
       </div>
     </div>

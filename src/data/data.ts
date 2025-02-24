@@ -2,6 +2,7 @@ import { Category } from "../types/dashboard.types";
 import { Room } from "../types/types";
 
 export const devices = [
+  // Living Room
   {
     icon: "Lamp",
     name: "Leselampe",
@@ -33,23 +34,13 @@ export const devices = [
     category: Category.Lights,
   },
   {
-    icon: "Lamp",
-    name: "Ambient Light",
-    model: "Nanostick",
-    room: Room.Kitchen,
-    isActive: true,
-    isFavorite: false,
-    additionalInfo: "100%",
-    category: Category.Lights,
-  },
-  {
     icon: "Temp",
     name: "Heizung Fenster",
     model: "Heater Pro",
     room: Room.LivingRoom,
     isActive: true,
     isFavorite: true,
-    additionalInfo: "100%",
+    additionalInfo: "21°",
     category: Category.Heat,
   },
   {
@@ -59,7 +50,7 @@ export const devices = [
     room: Room.LivingRoom,
     isActive: false,
     isFavorite: true,
-    additionalInfo: "100%",
+    additionalInfo: "21°",
     category: Category.Heat,
   },
   {
@@ -67,16 +58,6 @@ export const devices = [
     name: "Heizung Wand",
     model: "Heater Pro",
     room: Room.LivingRoom,
-    isActive: false,
-    isFavorite: false,
-    additionalInfo: "100%",
-    category: Category.Heat,
-  },
-  {
-    icon: "Temp",
-    name: "Heizung Wand",
-    model: "Heater Pro",
-    room: Room.Bedroom,
     isActive: false,
     isFavorite: false,
     additionalInfo: "100%",
@@ -121,6 +102,48 @@ export const devices = [
     isFavorite: true,
     additionalInfo: "100%",
     category: Category.Household,
+  },
+  // Kitchen
+  {
+    icon: "Lamp",
+    name: "Deckenleuchte",
+    model: "Bulba 300X",
+    room: Room.Kitchen,
+    isActive: true,
+    isFavorite: false,
+    additionalInfo: "100%",
+    category: Category.Lights,
+  },
+  {
+    icon: "Lamp",
+    name: "Licht Spüle",
+    model: "Bulba 10F",
+    room: Room.Kitchen,
+    isActive: false,
+    isFavorite: false,
+    additionalInfo: "100%",
+    category: Category.Lights,
+  },
+  {
+    icon: "Lamp",
+    name: "Spüle",
+    model: "Nanostick",
+    room: Room.Kitchen,
+    isActive: false,
+    isFavorite: false,
+    additionalInfo: "100%",
+    category: Category.Entertainment,
+  },
+  // Bedroom
+  {
+    icon: "Temp",
+    name: "Heizung Wand",
+    model: "Heater Pro",
+    room: Room.Bedroom,
+    isActive: true,
+    isFavorite: false,
+    additionalInfo: "100%",
+    category: Category.Heat,
   },
 ];
 
