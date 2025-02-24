@@ -9,13 +9,14 @@ export interface ISliderProps {
   clickable: boolean;
   defaultValue?: number;
   className?: string;
+  onChange: (value: number) => void;
 }
 
 export function Slider(props: ISliderProps) {
   const [SliderValue, setSliderValue] = useState(props.defaultValue);
 
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderValue(Number(e.target.value));
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    props.onChange(Number(event.target.value));
   };
   return (
     <div
@@ -37,7 +38,7 @@ export function Slider(props: ISliderProps) {
           "border-0 shadow-2xl absolute cursor-row-resize h-20",
           props.hasGradient ? "gradient" : "solid"
         )}
-        onChange={props.clickable ? handleSliderChange : undefined}
+        onChange={props.clickable ? handleChange : undefined}
       />
     </div>
   );

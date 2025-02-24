@@ -70,6 +70,7 @@ const HouseholdComponent = (props: IHouselComponentProps) => {
                 size={"full"}
                 clickable={false}
                 defaultValue={45}
+                onChange={() => undefined}
               />
               <span className="text-blue font-bold">41% erledigt</span>
             </>
