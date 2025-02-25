@@ -19,7 +19,7 @@ export function AirComponent() {
       dispatch(setIsOn(true));
       setIsOnState(true);
     }
-  }, [strengthValue, timerValue, dispatch]);
+  }, [strengthValue, dispatch]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-16 w-full mx-auto">

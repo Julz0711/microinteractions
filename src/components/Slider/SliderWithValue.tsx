@@ -5,6 +5,7 @@ type Props = {
   step: number;
   value: number;
   measure: string;
+  hasExtraMeasurements?: number;
   custom?: string;
   onChange: (value: number) => void;
 };
@@ -17,8 +18,12 @@ const SliderWithValue = (props: Props) => {
   }, [props.value]);
 
   const handleSliderChange = (newValue: number) => {
-    setSliderValue(newValue / props.step);
-    props.onChange(newValue / props.step);
+    setSliderValue(
+      Math.round(newValue / props.step + (props.hasExtraMeasurements ?? 0))
+    );
+    props.onChange(
+      Math.round(newValue / props.step + (props.hasExtraMeasurements ?? 0))
+    );
   };
 
   return (
@@ -35,8 +40,9 @@ const SliderWithValue = (props: Props) => {
           onChange={handleSliderChange}
         />
       </div>
-      <div className="h-12 w-20 max-w-24 flex items-center justify-center rounded-md bg-light font-bold shadow-2xl">
-        {sliderValue} {props.measure}
+      <div className="sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark bg-light font-bold shadow-2xl">
+        {sliderValue}
+        {props.measure}
       </div>
     </div>
   );

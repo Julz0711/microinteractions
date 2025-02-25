@@ -1,31 +1,44 @@
-import { motion } from "framer-motion";
-import * as React from "react";
-import { useState } from "react";
+import SliderWithValue from "../Slider/SliderWithValue";
+import styles from "./HeatComponent.module.css";
+import { useDispatch } from "react-redux";
+import { setIsOn } from "../../store/reducer";
+import { useEffect, useState } from "react";
+import { Temperature } from "../SVGAnimations/Temperature";
+import { Category } from "../../types/dashboard.types";
 
-export function HeatComponent() {
-  const [SliderValue, setSliderValue] = useState(25);
+interface HeatComponentProps {
+  isOn: boolean;
+}
+export function HeatComponent({ isOn }: HeatComponentProps) {
+  const dispatch = useDispatch();
+  const [sliderValue, setSliderValue] = useState(22);
 
-  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderValue(Number(e.target.value));
+  const handleSliderChange = (value: number) => {
+    setSliderValue(value);
   };
+
+  useEffect(() => {
+    dispatch(setIsOn(isOn));
+  }, [isOn, dispatch]);
+
   return (
-    <>
-      <input
-        type="range"
-        min={0}
-        max="100"
-        value={SliderValue}
-        className="range"
-        step="25"
-        onChange={handleSliderChange} // Handle slider change
-      />
-      <div className="range flex w-full justify-between px-2 text-xs">
-        <span>|</span>
-        <span>|</span>
-        <span>|</span>
-        <span>|</span>
-        <span>|</span>
+    <div className="flex flex-col items-center justify-center gap-16 w-4/5 mx-auto">
+      <div className="relative w-full">
+        <Temperature
+          category={Category.Heat}
+          size={200}
+          temp={sliderValue}
+          styles={styles.temp}
+        />
       </div>
-    </>
+      <SliderWithValue
+        step={12.5}
+        value={22}
+        measure={"°C"}
+        hasExtraMeasurements={18}
+        onChange={handleSliderChange}
+        custom={isOn ? styles.solid : styles.off}
+      />
+    </div>
   );
 }

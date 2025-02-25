@@ -29,7 +29,7 @@ export function DeviceOverlay() {
       case Category.Lights:
         return <LightsComponent />;
       case Category.Heat:
-        return <HeatComponent />;
+        return <HeatComponent isOn={isOn} />;
       case Category.Entertainment:
         return <EntertainmentComponent />;
       case Category.Air:

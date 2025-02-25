@@ -29,7 +29,6 @@
   transform: rotate(-60deg);
   stroke-dasharray: var(--dashDone) calc(var(--circumference) - var(--dashDone));
   transition-duration: 0;
-  stroke: #f8f8f8;
   opacity: 0.25;
 }
 
@@ -37,7 +36,6 @@
   transform: rotate(-60deg);
   transform-origin: var(--half-size) var(--half-size);
   stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
-  stroke: #f8f8f8;
 }
 
 .circular-progress circle.fg.inactive {
