@@ -12,6 +12,7 @@ export interface TemperatureProps {
   size?: number;
   temp?: number;
   styles?: string;
+  progressOverride?: number;
 }
 
 export function Temperature(props: TemperatureProps) {
@@ -33,19 +34,34 @@ export function Temperature(props: TemperatureProps) {
         )}
         size={props.size ? `${props.size / 2.2}px` : "40px"}
       />
-      <span
+      <div
         className={twMerge(
           props.size ? "text-3xl text-red" : "text-sm text-light",
-          "font-bold w-full absolute top-1/2 -translate-y-1/2 mx-auto text-center"
+          "font-bold w-full absolute top-1/2 -translate-y-1/2 mx-auto text-center flex flex-col items-center"
         )}
       >
-        {props.size ? props.temp + "°C" : "22°C"}
-      </span>
+        22°C
+        <span className="text-sm text-red opacity-50">
+          {props.temp ? "Ziel: " + props.temp + "°C" : ""}
+        </span>
+      </div>
       <svg
         width={props.size ? props.size : "80"}
         height={props.size ? props.size : "80"}
         viewBox="0 0 250 250"
-        className="circular-progress mx-auto "
+        className={twMerge(
+          "circular-progress mx-auto ",
+          !props.progressOverride
+            ? "circular-progress mx-auto circular-progress-animated"
+            : "circular-progress mx-auto "
+        )}
+        style={
+          props.progressOverride
+            ? ({
+                "--progress": props.progressOverride,
+              } as React.CSSProperties)
+            : undefined
+        }
       >
         <circle
           className={twMerge("bg", props.size ? "stroke-red" : "stroke-light")}

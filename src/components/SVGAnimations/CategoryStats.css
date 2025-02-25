@@ -6,6 +6,9 @@
   --circumference: calc(var(--radius) * pi * 2);
   --dash: calc((var(--progress) * var(--circumference)) / 360);
   --dashDone: calc((300 * var(--circumference)) / 360);
+}
+
+.circular-progress-animated {
   animation: progress-animation 0.9s 0.3s 1 forwards;
 }
 

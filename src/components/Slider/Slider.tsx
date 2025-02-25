@@ -13,6 +13,7 @@ export interface ISliderProps {
   clickable: boolean;
   value?: number;
   className?: string;
+  range?: number;
   isPx?: boolean;
   step?: number;
   hasIcon?: boolean;
@@ -45,7 +46,7 @@ export function Slider(props: ISliderProps) {
         type="range"
         step={props.step}
         min={0}
-        max={100}
+        max={props.range ? props.range : 100}
         value={props.value}
         className={twMerge(
           props.className,
@@ -53,16 +54,20 @@ export function Slider(props: ISliderProps) {
             ? "left-0 top-0 w-full cursor-default"
             : `absolute -translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2`,
           "border-0 shadow-2xl h-20",
-          hasMicrointeractions ? (props.hasGradient ? "gradient" : "solid") : ""
+          hasMicrointeractions
+            ? props.hasGradient
+              ? "gradient"
+              : "solid"
+            : "uggo"
         )}
         style={
-          props.isPx
+          hasMicrointeractions && props.isPx
             ? { width: `${props.size}px`, height: "80px" }
             : { width: `${props.size}%`, height: "48px" }
         }
         onChange={props.clickable ? handleChange : undefined}
       />
-      {props.hasIcon && (
+      {props.hasIcon && hasMicrointeractions && (
         <div className="absolute left-1/2 scale-120 -translate-x-1/2 bottom-4 pointer-events-none">
           {(props.value ?? 0) > 15 ? (
             <Lottie

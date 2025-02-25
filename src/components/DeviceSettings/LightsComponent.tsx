@@ -7,6 +7,9 @@ import { twMerge } from "tailwind-merge";
 
 export function LightsComponent() {
   const dispatch = useDispatch();
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
   const [sliderValue, setSliderValue] = useState(75);
   const [iconColor, setIconColor] = useState("text-light");
   const isOn = useSelector((state: AppState) => state.app.isOn);
@@ -44,24 +47,30 @@ export function LightsComponent() {
     <>
       <div className="flex flex-col items-center justify-center gap-16 w-full mx-auto">
         <div className="grid grid-cols-[1fr_1fr] gap-8 place-items-center h-80 px-12">
-          <Slider
-            hasGradient={false}
-            isPx={true}
-            size={"250"}
-            clickable={true}
-            onChange={handleSliderChange}
-            hasIcon={true}
-            icon="Lamp"
-            iconColor={iconColor}
-            value={sliderValue}
-          />
-          <Slider
-            hasGradient={true}
-            isPx={true}
-            size={"250"}
-            clickable={true}
-            onChange={() => {}}
-          />
+          <div className="flex flex-col items-center">
+            <Slider
+              hasGradient={false}
+              isPx={true}
+              size={"250"}
+              clickable={true}
+              onChange={handleSliderChange}
+              hasIcon={true}
+              icon="Lamp"
+              iconColor={iconColor}
+              value={sliderValue}
+            />
+            {!hasMicrointeractions && <p>Helligkeit</p>}
+          </div>
+          <div className="flex flex-col items-center">
+            <Slider
+              hasGradient={true}
+              isPx={true}
+              size={"250"}
+              clickable={true}
+              onChange={() => {}}
+            />
+            {!hasMicrointeractions && <p>Lichttemperatur</p>}
+          </div>
         </div>
         <div className="w-full text-center flex flex-col gap-4">
           <span className="font-bold w-full">Schnellauswahl</span>
