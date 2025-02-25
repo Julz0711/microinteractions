@@ -37,7 +37,7 @@ const ScenePreview = ({ scene }: ScenePreviewProps) => {
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
-      className={`flex flex-row justify-center items-center cursor-pointer font-bold gap-3 pl-3 pr-4 py-3 rounded-md select-none ${
+      className={`flex flex-row justify-center items-center cursor-pointer font-bold gap-2 pl-3 pr-4 py-3 rounded-md select-none ${
         hasMicrointeractions
           ? isBoxActive
             ? "device-box-active"

@@ -72,9 +72,11 @@ const allRoutes = [
 function PageWrapper({
   children,
   showNewButton,
+  scrollableRef,
 }: {
   children: ReactNode;
   showNewButton: boolean;
+  scrollableRef: React.RefObject<HTMLDivElement>;
 }) {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
@@ -101,7 +103,10 @@ function PageWrapper({
       transition={hasMicrointeractions ? { duration: 0.5 } : { duration: 0 }}
       className="w-full h-full"
     >
-      <div className="h-full w-full overflow-x-hidden overflow-y-auto no-scrollbar">
+      <div
+        ref={scrollableRef}
+        className="h-full w-full overflow-x-hidden overflow-y-auto no-scrollbar"
+      >
         <div
           className={twMerge(
             "min-h-full px-5",
@@ -115,7 +120,13 @@ function PageWrapper({
   );
 }
 
-const AppRouter = ({ showNewButton }: { showNewButton: boolean }) => {
+const AppRouter = ({
+  showNewButton,
+  scrollableRef,
+}: {
+  showNewButton: boolean;
+  scrollableRef: React.RefObject<HTMLDivElement>;
+}) => {
   return (
     <div className="overflow-hidden w-full h-full">
       <Suspense fallback={<LoadingSpinner />}>
@@ -126,7 +137,10 @@ const AppRouter = ({ showNewButton }: { showNewButton: boolean }) => {
                 key={route.path}
                 path={route.path}
                 element={
-                  <PageWrapper showNewButton={showNewButton}>
+                  <PageWrapper
+                    showNewButton={showNewButton}
+                    scrollableRef={scrollableRef}
+                  >
                     {route.component}
                   </PageWrapper>
                 }

@@ -23,6 +23,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
     <div>
       {hasDevices ? (
         <div className="w-full flex flex-col gap-2 justify-start items-start pt-24">
+          <div className="h-2"></div>
           <ScrollableNavBar onRoomSelect={handleSelect} />
           <RoomGrid isRoomChanging={isRoomChanging} nextRoom={nextRoom} />
           <DeviceOverlay />

@@ -45,7 +45,7 @@ export function Overlay(props: IOverlayProps) {
         setFadeColor("rgba(255, 255, 255, 0.05)");
       }
     } else {
-      setFadeColor("rgba(255, 255, 255, 0.3)"); // always white
+      setFadeColor("rgba(255, 255, 255, 0.3)");
     }
   }, [category, hierarchy, isOn]);
 
