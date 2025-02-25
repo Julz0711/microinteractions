@@ -3,6 +3,8 @@ import "./Slider.css";
 import DynamicIcon from "../DynamicIcon";
 import bulbAnim from "../../assets/lottie/BulbOn.json";
 import Lottie from "react-lottie";
+import { useSelector } from "react-redux";
+import { AppState } from "../../store/store";
 
 export interface ISliderProps {
   hasGradient: boolean;
@@ -20,6 +22,9 @@ export interface ISliderProps {
 }
 
 export function Slider(props: ISliderProps) {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChange(Number(event.target.value));
   };
@@ -48,7 +53,7 @@ export function Slider(props: ISliderProps) {
             ? "left-0 top-0 w-full cursor-default"
             : `absolute -translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2`,
           "border-0 shadow-2xl h-20",
-          props.hasGradient ? "gradient" : "solid"
+          hasMicrointeractions ? (props.hasGradient ? "gradient" : "solid") : ""
         )}
         style={
           props.isPx
@@ -59,7 +64,7 @@ export function Slider(props: ISliderProps) {
       />
       {props.hasIcon && (
         <div className="absolute left-1/2 scale-120 -translate-x-1/2 bottom-4 pointer-events-none">
-          {(props.value ?? 0) > 0 ? (
+          {(props.value ?? 0) > 15 ? (
             <Lottie
               options={{
                 loop: false,
