@@ -1,7 +1,8 @@
 import { twMerge } from "tailwind-merge";
 import "./Slider.css";
-import { useState } from "react";
 import DynamicIcon from "../DynamicIcon";
+import bulbAnim from "../../assets/lottie/BulbOn.json";
+import Lottie from "react-lottie";
 
 export interface ISliderProps {
   hasGradient: boolean;
@@ -57,12 +58,25 @@ export function Slider(props: ISliderProps) {
         onChange={props.clickable ? handleChange : undefined}
       />
       {props.hasIcon && (
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-4">
-          <DynamicIcon
-            iconName={props.icon || ""}
-            size={"32"}
-            color={props.iconColor}
-          />
+        <div className="absolute left-1/2 scale-120 -translate-x-1/2 bottom-4 pointer-events-none">
+          {(props.value ?? 0) > 0 ? (
+            <Lottie
+              options={{
+                loop: false,
+                autoplay: (props.value ?? 0) > 0,
+                animationData: bulbAnim,
+              }}
+              speed={1}
+            />
+          ) : (
+            <div className="pb-1">
+              <DynamicIcon
+                iconName={props.icon || ""}
+                color={props.iconColor}
+                size={"24"}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

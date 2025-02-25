@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsOn } from "../../store/reducer";
 import { useEffect, useState } from "react";
 import { AppState } from "../../store/store";
+import { twMerge } from "tailwind-merge";
 
 export function LightsComponent() {
   const dispatch = useDispatch();
@@ -26,10 +27,18 @@ export function LightsComponent() {
       setSliderValue(0);
       setIconColor("text-uwu");
     } else {
-      setSliderValue(10);
+      setSliderValue(75);
       setIconColor("text-light");
     }
   }, [isOn]);
+
+  const colors = [
+    "bg-[#8AB7FB]",
+    "bg-[#B6D1FA]",
+    "bg-[#F8F8F8]",
+    "bg-[#FDCB9F]",
+    "bg-[#FC983D]",
+  ];
 
   return (
     <>
@@ -54,8 +63,19 @@ export function LightsComponent() {
             onChange={() => {}}
           />
         </div>
-        <div>
-          <span className="font-bold">Schnellauswahl</span>
+        <div className="w-full text-center flex flex-col gap-4">
+          <span className="font-bold w-full">Schnellauswahl</span>
+          <div className="flex flex-row gap-4 mx-auto">
+            {colors.map((color, index) => (
+              <div
+                key={index}
+                className={twMerge(
+                  "w-12 h-12 bg-dark rounded-full shadow-2xl border-2 border-light",
+                  color
+                )}
+              ></div>
+            ))}
+          </div>
         </div>
       </div>
     </>
