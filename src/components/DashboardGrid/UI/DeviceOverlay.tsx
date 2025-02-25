@@ -9,7 +9,6 @@ import { EntertainmentComponent } from "../../DeviceSettings/EntertainmentCompon
 import { HeatComponent } from "../../DeviceSettings/HeatComponent";
 import HouseholdComponent from "../../DeviceSettings/HouseholdComponent";
 import OnOffButton from "../../DeviceSettings/OnOffButton";
-import { useState } from "react";
 
 export function DeviceOverlay() {
   const dispatch = useDispatch();

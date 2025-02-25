@@ -4,11 +4,15 @@ import { NewButton } from "./components/NewButton";
 import { twMerge } from "tailwind-merge";
 import { Overlay } from "./components/Overlay";
 import { TopNavigation } from "./components/topNavigation";
+import { useLocation } from "react-router-dom";
 
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollableRef = useRef<HTMLDivElement>(null);
+  const [showNewButton, setShowNewButton] = useState(true);
+
+  const location = useLocation();
 
   const restrictedPaths = [
     "/start",
@@ -20,9 +24,12 @@ const Layout: React.FC = () => {
     "/login",
   ];
 
-  const showNewButton = !restrictedPaths.some((path) =>
-    location.pathname.startsWith(path)
-  );
+  useEffect(() => {
+    const shouldShowNewButton = !restrictedPaths.some((path) =>
+      location.pathname.startsWith(path)
+    );
+    setShowNewButton(shouldShowNewButton);
+  }, [location.pathname]);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);

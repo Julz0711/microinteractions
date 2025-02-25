@@ -65,12 +65,14 @@ export function Overlay(props: IOverlayProps) {
           transition={
             hasMicrointeractions ? { duration: 0.2 } : { duration: 0 }
           }
+          key={1}
           style={{ width: "100%" }}
         />
       )}
 
       {(props.isMenuOpen || hierarchy == HierarchyStep.Device) && (
         <motion.div
+          key={2}
           className={twMerge(
             "fixed h-full w-full inset-0 backdrop-blur-[15px]",
             hierarchy == HierarchyStep.Device
