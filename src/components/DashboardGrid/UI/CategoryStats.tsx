@@ -257,7 +257,7 @@ export function CategoryStats(props: ICategoryStatsProps) {
               </div>
             ) : (
               <span className="text-uwu text-[10px] font-bold text-center">
-                Keine Geräte registriert
+                {props.devices > 0 ? "" : "Keine Geräte registriert"}
               </span>
             )}
           </>
