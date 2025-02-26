@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useHistory from react-router-dom
+import { useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import DynamicIcon from "./DynamicIcon";
 
@@ -10,7 +10,9 @@ type Props = {
   metaDescriptionDark?: boolean;
   rightIcon?: React.ReactNode;
   rightIconBg?: boolean;
+  rightIconBgColour?: string;
   rightIconLink?: string;
+  bg?: string;
   leftIconClick?: () => void;
 };
 
@@ -22,7 +24,9 @@ export const TopContextBar = ({
   metaDescriptionDark = false,
   rightIcon,
   rightIconBg = false,
+  rightIconBgColour,
   rightIconLink = undefined,
+  bg,
 }: Props) => {
   const navigate = useNavigate();
 
@@ -31,7 +35,12 @@ export const TopContextBar = ({
   };
 
   return (
-    <div className="sticky pb-2 z-10 w-full left-0 top-0 items-center pt-8">
+    <div
+      className={twMerge(
+        bg,
+        "sticky pb-2 z-10 w-full left-0 top-0 items-center pt-8"
+      )}
+    >
       <div className="relative flex flex-col py-1 items-center">
         {leftIcon ? (
           <button
@@ -65,7 +74,10 @@ export const TopContextBar = ({
             }}
             className={twMerge(
               "absolute duration-150 right-0 top-0 flex items-center justify-center p-2 rounded-md w-12 h-12 cursor-pointer",
-              rightIconBg ? "bg-light hover:bg-light/50 text-dark" : "text-uwu"
+              rightIconBg ? "text-dark" : "text-uwu",
+              rightIconBgColour
+                ? twMerge(rightIconBgColour, "text-light hover:bg-dark/70")
+                : "bg-light hover:bg-light/50"
             )}
           >
             {typeof rightIcon === "string" && (

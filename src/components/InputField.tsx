@@ -108,7 +108,7 @@ const InputField: React.FC<InputFieldProps> = ({
         )}
       </div>
 
-      {error && (
+      {hasMicrointeractions && error && (
         <p className="mt-1 pl-2 text-[0.75rem] text-red font-bold">{error}</p>
       )}
     </div>

@@ -3,7 +3,7 @@ import GlowBoys from "../components/GlowBoyz";
 
 const Login = () => {
   return (
-    <div className="h-full flex flex-col justify-between gap-8">
+    <div className="fixed inset-0 pb-5 px-5 h-full flex flex-col justify-between gap-8">
       <div className="w-6/7 mx-auto mt-20">
         <GlowBoys />
       </div>

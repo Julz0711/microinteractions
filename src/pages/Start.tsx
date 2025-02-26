@@ -4,7 +4,7 @@ type StartProps = {};
 
 const Start = (props: StartProps) => {
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center text-center">
+    <div className="fixed inset-0 p-5 w-full h-full flex flex-col justify-center items-center text-center">
       <h1>Bachelorarbeit A/B Test</h1>
       <h2 className="mt-2">
         Der Einfluss von Microinteractions auf die User Experience: Eine

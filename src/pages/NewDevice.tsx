@@ -6,7 +6,6 @@ import DynamicIcon from "../components/DynamicIcon";
 import Button from "../components/Button";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Overlay } from "../components/Overlay";
 import { useEffect, useState } from "react";
 
 const NewDevice = () => {
@@ -26,7 +25,7 @@ const NewDevice = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        delay: index * (0.85 * index),
+        delay: index * (0.95 * index),
         duration: 0.5,
       },
     }),
@@ -45,16 +44,14 @@ const NewDevice = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-around gap-8 h-full">
-      <div className="grow-0">
-        <TopContextBar
-          leftIcon={"ChevronLeft"}
-          headline={"Gerätescan"}
-          metaDescription={"3 neue Geräte gefunden"}
-          rightIcon={"Camera"}
-          rightIconBg={false}
-        />
-      </div>
+    <div className="fixed inset-0 pb-5 px-5 flex flex-col justify-around gap-8 min-h-full h-full">
+      <TopContextBar
+        leftIcon={"ChevronLeft"}
+        headline={"Gerätescan"}
+        metaDescription={"3 neue Geräte gefunden"}
+        rightIcon={"Camera"}
+        rightIconBg={false}
+      />
 
       <div className="flex grow items-center justify-center">
         <div className="z-0">
@@ -71,7 +68,7 @@ const NewDevice = () => {
               className={twMerge(
                 sonarWave,
                 hasMicrointeractions
-                  ? "animate-[sonarWaveAnimation_6s_linear_infinite]"
+                  ? "animate-[sonarWaveAnimation_6s_-6s_linear_infinite]"
                   : "bg-red scale-[2] opacity-15"
               )}
             ></div>
@@ -79,7 +76,7 @@ const NewDevice = () => {
               className={twMerge(
                 sonarWave,
                 hasMicrointeractions
-                  ? "animate-[sonarWaveAnimation_6s_1.5s_linear_infinite]"
+                  ? "animate-[sonarWaveAnimation_6s_-4.5s_linear_infinite]"
                   : "bg-red scale-[3] opacity-15"
               )}
             ></div>
@@ -87,7 +84,7 @@ const NewDevice = () => {
               className={twMerge(
                 sonarWave,
                 hasMicrointeractions
-                  ? "animate-[sonarWaveAnimation_6s_3s_linear_infinite]"
+                  ? "animate-[sonarWaveAnimation_6s_-3s_linear_infinite]"
                   : "bg-red scale-[4] opacity-15"
               )}
             ></div>
@@ -95,7 +92,7 @@ const NewDevice = () => {
               className={twMerge(
                 sonarWave,
                 hasMicrointeractions
-                  ? "animate-[sonarWaveAnimation_6s_4.5s_linear_infinite]"
+                  ? "animate-[sonarWaveAnimation_6s_-1.5s_linear_infinite]"
                   : "bg-red scale-[5] opacity-15"
               )}
             ></div>
@@ -132,7 +129,7 @@ const NewDevice = () => {
         </div>
       </div>
       <div className="grow-0 w-full bg-dark/80 p-4 rounded-md flex flex-col gap-4">
-        <p className="text-center text-light">
+        <p className="text-center text-light text-sm">
           Das Gerät wir nicht angezeigt? Stelle sicher, dass es angeschaltet, in
           der Nähe Deines Routers und erreichbar ist.
         </p>

@@ -325,7 +325,7 @@ const DeviceRegistration = () => {
   };
 
   return (
-    <div className="h-full flex flex-col justify-between gap-8 no-scrollbar">
+    <div className="fixed inset-0 pb-5 px-5 h-full flex flex-col justify-between gap-8 no-scrollbar">
       {currentStep < 5 ? (
         <>
           <TopContextBar

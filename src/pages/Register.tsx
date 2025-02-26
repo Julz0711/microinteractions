@@ -1,11 +1,18 @@
 import { TopContextBar } from "../components/TopContextBar";
-import GlowBoys from "../components/GlowBoyz";
+import GlowBoyz from "../components/GlowBoyz";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import PasswordStrengthBar from "../components/PasswordStrengthBar";
+import { useSelector } from "react-redux";
+import { AppState } from "../store/store";
 
 const Register = () => {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
+
   const validationSchema = Yup.object({
     username: Yup.string()
       .min(4, "Username muss mindestens 4 Zeichen lang sein.")
@@ -38,91 +45,99 @@ const Register = () => {
   });
 
   return (
-    <div className="h-full flex flex-col justify-between gap-4">
+    <div className="fixed inset-0 px-5 h-full flex flex-col justify-between gap-4">
       <TopContextBar
         headline={"Registrierung"}
         metaDescription={"Account erstellen"}
         rightIcon={"Close"}
         rightIconBg={true}
+        rightIconBgColour={"bg-dark"}
         rightIconLink="/dashboard"
+        bg="bg-light"
       />
-      <div className="mx-auto w-5/8 grow">
-        <GlowBoys />
-      </div>
-
-      <div className="flex flex-col gap-2 justify-center items-center">
-        <div className="w-3/4 mx-auto">
-          <div className="text-xl text-center font-bold">
-            Bereit für Dein smartes Zuhause?
-          </div>
+      <div className="flex flex-col gap-2 pb-5 grow">
+        <div className="mx-auto w-2/3 grow">
+          <GlowBoyz />
         </div>
-        <form
-          onSubmit={formik.handleSubmit}
-          className="flex flex-col gap-4 w-full mt-4 z-90"
-        >
-          <InputField
-            type={"text"}
-            name={"username"}
-            placeholder={"Benutzername"}
-            value={formik.values.username}
-            change={formik.handleChange}
-            blur={formik.handleBlur}
-            icon={"At"}
-            error={
-              formik.touched.username && formik.errors.username
-                ? formik.errors.username
-                : ""
-            }
-          />
-          <InputField
-            type={"email"}
-            name={"email"}
-            placeholder={"E-Mail Addresse"}
-            value={formik.values.email}
-            change={formik.handleChange}
-            blur={formik.handleBlur}
-            icon={"Envelope"}
-            error={
-              formik.touched.email && formik.errors.email
-                ? formik.errors.email
-                : ""
-            }
-          />
-          <InputField
-            type={"password"}
-            name={"password"}
-            placeholder={"Passwort"}
-            value={formik.values.password}
-            change={formik.handleChange}
-            blur={formik.handleBlur}
-            icon={"Lock"}
-            error={
-              formik.touched.password && formik.errors.password
-                ? formik.errors.password
-                : ""
-            }
-          />
-          <InputField
-            type={"password"}
-            name={"confirmPassword"}
-            placeholder={"Passwort bestätigen"}
-            value={formik.values.confirmPassword}
-            change={formik.handleChange}
-            blur={formik.handleBlur}
-            icon={"Lock"}
-            error={
-              formik.touched.confirmPassword && formik.errors.confirmPassword
-                ? formik.errors.confirmPassword
-                : ""
-            }
-          />
-          <Button
-            label={" Account erstellen"}
-            style={"btn-primary"}
-            link={"/registrieren"}
-            disabled={!formik.isValid}
-          ></Button>
-        </form>
+        <div className="flex flex-col gap-2 justify-center items-center">
+          <div className="w-3/4 mx-auto">
+            <div className="text-xl text-center font-bold">
+              Bereit für Dein smartes Zuhause?
+            </div>
+          </div>
+          <form
+            onSubmit={formik.handleSubmit}
+            className="flex flex-col gap-4 w-full mt-4 z-90"
+          >
+            <InputField
+              type={"text"}
+              name={"username"}
+              placeholder={"Benutzername"}
+              value={formik.values.username}
+              change={formik.handleChange}
+              blur={formik.handleBlur}
+              icon={"At"}
+              error={
+                formik.touched.username && formik.errors.username
+                  ? formik.errors.username
+                  : ""
+              }
+            />
+            <InputField
+              type={"email"}
+              name={"email"}
+              placeholder={"E-Mail Addresse"}
+              value={formik.values.email}
+              change={formik.handleChange}
+              blur={formik.handleBlur}
+              icon={"Envelope"}
+              error={
+                formik.touched.email && formik.errors.email
+                  ? formik.errors.email
+                  : ""
+              }
+            />
+            <div>
+              <InputField
+                type={"password"}
+                name={"password"}
+                placeholder={"Passwort"}
+                value={formik.values.password}
+                change={formik.handleChange}
+                blur={formik.handleBlur}
+                icon={"Lock"}
+                error={
+                  formik.touched.password && formik.errors.password
+                    ? formik.errors.password
+                    : ""
+                }
+              />
+              {hasMicrointeractions && (
+                <PasswordStrengthBar password={formik.values.password} />
+              )}
+            </div>
+            <InputField
+              type={"password"}
+              name={"confirmPassword"}
+              placeholder={"Passwort bestätigen"}
+              value={formik.values.confirmPassword}
+              change={formik.handleChange}
+              blur={formik.handleBlur}
+              icon={"Lock"}
+              error={
+                formik.touched.confirmPassword && formik.errors.confirmPassword
+                  ? formik.errors.confirmPassword
+                  : ""
+              }
+            />
+            <Button
+              label={" Account erstellen"}
+              style={"btn-primary"}
+              link={"/registrieren"}
+              disabled={!formik.isValid}
+            ></Button>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -105,7 +105,7 @@ function PageWrapper({
         <div
           className={twMerge(
             "min-h-full px-5",
-            showNewButton ? "pb-36" : "pb-5 h-full"
+            showNewButton ? "pb-36" : "pb-5"
           )}
         >
           {children}
