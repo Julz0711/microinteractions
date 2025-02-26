@@ -6,6 +6,8 @@ import DynamicIcon from "../components/DynamicIcon";
 import Button from "../components/Button";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Overlay } from "../components/Overlay";
+import { useEffect, useState } from "react";
 
 const NewDevice = () => {
   const sonarWave =
@@ -31,8 +33,20 @@ const NewDevice = () => {
   };
 
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(true);
+    const timer = setTimeout(() => {
+      setIsOpen(false);
+    }, 200);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="flex flex-col justify-around gap-8 h-full">
+      <Overlay isMenuOpen={isOpen} />
       <div className="grow-0">
         <TopContextBar
           leftIcon={"ChevronLeft"}
@@ -125,7 +139,7 @@ const NewDevice = () => {
         </p>
         <Button
           label={"Manuelles Gerätesetup"}
-          color={"bg-dark"}
+          style={"bg-dark"}
           link={"/"}
           isLarge={true}
         />

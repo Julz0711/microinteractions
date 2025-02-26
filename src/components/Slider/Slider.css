@@ -6,7 +6,7 @@ input[type="range"].solid {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 0;
-    box-shadow: -20rem 0 0 20rem var(--color-orange);
+    box-shadow: -20rem 0 0 20rem #ffffff;
   }
 
   &::-moz-range-thumb {
@@ -27,13 +27,13 @@ input[type="range"].gradient {
     width: 20px;
     border-radius: 50%;
     background: transparent;
-    overflow: auto;
     border: 2px solid #fff;
     box-shadow: 0 0 7px 3px #00000033;
+    margin-top: -5px;
+    margin-bottom: -5px;
   }
 
   &::-moz-range-thumb {
-    border: none;
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -52,6 +52,7 @@ input[type="range"].uggo {
   border-radius: 12.5px;
   outline: none;
   box-shadow: 0rem 0 2rem rgba(29, 28, 27, 0.3);
+  overflow: hidden;
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;

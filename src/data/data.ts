@@ -65,7 +65,7 @@ export const devices = [
   },
   {
     icon: "Entertainment",
-    name: "BT Lautsprecher Soundbar",
+    name: "BT Lautsprecher",
     model: "Speaker S300",
     room: Room.LivingRoom,
     isActive: true,
