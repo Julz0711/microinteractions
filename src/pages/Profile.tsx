@@ -29,6 +29,7 @@ const Profile = () => {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
+  //test
   return (
     <div className="pt-32 flex flex-col gap-12 items-center w-full justify-center">
       <div className="flex flex-col gap-6 items-center w-full justify-center">
