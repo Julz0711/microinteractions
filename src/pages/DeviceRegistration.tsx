@@ -251,31 +251,34 @@ const DeviceRegistration = () => {
           </div>
         );
       case 4:
+        const tdl = twMerge(hasMicrointeractions ? "text-right text-meta" : "");
+        const tdr = twMerge(
+          hasMicrointeractions ? "text-left font-bold text-xl" : "font-bold"
+        );
         return (
           <div className="w-full flex flex-col gap-4 items-center">
             <IntroText
               header={"Übersicht"}
               desc={"Überprüfe deine Angaben bitte erneut."}
             />
-            <table className="w-3/4 table-auto border-separate border-spacing-x-4 border-spacing-y-2">
+            <table
+              className={twMerge(
+                "border-separate border-spacing-x-4 border-spacing-y-2",
+                hasMicrointeractions ? "w-3/4" : "w-8/9"
+              )}
+            >
               <tbody>
                 <tr>
-                  <td className="text-right text-meta">Name</td>
-                  <td className="text-left font-bold text-xl">
-                    {formData.deviceName}
-                  </td>
+                  <td className={tdl}>Name</td>
+                  <td className={tdr}>{formData.deviceName}</td>
                 </tr>
-                <tr className="p-4">
-                  <td className="text-right text-meta">Kategorie</td>
-                  <td className="text-left font-bold text-xl">
-                    {formData.category}
-                  </td>
+                <tr>
+                  <td className={tdl}>Kategorie</td>
+                  <td className={tdr}>{formData.category}</td>
                 </tr>
-                <tr className="p-4">
-                  <td className="text-right text-meta">Raum</td>
-                  <td className="text-left font-bold text-xl">
-                    {formData.room}
-                  </td>
+                <tr>
+                  <td className={tdl}>Raum</td>
+                  <td className={tdr}>{formData.room}</td>
                 </tr>
               </tbody>
             </table>
@@ -342,16 +345,31 @@ const DeviceRegistration = () => {
                   ? "bg-inactive"
                   : hasMicrointeractions
                   ? categoryColor
-                  : "bg-dark",
+                  : "bg-inactive",
                 !formData.category && "bg-uwu"
               )}
             >
+              <div className="w-full h-5 flex flex-row items-center gap-0">
+                {hasMicrointeractions && currentStep > 1 && (
+                  <div className="w-full text-center font-bold text-light">
+                    {formData.deviceName}
+                  </div>
+                )}
+              </div>
               <img src={Homepod} className="w-2/3"></img>
-              {hasMicrointeractions && currentStep > 1 && (
-                <div className="w-full text-center font-bold text-light">
-                  {formData.deviceName}
-                </div>
-              )}
+              <div className="w-full h-5 flex flex-row items-center justify-center gap-1 font-normal text-[11px] text-light">
+                {hasMicrointeractions && currentStep > 2 && (
+                  <div className="text-center">{formData.category}</div>
+                )}
+                {hasMicrointeractions && currentStep > 3 && (
+                  <>
+                    <div>•</div>
+                    <div className="whitespace-nowrap text-center">
+                      {formData.room}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
             {hasMicrointeractions && (
               <div className="w-full">
@@ -408,16 +426,46 @@ const DeviceRegistration = () => {
           <div
             className={twMerge(
               "p-4 rounded-lg w-64 grow-0 flex flex-col items-center gap-0",
-              categoryColor
+              hasMicrointeractions ? categoryColor : "bg-inactive"
             )}
           >
+            <div className="w-full h-5 flex flex-row items-center gap-0">
+              {hasMicrointeractions && currentStep > 4 && (
+                <div className="w-full text-center font-bold text-light">
+                  {formData.deviceName}
+                </div>
+              )}
+            </div>
             <img src={Homepod} className="w-2/3"></img>
-            {currentStep > 1 && (
-              <div className="w-full text-center font-bold text-light">
+            <div className="w-full h-5 flex flex-row items-center justify-center gap-1 font-normal text-[12px] text-light">
+              {hasMicrointeractions && currentStep > 4 && (
+                <div className="text-center">{formData.category}</div>
+              )}
+              {hasMicrointeractions && currentStep > 4 && (
+                <>
+                  <div>•</div>
+                  <div className="whitespace-nowrap text-center">
+                    {formData.room}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+          {!hasMicrointeractions && (
+            <div className="w-full flex flex-col gap-2 items-center">
+              <div className="w-full text-center font-bold">
                 {formData.deviceName}
               </div>
-            )}
-          </div>
+
+              <div className="w-full text-center font-bold">
+                {formData.category}
+              </div>
+
+              <div className="w-full text-center font-bold">
+                {formData.room}
+              </div>
+            </div>
+          )}
           {renderStep()}
           <button className="btn-xl" onClick={() => navigate("/")}>
             Zum Dashboard
