@@ -29,7 +29,7 @@ const DynamicIcon: React.FC<DynamicIconProps> = ({ iconName, size, color }) => {
   return iconUrl ? (
     <ReactSVG
       src={iconUrl}
-      className={twMerge(size, color)}
+      className={twMerge(color)}
       beforeInjection={(svg) => {
         svg.setAttribute("style", `width: ${size}; height: ${size};`);
         svg.setAttribute("fill", "currentColor");

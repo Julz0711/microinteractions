@@ -30,6 +30,7 @@ const DevicePreview = ({
   const [isBoxActive, setIsBoxActive] = useState(false);
   const [isToggleOn, setIsToggleOn] = useState(false);
   const [animationDirection, setAnimationDirection] = useState(1);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
@@ -75,10 +76,12 @@ const DevicePreview = ({
 
   const toggleActiveState = () => {
     setIsBoxActive((prev) => !prev);
+    setHasInteracted(true);
   };
 
   const toggleButtonState = () => {
     setIsToggleOn((prev) => !prev);
+    setHasInteracted(true);
   };
 
   const handleToggleClick = (e: React.MouseEvent) => {
@@ -95,7 +98,7 @@ const DevicePreview = ({
         hasMicrointeractions ? onActiveAnimationBox.transition : undefined
       }
       animate={
-        hasMicrointeractions && isBoxActive
+        hasMicrointeractions && isBoxActive && hasInteracted
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
@@ -134,7 +137,6 @@ const DevicePreview = ({
                 height={30}
                 width={65}
                 speed={2.2}
-                isPaused={false}
                 direction={animationDirection}
               />
             </div>

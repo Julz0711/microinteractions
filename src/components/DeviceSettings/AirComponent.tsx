@@ -1,47 +1,74 @@
 import DynamicIcon from "../DynamicIcon";
 import SliderWithValue from "../Slider/SliderWithValue";
 import styles from "./AirComponent.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setIsOn } from "../../store/reducer";
 import { useState, useEffect } from "react";
+import { AppState } from "../../store/store";
 
 export function AirComponent() {
   const dispatch = useDispatch();
-  const [isOn, setIsOnState] = useState(true);
   const [strengthValue, setStrengthValue] = useState(2);
   const [timerValue, setTimerValue] = useState(3);
+  const [iconColor, setIconColor] = useState("text-green");
+  const [hours, setHours] = useState(2);
+  const [minutes, setMinutes] = useState(24);
+  const [seconds, setSeconds] = useState(6);
+  const isOn = useSelector((state: AppState) => state.app.isOn);
 
   useEffect(() => {
     if (strengthValue === 0) {
       dispatch(setIsOn(false));
-      setIsOnState(false);
     } else {
       dispatch(setIsOn(true));
-      setIsOnState(true);
     }
   }, [strengthValue, dispatch]);
+
+  useEffect(() => {
+    if (!isOn) {
+      setIconColor("text-light/50");
+      setStrengthValue(0);
+      setTimerValue(0);
+      setHours(0);
+      setMinutes(0);
+      setSeconds(0);
+    } else {
+      setIconColor("text-green");
+      setStrengthValue(2);
+      setTimerValue(3);
+      setHours(2);
+      setMinutes(24);
+      setSeconds(6);
+    }
+  }, [isOn]);
 
   return (
     <div className="flex flex-col items-center justify-center gap-16 w-full mx-auto">
       <div className="flex flex-col items-center gap-2 w-full">
-        <DynamicIcon iconName={"Fan"} color={"text-green"} size={"200"} />
+        <DynamicIcon iconName={"Fan"} color={iconColor} size={"200"} />
         <span className="font-normal">Noch aktiv für:</span>
         <div className="flex gap-5 text-center">
           <div className="flex flex-col font-normal">
             <span className="countdown font-bold text-3xl">
-              <span style={{ "--value": 2 } as React.CSSProperties}>02</span>
+              <span style={{ "--value": hours } as React.CSSProperties}>
+                02
+              </span>
             </span>
             Std
           </div>
           <div className="flex flex-col font-normal">
             <span className="countdown font-bold text-3xl">
-              <span style={{ "--value": 24 } as React.CSSProperties}>24</span>
+              <span style={{ "--value": minutes } as React.CSSProperties}>
+                24
+              </span>
             </span>
             Min
           </div>
           <div className="flex flex-col font-normal">
             <span className="countdown font-bold text-3xl">
-              <span style={{ "--value": 6 } as React.CSSProperties}>06</span>
+              <span style={{ "--value": seconds } as React.CSSProperties}>
+                06
+              </span>
             </span>
             Sek
           </div>

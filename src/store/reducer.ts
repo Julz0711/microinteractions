@@ -49,6 +49,9 @@ const appSlice = createSlice({
     setIsOn(state, action: PayloadAction<boolean>) {
       state.isOn = action.payload;
     },
+    toggleIsOn(state) {
+      state.isOn = !state.isOn;
+    },
   },
 });
 
@@ -59,5 +62,6 @@ export const {
   setRoom,
   setDevice,
   setIsOn,
+  toggleIsOn,
 } = appSlice.actions;
 export const appReducer = appSlice.reducer;
