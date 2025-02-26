@@ -5,7 +5,6 @@ type Props = {
   step: number;
   value: number;
   measure: string;
-  hasExtraMeasurements?: number;
   custom?: string;
   range?: 8;
   onChange: (value: number) => void;
@@ -19,8 +18,8 @@ const HeatSlider = (props: Props) => {
   }, [props.value]);
 
   const handleSliderChange = (newValue: number) => {
-    setSliderValue(Math.round(newValue + (props.hasExtraMeasurements ?? 0)));
-    props.onChange(Math.round(newValue + (props.hasExtraMeasurements ?? 0)));
+    setSliderValue(Math.round(newValue));
+    props.onChange(Math.round(newValue));
   };
 
   return (
@@ -39,7 +38,7 @@ const HeatSlider = (props: Props) => {
         />
       </div>
       <div className="sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark bg-light font-bold shadow-2xl">
-        {sliderValue}
+        {sliderValue + 18}
         {props.measure}
       </div>
     </div>

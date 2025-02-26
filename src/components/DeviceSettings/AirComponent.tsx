@@ -83,7 +83,8 @@ export function AirComponent() {
               </td>
               <td>
                 <SliderWithValue
-                  custom={styles.solid}
+                          custom={isOn ? styles.solid : styles.off}
+
                   value={strengthValue}
                   step={33.333}
                   measure={""}
@@ -97,7 +98,8 @@ export function AirComponent() {
               </td>
               <td>
                 <SliderWithValue
-                  custom={styles.solid}
+                          custom={isOn ? styles.solid : styles.off}
+
                   value={timerValue}
                   step={20}
                   measure={"h"}

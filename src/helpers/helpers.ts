@@ -125,3 +125,21 @@ export const getAllCategoryNames = () => {
 export const getAllRoomNames = () => {
   return Object.values(Room).map((room) => getRoomName(room as Room));
 };
+
+
+
+export const interpolateColor = (color1: string, color2: string, factor: number) => {
+  const hex = (color: string) => {
+    const bigint = parseInt(color.slice(1), 16);
+    return [bigint >> 16 & 255, bigint >> 8 & 255, bigint & 255];
+  };
+
+  const rgb1 = hex(color1);
+  const rgb2 = hex(color2);
+
+  const result = rgb1.map((value, index) => {
+    return Math.round(value + factor * (rgb2[index] - value));
+  });
+
+  return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
+}

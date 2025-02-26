@@ -13,18 +13,29 @@ interface HeatComponentProps {
 }
 export function HeatComponent({ isOn }: HeatComponentProps) {
   const dispatch = useDispatch();
-  const [sliderValue, setSliderValue] = useState(18);
+  const [sliderValue, setSliderValue] = useState<number>(isOn ? 22 : 0.1);
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
 
   const handleSliderChange = (value: number) => {
-    setSliderValue(value);
+    setSliderValue(value + .1);
+    if (value -18 === 0) {
+      dispatch(setIsOn(false));
+    } else {
+      dispatch(setIsOn(true));
+    }
   };
 
+
   useEffect(() => {
-    dispatch(setIsOn(isOn));
-  }, [isOn, dispatch]);
+    if (!isOn) {
+      setSliderValue(.1);
+    } else {
+      setSliderValue(22);
+    }
+  }, [isOn]);
+  
 
   return (
     <div className="flex flex-col items-center justify-center gap-16 w-4/5 mx-auto">
@@ -35,7 +46,7 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
             size={200}
             temp={sliderValue}
             styles={styles.temp}
-            progressOverride={(sliderValue - 18) * 15}
+            progressOverride={(sliderValue-18) * 37.5}
           />
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 ">
@@ -46,13 +57,12 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
 
       {hasMicrointeractions ? (
       <HeatSlider
-        value={22}
+        value={4}
         measure={"°C"}
-        hasExtraMeasurements={18}
         range={8}
-        onChange={handleSliderChange}
+        onChange={(value) => {handleSliderChange(value + 18)}}
         custom={isOn ? styles.solid : styles.off}
-        step={1}
+        step={.1}
       />
       ): (
         <>
@@ -64,7 +74,7 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
         clickable={true}
         onChange={(value) => handleSliderChange(value+18)}
       />
-      <span>{sliderValue}°C</span>
+      <span>{(Math.floor(sliderValue))}°C</span>
       <span>Heiztemperatur</span>
       </>
       )

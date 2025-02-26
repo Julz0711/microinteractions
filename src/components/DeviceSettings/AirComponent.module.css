@@ -2,6 +2,11 @@ input[type="range"].solid::-webkit-slider-thumb {
   box-shadow: -20rem 0 0 20rem var(--color-green);
 }
 
+input[type="range"].off::-webkit-slider-thumb {
+  box-shadow: -20rem 0 0 20rem rgba(var(--dark), .3);
+}
+
+
 .temp {
   color: red;
 }
