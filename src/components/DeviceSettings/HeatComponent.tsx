@@ -6,13 +6,14 @@ import { useEffect, useState } from "react";
 import { Temperature } from "../SVGAnimations/Temperature";
 import { Category } from "../../types/dashboard.types";
 import { AppState } from "../../store/store";
+import { Slider } from "../Slider/Slider";
 
 interface HeatComponentProps {
   isOn: boolean;
 }
 export function HeatComponent({ isOn }: HeatComponentProps) {
   const dispatch = useDispatch();
-  const [sliderValue, setSliderValue] = useState(22);
+  const [sliderValue, setSliderValue] = useState(18);
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
@@ -38,18 +39,36 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
           />
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 ">
-            <div className="text-3xl text-red font-bold w-full">22°C</div>
+            <div className="text-3xl text-red font-bold w-full text-center">Raumtemperatur:<br/> 22°C</div>
           </div>
         )}
       </div>
+
+      {hasMicrointeractions ? (
       <HeatSlider
         value={22}
         measure={"°C"}
         hasExtraMeasurements={18}
+        range={8}
         onChange={handleSliderChange}
         custom={isOn ? styles.solid : styles.off}
-        step={0.2}
+        step={1}
       />
+      ): (
+        <>
+        <Slider
+        hasGradient={true}
+        isPx={true}
+        size={"250"}
+        range={8}
+        clickable={true}
+        onChange={(value) => handleSliderChange(value+18)}
+      />
+      <span>{sliderValue}°C</span>
+      <span>Heiztemperatur</span>
+      </>
+      )
+    }
     </div>
   );
 }
