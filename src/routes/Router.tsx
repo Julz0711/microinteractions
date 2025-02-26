@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { twMerge } from "tailwind-merge";
+import { Overlay } from "../components/Overlay";
 
 const Start = lazy(() => import("../pages/Start"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
@@ -86,21 +87,15 @@ function PageWrapper({
     <motion.div
       key={location.pathname}
       initial={
-        hasMicrointeractions
-          ? { opacity: 0, scale: 0.75 }
-          : { opacity: 1, scale: 1 }
+        hasMicrointeractions ? { opacity: 0, y: 50 } : { opacity: 1, y: 0 }
       }
       animate={
-        hasMicrointeractions
-          ? { opacity: 1, scale: 1 }
-          : { opacity: 1, scale: 1 }
+        hasMicrointeractions ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }
       }
       exit={
-        hasMicrointeractions
-          ? { opacity: 0, scale: 0.75 }
-          : { opacity: 1, scale: 1 }
+        hasMicrointeractions ? { opacity: 0, y: 0 } : { opacity: 1, y: -50 }
       }
-      transition={hasMicrointeractions ? { duration: 0.5 } : { duration: 0 }}
+      transition={hasMicrointeractions ? { duration: 0.25 } : { duration: 0 }}
       className="w-full h-full"
     >
       <div
@@ -129,7 +124,7 @@ const AppRouter = ({
 }) => {
   return (
     <div className="overflow-hidden w-full h-full">
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<Overlay isMenuOpen={true} />}>
         <AnimatePresence mode="wait">
           <Routes>
             {allRoutes.map((route) => (

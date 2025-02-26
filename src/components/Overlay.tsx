@@ -63,7 +63,7 @@ export function Overlay(props: IOverlayProps) {
           animate={{ opacity: 1, backgroundColor: fadeColor }}
           exit={hasMicrointeractions ? { opacity: 0 } : { opacity: 1 }}
           transition={
-            hasMicrointeractions ? { duration: 0.2 } : { duration: 0 }
+            hasMicrointeractions ? { duration: 0.4 } : { duration: 0 }
           }
           key={1}
           style={{ width: "100%" }}

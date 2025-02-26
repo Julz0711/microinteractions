@@ -46,7 +46,6 @@ const NewDevice = () => {
 
   return (
     <div className="flex flex-col justify-around gap-8 h-full">
-      <Overlay isMenuOpen={isOpen} />
       <div className="grow-0">
         <TopContextBar
           leftIcon={"ChevronLeft"}
