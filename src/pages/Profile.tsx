@@ -1,37 +1,34 @@
-import DynamicIcon from "../components/DynamicIcon";
-import { AppState } from "../store/store";
-import { useSelector } from "react-redux";
+import DynamicIcon from '../components/DynamicIcon';
+import { AppState } from '../store/store';
+import { useSelector } from 'react-redux';
 
 const settings1 = [
   {
-    icon: "User",
-    title: "Account",
+    icon: 'User',
+    title: 'Account'
   },
   {
-    icon: "Lock",
-    title: "Privatsphäre",
+    icon: 'Lock',
+    title: 'Privatsphäre'
   },
   {
-    icon: "Settings",
-    title: "Erweiterte Einstellungen",
-  },
+    icon: 'Settings',
+    title: 'Erweiterte Einstellungen'
+  }
 ];
 
 const settings2 = [
   {
-    icon: "Home",
-    title: "Homes",
+    icon: 'Home',
+    title: 'Homes'
   },
   {
-    icon: "Connect",
-    title: "Hubs & Bridges",
-  },
+    icon: 'Connect',
+    title: 'Hubs & Bridges'
+  }
 ];
 
 const Profile = () => {
-  const hasMicrointeractions = useSelector(
-    (state: AppState) => state.app.hasMicrointeractions
-  );
   return (
     <div className="pt-32 flex flex-col gap-4 items-center w-full justify-center">
       <div className="flex flex-col gap-6 items-center w-full justify-center">
@@ -46,15 +43,19 @@ const Profile = () => {
         {settings1.map((setting, index) => (
           <div key={index} className="">
             <div className="flex flex-row justify-between items-center">
-              <div className="flex flex-row gap-2">
-                <div className="w-6 flex items-center justify-center">
-                  <DynamicIcon iconName={setting.icon} size="20" />
+              <div className="flex flex-row items-center gap-3">
+                <div className="flex items-center justify-center">
+                  <DynamicIcon
+                    iconName={setting.icon}
+                    size="18"
+                    color="text-dark"
+                  />
                 </div>
 
                 <div className="text-dark font-normal">{setting.title}</div>
               </div>
               <DynamicIcon
-                iconName={"ChevronRight"}
+                iconName={'ChevronRight'}
                 size="18"
                 color="text-uwu"
               />
@@ -67,14 +68,14 @@ const Profile = () => {
           <div key={index} className="">
             <div className="flex flex-row justify-between items-center">
               <div className="flex flex-row gap-2">
-                <div className="w-6 flex items-center justify-center">
+                <div className="flex items-center justify-center">
                   <DynamicIcon iconName={setting.icon} size="20" />
                 </div>
 
                 <div className="text-dark font-normal">{setting.title}</div>
               </div>
               <DynamicIcon
-                iconName={"ChevronRight"}
+                iconName={'ChevronRight'}
                 size="18"
                 color="text-uwu"
               />
