@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { AppState } from "../../../store/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Device } from "../../../types/types";
 import { twMerge } from "tailwind-merge";
 import DynamicIcon from "../../DynamicIcon";
@@ -8,6 +8,7 @@ import { useButtonVariants } from "../../../Hooks/DeviceGrid/useButtonVariants";
 import { useDeviceState } from "../../../Hooks/DeviceGrid/useDeviceState";
 import { useDeviceAnimation } from "../../../Hooks/DeviceGrid/useDeviceAnimation";
 import { getColor, getShadow, getTextColor } from "../../../helpers/helpers";
+import { setIsOn } from "../../../store/reducer";
 
 interface DeviceProps {
   device: Device;
@@ -34,6 +35,12 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
     buttonVariants,
     index,
   });
+  const dispatch = useDispatch();
+
+  const handleToggleMenuState = () => {
+    toggleMenuState();
+    dispatch(setIsOn(isDeviceActive));
+  };
 
   return (
     <>
@@ -62,7 +69,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
           "motion absolute gap-4  font-bold rounded-md select-none flex flex-col justify-center items-center"
         )}
         onClick={() => {
-          toggleMenuState();
+          handleToggleMenuState();
         }}
       >
         {isMenuOpen && (
