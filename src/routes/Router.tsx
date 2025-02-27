@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import { ReactNode, Suspense, lazy } from "react";
-import LoadingSpinner from "../components/LoadingSpinner";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { twMerge } from "tailwind-merge";
 import { Overlay } from "../components/Overlay";
+import FloatingScrollbar from "../components/FloatingScrollbar/FloatingScrollbar";
 
 const Start = lazy(() => import("../pages/Start"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
@@ -98,19 +98,21 @@ function PageWrapper({
       transition={hasMicrointeractions ? { duration: 0.25 } : { duration: 0 }}
       className="w-full h-full"
     >
-      <div
-        ref={scrollableRef}
-        className="h-full w-full overflow-x-hidden overflow-y-auto no-scrollbar"
-      >
+      <FloatingScrollbar scrollableRef={scrollableRef}>
         <div
-          className={twMerge(
-            "min-h-full px-5",
-            showNewButton ? "pb-36" : "pb-5"
-          )}
+          ref={scrollableRef}
+          className="h-full w-full overflow-x-hidden overflow-y-auto no-scrollbar"
         >
-          {children}
+          <div
+            className={twMerge(
+              "min-h-full px-5",
+              showNewButton ? "pb-36" : "pb-5"
+            )}
+          >
+            {children}
+          </div>
         </div>
-      </div>
+      </FloatingScrollbar>
     </motion.div>
   );
 }
