@@ -27,7 +27,7 @@ export function Overlay(props: IOverlayProps) {
             setFadeColor("rgba(239, 133, 85, 0.25)");
             break;
           case Category.Heat:
-            setFadeColor("rgba(190, 55, 95, 0.25)");
+            setFadeColor("rgba(190, 55, 95, 0.17)");
             break;
           case Category.Entertainment:
             setFadeColor("rgba(96, 36, 108, 0.25)");

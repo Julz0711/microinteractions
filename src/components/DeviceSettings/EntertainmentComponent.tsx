@@ -8,7 +8,9 @@ import { toggleIsOn } from "../../store/reducer";
 
 export function EntertainmentComponent() {
   const dispatch = useDispatch();
-  const isOn = useSelector((state: AppState) => state.app.isOn);
+  const { isOn, hasMicrointeractions } = useSelector(
+    (state: AppState) => state.app
+  );
 
   const handleToggle = () => {
     dispatch(toggleIsOn());
@@ -16,15 +18,14 @@ export function EntertainmentComponent() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-8 w-full mx-auto">
-      {isOn ? (
-        <img
-          src={Rhapsody}
-          alt="Bohemian Rhapsody"
-          className="w-48 h-48 rounded-md shadow-2xl"
-        />
-      ) : (
-        <div className="w-48 h-48 rounded-md shadow-2xl bg-dark/44"></div>
-      )}
+      <img
+        src={Rhapsody}
+        alt="Bohemian Rhapsody"
+        className={twMerge(
+          "w-48 h-48 rounded-md shadow-2xl",
+          isOn ? "" : hasMicrointeractions && "grayscale"
+        )}
+      />
 
       <div className="flex flex-col items-center gap-0 w-full">
         <span className="text-dark whitespace-nowrap text-md font-bold">
