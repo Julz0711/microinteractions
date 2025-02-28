@@ -5,10 +5,13 @@ import styles from "./EntertainmentComponent.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import { toggleIsOn } from "../../store/reducer";
+import { Equalizer } from "../SVGAnimations/Equalizer";
 
 export function EntertainmentComponent() {
   const dispatch = useDispatch();
-  const isOn = useSelector((state: AppState) => state.app.isOn);
+  const { isOn, hasMicrointeractions } = useSelector(
+    (state: AppState) => state.app
+  );
 
   const handleToggle = () => {
     dispatch(toggleIsOn());
@@ -16,20 +19,29 @@ export function EntertainmentComponent() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-8 w-full mx-auto">
-      {isOn ? (
-        <img
-          src={Rhapsody}
-          alt="Bohemian Rhapsody"
-          className="w-48 h-48 rounded-md shadow-2xl"
-        />
-      ) : (
-        <div className="w-48 h-48 rounded-md shadow-2xl bg-dark/44"></div>
-      )}
+      <img
+        src={Rhapsody}
+        alt="Bohemian Rhapsody"
+        className={twMerge(
+          "w-48 h-48 rounded-md shadow-2xl",
+          isOn ? "" : hasMicrointeractions && "grayscale"
+        )}
+      />
 
       <div className="flex flex-col items-center gap-0 w-full">
-        <span className="text-dark whitespace-nowrap text-md font-bold">
+        <div className="text-dark whitespace-nowrap text-md font-bold flex items-center justify-center gap-0">
+          {hasMicrointeractions && (
+            <div
+              className={twMerge(
+                "duration-300 overflow-hidden",
+                isOn ? "w-14 " : "w-0 "
+              )}
+            >
+              <Equalizer />
+            </div>
+          )}
           Bohemian Rhapsody
-        </span>
+        </div>
         <span className="text-dark/70 whitespace-nowrap text-sm font-bold">
           Queen
         </span>

@@ -79,7 +79,7 @@ export function LightsComponent() {
               <div
                 key={index}
                 className={twMerge(
-                  "w-12 h-12 bg-dark rounded-full shadow-2xl border-2 border-light",
+                  "w-12 h-12 bg-dark rounded-full shadow-2xl border-2 border-[#00000033]",
                   color
                 )}
               ></div>
