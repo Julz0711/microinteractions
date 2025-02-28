@@ -1,16 +1,16 @@
-import ".CategoryStats.css";
+import "./CategoryStats.css";
 
 export function Equalizer() {
   return (
     <svg
-      width="80"
-      height="80"
-      viewBox="0 0 250 250"
-      className="circular-progress absolute -top-6 right-0 scale-50"
+      width="60"
+      height="60"
+      viewBox="0 0 170 250"
+      className="circular-progress -top-6 right-0"
     >
       <rect
-        className="fill-light rect1"
-        x="20"
+        className="fill-dark rect1"
+        x="10"
         y="95"
         width="10"
         height="60"
@@ -18,8 +18,8 @@ export function Equalizer() {
         ry="5"
       ></rect>
       <rect
-        className="fill-light bg rect2"
-        x="50"
+        className="fill-dark bg rect2"
+        x="40"
         y="100"
         width="10"
         height="50"
@@ -27,8 +27,8 @@ export function Equalizer() {
         ry="5"
       ></rect>
       <rect
-        className="fill-light bg rect3"
-        x="80"
+        className="fill-dark bg rect3"
+        x="70"
         y="105"
         width="10"
         height="40"
@@ -36,8 +36,8 @@ export function Equalizer() {
         ry="5"
       ></rect>
       <rect
-        className="fill-light bg rect4"
-        x="110"
+        className="fill-dark bg rect4"
+        x="100"
         y="100"
         width="10"
         height="50"
@@ -45,8 +45,8 @@ export function Equalizer() {
         ry="5"
       ></rect>
       <rect
-        className="fill-light bg rect5"
-        x="140"
+        className="fill-dark bg rect5"
+        x="130"
         y="95"
         width="10"
         height="60"

@@ -5,6 +5,7 @@ import styles from "./EntertainmentComponent.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import { toggleIsOn } from "../../store/reducer";
+import { Equalizer } from "../SVGAnimations/Equalizer";
 
 export function EntertainmentComponent() {
   const dispatch = useDispatch();
@@ -28,9 +29,19 @@ export function EntertainmentComponent() {
       />
 
       <div className="flex flex-col items-center gap-0 w-full">
-        <span className="text-dark whitespace-nowrap text-md font-bold">
+        <div className="text-dark whitespace-nowrap text-md font-bold flex items-center justify-center gap-0">
+          {hasMicrointeractions && (
+            <div
+              className={twMerge(
+                "duration-300 overflow-hidden",
+                isOn ? "w-14 " : "w-0 "
+              )}
+            >
+              <Equalizer />
+            </div>
+          )}
           Bohemian Rhapsody
-        </span>
+        </div>
         <span className="text-dark/70 whitespace-nowrap text-sm font-bold">
           Queen
         </span>
