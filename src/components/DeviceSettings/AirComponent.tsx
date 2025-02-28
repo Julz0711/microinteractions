@@ -19,6 +19,10 @@ export function AirComponent() {
   const fan = useRef(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
 
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
+
   useEffect(() => {
     if (fan.current) {
       tl.current = gsap.timeline({ repeat: -1 });
@@ -112,14 +116,20 @@ export function AirComponent() {
   return (
     <div className="flex flex-col items-center justify-center gap-16 w-full mx-auto">
       <div className="flex flex-col items-center gap-2 w-full">
-        <div ref={fan}>
+        <div ref={hasMicrointeractions ? fan : null}>
           <DynamicIcon iconName={"Fan"} color={iconColor} size={"200"} />
         </div>
         <span className="font-normal">Noch aktiv für:</span>
         <div className="flex gap-5 text-center">
           <div className="flex flex-col font-normal">
             <span className="countdown font-bold text-3xl">
-              <span style={{ "--value": hours } as React.CSSProperties}>
+              <span
+                style={
+                  hasMicrointeractions
+                    ? ({ "--value": hours } as React.CSSProperties)
+                    : ({ "--value": isOn ? 2 : 0 } as React.CSSProperties)
+                }
+              >
                 02
               </span>
             </span>
@@ -127,7 +137,13 @@ export function AirComponent() {
           </div>
           <div className="flex flex-col font-normal">
             <span className="countdown font-bold text-3xl">
-              <span style={{ "--value": minutes } as React.CSSProperties}>
+              <span
+                style={
+                  hasMicrointeractions
+                    ? ({ "--value": minutes } as React.CSSProperties)
+                    : ({ "--value": isOn ? 45 : 0 } as React.CSSProperties)
+                }
+              >
                 24
               </span>
             </span>
@@ -135,7 +151,13 @@ export function AirComponent() {
           </div>
           <div className="flex flex-col font-normal">
             <span className="countdown font-bold text-3xl">
-              <span style={{ "--value": seconds } as React.CSSProperties}>
+              <span
+                style={
+                  hasMicrointeractions
+                    ? ({ "--value": seconds } as React.CSSProperties)
+                    : ({ "--value": isOn ? 27 : 0 } as React.CSSProperties)
+                }
+              >
                 06
               </span>
             </span>
