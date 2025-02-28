@@ -1,7 +1,7 @@
 import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
 import { Room } from "../types/types";
 import React, { useState } from "react";
-import { ScrollableNavBar } from "../components/scrollableNavBar.tsx";
+import { ScrollableNavBar } from "../components/ScrollableNavBar.tsx";
 import { NoDevicesPlaceholder } from "../components/NoDevicesPlaceholder.tsx";
 import { DashboardPresets } from "../components/DashboardPresets.tsx";
 import { DeviceOverlay } from "../components/DashboardGrid/UI/DeviceOverlay.tsx";
