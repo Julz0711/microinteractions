@@ -6,13 +6,13 @@ input[type="range"].solid {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 0;
-    box-shadow: -20rem 0 0 20rem #ffffff;
+    box-shadow: -20rem 0 0 20rem var(--color-light);
   }
 
   &::-moz-range-thumb {
     border: none;
     width: 0;
-    box-shadow: -20rem 0 0 20rem #ffffff;
+    box-shadow: -20rem 0 0 20rem var(--color-light);
   }
 }
 
@@ -27,8 +27,8 @@ input[type="range"].gradient {
     width: 20px;
     border-radius: 50%;
     background: transparent;
-    border: 2px solid #fff;
-    box-shadow: 0 0 7px 3px #00000033;
+    border: 2px solid var(--color-light);
+    box-shadow: 0 0 7px 3px rgba(var(--dark), 0.3);
     margin-top: -5px;
     margin-bottom: -5px;
   }
@@ -38,8 +38,8 @@ input[type="range"].gradient {
     width: 20px;
     border-radius: 50%;
     background: transparent;
-    border: 2px solid #fff;
-    box-shadow: 0 0 7px 3px #00000033;
+    border: 2px solid var(--color-light);
+    box-shadow: 0 0 7px 3px rgba(var(--dark), 0.3);
     margin-top: -5px;
     margin-bottom: -5px;
   }
@@ -48,10 +48,10 @@ input[type="range"].gradient {
 input[type="range"].uggo {
   -webkit-appearance: none;
   width: 100%;
-  background: rgba(248, 248, 248, 0.5);
+  background: rgba(var(--light), 0.5);
   border-radius: 12.5px;
   outline: none;
-  box-shadow: 0rem 0 2rem rgba(29, 28, 27, 0.3);
+  box-shadow: 0rem 0 2rem rgba(var(--dark), 0.3);
   overflow: hidden;
   &::-webkit-slider-thumb {
     -webkit-appearance: none;

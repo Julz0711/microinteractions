@@ -61,12 +61,17 @@ export function LightsComponent() {
             />
             {!hasMicrointeractions && <p>Helligkeit</p>}
           </div>
-          <div className="flex flex-col items-center">
+          <div
+            className={twMerge(
+              isOn ? "" : "grayscale-100",
+              "flex flex-col items-center"
+            )}
+          >
             <Slider
               hasGradient={true}
               isPx={true}
               size={"250"}
-              clickable={true}
+              clickable={isOn ? true : false}
               onChange={() => {}}
             />
             {!hasMicrointeractions && <p>Lichttemperatur</p>}

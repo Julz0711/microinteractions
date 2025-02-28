@@ -25,8 +25,8 @@ const NewDevice = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        delay: index * (0.95 * index),
-        duration: 0.5,
+        delay: hasMicrointeractions ? index * (0.95 * index) : 1,
+        duration: hasMicrointeractions ? 0.5 : 0,
       },
     }),
   };
@@ -136,8 +136,8 @@ const NewDevice = () => {
         <Button
           label={"Manuelles Gerätesetup"}
           style={"bg-dark"}
-          link={"/"}
           isLarge={true}
+          link={""}
         />
       </div>
     </div>

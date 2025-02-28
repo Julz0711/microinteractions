@@ -88,7 +88,7 @@ const InputField: React.FC<InputFieldProps> = ({
                   isFocused || value ? "font-bold pt-6 pb-2" : "py-4",
                   error && "ring-red"
                 )
-              : twMerge("py-4", "ring-uwu")
+              : twMerge("py-4", "ring-uwu", error && "ring-red")
           )}
         />
         {hasIcon && (

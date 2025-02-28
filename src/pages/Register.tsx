@@ -52,7 +52,7 @@ const Register = () => {
         rightIcon={"Close"}
         rightIconBg={true}
         rightIconBgColour={"bg-dark"}
-        rightIconLink="/dashboard"
+        rightIconLink="/login"
         bg="bg-light"
       />
       <div className="flex flex-col gap-2 pb-5 grow">
