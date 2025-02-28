@@ -309,7 +309,7 @@ export const scenes = [
   {
     icon: "Laptop",
     name: "Home Office",
-    isActive: true,
+    isActive: false,
     color: "yellow",
   },
   {
@@ -321,7 +321,7 @@ export const scenes = [
   {
     icon: "Moon",
     name: "Gute Nacht",
-    isActive: true,
+    isActive: false,
     color: "blue",
   },
 ];
@@ -329,16 +329,23 @@ export const scenes = [
 export const schedules = [
   {
     icon: "Sun",
-    name: "Morgenroutine Mo-Fr",
+    name: "Morgen Mo-Fr",
     isActive: true,
     additionalInfo: "3 Räume, 11 Geräte",
     color: "yellow",
   },
   {
     icon: "Sun",
-    name: "Morgenroutine Sa-So",
+    name: "Morgen Sa-So",
     isActive: false,
     additionalInfo: "2 Räume, 8 Geräte",
     color: "orange",
+  },
+  {
+    icon: "Moon",
+    name: "Abend",
+    isActive: false,
+    additionalInfo: "3 Räume, 14 Geräte",
+    color: "blue",
   },
 ];

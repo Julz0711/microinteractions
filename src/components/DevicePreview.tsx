@@ -102,7 +102,7 @@ const DevicePreview = ({
           ? { scale: [1, 1.05, 1] }
           : { scale: 1 }
       }
-      className={`relative flex justify-start min-w-32 w-full overflow-hidden ${
+      className={`relative flex justify-start min-w-32 overflow-hidden ${
         hasToggle
           ? isSmall
             ? "h-24 items-end py-2 px-2"
