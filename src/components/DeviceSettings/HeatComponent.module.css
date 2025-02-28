@@ -3,5 +3,13 @@ input[type="range"].solid::-webkit-slider-thumb {
 }
 
 input[type="range"].off::-webkit-slider-thumb {
-  box-shadow: -20rem 0 0 20rem rgba(var(--dark), .3);
+  box-shadow: -20rem 0 0 20rem rgba(var(--dark), 0.3);
+}
+
+input[type="range"].solid::-moz-range-thumb {
+  box-shadow: -20rem 0 0 20rem var(--color-light);
+}
+
+input[type="range"].off::-moz-range-thumb {
+  box-shadow: -20rem 0 0 20rem rgba(var(--dark), 0.3);
 }

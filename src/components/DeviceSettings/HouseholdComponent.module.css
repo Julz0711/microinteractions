@@ -7,3 +7,9 @@ input[type="range"].solid::-webkit-slider-thumb {
   width: 0;
   box-shadow: -20rem 0 0 20rem var(--color-blue);
 }
+
+input[type="range"].solid::-moz-range-thumb {
+  -webkit-appearance: none;
+  width: 0;
+  box-shadow: -20rem 0 0 20rem var(--color-blue);
+}

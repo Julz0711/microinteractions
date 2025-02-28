@@ -31,7 +31,7 @@ const DynamicIcon: React.FC<DynamicIconProps> = ({ iconName, size, color }) => {
       src={iconUrl}
       className={twMerge(color)}
       beforeInjection={(svg) => {
-        svg.setAttribute("style", `width: ${size}; height: ${size};`);
+        svg.setAttribute("style", `width: ${size}px; height: ${size}px;`);
         svg.setAttribute("fill", "currentColor");
         svg.querySelectorAll("path").forEach((path) => {
           path.setAttribute("fill", "currentColor");

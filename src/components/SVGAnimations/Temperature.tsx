@@ -34,7 +34,7 @@ export function Temperature(props: TemperatureProps) {
           "absolute -top-[18%] left-1/2 -translate-x-1/2",
           props.size ? (isOn ? "text-red" : "text-dark/50") : "text-light"
         )}
-        size={props.size ? `${props.size / 2.2}px` : "40px"}
+        size={props.size ? `${props.size / 2.2}` : "40"}
       />
       <div
         className={twMerge(

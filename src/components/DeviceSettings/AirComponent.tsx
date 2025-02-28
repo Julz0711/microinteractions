@@ -3,8 +3,9 @@ import SliderWithValue from "../Slider/SliderWithValue";
 import styles from "./AirComponent.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOn } from "../../store/reducer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AppState } from "../../store/store";
+import { gsap } from "gsap";
 
 export function AirComponent() {
   const dispatch = useDispatch();
@@ -15,14 +16,36 @@ export function AirComponent() {
   const [minutes, setMinutes] = useState(24);
   const [seconds, setSeconds] = useState(6);
   const isOn = useSelector((state: AppState) => state.app.isOn);
+  const fan = useRef(null);
+  const tl = useRef<gsap.core.Timeline | null>(null);
+
+  useEffect(() => {
+    if (fan.current) {
+      tl.current = gsap.timeline({ repeat: -1 });
+      tl.current.to(fan.current, {
+        rotate: 360,
+        duration: 4,
+        ease: "none",
+      });
+      gsap.to(tl.current, {
+        timeScale: strengthValue,
+        duration: 1.5,
+      });
+    }
+  }, [fan]);
 
   useEffect(() => {
     if (strengthValue === 0) {
       dispatch(setIsOn(false));
-    } else {
-      dispatch(setIsOn(true));
+      gsap.to(tl.current, { timeScale: 0.00001, duration: 1.5 });
+      return;
     }
-  }, [strengthValue, dispatch]);
+    dispatch(setIsOn(true));
+    if (tl.current) {
+      tl.current?.play();
+      gsap.to(tl.current, { timeScale: strengthValue, duration: 1.5 });
+    }
+  }, [dispatch, strengthValue]);
 
   useEffect(() => {
     if (!isOn) {
@@ -34,7 +57,7 @@ export function AirComponent() {
       setSeconds(0);
     } else {
       setIconColor("text-green");
-      setStrengthValue(2);
+      if (strengthValue === 0) setStrengthValue(1);
       setTimerValue(3);
       setHours(2);
       setMinutes(24);
@@ -45,7 +68,9 @@ export function AirComponent() {
   return (
     <div className="flex flex-col items-center justify-center gap-16 w-full mx-auto">
       <div className="flex flex-col items-center gap-2 w-full">
-        <DynamicIcon iconName={"Fan"} color={iconColor} size={"200"} />
+        <div ref={fan}>
+          <DynamicIcon iconName={"Fan"} color={iconColor} size={"200"} />
+        </div>
         <span className="font-normal">Noch aktiv für:</span>
         <div className="flex gap-5 text-center">
           <div className="flex flex-col font-normal">
@@ -83,8 +108,7 @@ export function AirComponent() {
               </td>
               <td>
                 <SliderWithValue
-                          custom={isOn ? styles.solid : styles.off}
-
+                  custom={isOn ? styles.solid : styles.off}
                   value={strengthValue}
                   step={33.333}
                   measure={""}
@@ -98,8 +122,7 @@ export function AirComponent() {
               </td>
               <td>
                 <SliderWithValue
-                          custom={isOn ? styles.solid : styles.off}
-
+                  custom={isOn ? styles.solid : styles.off}
                   value={timerValue}
                   step={20}
                   measure={"h"}
