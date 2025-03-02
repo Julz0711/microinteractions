@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import Debug from "./components/Debug";
+import { Instructions } from "./components/Instructions";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <Provider store={store}>
         <Layout />
         <Debug />
+
+        <Instructions />
       </Provider>
     </Router>
   );

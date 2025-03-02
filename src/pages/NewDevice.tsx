@@ -25,7 +25,7 @@ const NewDevice = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        delay: hasMicrointeractions ? index * (0.95 * index) : 1,
+        delay: hasMicrointeractions ? 0.5 + 0.95 * index : 1 + 0.95 * index,
         duration: hasMicrointeractions ? 0.5 : 0,
       },
     }),

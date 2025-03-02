@@ -1,6 +1,6 @@
 import * as React from "react";
 import { twMerge } from "tailwind-merge";
-import { getColor, getShadow } from "../../../helpers/helpers";
+import { getColor, getShadow, getTextColor } from "../../../helpers/helpers";
 import { Category, HierarchyStep } from "../../../types/dashboard.types";
 import DynamicIcon from "../../DynamicIcon";
 import { DeviceGrid } from "../DeviceGrid";
@@ -26,11 +26,11 @@ export function CategoryContent(props: ICategoryContentProps) {
   return (
     <div
       className={twMerge(
-        activeDevices > 0
+        activeDevices > 0 && hierarchy === HierarchyStep.SmartHomeGrid
           ? getColor(props.thisCategory) +
               " shadow-lg " +
               getShadow(props.thisCategory)
-          : "bg-inactive",
+          : "shadow-lg bg-inactive ",
         "flex items-center justify-center max-w-full max-h-full rounded-md",
         props.thisCategory === Category.Household && !props.active
           ? "relative left-0 -translate-y-10"
@@ -41,7 +41,7 @@ export function CategoryContent(props: ICategoryContentProps) {
       {props.active ? (
         <DynamicIcon
           iconName="Close"
-          color={activeDevices > 0 ? "text-light" : "text-dark"}
+          color={getTextColor(props.thisCategory)}
         />
       ) : (
         <CategoryOverview thisCategory={props.thisCategory} />
