@@ -28,7 +28,7 @@ const SliderWithValue = (props: Props) => {
 
   return (
     <div className="w-full flex flex-row gap-2">
-      <div className="w-full grow">
+      <div className="w-full grow relative">
         <Slider
           className={props.custom}
           hasGradient={false}
@@ -39,6 +39,17 @@ const SliderWithValue = (props: Props) => {
           clickable={true}
           onChange={handleSliderChange}
         />
+        <div
+          className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden rounded-lg"
+          style={{ gap: "calc(" + props.step + "% -  1px" }}
+        >
+          {Array.from({ length: Math.floor(100 / props.step) }, (_, index) => (
+            <div
+              key={index}
+              className="h-[51px]  -translate-x-[1px] -translate-y-1 w-[1px] bg-dark/20 "
+            />
+          ))}
+        </div>
       </div>
       <div className="sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark bg-light font-bold shadow-2xl">
         {sliderValue}
