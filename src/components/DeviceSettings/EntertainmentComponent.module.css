@@ -13,7 +13,7 @@ input[type="range"].isOn {
     background-color: none;
     border: none;
     width: 0;
-    box-shadow: -20rem 0 0 20rem #ffffff;
+    box-shadow: -20rem 0 0 20rem var(--color-purple);
   }
 }
 
@@ -32,6 +32,25 @@ input[type="range"].isOff {
     background-color: none;
     border: none;
     width: 0;
-    box-shadow: -20rem 0 0 20rem #ffffff;
+    box-shadow: -20rem 0 0 20rem var(--color-dark);
+  }
+}
+
+input[type="range"].isUgly {
+  -webkit-appearance: none;
+  background-color: #33333344;
+  border-radius: 1rem;
+  overflow: hidden;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0;
+    box-shadow: -20rem 0 0 20rem var(--color-dark);
+  }
+
+  &::-moz-range-thumb {
+    background-color: none;
+    border: none;
+    width: 0;
+    box-shadow: -20rem 0 0 20rem #333333;
   }
 }

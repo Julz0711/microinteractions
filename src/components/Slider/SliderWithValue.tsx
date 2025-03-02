@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Slider } from "./Slider";
+import { useSelector } from "react-redux";
+import { AppState } from "../../store/store";
 
 type Props = {
   step: number;
@@ -12,6 +14,9 @@ type Props = {
 
 const SliderWithValue = (props: Props) => {
   const [sliderValue, setSliderValue] = useState<number>(Number(props.value));
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
 
   useEffect(() => {
     setSliderValue(Number(props.value));
@@ -39,17 +44,22 @@ const SliderWithValue = (props: Props) => {
           clickable={true}
           onChange={handleSliderChange}
         />
-        <div
-          className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden rounded-lg"
-          style={{ gap: "calc(" + props.step + "% -  1px" }}
-        >
-          {Array.from({ length: Math.floor(100 / props.step) }, (_, index) => (
-            <div
-              key={index}
-              className="h-[51px]  -translate-x-[1px] -translate-y-1 w-[1px] bg-dark/20 "
-            />
-          ))}
-        </div>
+        {hasMicrointeractions && (
+          <div
+            className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden rounded-lg"
+            style={{ gap: "calc(" + props.step + "% -  1px" }}
+          >
+            {Array.from(
+              { length: Math.floor(100 / props.step) },
+              (_, index) => (
+                <div
+                  key={index}
+                  className="h-[51px]  -translate-x-[1px] -translate-y-1 w-[1px] bg-dark/20 "
+                />
+              )
+            )}
+          </div>
+        )}
       </div>
       <div className="sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark bg-light font-bold shadow-2xl">
         {sliderValue}
