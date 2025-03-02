@@ -57,7 +57,7 @@ export function CategoryStats(props: ICategoryStatsProps) {
         <>
           {hasActiveDevices ? (
             <div className="flex items-center justify-center w-full pt-2 relative">
-              <Temperature category={Category.Heat} />
+              <Temperature category={Category.Heat} isDashboard={true} />
             </div>
           ) : (
             <>

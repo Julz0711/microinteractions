@@ -13,6 +13,7 @@ export interface TemperatureProps {
   temp?: number;
   styles?: string;
   progressOverride?: number;
+  isDashboard?: boolean;
 }
 
 export function Temperature(props: TemperatureProps) {
@@ -38,9 +39,12 @@ export function Temperature(props: TemperatureProps) {
       />
       <div
         className={twMerge(
-          isOn
+          props.isDashboard
+            ? "text-light"
+            : isOn
             ? "text-light drop-shadow-[0_0_10px_rgba(0,0,0,.3)]"
             : props.size && "text-dark",
+
           props.size ? "text-2xl" : "text-sm",
           "font-bold w-full absolute top-1/2 -translate-y-1/2 mx-auto text-center flex flex-col items-center"
         )}
