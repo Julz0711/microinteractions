@@ -467,7 +467,7 @@ const DeviceRegistration = () => {
             </div>
           )}
           {renderStep()}
-          <button className="btn-xl" onClick={() => navigate("/")}>
+          <button className="btn-xl" onClick={() => navigate("/dashboard")}>
             Zum Dashboard
           </button>
         </div>

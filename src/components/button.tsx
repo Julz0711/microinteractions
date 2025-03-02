@@ -7,28 +7,33 @@ interface ButtonProps {
   label: string;
   icon?: string;
   style: string;
-  link: string;
+  link?: string;
   isLarge?: boolean;
+  isSmall?: boolean;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
   label = "Button",
   icon = "",
   style = "bg-dark",
-  link = "/",
+  link = "",
   isLarge = false,
+  isSmall = false,
   disabled = false,
+  onClick,
 }) => {
   const navigate = useNavigate();
 
   return (
     <button
-      onClick={() => navigate(link)}
+      onClick={link ? () => navigate(link) : onClick}
       className={twMerge(
-        "btn-full flex flex-row items-center justify-center gap-4",
+        "flex flex-row items-center justify-center gap-4",
         style,
-        isLarge ? "btn-lg" : ""
+        isLarge && "btn-lg",
+        isSmall ? "btn-sm" : "btn-full"
       )}
       disabled={disabled}
     >
