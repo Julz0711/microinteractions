@@ -16,7 +16,7 @@ export function Instructions(props: IInstructionsProps) {
         <DynamicIcon iconName="ChevronLeft" />
       </button>
       {isOpen && (
-        <div className="bg-[#ffffff] p-4 flex flex-col gap-4">
+        <div className="bg-[#ffffff] p-4 flex flex-col gap-4 max-w-92">
           <h1>Aufgaben</h1>
           <form>
             <input type="checkbox" id="quest1" name="quest1" />
@@ -40,7 +40,7 @@ export function Instructions(props: IInstructionsProps) {
             <br />
             <input type="checkbox" id="quest6" name="quest6" />
             <label htmlFor="quest6">
-              Schalte den Luftentfeuchter im Bad ab.
+              Stelle den Luftbefeuchter im Bad auf einen Timer für 4 Stunden.
             </label>
             <br />
           </form>
