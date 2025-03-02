@@ -1,18 +1,30 @@
 import * as React from "react";
 import { useState } from "react";
 import DynamicIcon from "./DynamicIcon";
+import { useSelector } from "react-redux";
+import { AppState } from "../store/store";
+import { twMerge } from "tailwind-merge";
 
 export interface IInstructionsProps {}
 
 export function Instructions(props: IInstructionsProps) {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClickMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const linkToTest = "text-blue hover:text-dark font-bold underline";
   return (
     <div className="fixed bg-[#cccccc] border z-[999] bottom-8 right-0 flex">
-      <button className="p-4" onClick={handleClickMenu}>
+      <button
+        className={twMerge("p-4", isOpen && "rotate-180")}
+        onClick={handleClickMenu}
+      >
         <DynamicIcon iconName="ChevronLeft" />
       </button>
       {isOpen && (
@@ -47,6 +59,11 @@ export function Instructions(props: IInstructionsProps) {
           Nach Abschließen aller Aufgaben: <br />
           Bearbeite diesen kurzen Fragebogen. <br />
           Dieser dauert nur ca. 5 Minuten.
+          {hasMicrointeractions ? (
+            <a className={linkToTest}>Test A</a>
+          ) : (
+            <a className={linkToTest}>Text B</a>
+          )}
         </div>
       )}
     </div>

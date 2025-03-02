@@ -5,7 +5,6 @@ import { twMerge } from "tailwind-merge";
 import { Overlay } from "./components/Overlay";
 import { TopNavigation } from "./components/TopNavigation";
 import { useLocation } from "react-router-dom";
-import { Instructions } from "./components/Instructions";
 
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
