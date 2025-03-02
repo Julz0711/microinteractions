@@ -80,14 +80,16 @@ export function CategoryStats(props: ICategoryStatsProps) {
         </>
       ) : (
         <div className="w-full flex flex-col">
-          <p
-            className={twMerge(
-              "text-xs",
-              hasActiveDevices ? "text-light" : "text-uwu"
-            )}
-          >
-            Heizung: <span className="font-bold">21°C</span>
-          </p>
+          {hasActiveDevices ? (
+            <p
+              className={twMerge(
+                "text-xs",
+                hasActiveDevices ? "text-light" : "text-uwu"
+              )}
+            >
+              Heizung: <span className="font-bold">21°C</span>
+            </p>
+          ) : null}
         </div>
       );
     case Category.Entertainment:
@@ -136,14 +138,17 @@ export function CategoryStats(props: ICategoryStatsProps) {
         </>
       ) : (
         <div className="w-full flex flex-col">
-          <p
-            className={twMerge(
-              "text-xs",
-              hasActiveDevices ? "text-light" : "text-uwu"
-            )}
-          >
-            Aktueller Song: <span className="font-bold">Bohemian Rapsody</span>
-          </p>
+          {hasActiveDevices ? (
+            <p
+              className={twMerge(
+                "text-xs",
+                hasActiveDevices ? "text-light" : "text-uwu"
+              )}
+            >
+              Aktueller Song:{" "}
+              <span className="font-bold">Bohemian Rapsody</span>
+            </p>
+          ) : null}
         </div>
       );
     case Category.Air:
@@ -217,22 +222,30 @@ export function CategoryStats(props: ICategoryStatsProps) {
         </div>
       ) : (
         <div className="w-full flex flex-col">
-          <p
-            className={twMerge(
-              "text-xs",
-              hasActiveDevices ? "text-light" : "text-uwu"
-            )}
-          >
-            Ventilator: <span className="font-bold">Mittel</span>
-          </p>
-          <p
-            className={twMerge(
-              "text-xs",
-              hasActiveDevices ? "text-light" : "text-uwu"
-            )}
-          >
-            Luftfeuchtigkeit: <span className="font-bold">60%</span>
-          </p>
+          {hasActiveDevices ? (
+            <>
+              <p
+                className={twMerge(
+                  "text-xs",
+                  hasActiveDevices ? "text-light" : "text-uwu"
+                )}
+              >
+                Ventilator: <span className="font-bold">Mittel</span>
+              </p>
+              <p
+                className={twMerge(
+                  "text-xs",
+                  hasActiveDevices ? "text-light" : "text-uwu"
+                )}
+              >
+                Luftfeuchtigkeit: <span className="font-bold">60%</span>
+              </p>
+            </>
+          ) : (
+            <span className="text-uwu text-[10px] font-bold text-center">
+              Keine Geräte registriert
+            </span>
+          )}
         </div>
       );
     case Category.Household:
