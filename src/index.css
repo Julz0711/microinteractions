@@ -61,6 +61,7 @@
   --green: 28, 165, 142;
   --yellow: 241, 202, 51;
   --green: 28, 165, 142;
+  --info-blue: 135, 206, 250;
 
   --color-light: rgba(var(--light), 1);
   --color-dark: rgba(var(--dark), 1);
@@ -73,6 +74,7 @@
   --color-green: rgba(var(--green), 1);
   --color-yellow: rgba(var(--yellow), 1);
   --color-green: rgba(var(--green), 1);
+  --color-info-blue: rgba(var(--info-blue), 1);
 
   /* shadows */
   --shadow-alpha: 1
@@ -102,6 +104,7 @@
   --breakpoint-sm: 30rem;
 
 }
+
 
 h1 {
   @apply font-bold text-[1.5rem];
