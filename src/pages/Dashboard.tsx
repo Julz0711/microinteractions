@@ -59,6 +59,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
             {hasMicrointeractions && tourStep === 0 && (
               <Hotspot
                 targetId="navbar"
+                header="Räume"
                 message="Hier siehst du alle deine Räume auf einen Blick und kannst schnell zwischen diesen wechseln."
                 step={1}
                 totalSteps={totalSteps}
@@ -73,6 +74,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
             {tourStep === 1 && (
               <Hotspot
                 targetId="room-grid"
+                header="Alle Geräte"
                 message="Hier kannst du schnell und bequem auf alle Geräte in diesem Raum zugreifen."
                 step={2}
                 totalSteps={totalSteps}
@@ -88,6 +90,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
             {tourStep === 2 && (
               <Hotspot
                 targetId="dashboard-presets"
+                header="Schnellzugriff"
                 message="Hier kannst du deine Szenen, Lieblingsgeräte und Zeitpläne ganz einfach steuern – ein- und ausschalten mit nur einem Klick!"
                 step={3}
                 totalSteps={totalSteps}

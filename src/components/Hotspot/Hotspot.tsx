@@ -6,6 +6,7 @@ import DynamicIcon from "../DynamicIcon";
 
 interface HotspotProps {
   targetId: string;
+  header: string;
   message: string;
   buttonLabel?: string;
   step: number;
@@ -15,6 +16,7 @@ interface HotspotProps {
 
 const Hotspot: React.FC<HotspotProps> = ({
   targetId,
+  header,
   message,
   buttonLabel,
   step,
@@ -124,7 +126,7 @@ const Hotspot: React.FC<HotspotProps> = ({
           ></div>
 
           <motion.div
-            className="absolute z-[999] p-3 bg-light shadow-xl rounded-md w-2/3"
+            className="absolute z-[999] p-3 bg-light shadow-xl rounded-md w-2/3 flex flex-col gap-2"
             style={{
               top: `${position.top + 30}px`,
               left: `${position.left}px`,
@@ -133,14 +135,14 @@ const Hotspot: React.FC<HotspotProps> = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
           >
-            <p className="text-dark text-sm flex flex-col gap-2">
-              <strong>
-                Schritt {step}/{totalSteps}
-              </strong>
-              <span className="text-xs text-dark/70 font-normal">
-                {message}
+            <div className="text-dark font-bold text-sm flex flex-row justify-between gap-2">
+              <span>{header}</span>
+              <span className="text-uwu text-xs">
+                {step}/{totalSteps}
               </span>
-            </p>
+            </div>
+            <p className="text-xs text-dark/70 font-normal">{message}</p>
+
             <Button
               onClick={handleNext}
               isSmall={true}
@@ -151,7 +153,7 @@ const Hotspot: React.FC<HotspotProps> = ({
                   ? "Alles klar!"
                   : "Weiter"
               }
-              style={"btn-sm mt-4"}
+              style={"btn-sm mt-1"}
             ></Button>
           </motion.div>
         </>
