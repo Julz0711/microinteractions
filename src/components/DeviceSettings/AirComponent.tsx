@@ -53,7 +53,7 @@ export function AirComponent() {
 
   useEffect(() => {
     if (!isOn) {
-      setIconColor("text-dark/50");
+      setIconColor("text-dark/20");
       setStrengthValue(0);
       setTimerValue(0);
       setHours(0);

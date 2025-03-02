@@ -286,6 +286,15 @@ body {
   );
 }
 
+.device-box-household {
+  --p: 0%;
+  transition: --p 0.5s;
+  background: linear-gradient(
+    var(--color-inactive) var(--p),
+    var(--color-blue) 0%
+  );
+}
+
 .shadow-green {
   box-shadow: 0px 4px 16px 0px  rgba(28, 165, 142, .7);
 }
