@@ -95,7 +95,7 @@ export function DashboardPresets() {
           </div>
           <div className="w-full">
             <div className="mb-2">
-              <HeadlineWithLink headline="Szenen" link="/dashboard" />
+              <HeadlineWithLink headline="Favoriten" link="/dashboard" />
             </div>
             <div className="w-full flex flex-row flex-wrap items-center gap-4">
               {(showAllDevices ? devices : favoriteDevices.slice(0, 3)).map(
@@ -121,7 +121,7 @@ export function DashboardPresets() {
           </div>
           <div className="w-full">
             <div className="mb-2">
-              <HeadlineWithLink headline="Szenen" link="/dashboard" />
+              <HeadlineWithLink headline="Zeitpläne" link="/dashboard" />
             </div>
             <div className="w-full flex flex-row flex-wrap items-center gap-4">
               {(showAllSchedules ? schedules : schedules.slice(0, 3)).map(
