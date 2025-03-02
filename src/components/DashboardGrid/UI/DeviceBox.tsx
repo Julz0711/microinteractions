@@ -65,7 +65,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
               : "shadow-xl device-box-dashboard-inactive"
             : isDeviceActive
             ? getColor(device.category).toLowerCase()
-            : "bg-" + device.category.toLowerCase(),
+            : "bg-inactive",
           "motion absolute gap-4  font-bold rounded-md select-none flex flex-col justify-center items-center"
         )}
         onClick={() => {
@@ -88,7 +88,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
             <DynamicIcon
               iconName={"OnOff"}
               color={
-                isDeviceActive ? getTextColor(device.category) : "text-uwu"
+                isDeviceActive ? getTextColor(device.category) : "text-dark"
               }
             />
           </button>
@@ -96,7 +96,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
             <h3
               className={twMerge(
                 "text-center text-[11px]",
-                isDeviceActive ? "text-light" : "text-uwu"
+                isDeviceActive ? "text-light" : "text-dark"
               )}
             >
               {device.name}

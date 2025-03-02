@@ -12,7 +12,9 @@ import OnOffButton from "../../DeviceSettings/OnOffButton";
 
 export function DeviceOverlay() {
   const dispatch = useDispatch();
-  const isOn = useSelector((state: AppState) => state.app.isOn);
+  const { isOn, hasMicrointeractions } = useSelector(
+    (state: AppState) => state.app
+  );
 
   const hierarchy = useSelector((state: AppState) => state.app.hierarchy);
   const category = useSelector((state: AppState) => state.app.category);
@@ -55,6 +57,15 @@ export function DeviceOverlay() {
           />
           {renderCategoryComponent()}
           <OnOffButton isOn={isOn} category={category as Category} />
+          {!hasMicrointeractions && (
+            <div className=" fixed h-16 bottom-2 right-12 font-bold">
+              {isOn ? (
+                <div className="w-full h-16">An</div>
+              ) : (
+                <div className="w-full h-16">Aus</div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </>

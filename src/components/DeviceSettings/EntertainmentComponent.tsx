@@ -54,13 +54,21 @@ export function EntertainmentComponent() {
           value={isOn ? "30" : "0"}
           className={twMerge(
             "w-full border-0 shadow-2xl h-3",
-            isOn ? styles.isOn : styles.isOff
+            hasMicrointeractions
+              ? isOn
+                ? styles.isOn
+                : styles.isOff
+              : styles.isUgly
           )}
         />
         <span
           className={twMerge(
             "absolute left-1 top-6 text-xs font-bold",
-            isOn ? "text-purple" : "text-uwu"
+            hasMicrointeractions
+              ? isOn
+                ? "text-purple"
+                : "text-uwu"
+              : "text-dark"
           )}
         >
           {isOn ? "1:34" : "-:--"}
@@ -68,7 +76,11 @@ export function EntertainmentComponent() {
         <span
           className={twMerge(
             "absolute right-1 top-6 text-xs font-bold",
-            isOn ? "text-purple" : "text-uwu"
+            hasMicrointeractions
+              ? isOn
+                ? "text-purple"
+                : "text-uwu"
+              : "text-dark"
           )}
         >
           {isOn ? "-2:56" : "--:--"}
@@ -77,17 +89,37 @@ export function EntertainmentComponent() {
       <div className="flex gap-6 items-center">
         <DynamicIcon
           iconName={"PreviousSong"}
-          color={twMerge(isOn ? "text-purple" : "text-dark")}
+          color={twMerge(
+            hasMicrointeractions
+              ? isOn
+                ? "text-purple"
+                : "text-uwu"
+              : "text-dark"
+          )}
           size={"40"}
         />
-        <DynamicIcon
-          iconName={isOn ? "Pause" : "Play"}
-          color={twMerge(isOn ? "text-purple" : "text-dark")}
-          size={"48"}
-        />
+        <span onClick={handleToggle}>
+          <DynamicIcon
+            iconName={isOn ? "Pause" : "Play"}
+            color={twMerge(
+              hasMicrointeractions
+                ? isOn
+                  ? "text-purple"
+                  : "text-uwu"
+                : "text-dark"
+            )}
+            size={"48"}
+          />
+        </span>
         <DynamicIcon
           iconName={"NextSong"}
-          color={twMerge(isOn ? "text-purple" : "text-dark")}
+          color={twMerge(
+            hasMicrointeractions
+              ? isOn
+                ? "text-purple"
+                : "text-uwu"
+              : "text-dark"
+          )}
           size={"40"}
         />
       </div>
@@ -95,7 +127,13 @@ export function EntertainmentComponent() {
         <span className="text-xs text-purple font-bold">
           <DynamicIcon
             iconName={"SoundOff"}
-            color={twMerge(isOn ? "text-purple" : "text-uwu")}
+            color={twMerge(
+              hasMicrointeractions
+                ? isOn
+                  ? "text-purple"
+                  : "text-uwu"
+                : "text-dark"
+            )}
             size={"16"}
           />
         </span>
@@ -106,14 +144,24 @@ export function EntertainmentComponent() {
           value="30"
           className={twMerge(
             "w-full border-0 shadow-2xl h-3",
-            isOn ? styles.isOn : styles.isOff
+            hasMicrointeractions
+              ? isOn
+                ? styles.isOn
+                : styles.isOff
+              : styles.isUgly
           )}
         />
 
-        <span className="text-xs text-purple font-bold">
+        <span className={twMerge("text-xs font-bold")}>
           <DynamicIcon
             iconName={"SoundOn"}
-            color={twMerge(isOn ? "text-purple" : "text-uwu")}
+            color={twMerge(
+              hasMicrointeractions
+                ? isOn
+                  ? "text-purple"
+                  : "text-uwu"
+                : "text-dark"
+            )}
             size={"25"}
           />
         </span>

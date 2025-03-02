@@ -53,7 +53,7 @@ export function AirComponent() {
 
   useEffect(() => {
     if (!isOn) {
-      setIconColor("text-light/50");
+      setIconColor("text-dark/50");
       setStrengthValue(0);
       setTimerValue(0);
       setHours(0);
@@ -117,53 +117,43 @@ export function AirComponent() {
     <div className="flex flex-col items-center justify-center gap-16 w-full mx-auto">
       <div className="flex flex-col items-center gap-2 w-full">
         <div ref={hasMicrointeractions ? fan : null}>
-          <DynamicIcon iconName={"Fan"} color={iconColor} size={"200"} />
+          <DynamicIcon
+            iconName={"Fan"}
+            color={hasMicrointeractions ? iconColor : "text-dark/50"}
+            size={"200"}
+          />
         </div>
-        <span className="font-normal">Noch aktiv für:</span>
-        <div className="flex gap-5 text-center">
-          <div className="flex flex-col font-normal">
-            <span className="countdown font-bold text-3xl">
-              <span
-                style={
-                  hasMicrointeractions
-                    ? ({ "--value": hours } as React.CSSProperties)
-                    : ({ "--value": isOn ? 2 : 0 } as React.CSSProperties)
-                }
-              >
-                02
-              </span>
-            </span>
-            Std
-          </div>
-          <div className="flex flex-col font-normal">
-            <span className="countdown font-bold text-3xl">
-              <span
-                style={
-                  hasMicrointeractions
-                    ? ({ "--value": minutes } as React.CSSProperties)
-                    : ({ "--value": isOn ? 45 : 0 } as React.CSSProperties)
-                }
-              >
-                24
-              </span>
-            </span>
-            Min
-          </div>
-          <div className="flex flex-col font-normal">
-            <span className="countdown font-bold text-3xl">
-              <span
-                style={
-                  hasMicrointeractions
-                    ? ({ "--value": seconds } as React.CSSProperties)
-                    : ({ "--value": isOn ? 27 : 0 } as React.CSSProperties)
-                }
-              >
-                06
-              </span>
-            </span>
-            Sek
-          </div>
-        </div>
+        {hasMicrointeractions && (
+          <>
+            <span className="font-normal">Noch aktiv für:</span>
+            <div className="flex gap-5 text-center">
+              <div className="flex flex-col font-normal">
+                <span className="countdown font-bold text-3xl">
+                  <span style={{ "--value": hours } as React.CSSProperties}>
+                    02
+                  </span>
+                </span>
+                Std
+              </div>
+              <div className="flex flex-col font-normal">
+                <span className="countdown font-bold text-3xl">
+                  <span style={{ "--value": minutes } as React.CSSProperties}>
+                    24
+                  </span>
+                </span>
+                Min
+              </div>
+              <div className="flex flex-col font-normal">
+                <span className="countdown font-bold text-3xl">
+                  <span style={{ "--value": seconds } as React.CSSProperties}>
+                    06
+                  </span>
+                </span>
+                Sek
+              </div>
+            </div>
+          </>
+        )}
       </div>
       <div className="flex flex-col items-center gap-2 w-6/7">
         <table className="w-full table table-auto">
