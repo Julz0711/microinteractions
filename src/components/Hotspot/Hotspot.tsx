@@ -130,7 +130,7 @@ const Hotspot: React.FC<HotspotProps> = ({
       {isOpen && (
         <>
           <div
-            className="fixed w-full h-full inset-0 bg-dark/30 backdrop-blur-[2px] z-[998]"
+            className="fixed w-full h-full inset-0 bg-dark/30 backdrop-blur-[0px] z-[998]"
             onClick={handleNext}
           ></div>
 
@@ -141,9 +141,9 @@ const Hotspot: React.FC<HotspotProps> = ({
               top: `${position.top + 30}px`,
               left: `${position.left}px`,
             }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: 50, scale: 0.5 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -50, scale: 0.5 }}
           >
             <div className="text-dark font-bold text-sm flex flex-row justify-between gap-2">
               <span>{header}</span>
