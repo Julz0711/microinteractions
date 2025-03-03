@@ -35,7 +35,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = () => {
     setIsFocused(true);
   };
 

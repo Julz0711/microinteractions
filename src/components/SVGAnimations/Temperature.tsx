@@ -18,7 +18,7 @@ export interface TemperatureProps {
 
 export function Temperature(props: TemperatureProps) {
   const activeDevices = useActiveDevices({ thisCategory: props.category });
-  const [hasActiveDevices, sethasActiveDevices] = useState(false);
+  const [, sethasActiveDevices] = useState(false);
   const { isOn, room } = useSelector((state: AppState) => state.app);
 
   useEffect(() => {
