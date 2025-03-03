@@ -96,12 +96,12 @@ function PageWrapper({
         hasMicrointeractions ? { opacity: 0, y: 0 } : { opacity: 1, y: -50 }
       }
       transition={hasMicrointeractions ? { duration: 0.25 } : { duration: 0 }}
-      className="w-full h-[100dvh] overflow-y-hidden"
+      className="w-full h-[100dvh] lg:h-full overflow-y-hidden"
     >
       <FloatingScrollbar scrollableRef={scrollableRef}>
         <div
           ref={scrollableRef}
-          className=" h-[100dvh] w-full overflow-x-hidden overflow-y-auto no-scrollbar"
+          className=" h-[100dvh] lg:h-full w-full overflow-x-hidden overflow-y-auto no-scrollbar"
         >
           <div
             className={twMerge(
@@ -125,7 +125,7 @@ const AppRouter = ({
   scrollableRef: React.RefObject<HTMLDivElement>;
 }) => {
   return (
-    <div className="overflow-visible lg:overflow-auto no-scrollbar w-full">
+    <div className="overflow-visible lg:overflow-auto no-scrollbar w-full h-full">
       <Suspense fallback={<Overlay isMenuOpen={true} />}>
         <AnimatePresence mode="wait">
           <Routes>
