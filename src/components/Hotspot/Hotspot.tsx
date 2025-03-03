@@ -23,7 +23,7 @@ const Hotspot: React.FC<HotspotProps> = ({
   totalSteps,
   onNext,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [position, setPosition] = useState({ top: 0, left: 0 });
   const holdTimer = useRef<NodeJS.Timeout | null>(null);
   const isHolding = useRef(false);

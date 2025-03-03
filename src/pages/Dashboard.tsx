@@ -35,6 +35,12 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (tourStep > 0 && tourStep < totalSteps) {
+      scrollToNextStep(tourStep);
+    }
+  }, [tourStep]);
+
   const handleSelect = (room: Room) => {
     setIsRoomChanging(true);
     setNextRoom(room);
@@ -42,8 +48,8 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
 
   const handleNextStep = () => {
     if (tourStep < totalSteps - 1) {
-      setTourStep(tourStep + 1);
-      scrollToNextStep(tourStep + 1);
+      const nextStep = tourStep + 1;
+      setTourStep(nextStep);
     } else {
       setTourStep(totalSteps);
       localStorage.setItem("tourCompleted", "true");

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DevicePreview from "../components/DevicePreview";
 import DynamicIcon from "../components/DynamicIcon";
 import InputField from "../components/InputField";
@@ -8,6 +8,7 @@ import { Room } from "../types/types";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import Hotspot from "../components/Hotspot/Hotspot";
+import { twMerge } from "tailwind-merge";
 
 const filters = [
   { name: "Status", selected: "Alle" },
@@ -21,6 +22,19 @@ const Devices = () => {
     (state: AppState) => state.app.hasMicrointeractions
   );
   const [searchQuery, setSearchQuery] = useState("");
+  const [showHotspot, setShowHotspot] = useState(false);
+
+  useEffect(() => {
+    const hotspotSeen = localStorage.getItem("deviceHotspotSeen");
+    if (!hotspotSeen) {
+      setShowHotspot(true);
+    }
+  }, []);
+
+  const handleHotspotNext = () => {
+    localStorage.setItem("deviceHotspotSeen", "true");
+    setShowHotspot(false);
+  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -74,9 +88,29 @@ const Devices = () => {
         <div key={room}>
           <h2 className="font-bold">{getRoomName(room as Room)}</h2>
           <div className="mt-2 grid grid-cols-2 gap-4">
-            {devices.map((device: any) => (
-              <div key={device.id}>
+            {devices.map((device: any, index: number) => (
+              <div key={device.id} className="relative">
                 <DevicePreview device={device} hasToggle={true} />
+                {room === "livingRoom" && index === 0 && (
+                  <div
+                    className={twMerge(
+                      showHotspot ? "" : "pointer-events-none",
+                      "absolute top-0 left-0 w-[200%] h-[200%]"
+                    )}
+                  >
+                    <div className="w-full h-full" id="device"></div>
+                    {hasMicrointeractions && showHotspot && (
+                      <Hotspot
+                        targetId="device"
+                        header="Geräte"
+                        message="Hier siehst du alle deine Geräte auf einen Blick. Mit dem Toggle kannst Du ein Gerät an- oder ausschalten. Mit Tap & Hold erhälst Du mehr Optionen zu dem Gerät."
+                        step={1}
+                        totalSteps={1}
+                        onNext={handleHotspotNext}
+                      />
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>

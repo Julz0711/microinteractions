@@ -8,12 +8,14 @@ import { getColor, getRoomName, getTextColor } from "../helpers/helpers";
 import Lottie from "react-lottie";
 import toggleLottie from "../assets/lottie/toggle_v4.json";
 import { twMerge } from "tailwind-merge";
+import Hotspot from "./Hotspot/Hotspot";
 
 interface DeviceBoxProps {
   device: Device;
   hasToggle?: boolean;
   hasRoomName?: boolean;
   isSmall?: boolean;
+  hasHotspot?: boolean;
 }
 
 const onActiveAnimationBox = {
@@ -26,6 +28,7 @@ const DevicePreview = ({
   hasToggle,
   hasRoomName,
   isSmall,
+  hasHotspot,
 }: DeviceBoxProps) => {
   const [isBoxActive, setIsBoxActive] = useState(false);
   const [isToggleOn, setIsToggleOn] = useState(false);
@@ -117,6 +120,10 @@ const DevicePreview = ({
   useEffect(() => {
     console.log("Show Modal State Changed:", showModal);
   }, [showModal]);
+
+  const handleSettingsButtonClick = () => {
+    setShowModal(false);
+  };
 
   const modalBtn =
     "font-bold text-dark text-lg hover:text-dark/70 cursor-pointer flex flex-row gap-2 items-center";
@@ -309,7 +316,7 @@ const DevicePreview = ({
             <span className="font-bold text-dark text-xl">{device.name}</span>
           </div>
           <ul className="flex flex-col gap-8 items-center">
-            <button className={modalBtn} onClick={() => {}}>
+            <button className={modalBtn} onClick={handleSettingsButtonClick}>
               <DynamicIcon iconName={"Settings"} size={"20"} />
               Einstellungen
             </button>
