@@ -1,6 +1,6 @@
 import DynamicIcon from "./DynamicIcon";
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Device, Room } from "../types/types";
@@ -8,14 +8,12 @@ import { getColor, getRoomName, getTextColor } from "../helpers/helpers";
 import Lottie from "react-lottie";
 import toggleLottie from "../assets/lottie/toggle_v4.json";
 import { twMerge } from "tailwind-merge";
-import Hotspot from "./Hotspot/Hotspot";
 
 interface DeviceBoxProps {
   device: Device;
   hasToggle?: boolean;
   hasRoomName?: boolean;
   isSmall?: boolean;
-  hasHotspot?: boolean;
 }
 
 const onActiveAnimationBox = {
@@ -28,7 +26,6 @@ const DevicePreview = ({
   hasToggle,
   hasRoomName,
   isSmall,
-  hasHotspot,
 }: DeviceBoxProps) => {
   const [isBoxActive, setIsBoxActive] = useState(false);
   const [isToggleOn, setIsToggleOn] = useState(false);
@@ -37,6 +34,8 @@ const DevicePreview = ({
   const [isLongPress, setIsLongPress] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const longPressTimeout = useRef<NodeJS.Timeout | null>(null);
+  const [scale, setScale] = useState(1);
+  const controls = useAnimation();
 
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
@@ -106,6 +105,11 @@ const DevicePreview = ({
         console.log("Long Press Change", isLongPress);
       }
     }, 300);
+
+    controls.start({
+      scale: 1.05,
+      transition: { duration: 0.3 },
+    });
   };
 
   const handleLongPressEnd = () => {
@@ -115,6 +119,11 @@ const DevicePreview = ({
       longPressTimeout.current = null;
     }
     console.log("Long Press End", isLongPress);
+
+    controls.start({
+      scale: 1,
+      transition: { duration: 0.3 },
+    });
   };
 
   useEffect(() => {
@@ -143,11 +152,7 @@ const DevicePreview = ({
         transition={
           hasMicrointeractions ? onActiveAnimationBox.transition : undefined
         }
-        animate={
-          hasMicrointeractions && isBoxActive && hasInteracted
-            ? { scale: [1, 1.05, 1] }
-            : { scale: 1 }
-        }
+        animate={controls}
         className={`relative flex justify-start min-w-32 overflow-hidden ${
           hasToggle
             ? isSmall
