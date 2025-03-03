@@ -86,7 +86,7 @@ const Hotspot: React.FC<HotspotProps> = ({
   return (
     <>
       <div
-        className={twMerge(isOpen ? "z-[1000]" : "z-[998]", "absolute")}
+        className={twMerge(isOpen ? "z-[1000]" : "z-40", "absolute")}
         style={{
           top: `${position.top}px`,
           left: `${position.left}px`,
