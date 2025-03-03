@@ -9,10 +9,12 @@ import { useLocation } from "react-router-dom";
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const scrollableRef = useRef<HTMLDivElement>(null);
   const [showNewButton, setShowNewButton] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   const location = useLocation();
+  const scrollableRef = useRef<HTMLDivElement>(null);
+  const observer = useRef<MutationObserver | null>(null);
 
   const restrictedPaths = [
     "/start",
@@ -36,24 +38,52 @@ const Layout: React.FC = () => {
   };
 
   useEffect(() => {
-    const scrollContainer = scrollableRef.current;
+    const attachScrollListener = () => {
+      if (!scrollableRef.current) {
+        console.warn("❌ Scroll container not found! Retrying...");
+        return;
+      }
 
-    if (!scrollContainer) {
-      console.log("scrollableRef is not attached");
-      return;
+      console.log("✅ Scroll container found:", scrollableRef.current);
+      setIsReady(true);
+
+      const handleScroll = () => {
+        console.log(
+          "🔄 Scrolling detected! scrollTop:",
+          scrollableRef.current!.scrollTop
+        );
+        setIsScrolled(scrollableRef.current!.scrollTop > 0);
+      };
+
+      scrollableRef.current.addEventListener("scroll", handleScroll);
+      handleScroll(); // Check on mount
+
+      return () => {
+        scrollableRef.current?.removeEventListener("scroll", handleScroll);
+      };
+    };
+
+    attachScrollListener();
+
+    // ✅ Detect changes in the scroll container using MutationObserver
+    if (observer.current) observer.current.disconnect();
+
+    observer.current = new MutationObserver(() => {
+      console.log("🔄 DOM changed, re-attaching scroll listener...");
+      attachScrollListener();
+    });
+
+    if (scrollableRef.current) {
+      observer.current.observe(scrollableRef.current, {
+        childList: true,
+        subtree: true,
+      });
     }
 
-    const handleScroll = () => {
-      console.log("Scrolling detected! scrollTop:", scrollContainer.scrollTop);
-      setIsScrolled(scrollContainer.scrollTop > 0);
-    };
-
-    scrollContainer.addEventListener("scroll", handleScroll);
-
     return () => {
-      scrollContainer.removeEventListener("scroll", handleScroll);
+      observer.current?.disconnect();
     };
-  }, []);
+  }, [location.pathname]); // Re-run when the route changes
 
   return (
     <div className="sm:h-screen sm:w-screen flex items-center justify-center sm:p-8">

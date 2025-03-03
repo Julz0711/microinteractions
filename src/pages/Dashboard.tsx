@@ -1,6 +1,6 @@
 import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
 import { Room } from "../types/types";
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import { ScrollableNavBar } from "../components/ScrollableNavBar.tsx";
 import { NoDevicesPlaceholder } from "../components/NoDevicesPlaceholder.tsx";
 import { DashboardPresets } from "../components/DashboardPresets.tsx";
@@ -24,26 +24,35 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   const [tourStep, setTourStep] = useState(0);
   const totalSteps = 3;
 
+  const navbarRef = useRef<HTMLDivElement>(null);
+  const roomGridRef = useRef<HTMLDivElement>(null);
+  const dashboardPresetsRef = useRef<HTMLDivElement>(null);
+
   const handleSelect = (room: Room) => {
     setIsRoomChanging(true);
     setNextRoom(room);
   };
 
-  /*
-  useEffect(() => {
-    const tourCompleted = localStorage.getItem(TOUR_STORAGE_KEY);
-    if (tourCompleted) {
-      setTourStep(totalSteps); // Skip tour if already completed
-    }
-  }, []);
-  */
-
   const handleNextStep = () => {
     if (tourStep < totalSteps - 1) {
       setTourStep(tourStep + 1);
+      scrollToNextStep(tourStep + 1);
     } else {
       //localStorage.setItem(TOUR_STORAGE_KEY, "true")
       //setTourStep(totalSteps); // Hide tour
+    }
+  };
+
+  const scrollToNextStep = (step: number) => {
+    switch (step) {
+      case 1:
+        roomGridRef.current?.scrollIntoView({ behavior: "smooth" });
+        break;
+      case 2:
+        dashboardPresetsRef.current?.scrollIntoView({ behavior: "smooth" });
+        break;
+      default:
+        break;
     }
   };
 
@@ -52,7 +61,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
       {hasDevices ? (
         <div className="w-full flex flex-col gap-2 justify-start items-start pt-24">
           <div className="h-2"></div>
-          <div className="w-full relative">
+          <div className="w-full relative" ref={navbarRef}>
             <div id="navbar">
               <ScrollableNavBar onRoomSelect={handleSelect} />
             </div>
@@ -67,7 +76,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
               />
             )}
           </div>
-          <div className="w-full relative">
+          <div className="w-full relative" ref={roomGridRef}>
             <div id="room-grid">
               <RoomGrid isRoomChanging={isRoomChanging} nextRoom={nextRoom} />
             </div>
@@ -83,7 +92,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
             )}
           </div>
           <DeviceOverlay />
-          <div className="w-full relative">
+          <div className="w-full relative" ref={dashboardPresetsRef}>
             <div id="dashboard-presets">
               <DashboardPresets />
             </div>

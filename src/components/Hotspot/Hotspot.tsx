@@ -2,6 +2,7 @@ import { useState, useLayoutEffect, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import Button from "../Button";
+import { twMerge } from "tailwind-merge";
 
 interface HotspotProps {
   targetId: string;
@@ -85,7 +86,7 @@ const Hotspot: React.FC<HotspotProps> = ({
   return (
     <>
       <div
-        className="absolute cursor-pointer z-10"
+        className={twMerge(isOpen ? "z-[1000]" : "z-[998]", "absolute")}
         style={{
           top: `${position.top}px`,
           left: `${position.left}px`,
@@ -100,17 +101,17 @@ const Hotspot: React.FC<HotspotProps> = ({
         onTouchEnd={handleHoldEnd}
       >
         <motion.div
-          className="absolute w-10 h-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-info-blue"
+          className="absolute w-10 h-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[4px] border-info"
           initial={{
-            scale: 1,
+            scale: 0.8,
             opacity: 0.8,
           }}
           animate={{
-            scale: 1.2,
+            scale: 1.4,
             opacity: 0,
           }}
           exit={{
-            scale: 1,
+            scale: 0.8,
             opacity: 0.8,
           }}
           transition={{
@@ -120,8 +121,8 @@ const Hotspot: React.FC<HotspotProps> = ({
           }}
         />
 
-        <div className="hotspot-dot relative w-5 h-5 bg-info-blue rounded-full shadow-[0_0_16px_rgba(15,15,15,0.5)]">
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-light text-[10px]">
+        <div className="hotspot-dot cursor-pointer relative w-6 h-6 duration-150 bg-blue hover:bg-dark rounded-full shadow-[0_0_16px_rgba(25,25,25,0.8)]">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-info text-[14px]">
             ?
           </div>
         </div>
@@ -130,7 +131,7 @@ const Hotspot: React.FC<HotspotProps> = ({
       {isOpen && (
         <>
           <div
-            className="fixed w-full h-full inset-0 bg-dark/30 backdrop-blur-[0px] z-[998]"
+            className="fixed w-full h-full inset-0 bg-dark/30 backdrop-blur-[0px] z-[999]"
             onClick={handleNext}
           ></div>
 

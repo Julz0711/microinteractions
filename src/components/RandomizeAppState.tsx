@@ -16,7 +16,7 @@ const RandomizeAppState: React.FC = () => {
   return (
     <button
       onClick={randomizeMicrointeractions}
-      className="bg-red w-full hover:bg-purple font-bold text-white px-6 py-4 rounded-md cursor-pointer"
+      className="bg-red w-full hover:bg-purple font-bold duration-150 text-white px-6 py-4 rounded-md cursor-pointer"
     >
       Test starten
     </button>
