@@ -2,9 +2,7 @@ import RandomizeAppState from "../components/RandomizeAppState";
 import Menu from "../assets/img/menu.png";
 import { useState } from "react";
 
-type StartProps = {};
-
-const Start = (props: StartProps) => {
+const Start = () => {
   const [isChecked, setIsChecked] = useState(false);
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
