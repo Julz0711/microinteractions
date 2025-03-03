@@ -33,7 +33,7 @@ const NewDevice = () => {
 
   const navigate = useNavigate();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [, setIsOpen] = useState(false);
 
   useEffect(() => {
     setIsOpen(true);

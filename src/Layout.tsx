@@ -10,7 +10,7 @@ const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showNewButton, setShowNewButton] = useState(true);
-  const [retryCount, setRetryCount] = useState(0);
+  const [, setRetryCount] = useState(0);
 
   const location = useLocation();
   const scrollableRef = useRef<HTMLDivElement>(null);

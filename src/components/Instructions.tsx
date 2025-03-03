@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { twMerge } from "tailwind-merge";
 
-export interface IInstructionsProps {}
-
-export function Instructions(props: IInstructionsProps) {
+export function Instructions() {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
