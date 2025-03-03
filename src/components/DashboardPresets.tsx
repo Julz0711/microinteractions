@@ -98,18 +98,19 @@ export function DashboardPresets() {
               <HeadlineWithLink headline="Favoriten" link="/dashboard" />
             </div>
             <div className="w-full flex flex-row flex-wrap items-center gap-4">
-              {(showAllDevices ? devices : favoriteDevices.slice(0, 3)).map(
-                (device, index) => (
-                  <DevicePreview
-                    key={index}
-                    device={device}
-                    hasToggle={false}
-                    hasRoomName={true}
-                    isSmall={true}
-                  />
-                )
-              )}
-              {scenes.length > 3 && (
+              {(showAllDevices
+                ? favoriteDevices
+                : favoriteDevices.slice(0, 3)
+              ).map((device, index) => (
+                <DevicePreview
+                  key={index}
+                  device={device}
+                  hasToggle={false}
+                  hasRoomName={true}
+                  isSmall={true}
+                />
+              ))}
+              {devices.length > 3 && (
                 <button
                   onClick={() => setShowAllDevices(!showAllDevices)}
                   className={showMoreLessBtn}
