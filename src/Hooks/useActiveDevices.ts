@@ -3,7 +3,6 @@ import { devices } from "../data/data";
 import { Category } from "../types/dashboard.types";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
-import { useEffect } from "react";
 
 export interface IuseActiveDevicesProps {
   thisCategory: Category;

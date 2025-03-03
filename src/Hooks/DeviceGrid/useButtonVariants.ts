@@ -2,7 +2,6 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import { useState } from "react";
-import { delay, easeIn } from "framer-motion";
 
 export interface IuseButtonVariantsProps {
   canvasRef: React.RefObject<HTMLDivElement>;
@@ -48,12 +47,11 @@ export function useButtonVariants(props: IuseButtonVariantsProps) {
 
   React.useEffect(() => {
     const setbuttonVariants = () => {
-
       const styleXPos =
         Math.floor(props.index % 2) * 150 +
         Math.floor(props.index % 2) * padding;
       const styleYPos =
-      30 +
+        30 +
         Math.floor(props.index / 2) * 150 +
         Math.floor(props.index / 2) * padding;
 

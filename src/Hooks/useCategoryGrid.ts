@@ -4,7 +4,6 @@ import { Category, HierarchyStep } from "../types/dashboard.types";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { setHierarchy, setCategory } from "../store/reducer";
-import { useActiveDevices } from "./useActiveDevices";
 
 export interface IuseCategoryGridProps {
   thisCategory: Category;
@@ -24,9 +23,6 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
   const hasMicrointeractions = useSelector(
     (app: AppState) => app.app.hasMicrointeractions
   );
-  const activeDevices = useActiveDevices({
-    thisCategory: props.thisCategory,
-  });
   const room = useSelector((state: AppState) => state.app.room);
 
   const handleSetHierarchy = () => {
