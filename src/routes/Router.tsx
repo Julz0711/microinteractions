@@ -15,9 +15,7 @@ const Profile = lazy(() => import("../pages/Profile"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
 const NewDevice = lazy(() => import("../pages/NewDevice"));
-const NewSchedule = lazy(() => import("../pages/NewSchedule"));
 const DeviceRegistration = lazy(() => import("../pages/DeviceRegistration"));
-const NewRoom = lazy(() => import("../pages/NewRoom"));
 
 const allRoutes = [
   {
@@ -51,14 +49,6 @@ const allRoutes = [
   {
     path: "/neues-geraet",
     component: <NewDevice />,
-  },
-  {
-    path: "/neuer-raum",
-    component: <NewRoom />,
-  },
-  {
-    path: "/neuer-zeitplan",
-    component: <NewSchedule />,
   },
   {
     path: "/geraet-registrieren",
