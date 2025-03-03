@@ -15,11 +15,6 @@ posthog.init(posthogKey, {
   debug: true,
 });
 
-useEffect(() => {
-  console.log(import.meta.env.VITE_PUBLIC_POSTHOG_HOST);
-  console.log(import.meta.env.VITE_PUBLIC_POSTHOG_KEY);
-}, []);
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <PostHogProvider client={posthog}>
