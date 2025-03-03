@@ -5,14 +5,29 @@ input[type="range"].solid {
   overflow: hidden;
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--color-light);
     box-shadow: -20rem 0 0 20rem var(--color-light);
   }
 
   &::-moz-range-thumb {
     border: none;
-    width: 0;
-    box-shadow: -20rem 0 0 20rem var(--color-light);
+    height: 40px;
+    width: 40px;
+    background: red;
+    box-shadow: -20rem 20rem 0 0rem var(--color-light);
+  }
+
+  &.vertical::-moz-range-thumb {
+    height: 80px;
+    width: 40px;
+    background: red;
+  }
+  &.vertical::-webkit-slider-thumb {
+    height: 80px;
+    width: 40px;
+    background: red;
   }
 }
 

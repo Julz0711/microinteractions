@@ -29,6 +29,7 @@ export function Slider(props: ISliderProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChange(Number(event.target.value));
   };
+
   return (
     <div
       className={twMerge("relative w-20")}
@@ -52,7 +53,7 @@ export function Slider(props: ISliderProps) {
           props.className,
           props.isHorizontal
             ? "left-0 top-0 w-full cursor-default"
-            : `absolute -translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2`,
+            : `vertical absolute -translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2`,
           "border-0 shadow-2xl h-20",
           hasMicrointeractions
             ? props.hasGradient

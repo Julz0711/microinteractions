@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Slider } from "./Slider";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
+import "./Slider.css";
 
 type Props = {
   step: number;

@@ -125,7 +125,7 @@ const AppRouter = ({
   scrollableRef: React.RefObject<HTMLDivElement>;
 }) => {
   return (
-    <div className="overflow-hidden w-full h-full">
+    <div className="overflow-visible lg:overflow-auto no-scrollbar w-full">
       <Suspense fallback={<Overlay isMenuOpen={true} />}>
         <AnimatePresence mode="wait">
           <Routes>

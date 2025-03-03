@@ -54,7 +54,6 @@ const Layout: React.FC = () => {
       }
 
       const scrollContainer = scrollableRef.current;
-
       const handleScroll = () => {
         setIsScrolled(scrollContainer.scrollTop > 0);
       };
@@ -92,7 +91,7 @@ const Layout: React.FC = () => {
     <div className="sm:h-screen sm:w-screen flex items-center justify-center sm:p-8  h-[100dvh]">
       <div
         className={twMerge(
-          "relative z-10 layout overflow-auto translate-x-0 no-scrollbar sm:w-[400px] sm:h-[850px] max-h-screen h-[100dvh] w-screen flex flex-col items-start justify-start sm:rounded-[2.5rem] sm:border-8 sm:border-dark sm:ring-2 sm:ring-[#666] bg-light"
+          "relative z-10 layout overflow-hidden lg:overflow-auto translate-x-0 no-scrollbar sm:w-[400px] sm:h-[850px] max-h-screen h-[100dvh] w-screen flex flex-col items-start justify-start sm:rounded-[2.5rem] sm:border-8 sm:border-dark sm:ring-2 sm:ring-[#666] bg-light"
         )}
       >
         {showNewButton && <TopNavigation isScrolled={isScrolled} />}
@@ -101,7 +100,7 @@ const Layout: React.FC = () => {
           scrollableRef={scrollableRef}
         />
         {showNewButton && (
-          <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-90">
+          <div className="sticky bottom-12 left-1/2 transform -translate-x-1/2 z-90">
             <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
           </div>
         )}
