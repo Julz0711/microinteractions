@@ -1,7 +1,6 @@
 import { Category, HierarchyStep } from "../../types/dashboard.types";
 import { useEffect, useRef, useState } from "react";
 import { CategoryWrapper } from "./UI/CategoryWrapper";
-import { devices } from "../../data/data";
 import { Room } from "../../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../store/store";

@@ -34,7 +34,6 @@ const DevicePreview = ({
   const [isLongPress, setIsLongPress] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const longPressTimeout = useRef<NodeJS.Timeout | null>(null);
-  const [scale, setScale] = useState(1);
   const controls = useAnimation();
 
   const hasMicrointeractions = useSelector(
@@ -97,12 +96,9 @@ const DevicePreview = ({
 
   const handleLongPressStart = () => {
     setIsLongPress(false);
-    console.log("Long Press Start", isLongPress);
     longPressTimeout.current = setTimeout(() => {
       if (isLongPress) {
         setShowModal(true);
-        console.log("Modal should be true now", showModal);
-        console.log("Long Press Change", isLongPress);
       }
     }, 300);
 
@@ -118,7 +114,6 @@ const DevicePreview = ({
       clearTimeout(longPressTimeout.current);
       longPressTimeout.current = null;
     }
-    console.log("Long Press End", isLongPress);
 
     controls.start({
       scale: 1,
@@ -126,9 +121,7 @@ const DevicePreview = ({
     });
   };
 
-  useEffect(() => {
-    console.log("Show Modal State Changed:", showModal);
-  }, [showModal]);
+  useEffect(() => {}, [showModal]);
 
   const handleSettingsButtonClick = () => {
     setShowModal(false);
