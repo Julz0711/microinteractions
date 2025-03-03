@@ -96,12 +96,12 @@ function PageWrapper({
         hasMicrointeractions ? { opacity: 0, y: 0 } : { opacity: 1, y: -50 }
       }
       transition={hasMicrointeractions ? { duration: 0.25 } : { duration: 0 }}
-      className="w-full h-full"
+      className="w-full h-[100dvh] overflow-y-hidden"
     >
       <FloatingScrollbar scrollableRef={scrollableRef}>
         <div
           ref={scrollableRef}
-          className="h-full w-full overflow-x-hidden overflow-y-auto no-scrollbar"
+          className=" h-[100dvh] w-full overflow-x-hidden overflow-y-auto no-scrollbar"
         >
           <div
             className={twMerge(

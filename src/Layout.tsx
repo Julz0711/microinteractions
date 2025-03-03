@@ -89,10 +89,10 @@ const Layout: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <div className="sm:h-screen sm:w-screen flex items-center justify-center sm:p-8">
+    <div className="sm:h-screen sm:w-screen flex items-center justify-center sm:p-8  h-[100dvh]">
       <div
         className={twMerge(
-          "relative z-10 layout overflow-auto translate-x-0 no-scrollbar sm:w-[400px] sm:h-[850px] max-h-screen h-screen w-screen flex flex-col items-start justify-start sm:rounded-[2.5rem] sm:border-8 sm:border-dark sm:ring-2 sm:ring-[#666] bg-light"
+          "relative z-10 layout overflow-auto translate-x-0 no-scrollbar sm:w-[400px] sm:h-[850px] max-h-screen h-[100dvh] w-screen flex flex-col items-start justify-start sm:rounded-[2.5rem] sm:border-8 sm:border-dark sm:ring-2 sm:ring-[#666] bg-light"
         )}
       >
         {showNewButton && <TopNavigation isScrolled={isScrolled} />}
