@@ -1,9 +1,15 @@
 import RandomizeAppState from "../components/RandomizeAppState";
 import Menu from "../assets/img/menu.png";
+import { useState } from "react";
 
 type StartProps = {};
 
 const Start = (props: StartProps) => {
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+
   return (
     <div className="fixed inset-0 p-5 w-full h-full flex flex-col justify-between">
       <div>
@@ -33,11 +39,32 @@ const Start = (props: StartProps) => {
             Nachdem du alle Aufgaben erledigt hast, fülle bitte das Formular
             aus, dass du auch im Aufklappmenü findest.
           </li>
+          <li className="space-y-2">
+            <p>
+              Wir verwenden PostHog zur Erfassung anonymisierter Nutzungsdaten,
+              um das Verhalten der User während der Nutzung zu analysieren.
+            </p>
+            <a
+              href="https://posthog.com/"
+              className="font-bold text-blue hover:text-dark underline"
+              target="_blank"
+            >
+              Mehr Informationen zu Posthog
+            </a>
+            <div className="flex gap-2 items-center mt-2">
+              <input
+                type="checkbox"
+                className="checkbox checkbox-md checkbox-primary"
+                onChange={handleCheckboxChange}
+              />
+              <span>Einverstanden</span>
+            </div>
+          </li>
         </ul>
       </div>
 
       <div className="mt-6">
-        <RandomizeAppState />
+        <RandomizeAppState disabled={!isChecked} />
       </div>
     </div>
   );
