@@ -70,25 +70,6 @@ const Devices = () => {
           </div>
         </div>
       )}
-      <div className="relative">
-        <button
-          id="feature-button"
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Click Me
-        </button>
-
-        <Hotspot
-          targetId="feature-button"
-          message="This is an important button!"
-          buttonLabel="Alles klar!"
-          step={1}
-          totalSteps={3}
-          onNext={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-      </div>
       {Object.entries(groupedDevices).map(([room, devices]) => (
         <div key={room}>
           <h2 className="font-bold">{getRoomName(room as Room)}</h2>

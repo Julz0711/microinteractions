@@ -27,11 +27,11 @@ const IntroText = ({ header, desc }: { header: string; desc: string }) => {
   return (
     <div
       className={twMerge(
-        "w-4/5",
+        "w-4/5 font-normal",
         hasMicrointeractions ? "text-center" : "text-left"
       )}
     >
-      <h1>{header}</h1>
+      <h1 className="font-bold">{header}</h1>
       <p>{desc}</p>
     </div>
   );
@@ -251,7 +251,9 @@ const DeviceRegistration = () => {
           </div>
         );
       case 4:
-        const tdl = twMerge(hasMicrointeractions ? "text-right text-meta" : "");
+        const tdl = twMerge(
+          hasMicrointeractions ? "text-right text-meta font-normal" : ""
+        );
         const tdr = twMerge(
           hasMicrointeractions ? "text-left font-bold text-xl" : "font-bold"
         );
@@ -282,7 +284,6 @@ const DeviceRegistration = () => {
                 </tr>
               </tbody>
             </table>
-            <p></p>
           </div>
         );
       case 5:
@@ -328,7 +329,7 @@ const DeviceRegistration = () => {
   };
 
   return (
-    <div className="fixed inset-0 pb-5 px-5 h-full flex flex-col justify-between gap-8 no-scrollbar">
+    <div className="fixed inset-0 px-5 h-full flex flex-col justify-between gap-8 no-scrollbar">
       {currentStep < 5 ? (
         <>
           <TopContextBar
@@ -336,6 +337,7 @@ const DeviceRegistration = () => {
             leftIconClick={currentStep > 1 ? handleBack : undefined}
             headline={"Gerät gefunden"}
             metaDescription={"Neues Gerät hinzufügen"}
+            bg="bg-light"
           />
           <div className="flex flex-col items-center gap-8 h-full">
             <div
@@ -387,13 +389,13 @@ const DeviceRegistration = () => {
                     exit="exit"
                     custom={direction}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="w-full flex flex-col items-center"
+                    className="w-full flex flex-col items-center justify-center"
                   >
                     {renderStep()}
                   </motion.div>
                 </AnimatePresence>
               </div>
-              <div className="grow-0">
+              <div className="grow-0 mb-5">
                 {currentStep < 4 ? (
                   <button
                     className="btn-full bg-red hover:bg-purple"
@@ -477,11 +479,3 @@ const DeviceRegistration = () => {
 };
 
 export default DeviceRegistration;
-
-{
-  /*
-  Microinteractions
-  Submit
-  Back to Dashboard
-  "*/
-}
