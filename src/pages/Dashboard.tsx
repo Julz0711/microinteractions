@@ -1,6 +1,6 @@
 import { RoomGrid } from "../components/DashboardGrid/RoomGrid.tsx";
 import { Room } from "../types/types";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ScrollableNavBar } from "../components/ScrollableNavBar.tsx";
 import { NoDevicesPlaceholder } from "../components/NoDevicesPlaceholder.tsx";
 import { DashboardPresets } from "../components/DashboardPresets.tsx";
@@ -28,6 +28,13 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   const roomGridRef = useRef<HTMLDivElement>(null);
   const dashboardPresetsRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const tourCompleted = localStorage.getItem("tourCompleted");
+    if (tourCompleted === "true") {
+      setTourStep(totalSteps);
+    }
+  }, []);
+
   const handleSelect = (room: Room) => {
     setIsRoomChanging(true);
     setNextRoom(room);
@@ -38,8 +45,8 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
       setTourStep(tourStep + 1);
       scrollToNextStep(tourStep + 1);
     } else {
-      //localStorage.setItem(TOUR_STORAGE_KEY, "true")
-      //setTourStep(totalSteps); // Hide tour
+      setTourStep(totalSteps);
+      localStorage.setItem("tourCompleted", "true");
     }
   };
 

@@ -10,11 +10,12 @@ const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showNewButton, setShowNewButton] = useState(true);
-  const [isReady, setIsReady] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   const location = useLocation();
   const scrollableRef = useRef<HTMLDivElement>(null);
   const observer = useRef<MutationObserver | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const restrictedPaths = [
     "/start",
@@ -38,38 +39,39 @@ const Layout: React.FC = () => {
   };
 
   useEffect(() => {
+    let retries = 0;
+
     const attachScrollListener = () => {
       if (!scrollableRef.current) {
-        console.warn("❌ Scroll container not found! Retrying...");
+        if (retries < 10) {
+          retries++;
+          setRetryCount(retries);
+          timeoutRef.current = setTimeout(() => {
+            requestAnimationFrame(attachScrollListener);
+          }, 100);
+        }
         return;
       }
 
-      console.log("✅ Scroll container found:", scrollableRef.current);
-      setIsReady(true);
+      const scrollContainer = scrollableRef.current;
 
       const handleScroll = () => {
-        console.log(
-          "🔄 Scrolling detected! scrollTop:",
-          scrollableRef.current!.scrollTop
-        );
-        setIsScrolled(scrollableRef.current!.scrollTop > 0);
+        setIsScrolled(scrollContainer.scrollTop > 0);
       };
 
-      scrollableRef.current.addEventListener("scroll", handleScroll);
-      handleScroll(); // Check on mount
+      scrollContainer.addEventListener("scroll", handleScroll);
+      handleScroll();
 
       return () => {
-        scrollableRef.current?.removeEventListener("scroll", handleScroll);
+        scrollContainer.removeEventListener("scroll", handleScroll);
       };
     };
 
     attachScrollListener();
 
-    // ✅ Detect changes in the scroll container using MutationObserver
     if (observer.current) observer.current.disconnect();
 
     observer.current = new MutationObserver(() => {
-      console.log("🔄 DOM changed, re-attaching scroll listener...");
       attachScrollListener();
     });
 
@@ -82,8 +84,9 @@ const Layout: React.FC = () => {
 
     return () => {
       observer.current?.disconnect();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [location.pathname]); // Re-run when the route changes
+  }, [location.pathname]);
 
   return (
     <div className="sm:h-screen sm:w-screen flex items-center justify-center sm:p-8">
