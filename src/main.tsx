@@ -12,7 +12,6 @@ posthog.init(posthogKey, {
   api_host: posthogHost,
   autocapture: true,
   person_profiles: "identified_only",
-  debug: true,
 });
 
 createRoot(document.getElementById("root")!).render(

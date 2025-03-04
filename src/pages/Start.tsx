@@ -49,7 +49,8 @@ const Start = () => {
           <li className="space-y-2">
             <p>
               Wir verwenden PostHog zur Erfassung anonymisierter Nutzungsdaten,
-              um das Verhalten der User während der Nutzung zu analysieren.
+              um das Verhalten der User während der Nutzung zu analysieren. Wir
+              empfehlen daher das Deaktivieren sämtlicher Ad-Blocker.
             </p>
             <a
               href="https://posthog.com/"
