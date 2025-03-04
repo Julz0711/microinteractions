@@ -64,6 +64,7 @@ export function Instructions() {
           Dieser dauert nur ca. 5 Minuten.
           <a
             className={"text-blue hover:text-dark font-bold underline"}
+            target="_blank"
             href={
               hasMicrointeractions
                 ? "https://docs.google.com/forms/d/e/1FAIpQLSehxLLLh23hDtWpfjFUr3wb91Ag9vWfbxqTaJZScyHoY2aVzg/viewform?usp=header"
