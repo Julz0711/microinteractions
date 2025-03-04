@@ -1,11 +1,20 @@
 import RandomizeAppState from "../components/RandomizeAppState";
 import Menu from "../assets/img/menu.png";
 import { useState } from "react";
+import posthog from "posthog-js";
 
 const Start = () => {
   const [isChecked, setIsChecked] = useState(false);
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.target.checked);
+    const checked = event.target.checked;
+    setIsChecked(checked);
+    if (checked) {
+      posthog.opt_in_capturing();
+      posthog.capture("opt_in_capturing", { status: "opted_in" });
+    } else {
+      posthog.opt_out_capturing();
+      posthog.capture("opt_out_capturing", { status: "opted_out" });
+    }
   };
 
   return (
@@ -45,7 +54,8 @@ const Start = () => {
             <a
               href="https://posthog.com/"
               className="font-bold text-blue hover:text-dark underline"
-              target="_blank" rel="noreferrer"
+              target="_blank"
+              rel="noreferrer"
             >
               Mehr Informationen zu Posthog
             </a>

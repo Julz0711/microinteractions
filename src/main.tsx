@@ -11,10 +11,9 @@ const posthogHost = "https://eu.i.posthog.com";
 posthog.init(posthogKey, {
   api_host: posthogHost,
   autocapture: true,
-  debug: true,
   person_profiles: "identified_only",
+  debug: true,
 });
-posthog.opt_in_capturing();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
