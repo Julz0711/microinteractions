@@ -133,7 +133,7 @@ const Register = () => {
             <Button
               label={" Account erstellen"}
               style={"btn-primary"}
-              link={"/registrieren"}
+              link={"/"}
               disabled={!formik.isValid}
             ></Button>
           </form>
