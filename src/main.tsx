@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import App from "./App.tsx";
 
@@ -9,15 +8,13 @@ const posthogKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY || "";
 const posthogHost =
   import.meta.env.VITE_PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
 
-posthog.init(posthogKey, {
+const options = {
   api_host: posthogHost,
-  autocapture: true,
-  debug: true,
-});
+};
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PostHogProvider client={posthog}>
+    <PostHogProvider apiKey={posthogKey} options={options}>
       <App />
     </PostHogProvider>
   </StrictMode>
