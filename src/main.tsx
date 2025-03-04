@@ -9,15 +9,13 @@ const posthogKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY || "";
 const posthogHost =
   import.meta.env.VITE_PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
 
-useEffect(() => {
-  posthog.init(posthogKey, {
-    api_host: posthogHost,
-    autocapture: true,
-    debug: true,
-    person_profiles: "identified_only",
-  });
-  posthog.opt_in_capturing();
-}, []);
+posthog.init(posthogKey, {
+  api_host: posthogHost,
+  autocapture: true,
+  debug: true,
+  person_profiles: "identified_only",
+});
+posthog.opt_in_capturing();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
