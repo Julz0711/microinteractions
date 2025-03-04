@@ -3,32 +3,40 @@ input[type="range"].solid {
   background-color: #ffffff44;
   border-radius: 1rem;
   overflow: hidden;
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 40px;
-    height: 40px;
-    background: var(--color-light);
-    box-shadow: -20rem 0 0 20rem var(--color-light);
-  }
+}
 
-  &::-moz-range-thumb {
-    border: none;
-    height: 40px;
-    width: 40px;
-    background: red;
-    box-shadow: -20rem 20rem 0 0rem var(--color-light);
-  }
+input[type="range"].solid::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  background: var(--color-light);
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: -20rem 0 0 20rem var(--color-light);
+}
 
-  &.vertical::-moz-range-thumb {
-    height: 80px;
-    width: 40px;
-    background: red;
-  }
-  &.vertical::-webkit-slider-thumb {
-    height: 80px;
-    width: 40px;
-    background: red;
-  }
+input[type="range"].solid::-moz-range-thumb {
+  border: none;
+  height: 20px;
+  width: 20px;
+  background: var(--color-light);
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: -20rem 0 0 20rem var(--color-light);
+}
+
+input[type="range"].solid.vertical::-moz-range-thumb {
+  height: 80px;
+  width: 10px;
+  background: transparent;
+  border: 2px solid transparent;
+}
+
+input[type="range"].solid.vertical::-webkit-slider-thumb {
+  height: 80px;
+  width: 10px;
+  background: transparent;
+  border: 2px solid transparent;
 }
 
 input[type="range"].gradient {

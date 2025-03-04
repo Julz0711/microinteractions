@@ -46,16 +46,32 @@ const SliderWithValue = (props: Props) => {
           onChange={handleSliderChange}
         />
         {hasMicrointeractions && (
-          <div
-            className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden rounded-lg"
-            style={{ gap: "calc(" + props.step + "% -  1px" }}
-          >
+          <div className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden">
             {Array.from(
               { length: Math.floor(100 / props.step) },
               (_, index) => (
                 <div
                   key={index}
-                  className="h-[51px]  -translate-x-[1px] -translate-y-1 w-[1px] bg-dark/20 "
+                  className="h-[51px] -translate-y-[3px] w-[2px] bg-green/20 "
+                  style={
+                    props.step === 33.333
+                      ? {
+                          transform:
+                            "translateX(" +
+                            (17 +
+                              (props.step + 2.7) * index +
+                              (20 / props.step) * index) +
+                            "px)",
+                        }
+                      : {
+                          transform:
+                            "translateX(" +
+                            (17 +
+                              props.step * index +
+                              (20 / props.step) * index) +
+                            "px)",
+                        }
+                  }
                 />
               )
             )}

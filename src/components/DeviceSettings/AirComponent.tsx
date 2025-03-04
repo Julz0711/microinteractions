@@ -114,13 +114,13 @@ export function AirComponent() {
   }, [isOn]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-16 w-full mx-auto">
+    <div className="flex flex-col items-center justify-center gap-4 w-full mx-auto">
       <div className="flex flex-col items-center gap-2 w-full">
         <div ref={hasMicrointeractions ? fan : null}>
           <DynamicIcon
             iconName={"Fan"}
             color={hasMicrointeractions ? iconColor : "text-dark/50"}
-            size={"200"}
+            size={"150"}
           />
         </div>
         {hasMicrointeractions && (

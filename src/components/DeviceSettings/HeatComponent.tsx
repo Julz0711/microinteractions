@@ -19,23 +19,21 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
   );
 
   const handleSliderChange = (value: number) => {
-    setSliderValue(value + .1);
-    if (value -18 === 0) {
+    setSliderValue(value + 0.1);
+    if (value - 18 === 0) {
       dispatch(setIsOn(false));
     } else {
       dispatch(setIsOn(true));
     }
   };
 
-
   useEffect(() => {
     if (!isOn) {
-      setSliderValue(.1);
+      setSliderValue(0.1);
     } else {
       setSliderValue(22);
     }
   }, [isOn]);
-  
 
   return (
     <div className="flex flex-col items-center justify-center gap-16 w-4/5 mx-auto">
@@ -46,39 +44,43 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
             size={200}
             temp={sliderValue}
             styles={styles.temp}
-            progressOverride={(sliderValue-18) * 37.5}
+            progressOverride={(sliderValue - 18) * 37.5}
           />
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 ">
-            <div className="text-3xl text-red font-bold w-full text-center">Raumtemperatur:<br/> 22°C</div>
+            <div className="text-3xl text-red font-bold w-full text-center">
+              Raumtemperatur:
+              <br /> 22°C
+            </div>
           </div>
         )}
       </div>
 
       {hasMicrointeractions ? (
-      <HeatSlider
-        value={4}
-        measure={"°C"}
-        range={8}
-        onChange={(value) => {handleSliderChange(value + 18)}}
-        custom={isOn ? styles.solid : styles.off}
-        step={.1}
-      />
-      ): (
+        <HeatSlider
+          value={4}
+          measure={"°C"}
+          range={8}
+          onChange={(value) => {
+            handleSliderChange(value + 18);
+          }}
+          custom={isOn ? styles.solid : styles.off + " inactive"}
+          step={0.1}
+        />
+      ) : (
         <>
-        <Slider
-        hasGradient={true}
-        isPx={true}
-        size={"250"}
-        range={8}
-        clickable={true}
-        onChange={(value) => handleSliderChange(value+18)}
-      />
-      <span>{(Math.floor(sliderValue))}°C</span>
-      <span>Heiztemperatur</span>
-      </>
-      )
-    }
+          <Slider
+            hasGradient={true}
+            isPx={true}
+            size={"250"}
+            range={8}
+            clickable={true}
+            onChange={(value) => handleSliderChange(value + 18)}
+          />
+          <span>{Math.floor(sliderValue)}°C</span>
+          <span>Heiztemperatur</span>
+        </>
+      )}
     </div>
   );
 }

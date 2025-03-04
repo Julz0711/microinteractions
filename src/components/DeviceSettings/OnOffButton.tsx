@@ -31,7 +31,7 @@ const OnOffButton = (props: IButtonProps) => {
             ? `${buttonColor} hover:bg-dark text-light`
             : "bg-light/50 hover:bg-light text-dark"
           : "bg-dark text-light",
-        "mb-8 p-5 shadow-2xl rounded-full cursor-pointer duration-150"
+        "mb-8 p-5 shadow-2xl rounded-full cursor-pointer duration-150 fixed bottom-0 sm:relative"
       )}
       onClick={handleClick}
     >

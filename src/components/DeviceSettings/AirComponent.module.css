@@ -4,6 +4,7 @@ input[type="range"].solid::-webkit-slider-thumb {
 
 input[type="range"].off::-webkit-slider-thumb {
   box-shadow: -20rem 0 0 20rem rgba(var(--dark), 0.3);
+  background: rgba(var(--dark), 0.3);
 }
 
 input[type="range"].solid::-moz-range-thumb {
@@ -12,6 +13,7 @@ input[type="range"].solid::-moz-range-thumb {
 
 input[type="range"].off::-moz-range-thumb {
   box-shadow: -20rem 0 0 20rem rgba(var(--dark), 0.3);
+  background: rgba(var(--dark), 0.3);
 }
 
 .temp {

@@ -44,12 +44,12 @@ export function Instructions() {
 
   const labelClass = "ml-1";
   return (
-    <div className="fixed bg-[#cccccc] border z-[999] bottom-8 right-0 flex">
+    <div className="fixed bg-[#cccccc] border z-[999] bottom-8 left-0 flex">
       <button
         className={twMerge("p-4", isOpen && "rotate-180")}
         onClick={handleClickMenu}
       >
-        <DynamicIcon iconName="ChevronLeft" />
+        <DynamicIcon iconName="ChevronRight" />
       </button>
       {isOpen && (
         <div className="bg-[#ffffff] p-4 flex flex-col gap-4 max-w-92">
@@ -132,7 +132,8 @@ export function Instructions() {
               hasMicrointeractions
                 ? "https://docs.google.com/forms/d/e/1FAIpQLSehxLLLh23hDtWpfjFUr3wb91Ag9vWfbxqTaJZScyHoY2aVzg/viewform?usp=header"
                 : "https://docs.google.com/forms/d/e/1FAIpQLSfBxdORxT6FbVjnZaPStTDOFkIPU6MEK17tDthR65jTN8SepA/viewform?usp=header"
-            } rel="noreferrer"
+            }
+            rel="noreferrer"
           >
             {hasMicrointeractions ? "Zum Usability Test" : "Zum Usability Test"}
           </a>

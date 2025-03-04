@@ -32,7 +32,7 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
       scaleX: 1,
       scaleY: 1,
       y: -10,
-      x: 0,
+      x: -45,
       transition: {
         duration: hasMicrointeractions ? 0.2 : 0,
         ease: "easeOut",
@@ -45,7 +45,7 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
     <>
       <button
         onClick={toggleMenu}
-        className={`font-bold shadow-[0_0_48px_rgba(0,0,0,0.5)] z-60 relative bg-dark text-light px-6 py-4 rounded-md transition cursor-pointer duration-150  ${
+        className={`font-bold shadow-[0_0_48px_rgba(0,0,0,0.5)] z-60 relative bg-dark text-light px-6 py-4 rounded-md transition cursor-pointer duration-150  flex justify-center items-center gap-2 ${
           isMenuOpen ? "bg-dark hover:bg-dark" : "bg-red hover:bg-purple"
         }`}
       >
@@ -56,10 +56,11 @@ export const NewButton = ({ isMenuOpen, toggleMenu }: Props) => {
           )}
         >
           <DynamicIcon iconName={"Close"} />
-        </div>
+        </div>{" "}
+        Neu
       </button>
       {isMenuOpen && (
-        <div className="z-50 absolute bottom-16 left-1/2 transform -translate-x-1/2 flex gap-2">
+        <div className="z-50 absolute bottom-16 left-[1/2] transform -translate-x-1/2 flex gap-2">
           {buttonOptions.map((option, index) => (
             <Link to={option.link} key={index} onClick={toggleMenu}>
               <motion.button

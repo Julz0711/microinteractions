@@ -45,7 +45,7 @@ export function DeviceOverlay() {
   return (
     <>
       {hierarchy === HierarchyStep.Device && device && (
-        <div className="fixed w-full h-full top-0 left-0 z-100 px-4 gap-8 flex flex-col items-center justify-between">
+        <div className="fixed w-full h-full top-0 left-0 z-100 px-4 gap-8 flex flex-col items-center sm:justify-between">
           <TopContextBar
             headline={device.name}
             metaDescription={device.model}

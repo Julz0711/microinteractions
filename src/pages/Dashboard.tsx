@@ -72,7 +72,7 @@ const Dashboard: React.FC<DashboardProps> = ({ hasDevices = false }) => {
   return (
     <div>
       {hasDevices ? (
-        <div className="w-full flex flex-col gap-2 justify-start items-start pt-24">
+        <div className="w-full flex flex-col gap-2 justify-start items-start pt-18 sm:pt-24">
           <div className="h-2"></div>
           <div className="w-full relative" ref={navbarRef}>
             <div id="navbar">

@@ -18,12 +18,12 @@ export function EntertainmentComponent() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8 w-full mx-auto">
+    <div className="flex flex-col items-center justify-center gap-4 w-full mx-auto">
       <img
         src={Rhapsody}
         alt="Bohemian Rhapsody"
         className={twMerge(
-          "w-48 h-48 rounded-md shadow-2xl",
+          "w-32 h-32 sm:h-48 sm:w-48 rounded-md shadow-2xl",
           isOn ? "" : hasMicrointeractions && "grayscale"
         )}
       />

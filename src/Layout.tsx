@@ -100,7 +100,7 @@ const Layout: React.FC = () => {
           scrollableRef={scrollableRef}
         />
         {showNewButton && (
-          <div className="sticky bottom-12 left-1/2 transform -translate-x-1/2 z-90 inline-block">
+          <div className="fixed bottom-8 right-8 transform z-90 inline-block">
             <NewButton isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
           </div>
         )}
