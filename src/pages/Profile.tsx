@@ -52,7 +52,7 @@ const Profile = () => {
             hasMicrointeractions
               ? "https://docs.google.com/forms/d/e/1FAIpQLSehxLLLh23hDtWpfjFUr3wb91Ag9vWfbxqTaJZScyHoY2aVzg/viewform?usp=header"
               : "https://docs.google.com/forms/d/e/1FAIpQLSfBxdORxT6FbVjnZaPStTDOFkIPU6MEK17tDthR65jTN8SepA/viewform?usp=header"
-          }
+          } rel="noreferrer"
         >
           Zum Test
         </a>

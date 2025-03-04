@@ -45,7 +45,7 @@ const Start = () => {
             <a
               href="https://posthog.com/"
               className="font-bold text-blue hover:text-dark underline"
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               Mehr Informationen zu Posthog
             </a>

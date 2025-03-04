@@ -5,9 +5,8 @@ import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import App from "./App.tsx";
 
-const posthogKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY || "";
-const posthogHost =
-  import.meta.env.VITE_PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
+const posthogKey = "phc_gTGe87B9Bl21jGN8Diu3L9S0BHkhTVrUMuSzDBOs6Fd";
+const posthogHost = "https://eu.i.posthog.com";
 
 posthog.init(posthogKey, {
   api_host: posthogHost,
