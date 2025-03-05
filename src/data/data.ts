@@ -776,6 +776,16 @@ export const devices = [
     isFavorite: false,
     additionalInfo: 'An',
     category: Category.Household
+  },
+  {
+    icon: 'Pluh',
+    name: 'Staubsauger Roboter',
+    model: 'Roomber',
+    room: Room.Hallway,
+    isActive: false,
+    isFavorite: false,
+    additionalInfo: 'Route 41%',
+    category: Category.Household
   }
 ];
 

@@ -66,7 +66,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
             : isDeviceActive
             ? getColor(device.category).toLowerCase()
             : 'bg-inactive',
-          'motion absolute gap-4 font-bold rounded-md select-none flex flex-col justify-center items-center'
+          'motion absolute gap-4 font-bold rounded-md select-none flex flex-col justify-center items-center px-4'
         )}
         onClick={() => {
           handleToggleMenuState();
