@@ -1,7 +1,7 @@
-import RandomizeAppState from "../components/RandomizeAppState";
-import Menu from "../assets/img/menu.png";
-import { useState } from "react";
-import posthog from "posthog-js";
+import RandomizeAppState from '../components/RandomizeAppState';
+import Menu from '../assets/img/menu.png';
+import { useState } from 'react';
+import posthog from 'posthog-js';
 
 const Start = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -10,15 +10,15 @@ const Start = () => {
     setIsChecked(checked);
     if (checked) {
       posthog.opt_in_capturing();
-      posthog.capture("opt_in_capturing", { status: "opted_in" });
+      posthog.capture('opt_in_capturing', { status: 'opted_in' });
     } else {
       posthog.opt_out_capturing();
-      posthog.capture("opt_out_capturing", { status: "opted_out" });
+      posthog.capture('opt_out_capturing', { status: 'opted_out' });
     }
   };
 
   return (
-    <div className="fixed inset-0 p-5 w-full h-full flex flex-col justify-between">
+    <div className="fixed inset-0 p-5 w-full h-full flex flex-col justify-between overflow-y-scroll overflow-x-hidden">
       <div>
         <h1 className="font-bold">Microinteraction Test</h1>
         <div className="mt-2 font-normal text-xs">
@@ -34,7 +34,7 @@ const Start = () => {
           <li className="mt-2">
             Die einzelnen Aufgaben, die zu erledigen sind, findest du unten
             rechts im ausklappbaren Menü:
-            <img src={Menu} width={"40"} />
+            <img src={Menu} width={'40'} />
           </li>
           <li>
             Wenn du unten auf den Button "Test starten" drückst, wirst du
@@ -44,7 +44,10 @@ const Start = () => {
           </li>
           <li>
             Nachdem du alle Aufgaben erledigt hast, fülle bitte das Formular
-            aus, dass du auch im Aufklappmenü findest.
+            aus, dass du auch im Aufklappmenü findest. Bitte beachte, dass die
+            App ein Prototyp ist und daher nicht alle Funktionen vollständig
+            implementiert sind (z.B. das Hinzufügen von Geräten oder an- und
+            auschalten von Geräten).
           </li>
           <li className="space-y-2">
             <p>
