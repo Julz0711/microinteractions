@@ -46,7 +46,7 @@ export function Instructions() {
   return (
     <div className="fixed bg-[#cccccc] border z-[999] bottom-8 left-0 flex">
       <button
-        className={twMerge('p-4', isOpen && 'rotate-180')}
+        className={twMerge("p-2", isOpen && "rotate-180")}
         onClick={handleClickMenu}
       >
         <DynamicIcon iconName="ChevronRight" />
