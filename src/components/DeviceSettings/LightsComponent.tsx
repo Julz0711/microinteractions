@@ -56,14 +56,13 @@ export function LightsComponent() {
               onChange={handleSliderChange}
               hasIcon={true}
               icon="Lamp"
-              iconColor={iconColor}
+              iconColor={"text-light"}
               value={sliderValue}
             />
             {!hasMicrointeractions && <p>Helligkeit</p>}
           </div>
           <div
             className={twMerge(
-              isOn ? "" : "grayscale-100",
               "flex flex-col items-center"
             )}
           >

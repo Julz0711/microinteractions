@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Slider } from "./Slider";
+import { useSelector } from "react-redux";
+import { AppState } from "../../store/store";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   step: number;
@@ -12,6 +15,7 @@ type Props = {
 
 const AirSlider = (props: Props) => {
   const [sliderValue, setSliderValue] = useState<number>(Number(props.value));
+  const isOn = useSelector((state: AppState) => state.app.isOn);
 
   useEffect(() => {
     setSliderValue(Number(props.value));
@@ -44,7 +48,11 @@ const AirSlider = (props: Props) => {
               (_, index) => (
                 <div
                   key={index}
-                  className="h-[51px] -translate-x-[1px] -translate-y-[3px] w-[2px] bg-green/20 "
+                  className={twMerge(
+                    "h-[51px] -translate-x-[1px] -translate-y-[5px] w-[2px] bg-green/20 ",
+                    isOn ? "bg-green/20" : "!bg-dark/20"
+                  )
+                  }
                 />
               )
             )}
@@ -56,7 +64,9 @@ const AirSlider = (props: Props) => {
         (_, index) => (
           <div
             key={index}
-            className="h-[51px] -translate-x-[1px] -translate-y-[3px] w-[2px] bg-green/20 "
+            className={twMerge(
+"h-[51px] -translate-x-[1px] -translate-y-[5px] w-[2px] bg-green/20 ",
+                    isOn ? "bg-green/20" : "!bg-dark/20")}
           />
         )
       )}

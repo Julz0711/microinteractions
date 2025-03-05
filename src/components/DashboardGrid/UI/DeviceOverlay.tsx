@@ -57,15 +57,6 @@ export function DeviceOverlay() {
           />
           {renderCategoryComponent()}
           <OnOffButton isOn={isOn} category={category as Category} />
-          {!hasMicrointeractions && (
-            <div className=" fixed h-16 bottom-2 right-12 font-bold">
-              {isOn ? (
-                <div className="w-full h-16">An</div>
-              ) : (
-                <div className="w-full h-16">Aus</div>
-              )}
-            </div>
-          )}
         </div>
       )}
     </>

@@ -3,6 +3,7 @@ import { Slider } from "./Slider";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import "./Slider.css";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   step: number;
@@ -14,8 +15,8 @@ type Props = {
 };
 
 const SliderWithValue = (props: Props) => {
-  const hasMicrointeractions = useSelector(
-    (state: AppState) => state.app.hasMicrointeractions
+  const {hasMicrointeractions, isOn} = useSelector(
+    (state: AppState) => state.app
   );
 
   const handleSliderChange = (value: number) => {
@@ -70,7 +71,9 @@ const SliderWithValue = (props: Props) => {
           </div>
         )}
       </div>
-      <div className="sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark bg-light font-bold shadow-2xl">
+      <div className={twMerge("sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark font-bold shadow-2xl",
+        isOn ? "bg-light" : "bg-dark/20"
+      )}>
         {props.value}
         {props.measure}
       </div>

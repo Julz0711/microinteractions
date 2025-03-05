@@ -26,11 +26,9 @@ const OnOffButton = (props: IButtonProps) => {
   return (
     <button
       className={twMerge(
-        hasMicrointeractions
-          ? props.isOn
-            ? `${buttonColor} hover:bg-dark text-light`
-            : "bg-light/50 hover:bg-light text-dark"
-          : "bg-dark text-light",
+          props.isOn
+            ? `${hasMicrointeractions ? buttonColor + " " : "bg-red"}  text-light`
+            : "bg-light/50 text-dark",
         "mb-8 p-5 shadow-2xl rounded-full cursor-pointer duration-150 fixed bottom-0 sm:relative"
       )}
       onClick={handleClick}
