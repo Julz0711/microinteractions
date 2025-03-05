@@ -6,7 +6,7 @@ type Props = {
   value: number;
   measure: string;
   custom?: string;
-  range?: 8;
+  range?: number;
   onChange: (value: number) => void;
 };
 
@@ -31,6 +31,7 @@ const HeatSlider = (props: Props) => {
           isHorizontal={true}
           isPx={false}
           size={"100"}
+          value={sliderValue}
           range={props.range}
           step={props.step}
           clickable={true}
