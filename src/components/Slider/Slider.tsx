@@ -37,23 +37,17 @@ export function Slider(props: ISliderProps) {
     props.onChange(isOn? 1 : 0);
   }, [isOn]);
 
-  useEffect(() => {
-    console.log(props.value);
-  }, [props.value]);
-
   const handleTouchStart = (event: TouchEvent) => {
     handleTouchMove(event);
   };
 
   const handleTouchMove = (event: TouchEvent) => {
-    console.log("touchmove");
     if (sliderRef.current) {
       const touch = event.touches[0];
       const rect = sliderRef.current.getBoundingClientRect();
       const newValue = props.isHorizontal
         ? ((touch.clientX - rect.left) / rect.width) * (props.range ?? 100)
         : ((rect.bottom - touch.clientY) / rect.height) * (props.range ?? 100);
-        console.log(newValue);
       props.onChange(Math.min(Math.max(newValue, 0), props.range ?? 100));
     }
   };

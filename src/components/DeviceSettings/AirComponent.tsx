@@ -41,7 +41,6 @@ export function AirComponent() {
 
   useEffect(() => {
     if (strengthValue === 0) {
-      console.log("strengthValue", strengthValue);
       dispatch(setIsOn(false));
       gsap.to(tl.current, { timeScale: 0.00001, duration: 1.5 });
       return;
@@ -197,11 +196,11 @@ export function AirComponent() {
         <AirSlider
         step={20}
           value={1}
-          measure={""}
           range={5}
           onChange={(value) => {
             setTimerValue(value);
           }}
+          measure={"h"}
           custom={isOn ? styles.solid : styles.off + " inactive"}
           
         />
