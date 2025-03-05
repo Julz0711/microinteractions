@@ -68,7 +68,7 @@ const NewDevice = () => {
               className={twMerge(
                 sonarWave,
                 hasMicrointeractions
-                  ? "animate-[sonarWaveAnimation_6s_-6s_linear_infinite]"
+                  ? "animate-[sonarWaveAnimation_6s_-6s_linear_infinite] opacity-0"
                   : "bg-red scale-[2] opacity-15"
               )}
             ></div>
@@ -76,7 +76,7 @@ const NewDevice = () => {
               className={twMerge(
                 sonarWave,
                 hasMicrointeractions
-                  ? "animate-[sonarWaveAnimation_6s_-4.5s_linear_infinite]"
+                  ? "animate-[sonarWaveAnimation_6s_-4.5s_linear_infinite] opacity-0"
                   : "bg-red scale-[3] opacity-15"
               )}
             ></div>
@@ -84,7 +84,7 @@ const NewDevice = () => {
               className={twMerge(
                 sonarWave,
                 hasMicrointeractions
-                  ? "animate-[sonarWaveAnimation_6s_-3s_linear_infinite]"
+                  ? "animate-[sonarWaveAnimation_6s_-3s_linear_infinite] opacity-0"
                   : "bg-red scale-[4] opacity-15"
               )}
             ></div>
@@ -92,7 +92,7 @@ const NewDevice = () => {
               className={twMerge(
                 sonarWave,
                 hasMicrointeractions
-                  ? "animate-[sonarWaveAnimation_6s_-1.5s_linear_infinite]"
+                  ? "animate-[sonarWaveAnimation_6s_-1.5s_linear_infinite] opacity-0"
                   : "bg-red scale-[5] opacity-15"
               )}
             ></div>
@@ -119,7 +119,7 @@ const NewDevice = () => {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col items-center gap-2 text-center text-uwu">
+      <div className="w-full flex flex-col items-center gap-2 text-center text-uwu z-60">
         <p className="w-3/4">
           Tippe auf das Gerät, das hinzugefügt werden soll
         </p>

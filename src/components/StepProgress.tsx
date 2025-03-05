@@ -17,7 +17,7 @@ const StepProgress: React.FC<StepProgressProps> = ({ currentStep }) => {
         return (
           <div key={index} className="flex items-center">
             {/* Circle Step */}
-            <div className="flex flex-col gap-2 items-center relative">
+            <div className="flex flex-col gap-2 items-center relative mb-8">
               <div
                 className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
                   isCompleted
@@ -45,7 +45,7 @@ const StepProgress: React.FC<StepProgressProps> = ({ currentStep }) => {
             {/* Separator Line */}
             {index < steps.length - 1 && (
               <div
-                className={`h-[2px] w-8 mx-2 ${
+                className={`h-[2px] w-8 mx-2 -translate-y-4 ${
                   isCompleted ? "bg-red" : "bg-uwu"
                 }`}
               />
