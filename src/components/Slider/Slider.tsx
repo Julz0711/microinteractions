@@ -5,6 +5,7 @@ import bulbAnim from "../../assets/lottie/BulbOn.json";
 import Lottie from "react-lottie";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
+import { useEffect, useRef } from "react";
 
 export interface ISliderProps {
   hasGradient: boolean;
@@ -23,12 +24,53 @@ export interface ISliderProps {
 }
 
 export function Slider(props: ISliderProps) {
-  const hasMicrointeractions = useSelector(
-    (state: AppState) => state.app.hasMicrointeractions
+  const {hasMicrointeractions, isOn} = useSelector(
+    (state: AppState) => state.app
   );
+  const sliderRef = useRef<HTMLInputElement>(null);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChange(Number(event.target.value));
   };
+
+  useEffect(() => {
+
+    props.onChange(isOn? 1 : 0);
+  }, [isOn]);
+
+  useEffect(() => {
+    console.log(props.value);
+  }, [props.value]);
+
+  const handleTouchStart = (event: TouchEvent) => {
+    handleTouchMove(event);
+  };
+
+  const handleTouchMove = (event: TouchEvent) => {
+    console.log("touchmove");
+    if (sliderRef.current) {
+      const touch = event.touches[0];
+      const rect = sliderRef.current.getBoundingClientRect();
+      const newValue = props.isHorizontal
+        ? ((touch.clientX - rect.left) / rect.width) * (props.range ?? 100)
+        : ((rect.bottom - touch.clientY) / rect.height) * (props.range ?? 100);
+        console.log(newValue);
+      props.onChange(Math.min(Math.max(newValue, 0), props.range ?? 100));
+    }
+  };
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (slider) {
+      slider.addEventListener("touchstart", handleTouchStart);
+
+      slider.addEventListener("touchmove", handleTouchMove);
+      return () => {
+        slider.addEventListener("touchstart", handleTouchStart);
+
+        slider.removeEventListener("touchmove", handleTouchMove);
+      };
+    }
+  }, [props.range, props.isHorizontal]);
 
   return (
     <div
@@ -44,6 +86,7 @@ export function Slider(props: ISliderProps) {
       }
     >
       <input
+        ref={sliderRef}
         type="range"
         step={props.step}
         min={0}

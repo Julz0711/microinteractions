@@ -6,6 +6,7 @@ import { setIsOn } from "../../store/reducer";
 import { useState, useEffect, useRef } from "react";
 import { AppState } from "../../store/store";
 import { gsap } from "gsap";
+import AirSlider from "../Slider/AirSlider";
 
 export function AirComponent() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ export function AirComponent() {
 
   useEffect(() => {
     if (strengthValue === 0) {
+      console.log("strengthValue", strengthValue);
       dispatch(setIsOn(false));
       gsap.to(tl.current, { timeScale: 0.00001, duration: 1.5 });
       return;
@@ -113,6 +115,17 @@ export function AirComponent() {
     };
   }, [isOn]);
 
+
+
+  const handleSliderChange = (value: number) => {
+    setStrengthValue(value);
+    if (value === 0) {
+      dispatch(setIsOn(false));
+    } else {
+      dispatch(setIsOn(true));
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center gap-4 w-full mx-auto">
       <div className="flex flex-col items-center gap-2 w-full">
@@ -156,20 +169,24 @@ export function AirComponent() {
         )}
       </div>
       <div className="flex flex-col items-center gap-2 w-6/7">
-        <table className="w-full table table-auto">
+        <table className="w-full table table-auto relative">
           <tbody>
             <tr>
               <td className="">
                 <span className="font-bold">Stärke</span>
               </td>
-              <td>
-                <SliderWithValue
-                  custom={isOn ? styles.solid : styles.off}
-                  value={strengthValue}
-                  step={33.333}
-                  measure={""}
-                  onChange={(value) => setStrengthValue(value)}
-                />
+              <td className="relative">
+        <AirSlider
+        step={33.33}
+          value={1}
+          measure={""}
+          range={3}
+          onChange={(value) => {
+            handleSliderChange(value);
+          }}
+          custom={isOn ? styles.solid : styles.off + " inactive"}
+          
+        />
               </td>
             </tr>
             <tr>
@@ -177,13 +194,17 @@ export function AirComponent() {
                 <span className="font-bold">Timer</span>
               </td>
               <td>
-                <SliderWithValue
-                  custom={isOn ? styles.solid : styles.off}
-                  value={timerValue}
-                  step={20}
-                  measure={"h"}
-                  onChange={(value) => setTimerValue(value)}
-                />
+        <AirSlider
+        step={20}
+          value={1}
+          measure={""}
+          range={5}
+          onChange={(value) => {
+            setTimerValue(value);
+          }}
+          custom={isOn ? styles.solid : styles.off + " inactive"}
+          
+        />
               </td>
             </tr>
           </tbody>
