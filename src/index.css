@@ -324,12 +324,17 @@ p {
 
 /* New Device */
 @keyframes sonarWaveAnimation {
-  from {
+  0% {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  10% {
     width: 0;
     height: 0;
     opacity: 0.4;
   }
-  to {
+  100% {
     width: 500%;
     height: 500%;
     opacity: 0;

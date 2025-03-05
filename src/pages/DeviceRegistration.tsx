@@ -156,7 +156,7 @@ const DeviceRegistration = () => {
                 "Benutze den vorgegebenen Namen oder erstelle einen eigenen"
               }
             />
-            <div className="relative w-4/5">
+            <div className="relative w-full">
               <InputField
                 type="text"
                 name="deviceName"
@@ -329,7 +329,7 @@ const DeviceRegistration = () => {
   };
 
   return (
-    <div className="fixed inset-0 px-5 h-full flex flex-col justify-between gap-8 no-scrollbar">
+    <div className="fixed inset-0 px-5 h-full flex flex-col justify-between gap-8 no-scrollbar overflow-y-auto overflow-x-hidden">
       {currentStep < 5 ? (
         <>
           <TopContextBar
