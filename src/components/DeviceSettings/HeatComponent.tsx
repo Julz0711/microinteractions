@@ -7,6 +7,7 @@ import { Temperature } from "../SVGAnimations/Temperature";
 import { Category } from "../../types/dashboard.types";
 import { AppState } from "../../store/store";
 import { Slider } from "../Slider/Slider";
+import DynamicIcon from "../DynamicIcon";
 
 interface HeatComponentProps {
   isOn: boolean;
@@ -70,15 +71,17 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
       ) : (
         <>
           <Slider
-            hasGradient={true}
+            hasGradient={false}
             isPx={true}
             size={"250"}
             range={8}
             clickable={true}
             onChange={(value) => handleSliderChange(value + 18)}
           />
-          <span>{Math.floor(sliderValue)}°C</span>
-          <span>Heiztemperatur</span>
+          <div className="w-full text-center flex gap-4 items-center justify-center">
+          <DynamicIcon iconName={"Temp"} size="48" />
+          <span className="w-20">Ziel: {Math.floor(sliderValue)}°C</span>
+          </div>
         </>
       )}
     </div>

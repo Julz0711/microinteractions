@@ -91,12 +91,10 @@ export function Slider(props: ISliderProps) {
           props.isHorizontal
             ? "left-0 top-0 w-full cursor-default"
             : `vertical absolute -translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2`,
-          "border-0 shadow-2xl h-20",
-          hasMicrointeractions
-            ? props.hasGradient
+          "border-0 shadow-2xl h-20",props.hasGradient
               ? "gradient"
-              : "solid"
-            : "uggo"
+              : "solid",
+              isOn ? "bg-light" : "!bg-dark/20"
         )}
         style={
           hasMicrointeractions && props.isPx
