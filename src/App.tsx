@@ -12,15 +12,10 @@ function App() {
       <Provider store={store}>
         <Layout />
         <Debug />
-        <ConditionalInstructions />
+        <Instructions />
       </Provider>
     </Router>
   );
-}
-
-function ConditionalInstructions() {
-  const location = useLocation();
-  return location.pathname !== "/start" ? <Instructions /> : null;
 }
 
 export default App;
