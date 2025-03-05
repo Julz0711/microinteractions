@@ -114,6 +114,10 @@ body {
   @apply bg-dark text-dark font-normal text-default h-full w-full select-none;
 }
 
+p {
+  @apply font-normal;
+}
+
 .btn {
   @apply rounded-sm shadow-none border-none py-4 px-6;
 }

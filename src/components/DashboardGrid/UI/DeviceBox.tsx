@@ -1,14 +1,14 @@
-import { motion } from "framer-motion";
-import { AppState } from "../../../store/store";
-import { useDispatch, useSelector } from "react-redux";
-import { Device } from "../../../types/types";
-import { twMerge } from "tailwind-merge";
-import DynamicIcon from "../../DynamicIcon";
-import { useButtonVariants } from "../../../Hooks/DeviceGrid/useButtonVariants";
-import { useDeviceState } from "../../../Hooks/DeviceGrid/useDeviceState";
-import { useDeviceAnimation } from "../../../Hooks/DeviceGrid/useDeviceAnimation";
-import { getColor, getShadow, getTextColor } from "../../../helpers/helpers";
-import { setIsOn } from "../../../store/reducer";
+import { motion } from 'framer-motion';
+import { AppState } from '../../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { Device } from '../../../types/types';
+import { twMerge } from 'tailwind-merge';
+import DynamicIcon from '../../DynamicIcon';
+import { useButtonVariants } from '../../../Hooks/DeviceGrid/useButtonVariants';
+import { useDeviceState } from '../../../Hooks/DeviceGrid/useDeviceState';
+import { useDeviceAnimation } from '../../../Hooks/DeviceGrid/useDeviceAnimation';
+import { getColor, getShadow, getTextColor } from '../../../helpers/helpers';
+import { setIsOn } from '../../../store/reducer';
 
 interface DeviceProps {
   device: Device;
@@ -24,7 +24,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
     toggleActiveState,
     toggleMenuState,
     isDeviceActive,
-    isMenuOpen,
+    isMenuOpen
   } = useDeviceState({ buttonVariants, device });
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
@@ -33,7 +33,7 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
     buttonState,
     previousState,
     buttonVariants,
-    index,
+    index
   });
   const dispatch = useDispatch();
 
@@ -52,21 +52,21 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
           scale: 0,
           opacity: 0,
           left: 120,
-          top: 500 - Math.floor(index / 2) * 100,
+          top: 500 - Math.floor(index / 2) * 100
         }}
         variants={buttonVariants}
         className={twMerge(
           hasMicrointeractions
             ? isDeviceActive
-              ? " shadow-lg device-box-" +
+              ? ' shadow-lg device-box-' +
                 device.category.toLowerCase() +
-                " " +
+                ' ' +
                 getShadow(device.category)
-              : "shadow-xl device-box-dashboard-inactive"
+              : 'shadow-xl device-box-dashboard-inactive'
             : isDeviceActive
             ? getColor(device.category).toLowerCase()
-            : "bg-inactive",
-          "motion absolute gap-4  font-bold rounded-md select-none flex flex-col justify-center items-center"
+            : 'bg-inactive',
+          'motion absolute gap-4 font-bold rounded-md select-none flex flex-col justify-center items-center'
         )}
         onClick={() => {
           handleToggleMenuState();
@@ -86,17 +86,17 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
             className="flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
           >
             <DynamicIcon
-              iconName={"OnOff"}
+              iconName={'OnOff'}
               color={
-                isDeviceActive ? getTextColor(device.category) : "text-dark"
+                isDeviceActive ? getTextColor(device.category) : 'text-dark'
               }
             />
           </button>
-          {buttonState === "visible" && (
+          {buttonState === 'visible' && (
             <h3
               className={twMerge(
-                "text-center text-[11px]",
-                isDeviceActive ? "text-light" : "text-dark"
+                'text-center text-[11px]',
+                isDeviceActive ? 'text-light' : 'text-dark'
               )}
             >
               {device.name}
