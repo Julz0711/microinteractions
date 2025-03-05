@@ -15,21 +15,18 @@ const AnimatedArrow: React.FC = () => {
       const pathLength = pathRef.current.getTotalLength();
 
       gsap.set(maskPathRef.current, {
-        strokeDasharray: pathLength * 20, // Ensure it's long enough
-        strokeDashoffset: 0 // Start fully covering the main path
+        strokeDasharray: pathLength * 20,
+        strokeDashoffset: 0
       });
-
-      // Set initial strokeDasharray to create dashes
 
       const tl = gsap.timeline();
 
       tl.to(maskPathRef.current, {
-        strokeDashoffset: -pathLength - 20, // Shrink to reveal the main path
+        strokeDashoffset: -pathLength - 20,
         duration: 2,
         ease: 'power2.out'
       });
 
-      // Animate dashed path to appear progressively
       tl.to(
         '#arrow',
         {
@@ -42,7 +39,7 @@ const AnimatedArrow: React.FC = () => {
             alignOrigin: [0.5, 0.5]
           }
         },
-        '<' // Start arrow animation at the same time
+        '<'
       );
     }
   }, []);
@@ -52,7 +49,7 @@ const AnimatedArrow: React.FC = () => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="300"
-        height="300"
+        height="25vh"
         viewBox="300 0 150 500"
         ref={svgRef}
       >
