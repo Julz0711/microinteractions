@@ -358,7 +358,7 @@ const DeviceRegistration = () => {
                   </div>
                 )}
               </div>
-              <img src={Homepod} className="w-2/3"></img>
+              <img src={Homepod} className="w-[60%]"></img>
               <div className="w-full h-5 flex flex-row items-center justify-center gap-1 font-normal text-[11px] text-light">
                 {hasMicrointeractions && currentStep > 2 && (
                   <div className="text-center">{formData.category}</div>

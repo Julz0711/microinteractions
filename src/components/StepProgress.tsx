@@ -19,7 +19,7 @@ const StepProgress: React.FC<StepProgressProps> = ({ currentStep }) => {
             {/* Circle Step */}
             <div className="flex flex-col gap-2 items-center relative">
               <div
-                className={`w-10 h-10 flex items-center justify-center rounded-full border-2 ${
+                className={`w-8 h-8 flex items-center justify-center rounded-full border-2 ${
                   isCompleted
                     ? "bg-red text-white border-red"
                     : isActive

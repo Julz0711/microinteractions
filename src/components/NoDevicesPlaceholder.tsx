@@ -10,7 +10,7 @@ export function NoDevicesPlaceholder() {
     (state: AppState) => state.app.hasMicrointeractions
   );
   return (
-    <div className="w-4/5 mx-auto flex flex-col gap-1 pt-12 justify-center items-center">
+    <div className="w-4/5 mx-auto flex flex-col gap-1 pt-12 sm:pt-36 justify-center items-center">
       <div className="pt-8">
         <GlowBoyz isGray={true} />
       </div>

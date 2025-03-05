@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/all';
 import './AnimatedArrow.css';
@@ -9,20 +9,22 @@ const AnimatedArrow: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const maskPathRef = useRef<SVGPathElement>(null);
+  const [pathLength, setPathLength] = useState(0)
 
   useEffect(() => {
     if (svgRef.current && pathRef.current && maskPathRef.current) {
       const pathLength = pathRef.current.getTotalLength();
+      setPathLength(pathLength);
 
       gsap.set(maskPathRef.current, {
-        strokeDasharray: pathLength * 20,
-        strokeDashoffset: 0
+        strokeDasharray: pathLength ,
+        strokeDashoffset: pathLength * 2
       });
 
       const tl = gsap.timeline();
 
       tl.to(maskPathRef.current, {
-        strokeDashoffset: -pathLength - 20,
+        strokeDashoffset: pathLength,
         duration: 2,
         ease: 'power2.out'
       });
@@ -72,7 +74,8 @@ const AnimatedArrow: React.FC = () => {
           stroke="rgb(var(--light))"
           strokeLinecap="round"
           strokeOpacity="1"
-          strokeDasharray="1"
+          strokeDasharray={pathLength}
+          strokeDashoffset={0}
         ></path>
         <path
           id="arrow"
