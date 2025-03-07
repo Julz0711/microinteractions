@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DynamicIcon from "./DynamicIcon";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { AppState } from "../store/store";
 import { twMerge } from "tailwind-merge";
 
@@ -8,6 +9,8 @@ export function Instructions() {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
+
+  const location = useLocation();
 
   const initializeCheckboxes = () => {
     const savedCheckboxes = localStorage.getItem("checkboxes");
@@ -142,8 +145,8 @@ export function Instructions() {
               onChange={handleCheckboxChange}
             />
             <label className={labelClass} htmlFor="quest9">
-              Gehe zur Geräteübersicht und 
-              entferne eine Leselampe im Wohnzimmer.
+              Gehe zur Geräteübersicht und entferne eine Leselampe im
+              Wohnzimmer.
             </label>
             <br />
             <input
@@ -154,25 +157,28 @@ export function Instructions() {
               onChange={handleCheckboxChange}
             />
             <label className={labelClass} htmlFor="quest10">
-              Gehe zum Dashboard und aktiviere/deaktiviere eine Szene/Favorit/Zeitplan Deiner Wahl.
+              Gehe zum Dashboard und aktiviere/deaktiviere eine
+              Szene/Favorit/Zeitplan Deiner Wahl.
             </label>
             <br />
           </form>
           Nach Abschließen aller Aufgaben: <br />
           Bearbeite diesen kurzen Fragebogen. <br />
           Dieser dauert nur ca. 3-5 Minuten.
-          <a
-            className={"text-blue hover:text-dark font-bold underline"}
-            target="_blank"
-            href={
-              hasMicrointeractions
-                ? "https://docs.google.com/forms/d/e/1FAIpQLSehxLLLh23hDtWpfjFUr3wb91Ag9vWfbxqTaJZScyHoY2aVzg/viewform?usp=header"
-                : "https://docs.google.com/forms/d/e/1FAIpQLSfvJRa_eK9Eb5cLGayQy1nwPT_mzbcViHQMTPxYZ4AaYADP4Q/viewform?usp=header"
-            }
-            rel="noreferrer"
-          >
-            {hasMicrointeractions ? "Zum Usability Test" : "Zum Usability Test"}
-          </a>
+          {location.pathname !== "/start" && (
+            <a
+              className={"text-blue hover:text-dark font-bold underline"}
+              target="_blank"
+              href={
+                hasMicrointeractions
+                  ? "https://docs.google.com/forms/d/e/1FAIpQLSehxLLLh23hDtWpfjFUr3wb91Ag9vWfbxqTaJZScyHoY2aVzg/viewform?usp=header"
+                  : "https://docs.google.com/forms/d/e/1FAIpQLSfvJRa_eK9Eb5cLGayQy1nwPT_mzbcViHQMTPxYZ4AaYADP4Q/viewform?usp=header"
+              }
+              rel="noreferrer"
+            >
+              Zum Usability Test
+            </a>
+          )}
         </div>
       )}
     </div>
