@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import Button from "../Button";
 import { twMerge } from "tailwind-merge";
+import DynamicIcon from "../DynamicIcon";
 
 interface HotspotProps {
   targetId: string;
@@ -101,7 +102,7 @@ const Hotspot: React.FC<HotspotProps> = ({
         onTouchEnd={handleHoldEnd}
       >
         <motion.div
-          className="absolute w-10 h-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[4px] border-info"
+          className="absolute w-10 h-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-[4px] border-light"
           initial={{
             scale: 0.8,
             opacity: 0.8,
@@ -121,10 +122,8 @@ const Hotspot: React.FC<HotspotProps> = ({
           }}
         />
 
-        <div className="hotspot-dot cursor-pointer relative w-6 h-6 duration-150 bg-blue hover:bg-dark rounded-full shadow-[0_0_16px_rgba(25,25,25,0.8)]">
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-info text-[14px]">
-            ?
-          </div>
+        <div className="hotspot-dot cursor-pointer relative flex p-[5px] duration-150 bg-light hover:bg-dark rounded-full shadow-[0_0_16px_rgba(25,25,25,0.8)]">
+          <DynamicIcon iconName={"info"} size={"18"} />
         </div>
       </div>
 
