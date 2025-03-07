@@ -1,16 +1,35 @@
-import { ReactSVG } from "react-svg";
-import Ellipse from "../../assets/img/EllipseCut.svg";
+import React, { useState, useEffect } from "react";
 import DynamicIcon from "../DynamicIcon";
 import { Slider } from "../Slider/Slider";
 import styles from "./HouseholdComponent.module.css";
 import { twMerge } from "tailwind-merge";
 import Button from "../Button";
+import Roomba from "../SVGAnimations/Roomba/Roomba";
+import { useSelector } from "react-redux";
+import { AppState } from "../../store/store";
 
 export interface IHouselComponentProps {
   isOn: boolean;
 }
 
 const HouseholdComponent = (props: IHouselComponentProps) => {
+  const hasMicrointeractions = useSelector(
+    (state: AppState) => state.app.hasMicrointeractions
+  );
+
+  const [animatedValue, setAnimatedValue] = useState(0);
+
+  useEffect(() => {
+    if (props.isOn) {
+      const interval = setInterval(() => {
+        setAnimatedValue((prev) => (prev < 100 ? prev + 1 : 100));
+      }, 600);
+      return () => clearInterval(interval);
+    } else {
+      setAnimatedValue(0);
+    }
+  }, [props.isOn]);
+
   const wrapper =
     "rounded-md bg-light shadow-2xl px-4 pt-3 pb-1 flex flex-col items-center justify-center grow";
   const meta =
@@ -21,22 +40,21 @@ const HouseholdComponent = (props: IHouselComponentProps) => {
   );
   return (
     <div className="flex flex-col items-center justify-center gap-16 w-4/5 mx-auto">
-      <div
-        className={twMerge(
-          props.isOn ? "bg-blue" : "bg-light/50",
-          "relative h-50 w-50  rounded-full shadow-2xl"
-        )}
-      >
-        <ReactSVG
-          src={Ellipse}
-          beforeInjection={(svg) => {
-            svg.classList.add("absolute", "inset-0", "w-48", "h-48");
-          }}
-        ></ReactSVG>
+      <div className="relative h-50 w-50  rounded-full">
+        <Roomba
+          isActive={props.isOn}
+          size={200}
+          hasOnOff={false}
+          color="text-blue"
+        />
         {!props.isOn && (
-          <div className="absolute inset-0 flex flex-col gap-2 items-center justify-center">
+          <div
+            className={twMerge(
+              "absolute inset-0 flex flex-col gap-2 items-center justify-center z-90",
+              hasMicrointeractions && "animate-pulse"
+            )}
+          >
             <DynamicIcon color={"text-yellow"} iconName={"Bolt"} size="48" />
-            <span className="text-yellow font-bold text-xs">wird geladen</span>
           </div>
         )}
       </div>
@@ -63,21 +81,33 @@ const HouseholdComponent = (props: IHouselComponentProps) => {
         <div className="flex flex-col gap-2 items-center w-full">
           {props.isOn ? (
             <>
-              <Slider
-                className={styles.solid}
-                hasGradient={false}
-                isHorizontal={true}
-                size={"100"}
-                clickable={false}
-                value={45}
-                onChange={() => undefined}
-              />
-              <span className="text-blue font-bold">41% erledigt</span>
+              {hasMicrointeractions ? (
+                <>
+                  <Slider
+                    className={styles.solid}
+                    hasGradient={false}
+                    isHorizontal={true}
+                    size={"100"}
+                    clickable={false}
+                    value={hasMicrointeractions ? animatedValue : 45}
+                    onChange={() => undefined}
+                  />
+                  <span className="text-blue font-bold">
+                    {hasMicrointeractions
+                      ? `${animatedValue}% abgeschlossen`
+                      : "45%"}
+                  </span>
+                </>
+              ) : (
+                <div className="text-blue font-bold mt-2">
+                  Gerät ist unterwegs
+                </div>
+              )}
             </>
           ) : (
             <Button
               label={"Route bearbeiten"}
-              style={"bg-light hover:bg-light/50 text-dark! shadow-xl"}
+              style={"bg-light hover:bg-dark/10 text-dark! shadow-xl"}
               link={""}
             ></Button>
           )}

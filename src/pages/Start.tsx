@@ -1,7 +1,7 @@
-import RandomizeAppState from '../components/RandomizeAppState';
-import Menu from '../assets/img/menu.png';
-import { useState } from 'react';
-import posthog from 'posthog-js';
+import RandomizeAppState from "../components/RandomizeAppState";
+import Menu from "../assets/img/menu.png";
+import { useState } from "react";
+import posthog from "posthog-js";
 
 const Start = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -10,10 +10,10 @@ const Start = () => {
     setIsChecked(checked);
     if (checked) {
       posthog.opt_in_capturing();
-      posthog.capture('opt_in_capturing', { status: 'opted_in' });
+      posthog.capture("opt_in_capturing", { status: "opted_in" });
     } else {
       posthog.opt_out_capturing();
-      posthog.capture('opt_out_capturing', { status: 'opted_out' });
+      posthog.capture("opt_out_capturing", { status: "opted_out" });
     }
   };
 
@@ -28,25 +28,29 @@ const Start = () => {
         <ul className="w-full list-disc pl-5 text-sm font-normal space-y-2">
           <li>
             Herzlich Willkommen zum Usability Test! Wir freuen uns, dass du
-            teilnimmst. In diesem Test bist Du Nutzer*in einer Smarthome App. 
-            Du erhältst verschiedene Aufgaben, 
-            die Du zur Einrichtung und Bedienung Deines Smarthomes erledigen möchtest.
+            teilnimmst. In diesem Test bist Du Nutzer*in einer Smarthome App. Du
+            erhältst verschiedene Aufgaben, die Du zur Einrichtung und Bedienung
+            Deines Smarthomes erledigen möchtest.
           </li>
           <li className="mt-2">
-            Die einzelnen Aufgaben, die zu erledigen sind, findest Du in der unteren linken Ecke deines Bildschirms im ausklappbaren Menü:
+            Die einzelnen Aufgaben, die zu erledigen sind, findest Du in der
+            unteren linken Ecke deines Bildschirms im ausklappbaren Menü:
             <img src={Menu} width={"40"} />
             Zur Orientierung kannst du erledigte Aufgaben mit der Checkbox abhaken.
           </li>
           <li>
-            Solltest Du Schwierigkeiten beim Erledigen einer Aufgabe haben, springe zur darauffolgenden Aufgabe. 
-            Nachdem Du die Aufgaben erledigt hast, fülle bitte das Formular
-            aus, das Du im Aufklappmenü findest.
+            Solltest Du Schwierigkeiten beim Erledigen einer Aufgabe haben,
+            springe zur darauffolgenden Aufgabe. Nachdem Du die Aufgaben
+            erledigt hast, fülle bitte das Formular aus, das Du im Aufklappmenü
+            findest.
           </li>
           <li className="space-y-2">
             <p>
-              Wir verwenden PostHog zur Erfassung anonymisierter Nutzungsdaten. 
-              Die Daten werden nicht an Dritte weitergegeben und lediglich zur Analyse des Nutzungsverhaltens genutzt.
-              Um uns bei der User Research bestmöglich zu unterstützen, bitten wir Dich, mögliche Adblocker zu deaktiveren.
+              Wir verwenden PostHog zur Erfassung anonymisierter Nutzungsdaten.
+              Die Daten werden nicht an Dritte weitergegeben und lediglich zur
+              Analyse des Nutzungsverhaltens genutzt. Um uns bei der User
+              Research bestmöglich zu unterstützen, bitten wir Dich, mögliche
+              Adblocker zu deaktiveren.
             </p>
             <a
               href="https://posthog.com/"
@@ -67,7 +71,7 @@ const Start = () => {
           </li>
 
           <li>
-            Dieser Test dauert ca. 5-10 Minuten. Viel Spaß!
+            Dieser Test dauert max. 10 Minuten. <b>Viel Spaß!</b>
           </li>
         </ul>
       </div>

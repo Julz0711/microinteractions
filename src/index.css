@@ -103,6 +103,21 @@
   /* breakpoints */
   --breakpoint-sm: 30rem;
 
+  /* Custom Animations */
+  --animate-spin-right: spin-right 2.5s linear infinite;
+  --animate-spin-left: spin-left 2.5s linear infinite;
+
+  @keyframes spin-right {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-left {
+    to {
+      transform: rotate(-360deg);
+    }
+  }
 }
 
 
@@ -124,6 +139,10 @@ p {
 
 .btn-sm {
   @apply rounded-sm shadow-none border-none py-2 px-3 bg-red hover:bg-purple duration-150 text-sm font-bold text-light cursor-pointer;
+}
+
+.btn-sm-alt {
+  @apply rounded-sm shadow-none border-none py-2 px-3 bg-dark hover:bg-dark/70 duration-150 text-sm font-bold text-light cursor-pointer;
 }
 
 .btn-lg {
@@ -373,5 +392,3 @@ p {
 .animate-light {
   animation: lightAnimation 2.5s infinite linear;
 }
-
-

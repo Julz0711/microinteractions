@@ -1,69 +1,69 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { ReactNode, Suspense, lazy } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useSelector } from 'react-redux';
-import { AppState } from '../store/store';
-import { twMerge } from 'tailwind-merge';
-import { Overlay } from '../components/Overlay';
-import FloatingScrollbar from '../components/FloatingScrollbar/FloatingScrollbar';
+import { Routes, Route, useLocation } from "react-router-dom";
+import { ReactNode, Suspense, lazy } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+import { AppState } from "../store/store";
+import { twMerge } from "tailwind-merge";
+import { Overlay } from "../components/Overlay";
+import FloatingScrollbar from "../components/FloatingScrollbar/FloatingScrollbar";
 
-const Start = lazy(() => import('../pages/Start'));
-const Dashboard = lazy(() => import('../pages/Dashboard'));
-const Devices = lazy(() => import('../pages/Devices'));
-const NotFound = lazy(() => import('../pages/NotFound'));
-const Profile = lazy(() => import('../pages/Profile'));
-const Login = lazy(() => import('../pages/Login'));
-const Register = lazy(() => import('../pages/Register'));
-const NewDevice = lazy(() => import('../pages/NewDevice'));
-const DeviceRegistration = lazy(() => import('../pages/DeviceRegistration'));
+const Start = lazy(() => import("../pages/Start"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Devices = lazy(() => import("../pages/Devices"));
+const NotFound = lazy(() => import("../pages/NotFound"));
+const Profile = lazy(() => import("../pages/Profile"));
+const Login = lazy(() => import("../pages/Login"));
+const Register = lazy(() => import("../pages/Register"));
+const NewDevice = lazy(() => import("../pages/NewDevice"));
+const DeviceRegistration = lazy(() => import("../pages/DeviceRegistration"));
 
 const allRoutes = [
   {
-    path: '/',
-    component: <Dashboard hasDevices={false} />
+    path: "/",
+    component: <Dashboard hasDevices={false} />,
   },
   {
-    path: '/start',
-    component: <Start />
+    path: "/start",
+    component: <Start />,
   },
   {
-    path: '/dashboard',
-    component: <Dashboard hasDevices={true} />
+    path: "/dashboard",
+    component: <Dashboard hasDevices={true} />,
   },
   {
-    path: '/geraete',
-    component: <Devices />
+    path: "/geraete",
+    component: <Devices />,
   },
   {
-    path: '/profil',
-    component: <Profile />
+    path: "/profil",
+    component: <Profile />,
   },
   {
-    path: '/login',
-    component: <Login />
+    path: "/login",
+    component: <Login />,
   },
   {
-    path: '/registrieren',
-    component: <Register />
+    path: "/registrieren",
+    component: <Register />,
   },
   {
-    path: '/neues-geraet',
-    component: <NewDevice />
+    path: "/neues-geraet",
+    component: <NewDevice />,
   },
   {
-    path: '/geraet-registrieren',
-    component: <DeviceRegistration />
+    path: "/geraet-registrieren",
+    component: <DeviceRegistration />,
   },
   {
-    path: '*',
-    component: <NotFound />
-  }
+    path: "*",
+    component: <NotFound />,
+  },
 ];
 
 function PageWrapper({
   children,
   showNewButton,
-  scrollableRef
+  scrollableRef,
 }: {
   children: ReactNode;
   showNewButton: boolean;
@@ -98,8 +98,8 @@ function PageWrapper({
         >
           <div
             className={twMerge(
-              'min-h-full px-5',
-              path === '/' ? 'pb-5' : showNewButton ? 'pb-36' : 'pb-5'
+              "min-h-full px-5",
+              path === "/" ? "pb-5" : showNewButton ? "pb-36" : "pb-5"
             )}
           >
             {children}
@@ -112,7 +112,7 @@ function PageWrapper({
 
 const AppRouter = ({
   showNewButton,
-  scrollableRef
+  scrollableRef,
 }: {
   showNewButton: boolean;
   scrollableRef: React.RefObject<HTMLDivElement>;

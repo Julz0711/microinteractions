@@ -41,7 +41,7 @@ export const RoomGrid: React.FC<RoomGridProps> = ({
           dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
           dispatch(setCategory(null));
         },
-        hasMicrointeractions ? 300 : 0
+        hasMicrointeractions ? 300 : 400
       );
 
       return () => clearTimeout(timeout);
@@ -54,10 +54,11 @@ export const RoomGrid: React.FC<RoomGridProps> = ({
     <div
       ref={canvasRef}
       className={twMerge(
-        "w-full h-[530px] transition-all relative flex flex-col items-center justify-center duration-200 ",
+        "w-full h-[530px] transition-all relative flex flex-col items-center justify-center duration-0 ",
         isVisible
           ? "opacity-100 scale-100"
-          : "opacity-0 scale-70 translate-y-[50px]"
+          : "opacity-0 scale-70 translate-y-[50px]",
+        hasMicrointeractions ? "duration-300" : "duration-0"
       )}
     >
       {Object.values(Category)
