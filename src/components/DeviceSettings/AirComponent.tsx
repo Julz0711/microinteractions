@@ -114,8 +114,6 @@ export function AirComponent() {
     };
   }, [isOn]);
 
-
-
   const handleSliderChange = (value: number) => {
     setStrengthValue(value);
     if (value === 0) {
@@ -175,17 +173,16 @@ export function AirComponent() {
                 <span className="font-bold">Stärke</span>
               </td>
               <td className="relative">
-        <AirSlider
-        step={33.33}
-          value={1}
-          measure={""}
-          range={3}
-          onChange={(value) => {
-            handleSliderChange(value);
-          }}
-          custom={isOn ? styles.solid : styles.off + " inactive"}
-          
-        />
+                <AirSlider
+                  step={33.33}
+                  value={1}
+                  measure={""}
+                  range={3}
+                  onChange={(value) => {
+                    handleSliderChange(value);
+                  }}
+                  custom={isOn ? styles.solid : styles.off + " inactive"}
+                />
               </td>
             </tr>
             <tr>
@@ -193,17 +190,16 @@ export function AirComponent() {
                 <span className="font-bold">Timer</span>
               </td>
               <td>
-        <AirSlider
-        step={20}
-          value={1}
-          range={5}
-          onChange={(value) => {
-            setTimerValue(value);
-          }}
-          measure={"h"}
-          custom={isOn ? styles.solid : styles.off + " inactive"}
-          
-        />
+                <AirSlider
+                  step={20}
+                  value={1}
+                  range={5}
+                  onChange={(value) => {
+                    setTimerValue(value);
+                  }}
+                  measure={"h"}
+                  custom={isOn ? styles.solid : styles.off + " inactive"}
+                />
               </td>
             </tr>
           </tbody>
