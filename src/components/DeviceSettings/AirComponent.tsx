@@ -63,7 +63,7 @@ export function AirComponent() {
     } else {
       setIconColor("text-green");
       if (strengthValue === 0) setStrengthValue(1);
-      setTimerValue(3);
+      setTimerValue(1);
       setHours(timerValue);
       setMinutes(0);
       setSeconds(0);

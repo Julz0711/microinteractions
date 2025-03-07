@@ -9,11 +9,11 @@ export function Equalizer() {
       className="circular-progress -top-6 right-0"
     >
       <rect
-        className="fill-dark rect1"
-        x="10"
-        y="95"
+        className="fill-dark bg rect1"
+        x="15"
+        y="115"
         width="10"
-        height="60"
+        height="20"
         rx="5"
         ry="5"
       ></rect>

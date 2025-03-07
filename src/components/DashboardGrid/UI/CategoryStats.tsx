@@ -13,6 +13,7 @@ import Lottie from "react-lottie";
 
 import bulbAnim from "../../../assets/lottie/BulbOn.json";
 import { AnimatePresence, motion } from "framer-motion";
+import { Equalizer } from "../../SVGAnimations/Equalizer";
 
 export interface ICategoryStatsProps {
   category: Category;
@@ -167,8 +168,13 @@ export function CategoryStats(props: ICategoryStatsProps) {
                     Bohemian Rhapsody
                   </span>
                   <span className="absolute right-0 bg-gradient-to-l from-purple to-transparent w-10 h-10"></span>
-                  <span className="text-light text-xs">Queen</span>
+                  <span className="text-light text-[10px] font-normal">
+                    Queen
+                  </span>
                 </div>
+              </div>
+              <div className="absolute bottom-0 left-0 opacity-30 invert translate-y-3 scale-85">
+                <Equalizer />
               </div>
               <div className="flex gap-2">
                 <DynamicIcon iconName={"PreviousSong"} color="text-light" />
@@ -198,21 +204,30 @@ export function CategoryStats(props: ICategoryStatsProps) {
       ) : (
         <div className="flex flex-col">
           {hasActiveDevices ? (
-            <>
-              <img
-                src={Rhapsody}
-                alt="Bohemian Rhapsody"
-                className="w-10 h-10 rounded-sm"
-              />
-              <p
-                className={twMerge(
-                  "text-xs",
-                  hasActiveDevices ? "text-light" : "text-uwu"
-                )}
-              >
-                <span className="font-bold">Bohemian Rapsody</span>
-              </p>
-            </>
+            <div className="flex justify-center flex-col items-center gap-2">
+              <div className="flex gap-2 max-w-full relative">
+                <img
+                  src={Rhapsody}
+                  alt="Bohemian Rhapsody"
+                  className="w-10 h-10 rounded-sm"
+                />
+                <div className="flex flex-col justify-center max-w-full overflow-x-hidden">
+                  <span className="text-light whitespace-nowrap text-[11px] font-bold">
+                    Bohemian Rhapsody
+                  </span>
+                  <span className="absolute right-0 bg-gradient-to-l from-purple to-transparent w-10 h-10"></span>
+                  <span className="text-light text-[10px] font-normal">
+                    Queen
+                  </span>
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 opacity-30 invert translate-y-3 scale-85"></div>
+              <div className="flex gap-2">
+                <DynamicIcon iconName={"PreviousSong"} color="text-light" />
+                <DynamicIcon iconName={"Pause"} color="text-light" />
+                <DynamicIcon iconName={"NextSong"} color="text-light" />
+              </div>
+            </div>
           ) : (
             <>
               {props.devices > 0 ? (

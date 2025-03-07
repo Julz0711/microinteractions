@@ -41,9 +41,11 @@ const Devices = () => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredDevices = devices.filter((device) =>
-    device.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredDevices = devices
+    .filter((device) =>
+      device.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .slice(0, 15);
 
   const groupedDevices = filteredDevices.reduce(
     (acc: { [key: string]: any[] }, device: any) => {
