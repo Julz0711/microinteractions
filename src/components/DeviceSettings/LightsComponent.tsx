@@ -46,7 +46,7 @@ export function LightsComponent() {
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-16 w-full mx-auto">
-        <div className="grid grid-cols-[1fr_1fr] gap-8 place-items-center h-80 px-12">
+        <div className="grid grid-cols-[1fr_1fr] gap-8 place-items-center h-60 px-12">
           <div className="flex flex-col items-center">
             <Slider
               hasGradient={false}
@@ -56,14 +56,13 @@ export function LightsComponent() {
               onChange={handleSliderChange}
               hasIcon={true}
               icon="Lamp"
-              iconColor={iconColor}
+              iconColor={"text-light"}
               value={sliderValue}
             />
             {!hasMicrointeractions && <p>Helligkeit</p>}
           </div>
           <div
             className={twMerge(
-              isOn ? "" : "grayscale-100",
               "flex flex-col items-center"
             )}
           >

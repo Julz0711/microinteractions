@@ -50,7 +50,17 @@ export function CategoryStats(props: ICategoryStatsProps) {
           ></span>
         </div>
       ) : (
-        ""
+        
+        <div
+          className={twMerge(
+            "p-4 rounded-full flex items-center justify-center","bg-light"
+          )}
+        >
+        <DynamicIcon
+        iconName={"Lamp"}
+        color={hasActiveDevices ? "text-yellow" : "text-light"}
+      />
+      </div>
       );
     case Category.Heat:
       return hasMicrointeractions ? (
@@ -79,16 +89,18 @@ export function CategoryStats(props: ICategoryStatsProps) {
           )}
         </>
       ) : (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col justify-center items-center">
           {hasActiveDevices ? (
-            <p
+            <div
               className={twMerge(
-                "text-xs",
+                "text-xs flex justify-center flex-col items-center gap-2",
                 hasActiveDevices ? "text-light" : "text-uwu"
               )}
             >
-              Heizung: <span className="font-bold">21°C</span>
-            </p>
+              
+              <DynamicIcon iconName={"Temp"} color="text-light" size="40" /> 
+              <span className="font-bold text-sm">21°C</span>
+            </div>
           ) : null}
         </div>
       );
@@ -221,25 +233,27 @@ export function CategoryStats(props: ICategoryStatsProps) {
           )}
         </div>
       ) : (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-row gap-2">
           {hasActiveDevices ? (
             <>
-              <p
+              <div
                 className={twMerge(
                   "text-xs",
                   hasActiveDevices ? "text-light" : "text-uwu"
                 )}
               >
-                Ventilator: <span className="font-bold">Mittel</span>
-              </p>
-              <p
+                  <DynamicIcon iconName={"Fan"} color="text-light" />
+                <span className="font-bold">Mittel</span>
+              </div>
+              <div
                 className={twMerge(
                   "text-xs",
                   hasActiveDevices ? "text-light" : "text-uwu"
                 )}
               >
+                  <DynamicIcon iconName={"Fan"} color="text-light" />
                 Luftfeuchtigkeit: <span className="font-bold">60%</span>
-              </p>
+              </div>
             </>
           ) : (
             <span className="text-uwu text-[10px] font-bold text-center">

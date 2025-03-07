@@ -3,6 +3,7 @@ import { Slider } from "./Slider";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store/store";
 import "./Slider.css";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   step: number;
@@ -14,22 +15,13 @@ type Props = {
 };
 
 const SliderWithValue = (props: Props) => {
-  const [sliderValue, setSliderValue] = useState<number>(Number(props.value));
-  const hasMicrointeractions = useSelector(
-    (state: AppState) => state.app.hasMicrointeractions
+  const {hasMicrointeractions, isOn} = useSelector(
+    (state: AppState) => state.app
   );
 
-  useEffect(() => {
-    setSliderValue(Number(props.value));
-  }, [props.value]);
-
-  const handleSliderChange = (newValue: number) => {
-    setSliderValue(
-      Math.round(newValue / props.step + (props.hasExtraMeasurements ?? 0))
-    );
-    props.onChange(
-      Math.round(newValue / props.step + (props.hasExtraMeasurements ?? 0))
-    );
+  const handleSliderChange = (value: number) => {
+    const newValue = Math.round(value / props.step + (props.hasExtraMeasurements ?? 0));
+    props.onChange(newValue);
   };
 
   return (
@@ -41,29 +33,48 @@ const SliderWithValue = (props: Props) => {
           isHorizontal={true}
           isPx={false}
           size={"100"}
+          value={props.value}
           step={props.step}
           clickable={true}
           onChange={handleSliderChange}
         />
         {hasMicrointeractions && (
-          <div
-            className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden rounded-lg"
-            style={{ gap: "calc(" + props.step + "% -  1px" }}
-          >
+          <div className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden">
             {Array.from(
               { length: Math.floor(100 / props.step) },
               (_, index) => (
                 <div
                   key={index}
-                  className="h-[51px]  -translate-x-[1px] -translate-y-1 w-[1px] bg-dark/20 "
+                  className="h-[51px] -translate-y-[3px] w-[2px] bg-green/20 "
+                  style={
+                    props.step === 33.333
+                      ? {
+                          transform:
+                            "translateX(" +
+                            (17 +
+                              (props.step + 2.7) * index +
+                              (20 / props.step) * index) +
+                            "px)",
+                        }
+                      : {
+                          transform:
+                            "translateX(" +
+                            (17 +
+                              props.step * index +
+                              (20 / props.step) * index) +
+                            "px)",
+                        }
+                  }
                 />
               )
             )}
           </div>
         )}
       </div>
-      <div className="sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark bg-light font-bold shadow-2xl">
-        {sliderValue}
+      <div className={twMerge("sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark font-bold shadow-2xl",
+        isOn ? "bg-light" : "bg-dark/20"
+      )}>
+        {props.value}
         {props.measure}
       </div>
     </div>

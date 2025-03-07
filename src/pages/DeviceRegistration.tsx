@@ -156,7 +156,7 @@ const DeviceRegistration = () => {
                 "Benutze den vorgegebenen Namen oder erstelle einen eigenen"
               }
             />
-            <div className="relative w-4/5">
+            <div className="relative w-full">
               <InputField
                 type="text"
                 name="deviceName"
@@ -331,7 +331,7 @@ const DeviceRegistration = () => {
   };
 
   return (
-    <div className="fixed inset-0 px-5 h-full flex flex-col justify-between gap-8 no-scrollbar">
+    <div className="fixed inset-0 px-5 h-full flex flex-col justify-between gap-8 no-scrollbar overflow-y-auto overflow-x-hidden">
       {currentStep < 5 ? (
         <>
           <TopContextBar
@@ -360,7 +360,7 @@ const DeviceRegistration = () => {
                   </div>
                 )}
               </div>
-              <img src={Homepod} className="w-2/3"></img>
+              <img src={Homepod} className="w-[60%]"></img>
               <div className="w-full h-5 flex flex-row items-center justify-center gap-1 font-normal text-[11px] text-light">
                 {hasMicrointeractions && currentStep > 2 && (
                   <div className="text-center">{formData.category}</div>

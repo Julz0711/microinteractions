@@ -41,43 +41,28 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
   useEffect(() => {
     switch (props.thisCategory) {
       case Category.Lights:
-        setSize(
-          hasMicrointeractions
-            ? { width: 145, height: 145 }
-            : { width: 160, height: 120 }
+        setSize({ width: 145, height: 145 }
         );
         setflexClasses("flex justify-end items-end");
         break;
       case Category.Entertainment:
-        setSize(
-          hasMicrointeractions
-            ? { width: 135, height: 160 }
-            : { width: 160, height: 120 }
+        setSize({ width: 135, height: 160 }
         );
         setflexClasses("flex justify-start items-end");
         break;
       case Category.Heat:
-        setSize(
-          hasMicrointeractions
-            ? { width: 160, height: 160 }
-            : { width: 160, height: 120 }
+        setSize({ width: 160, height: 160 }
         );
 
         setflexClasses("flex justify-end items-start");
         break;
       case Category.Air:
-        setSize(
-          hasMicrointeractions
-            ? { width: 160, height: 120 }
-            : { width: 160, height: 120 }
+        setSize({ width: 160, height: 120 }
         );
 
         break;
       case Category.Household:
-        setSize(
-          hasMicrointeractions
-            ? { width: 110, height: 110 }
-            : { width: 160, height: 120 }
+        setSize({ width: 110, height: 110 }
         );
         setflexClasses("flex justify-start");
         break;
@@ -90,12 +75,11 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       160 -
       Math.floor(props.index % 2) * 160 +
       Math.floor((props.index + 1) % 2) * padding;
-    const offset = hasMicrointeractions ? (props.index % 2) * 20 : 0;
+    const offset = (props.index % 2) * 20;
     const styleYPos =
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding +
-      offset +
-      (hasMicrointeractions ? 60 : 0);
+      offset + 60;
     const styleXPosHidden =
       styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
     if (category === props.thisCategory) {
@@ -154,7 +138,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding +
       offset +
-      60;
+      30;
     const styleXPosHidden =
       styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
     // Hidden State

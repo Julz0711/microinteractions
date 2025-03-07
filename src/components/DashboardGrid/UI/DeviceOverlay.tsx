@@ -45,7 +45,7 @@ export function DeviceOverlay() {
   return (
     <>
       {hierarchy === HierarchyStep.Device && device && (
-        <div className="fixed w-full h-full top-0 left-0 z-100 px-4 gap-8 flex flex-col items-center justify-between">
+        <div className="fixed w-full h-full top-0 left-0 z-100 px-4 gap-8 flex flex-col items-center sm:justify-between">
           <TopContextBar
             headline={device.name}
             metaDescription={device.model}
@@ -57,15 +57,6 @@ export function DeviceOverlay() {
           />
           {renderCategoryComponent()}
           <OnOffButton isOn={isOn} category={category as Category} />
-          {!hasMicrointeractions && (
-            <div className=" fixed h-16 bottom-2 right-12 font-bold">
-              {isOn ? (
-                <div className="w-full h-16">An</div>
-              ) : (
-                <div className="w-full h-16">Aus</div>
-              )}
-            </div>
-          )}
         </div>
       )}
     </>
