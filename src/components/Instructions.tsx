@@ -86,7 +86,7 @@ export function Instructions() {
             />
             <label className={labelClass} htmlFor="quest4">
               Reduziere die Helligkeit und Farbtemperatur einer Lampe aus dem
-              Wohnzimmer.
+              Wohnzimmer. Schalte sie andschließend aus.
             </label>
             <br />
             <input
@@ -119,8 +119,8 @@ export function Instructions() {
               checked={checkboxes.quest7}
               onChange={handleCheckboxChange}
             />
-            <label className={labelClass} htmlFor="quest6">
-              Starte den Staubsaugerrobor im Flur.
+            <label className={labelClass} htmlFor="quest7">
+              Starte den Staubsaugerroboter im Flur.
             </label>
             <br />
             <input
@@ -130,7 +130,7 @@ export function Instructions() {
               checked={checkboxes.quest8}
               onChange={handleCheckboxChange}
             />
-            <label className={labelClass} htmlFor="quest6">
+            <label className={labelClass} htmlFor="quest8">
               Starte den Bluetooth Lautsprecher in der Küche.
             </label>
             <br />
@@ -141,8 +141,20 @@ export function Instructions() {
               checked={checkboxes.quest9}
               onChange={handleCheckboxChange}
             />
-            <label className={labelClass} htmlFor="quest6">
-              Lösche die Leselampe im Wohnzimmer in der Geräteübersicht
+            <label className={labelClass} htmlFor="quest9">
+              Gehe zur Geräteübersicht und 
+              entferne eine Leselampe im Wohnzimmer.
+            </label>
+            <br />
+            <input
+              type="checkbox"
+              id="quest10"
+              name="quest10"
+              checked={checkboxes.quest10}
+              onChange={handleCheckboxChange}
+            />
+            <label className={labelClass} htmlFor="quest10">
+              Gehe zum Dashboard und aktiviere/deaktiviere eine Szene/Favorit/Zeitplan Deiner Wahl.
             </label>
             <br />
           </form>

@@ -53,7 +53,7 @@ export function Temperature(props: TemperatureProps) {
         <span
           className={twMerge(
             isOn ? " text-light" : "text-dark",
-            "text-sm opacity-50 drop-shadow-[0_5px_15px_rgba(0,0,0,1)]",
+            "text-sm opacity-80 drop-shadow-[0_5px_15px_rgba(0,0,0,1)]",
             props.size && "h-4"
           )}
         >

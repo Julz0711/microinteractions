@@ -103,6 +103,21 @@
   /* breakpoints */
   --breakpoint-sm: 30rem;
 
+  /* Custom Animations */
+  --animate-spin-right: spin-right 2.5s linear infinite;
+  --animate-spin-left: spin-left 2.5s linear infinite;
+
+  @keyframes spin-right {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-left {
+    to {
+      transform: rotate(-360deg);
+    }
+  }
 }
 
 

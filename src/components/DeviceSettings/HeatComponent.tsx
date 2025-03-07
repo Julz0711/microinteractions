@@ -80,7 +80,7 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
           />
           <div className="w-full text-center flex gap-4 items-center justify-center">
           <DynamicIcon iconName={"Temp"} size="48" />
-          <span className="w-20">Ziel: {Math.floor(sliderValue)}°C</span>
+          <span className="w-20 font-bold">Ziel: {Math.floor(sliderValue)}°C</span>
           </div>
         </>
       )}

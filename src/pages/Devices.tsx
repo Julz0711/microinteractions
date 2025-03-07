@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import Hotspot from "../components/Hotspot/Hotspot";
 import { twMerge } from "tailwind-merge";
+import Roomba from "../components/SVGAnimations/Roomba/Roomba";
 
 const filters = [
   { name: "Status", selected: "Alle" },
