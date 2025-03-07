@@ -76,7 +76,7 @@ const Start = () => {
           </li>
 
           <li>
-            Dieser Test dauert max. 10 Minuten. <b>Viel Spaß!</b>
+            Dieser Test dauert ca. 10 Minuten. <b>Viel Spaß!</b>
           </li>
         </ul>
       </div>
