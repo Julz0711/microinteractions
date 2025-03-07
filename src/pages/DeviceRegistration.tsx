@@ -252,7 +252,9 @@ const DeviceRegistration = () => {
         );
       case 4:
         const tdl = twMerge(
-          hasMicrointeractions ? "text-right text-meta font-normal" : ""
+          hasMicrointeractions
+            ? "text-right text-meta font-normal"
+            : "font-normal"
         );
         const tdr = twMerge(
           hasMicrointeractions ? "text-left font-bold text-xl" : "font-bold"
