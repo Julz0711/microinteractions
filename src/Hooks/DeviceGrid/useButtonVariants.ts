@@ -26,8 +26,8 @@ const getButtonVariants = (
     x: "-50%",
     top: "0%",
     opacity: 1,
-    height: "auto",
-    width: "auto",
+    height: "8rem",
+    width: "8rem",
   },
   hidden: {
     left: styleXPosHidden + "px",

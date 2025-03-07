@@ -129,7 +129,13 @@ export function AirComponent() {
         <div ref={hasMicrointeractions ? fan : null}>
           <DynamicIcon
             iconName={"Fan"}
-            color={hasMicrointeractions ? iconColor : "text-dark/50"}
+            color={
+              hasMicrointeractions
+                ? strengthValue === 0
+                  ? "text-dark/30"
+                  : "text-light/50"
+                : "text-dark/50"
+            }
             size={"150"}
           />
         </div>

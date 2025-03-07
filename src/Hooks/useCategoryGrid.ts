@@ -41,29 +41,24 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
   useEffect(() => {
     switch (props.thisCategory) {
       case Category.Lights:
-        setSize({ width: 145, height: 145 }
-        );
+        setSize({ width: 145, height: 145 });
         setflexClasses("flex justify-end items-end");
         break;
       case Category.Entertainment:
-        setSize({ width: 135, height: 160 }
-        );
+        setSize({ width: 135, height: 160 });
         setflexClasses("flex justify-start items-end");
         break;
       case Category.Heat:
-        setSize({ width: 160, height: 160 }
-        );
+        setSize({ width: 160, height: 160 });
 
         setflexClasses("flex justify-end items-start");
         break;
       case Category.Air:
-        setSize({ width: 160, height: 120 }
-        );
+        setSize({ width: 160, height: 120 });
 
         break;
       case Category.Household:
-        setSize({ width: 110, height: 110 }
-        );
+        setSize({ width: 110, height: 110 });
         setflexClasses("flex justify-start");
         break;
     }
@@ -79,7 +74,8 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
     const styleYPos =
       Math.floor(props.index / 2) * 160 +
       Math.floor(props.index / 2) * padding +
-      offset + 60;
+      offset +
+      60;
     const styleXPosHidden =
       styleXPos - xDirection * 200 * (1 + Math.floor(props.index / 2));
     if (category === props.thisCategory) {
@@ -144,6 +140,7 @@ export function useCategoryGrid(props: IuseCategoryGridProps) {
     // Hidden State
     setActive(false);
     if (hasMicrointeractions) {
+      console.log("hasMicrointeractions");
       gsap.to(buttonRef.current, {
         ease: "power2.out",
         left: styleXPosHidden + "px",

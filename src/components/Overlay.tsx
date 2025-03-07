@@ -20,32 +20,28 @@ export function Overlay(props: IOverlayProps) {
   );
 
   useEffect(() => {
-    if (hasMicrointeractions) {
-      if (hierarchy == HierarchyStep.Device && isOn) {
-        switch (category) {
-          case Category.Lights:
-            setFadeColor("rgba(239, 133, 85, 0.25)");
-            break;
-          case Category.Heat:
-            setFadeColor("rgba(190, 55, 95, 0.17)");
-            break;
-          case Category.Entertainment:
-            setFadeColor("rgba(96, 36, 108, 0.25)");
-            break;
-          case Category.Air:
-            setFadeColor("rgba(28, 165, 142, 0.25)");
-            break;
-          case Category.Household:
-            setFadeColor("rgba(38, 51, 129, 0.25)");
-            break;
-          default:
-            setFadeColor("rgba(255, 255, 255, 0.25)");
-        }
-      } else {
-        setFadeColor("rgba(255, 255, 255, 0.05)");
+    if (!hasMicrointeractions | (hierarchy == HierarchyStep.Device && isOn)) {
+      switch (category) {
+        case Category.Lights:
+          setFadeColor("rgba(239, 133, 85, 0.25)");
+          break;
+        case Category.Heat:
+          setFadeColor("rgba(190, 55, 95, 0.17)");
+          break;
+        case Category.Entertainment:
+          setFadeColor("rgba(96, 36, 108, 0.25)");
+          break;
+        case Category.Air:
+          setFadeColor("rgba(28, 165, 142, 0.25)");
+          break;
+        case Category.Household:
+          setFadeColor("rgba(38, 51, 129, 0.25)");
+          break;
+        default:
+          setFadeColor("rgba(255, 255, 255, 0.25)");
       }
     } else {
-      setFadeColor("rgba(255, 255, 255, 0.3)");
+      setFadeColor("rgba(255, 255, 255, 0.05)");
     }
   }, [category, hierarchy, isOn]);
 

@@ -24,7 +24,7 @@ export interface ISliderProps {
 }
 
 export function Slider(props: ISliderProps) {
-  const {hasMicrointeractions, isOn} = useSelector(
+  const { hasMicrointeractions, isOn } = useSelector(
     (state: AppState) => state.app
   );
   const sliderRef = useRef<HTMLInputElement>(null);
@@ -33,8 +33,7 @@ export function Slider(props: ISliderProps) {
   };
 
   useEffect(() => {
-
-    props.onChange(isOn? 1 : 0);
+    props.onChange(isOn ? 1 : 0);
   }, [isOn]);
 
   const handleTouchStart = (event: TouchEvent) => {
@@ -91,10 +90,13 @@ export function Slider(props: ISliderProps) {
           props.isHorizontal
             ? "left-0 top-0 w-full cursor-default"
             : `vertical absolute -translate-x-1/2 -translate-y-1/2 cursor-row-resize -rotate-90 left-1/2 top-1/2`,
-          "border-0 shadow-2xl h-20",props.hasGradient
-              ? "gradient"
-              : "solid",
-              isOn ? "bg-light" : "!bg-dark/20"
+          "border-0 shadow-2xl h-20",
+          props.hasGradient ? "gradient" : "solid",
+          isOn
+            ? hasMicrointeractions
+              ? "bg-light/20"
+              : "!bg-dark/20"
+            : "!bg-dark/30"
         )}
         style={
           hasMicrointeractions && props.isPx

@@ -1,3 +1,4 @@
+import React from "react";
 import { getRoomName } from "../helpers/helpers.ts";
 import EmblaCarousel from "./EmblaCarousel/js/EmblaCarousel.tsx";
 import { EmblaOptionsType } from "embla-carousel";
@@ -30,6 +31,10 @@ export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
     setDropdownOpen(false);
   }, [room]);
 
+  useEffect(() => {
+    setDropdownOpen(false);
+  }, [hasMicrointeractions]);
+
   const handleClick = (thisRoom: Room) => {
     setSelectedRoom(thisRoom);
     onRoomSelect(thisRoom);
@@ -40,7 +45,7 @@ export const ScrollableNavBar: React.FC<ScrollableNavBarProps> = ({
       key={index}
       onClick={() => handleClick(thisRoom as Room)}
       className={twMerge(
-        "cursor-pointer transition-colors duration-200 font-bold text-xs tracking-wide",
+        "cursor-pointer transition-colors duration-200 font-bold text-[14px] tracking-wide",
         selectedRoom === thisRoom ? "text-dark" : "text-uwu"
       )}
     >

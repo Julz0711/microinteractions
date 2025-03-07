@@ -77,21 +77,6 @@ export function Instructions() {
               Füge ein neues Gerät hinzu. ("Neu"-Button)
             </label>
             <br />
-            {hasMicrointeractions && (
-              <>
-                <input
-                  type="checkbox"
-                  id="quest3"
-                  name="quest3"
-                  checked={checkboxes.quest3}
-                  onChange={handleCheckboxChange}
-                />
-                <label className={labelClass} htmlFor="quest3">
-                  Schließe das Tutorial ab (Guided Tour Pop-Ups).
-                </label>
-                <br />
-              </>
-            )}
             <input
               type="checkbox"
               id="quest4"
@@ -163,7 +148,7 @@ export function Instructions() {
           </form>
           Nach Abschließen aller Aufgaben: <br />
           Bearbeite diesen kurzen Fragebogen. <br />
-          Dieser dauert nur ca. 5 Minuten.
+          Dieser dauert nur ca. 3-5 Minuten.
           <a
             className={"text-blue hover:text-dark font-bold underline"}
             target="_blank"
