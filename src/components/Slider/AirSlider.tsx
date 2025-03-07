@@ -15,7 +15,9 @@ type Props = {
 
 const AirSlider = (props: Props) => {
   const [sliderValue, setSliderValue] = useState<number>(Number(props.value));
-  const isOn = useSelector((state: AppState) => state.app.isOn);
+  const { isOn, hasMicrointeractions } = useSelector(
+    (state: AppState) => state.app
+  );
 
   useEffect(() => {
     setSliderValue(Number(props.value));
@@ -41,8 +43,8 @@ const AirSlider = (props: Props) => {
           onChange={handleSliderChange}
         />
 
-{ props.step === 33.33 ? 
-      <div className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden gap-[calc(33%-1px)] rounded-lg">
+        {props.step === 33.33 ? (
+          <div className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden gap-[calc(33%-1px)] rounded-lg">
             {Array.from(
               { length: Math.floor(100 / props.step) },
               (_, index) => (
@@ -50,29 +52,29 @@ const AirSlider = (props: Props) => {
                   key={index}
                   className={twMerge(
                     "h-[51px] -translate-x-[1px] -translate-y-[5px] w-[2px] bg-green/20 ",
-                    isOn ? "bg-green/20" : "!bg-dark/20"
-                  )
-                  }
+                    isOn && hasMicrointeractions ? "bg-green/20" : "!bg-dark/20"
+                  )}
                 />
               )
             )}
           </div>
-      : 
-      <div className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden gap-[calc(20%-2px)] rounded-lg">
-      {Array.from(
-        { length: Math.floor(100 / props.step) },
-        (_, index) => (
-          <div
-            key={index}
-            className={twMerge(
-"h-[51px] -translate-x-[1px] -translate-y-[5px] w-[2px] bg-green/20 ",
-                    isOn ? "bg-green/20" : "!bg-dark/20")}
-          />
-        )
-      )}
-    </div>}
-    
-</div>
+        ) : (
+          <div className="flex justify-start items-center w-full absolute top-0 left-0 h-full pointer-events-none overflow-hidden gap-[calc(20%-2px)] rounded-lg">
+            {Array.from(
+              { length: Math.floor(100 / props.step) },
+              (_, index) => (
+                <div
+                  key={index}
+                  className={twMerge(
+                    "h-[51px] -translate-x-[1px] -translate-y-[5px] w-[2px] bg-green/20 ",
+                    isOn && hasMicrointeractions ? "bg-green/20" : "!bg-dark/20"
+                  )}
+                />
+              )
+            )}
+          </div>
+        )}
+      </div>
       <div className="sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark bg-light font-bold shadow-2xl">
         {sliderValue}
         {props.measure}

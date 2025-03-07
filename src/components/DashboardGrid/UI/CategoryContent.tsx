@@ -31,18 +31,16 @@ export function CategoryContent(props: ICategoryContentProps) {
               " shadow-lg " +
               getShadow(props.thisCategory)
           : " bg-inactive ",
-        "flex items-center justify-center max-w-full max-h-full rounded-md",
+        "flex items-center justify-center max-w-full max-h-full",
         props.thisCategory === Category.Household && !props.active
           ? "relative left-0 -translate-y-10"
-          : ""
+          : "",
+        props.active ? "rounded-full" : "rounded-md"
       )}
       style={{ width: props.size.width, height: props.size.height }}
     >
       {props.active ? (
-        <DynamicIcon
-          iconName="Close"
-          color={getTextColor(props.thisCategory)}
-        />
+        <DynamicIcon iconName="Close" color={"text-dark"} />
       ) : (
         <CategoryOverview thisCategory={props.thisCategory} />
       )}
