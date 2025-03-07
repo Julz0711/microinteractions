@@ -35,6 +35,7 @@ const Start = () => {
           <li className="mt-2">
             Die einzelnen Aufgaben, die zu erledigen sind, findest Du in der unteren linken Ecke deines Bildschirms im ausklappbaren Menü:
             <img src={Menu} width={"40"} />
+            Zur Orientierung kannst du erledigte Aufgaben mit der Checkbox abhaken.
           </li>
           <li>
             Solltest Du Schwierigkeiten beim Erledigen einer Aufgabe haben, springe zur darauffolgenden Aufgabe. 

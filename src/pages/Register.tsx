@@ -76,7 +76,7 @@ const Register = () => {
               value={formik.values.username}
               change={formik.handleChange}
               blur={formik.handleBlur}
-              icon={"At"}
+              icon={"User"}
               error={
                 formik.touched.username && formik.errors.username
                   ? formik.errors.username

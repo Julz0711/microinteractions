@@ -749,30 +749,30 @@ export const devices = [
   },
   {
     icon: 'Pluh',
-    name: 'Sicherheitssystem',
+    name: 'Sicherheitskamera Garten',
     model: 'Securo S350',
     room: Room.Hallway,
-    isActive: true,
+    isActive: false,
     isFavorite: false,
     additionalInfo: 'An',
     category: Category.Household
   },
   {
     icon: 'Pluh',
-    name: 'Sicherheitssystem',
+    name: 'Sicherheitskamera 2',
     model: 'Securo S350',
     room: Room.Hallway,
-    isActive: true,
+    isActive: false,
     isFavorite: false,
     additionalInfo: 'An',
     category: Category.Household
   },
   {
     icon: 'Pluh',
-    name: 'Sicherheitssystem',
+    name: 'Sicherheitskamera 3',
     model: 'Securo S350',
     room: Room.Hallway,
-    isActive: true,
+    isActive: false,
     isFavorite: false,
     additionalInfo: 'An',
     category: Category.Household
