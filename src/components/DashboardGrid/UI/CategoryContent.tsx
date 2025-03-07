@@ -30,7 +30,7 @@ export function CategoryContent(props: ICategoryContentProps) {
           ? getColor(props.thisCategory) +
               " shadow-lg " +
               getShadow(props.thisCategory)
-          : "shadow-lg bg-inactive ",
+          : " bg-inactive ",
         "flex items-center justify-center max-w-full max-h-full rounded-md",
         props.thisCategory === Category.Household && !props.active
           ? "relative left-0 -translate-y-10"

@@ -1,3 +1,4 @@
+import React from "react";
 import DynamicIcon from "../../DynamicIcon";
 import { Category } from "../../../types/dashboard.types";
 import { twMerge } from "tailwind-merge";
@@ -8,6 +9,10 @@ import Rhapsody from "../../../assets/bohemian_rhapsody.jpg";
 import { Temperature } from "../../SVGAnimations/Temperature";
 import { useActiveDevices } from "../../../Hooks/useActiveDevices";
 import { useEffect, useState } from "react";
+import Lottie from "react-lottie";
+
+import bulbAnim from "../../../assets/lottie/BulbOn.json";
+import { AnimatePresence, motion } from "framer-motion";
 
 export interface ICategoryStatsProps {
   category: Category;
@@ -25,42 +30,77 @@ export function CategoryStats(props: ICategoryStatsProps) {
     sethasActiveDevices(activeDevices > 0);
   }, [activeDevices]);
 
+  const variants = {
+    enter: () => ({
+      scale: 0,
+      opacity: 0,
+    }),
+    center: { scale: 1, opacity: 1 },
+    exit: () => ({
+      scale: 0,
+      opacity: 0,
+    }),
+  };
+
   switch (props.category) {
     case Category.Lights:
       return hasMicrointeractions ? (
+        <AnimatePresence>
+          <motion.div
+            variants={hasMicrointeractions ? variants : undefined}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="w-full flex flex-col items-center justify-center"
+          >
+            {hasActiveDevices ? (
+              <div
+                className={twMerge(
+                  "p-4 w-14 rounded-full flex items-center justify-center",
+                  hasActiveDevices
+                    ? "bg-light"
+                    : props.devices > 0
+                    ? "bg-light"
+                    : "bg-uwu"
+                )}
+              >
+                <DynamicIcon iconName={"Lamp"} color={"text-yellow"} />
+                <span
+                  className={twMerge(
+                    "rounded-full bg-radial to-transparent to-60% w-12 h-12 absolute animate-light opacity-35",
+                    hasActiveDevices ? "from-yellow" : "from-transparent"
+                  )}
+                />
+              </div>
+            ) : (
+              <div
+                className={twMerge(
+                  "p-4 w-14 rounded-full flex items-center justify-center",
+                  hasActiveDevices
+                    ? "bg-dark"
+                    : props.devices > 0
+                    ? "bg-dark"
+                    : "bg-uwu"
+                )}
+              >
+                <DynamicIcon iconName={"Lamp"} color={"text-white"} />
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      ) : (
         <div
           className={twMerge(
             "p-4 rounded-full flex items-center justify-center",
-            hasActiveDevices
-              ? "bg-light"
-              : props.devices > 0
-              ? "bg-dark"
-              : "bg-uwu"
+            hasActiveDevices ? "bg-light" : "bg-dark"
           )}
         >
           <DynamicIcon
             iconName={"Lamp"}
-            color={hasActiveDevices ? "text-yellow" : "text-light"}
+            color={hasActiveDevices ? "text-yellow" : "text-white"}
           />
-          <span
-            className={twMerge(
-              "rounded-full bg-radial to-transparent to-60% w-12 h-12 absolute animate-light opacity-35",
-              hasActiveDevices ? "from-yellow" : "from-transparent"
-            )}
-          ></span>
         </div>
-      ) : (
-        
-        <div
-          className={twMerge(
-            "p-4 rounded-full flex items-center justify-center","bg-light"
-          )}
-        >
-        <DynamicIcon
-        iconName={"Lamp"}
-        color={hasActiveDevices ? "text-yellow" : "text-light"}
-      />
-      </div>
       );
     case Category.Heat:
       return hasMicrointeractions ? (
@@ -74,11 +114,11 @@ export function CategoryStats(props: ICategoryStatsProps) {
               {props.devices > 0 ? (
                 <div
                   className={twMerge(
-                    "p-4 rounded-full flex items-center justify-center",
-                    props.devices > 0 ? "bg-dark" : "bg-uwu"
+                    "text-xs flex justify-center flex-col items-center gap-2 text-dark"
                   )}
                 >
-                  <DynamicIcon iconName={"Temp"} color="text-light" />
+                  <DynamicIcon iconName={"Temp"} color="text-dark" size="40" />
+                  <span className="font-bold text-sm">21°C</span>
                 </div>
               ) : (
                 <span className="text-uwu text-xs font-bold text-center">
@@ -93,15 +133,22 @@ export function CategoryStats(props: ICategoryStatsProps) {
           {hasActiveDevices ? (
             <div
               className={twMerge(
-                "text-xs flex justify-center flex-col items-center gap-2",
-                hasActiveDevices ? "text-light" : "text-uwu"
+                "text-xs flex justify-center flex-col items-center gap-2 text-light"
               )}
             >
-              
-              <DynamicIcon iconName={"Temp"} color="text-light" size="40" /> 
+              <DynamicIcon iconName={"Temp"} color="text-light" size="40" />
               <span className="font-bold text-sm">21°C</span>
             </div>
-          ) : null}
+          ) : (
+            <div
+              className={twMerge(
+                "text-xs flex justify-center flex-col items-center gap-2 text-dark"
+              )}
+            >
+              <DynamicIcon iconName={"Temp"} color="text-dark" size="40" />
+              <span className="font-bold text-sm">21°C</span>
+            </div>
+          )}
         </div>
       );
     case Category.Entertainment:
@@ -149,18 +196,41 @@ export function CategoryStats(props: ICategoryStatsProps) {
           )}
         </>
       ) : (
-        <div className="w-full flex flex-col">
+        <div className="flex flex-col">
           {hasActiveDevices ? (
-            <p
-              className={twMerge(
-                "text-xs",
-                hasActiveDevices ? "text-light" : "text-uwu"
+            <>
+              <img
+                src={Rhapsody}
+                alt="Bohemian Rhapsody"
+                className="w-10 h-10 rounded-sm"
+              />
+              <p
+                className={twMerge(
+                  "text-xs",
+                  hasActiveDevices ? "text-light" : "text-uwu"
+                )}
+              >
+                <span className="font-bold">Bohemian Rapsody</span>
+              </p>
+            </>
+          ) : (
+            <>
+              {props.devices > 0 ? (
+                <div
+                  className={twMerge(
+                    "p-4  rounded-full flex items-center justify-center",
+                    props.devices > 0 ? "bg-dark" : "bg-uwu"
+                  )}
+                >
+                  <DynamicIcon iconName={"Entertainment"} color="text-light" />
+                </div>
+              ) : (
+                <span className="text-uwu text-xs font-bold text-center">
+                  Keine Geräte registriert
+                </span>
               )}
-            >
-              Aktueller Song:{" "}
-              <span className="font-bold">Bohemian Rapsody</span>
-            </p>
-          ) : null}
+            </>
+          )}
         </div>
       );
     case Category.Air:
@@ -185,7 +255,7 @@ export function CategoryStats(props: ICategoryStatsProps) {
                   ></span>
                 </div>
               </div>
-              <div className="relative">
+              <div className="relative pointer-events-none">
                 <div
                   className={twMerge(
                     " w-10 h-10 flex flex-col rounded-full overflow-hidden relative bg-green"
@@ -233,26 +303,26 @@ export function CategoryStats(props: ICategoryStatsProps) {
           )}
         </div>
       ) : (
-        <div className="w-full flex flex-row gap-2">
+        <div className="w-full flex flex-row gap-4 justify-center">
           {hasActiveDevices ? (
             <>
               <div
                 className={twMerge(
-                  "text-xs",
+                  "text-xs justify-center flex flex-col items-center gap-2",
                   hasActiveDevices ? "text-light" : "text-uwu"
                 )}
               >
-                  <DynamicIcon iconName={"Fan"} color="text-light" />
+                <DynamicIcon iconName={"Fan"} color="text-light" />
                 <span className="font-bold">Mittel</span>
               </div>
               <div
                 className={twMerge(
-                  "text-xs",
+                  "text-xs justify-center flex flex-col items-center gap-2",
                   hasActiveDevices ? "text-light" : "text-uwu"
                 )}
               >
-                  <DynamicIcon iconName={"Fan"} color="text-light" />
-                Luftfeuchtigkeit: <span className="font-bold">60%</span>
+                <DynamicIcon iconName={"Humidity"} color="text-light" />
+                <span className="font-bold">60%</span>
               </div>
             </>
           ) : (
@@ -284,7 +354,25 @@ export function CategoryStats(props: ICategoryStatsProps) {
               </div>
             ) : (
               <span className="text-uwu text-[10px] font-bold text-center">
-                {props.devices > 0 ? "" : "Keine Geräte registriert"}
+                {props.devices > 0 ? (
+                  <div
+                    className={twMerge(
+                      "p-2 rounded-full flex items-center justify-center",
+                      hasActiveDevices
+                        ? "bg-light"
+                        : props.devices > 0
+                        ? "bg-dark"
+                        : "bg-uwu"
+                    )}
+                  >
+                    <DynamicIcon
+                      iconName={"Pluh"}
+                      color={hasActiveDevices ? "text-green" : "text-light"}
+                    />
+                  </div>
+                ) : (
+                  "Keine Geräte registriert"
+                )}
               </span>
             )}
           </>

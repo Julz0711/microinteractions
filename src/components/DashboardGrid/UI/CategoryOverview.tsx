@@ -1,3 +1,4 @@
+import React from "react";
 import { Category } from "../../../types/dashboard.types";
 import { getCategoryName } from "../../../helpers/helpers";
 import { useActiveDevices } from "../../../Hooks/useActiveDevices";
