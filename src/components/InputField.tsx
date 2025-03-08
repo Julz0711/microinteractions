@@ -58,8 +58,8 @@ const InputField: React.FC<InputFieldProps> = ({
           <div
             className={`absolute transform duration-150 pointer-events-none ${
               value || isFocused
-                ? 'top-2 text-xs font-bold opacity-100'
-                : 'top-1/2 font-normal opacity-50 -translate-y-1/2'
+                ? 'top-2 text-[10px] font-bold opacity-100'
+                : 'top-1/2 font-normal text-sm opacity-50 -translate-y-1/2'
             } ${isFocused ? 'text-purple' : 'text-uwu'} ${
               hasIcon ? 'pl-10' : 'pl-4'
             }`}
@@ -69,7 +69,7 @@ const InputField: React.FC<InputFieldProps> = ({
         ) : (
           <div
             className={twMerge(
-              'absolute top-1/2 -translate-y-1/2 pointer-events-none text-uwu font-regular',
+              'absolute top-1/2 -translate-y-1/2 pointer-events-none text-uwu font-normal',
               hasIcon ? 'pl-10' : 'pl-4',
               isFocused || value ? 'opacity-0' : 'opacity-100'
             )}
@@ -87,12 +87,12 @@ const InputField: React.FC<InputFieldProps> = ({
           autoComplete="off"
           required
           className={twMerge(
-            `w-full pl-12 pr-4 ring-2 bg-inactive duration-150 font-regular border-none rounded-md focus:outline-none focus:ring-4 focus:ring-purple`,
+            `w-full h-14 pl-12 pr-4 ring-2 bg-inactive duration-150 font-normal border-none rounded-md focus:outline-none focus:ring-4 focus:ring-purple`,
             hasIcon ? 'pl-10' : 'pl-4',
             hasMicrointeractions
               ? twMerge(
                   !error && value ? 'ring-green' : 'ring-uwu',
-                  isFocused || value ? 'font-bold pt-6 pb-2' : 'py-4',
+                  isFocused || value ? 'font-bold text-sm pt-6 pb-2' : 'py-3',
                   error && 'ring-red'
                 )
               : twMerge('py-4', 'ring-uwu', error && 'ring-red')
