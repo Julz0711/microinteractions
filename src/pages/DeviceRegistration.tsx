@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TopContextBar } from '../components/TopContextBar';
 import InputField from '../components/InputField';
 import Homepod from '../assets/img/homepod.png';
@@ -13,8 +13,6 @@ import {
 } from '../helpers/helpers';
 import StepProgress from '../components/StepProgress';
 import { Category } from '../types/dashboard.types';
-import Lottie from 'react-lottie';
-import confettiAnimation from '../assets/lottie/confetti.json';
 import { useNavigate } from 'react-router-dom';
 import EmblaCarousel from '../components/EmblaCarousel/js/EmblaCarousel';
 import { EmblaOptionsType } from 'embla-carousel';

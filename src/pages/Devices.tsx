@@ -1,35 +1,34 @@
-import { useEffect, useState } from "react";
-import DevicePreview from "../components/DevicePreview";
-import DynamicIcon from "../components/DynamicIcon";
-import InputField from "../components/InputField";
-import { devices } from "../data/data";
-import { getRoomName } from "../helpers/helpers";
-import { Room } from "../types/types";
-import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../store/store";
-import Hotspot from "../components/Hotspot/Hotspot";
-import { twMerge } from "tailwind-merge";
-import Roomba from "../components/SVGAnimations/Roomba/Roomba";
-import { setCategory, setHierarchy } from "../store/reducer";
-import { HierarchyStep } from "../types/dashboard.types";
+import { useEffect, useState } from 'react';
+import DevicePreview from '../components/DevicePreview';
+import DynamicIcon from '../components/DynamicIcon';
+import InputField from '../components/InputField';
+import { devices } from '../data/data';
+import { getRoomName } from '../helpers/helpers';
+import { Room } from '../types/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../store/store';
+import Hotspot from '../components/Hotspot/Hotspot';
+import { twMerge } from 'tailwind-merge';
+import { setCategory, setHierarchy } from '../store/reducer';
+import { HierarchyStep } from '../types/dashboard.types';
 
 const filters = [
-  { name: "Status", selected: "Alle" },
-  { name: "Raum", selected: "Alle" },
-  { name: "Kategorie", selected: "Alle" },
-  { name: "Sortieren", selected: "Raum" },
+  { name: 'Status', selected: 'Alle' },
+  { name: 'Raum', selected: 'Alle' },
+  { name: 'Kategorie', selected: 'Alle' },
+  { name: 'Sortieren', selected: 'Raum' }
 ];
 
 const Devices = () => {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [showHotspot, setShowHotspot] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const hotspotSeen = localStorage.getItem("deviceHotspotSeen");
+    const hotspotSeen = localStorage.getItem('deviceHotspotSeen');
     dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
     dispatch(setCategory(null));
     if (!hotspotSeen) {
@@ -38,7 +37,7 @@ const Devices = () => {
   }, []);
 
   const handleHotspotNext = () => {
-    localStorage.setItem("deviceHotspotSeen", "true");
+    localStorage.setItem('deviceHotspotSeen', 'true');
     setShowHotspot(false);
   };
 
@@ -68,10 +67,10 @@ const Devices = () => {
       {hasMicrointeractions && (
         <div className="flex flex-col gap-4">
           <InputField
-            type={"text"}
-            icon={"Lupe"}
-            name={"search"}
-            placeholder={"Suchen"}
+            type={'text'}
+            icon={'Lupe'}
+            name={'search'}
+            placeholder={'Suchen'}
             value={searchQuery}
             change={handleSearchChange}
             blur={() => {}}
@@ -85,7 +84,7 @@ const Devices = () => {
                 </span>
                 <span className="text-xs flex font-bold flex-row items-center gap-[1px]">
                   {filter.selected}
-                  <DynamicIcon iconName={"ChevronDown"} size={"12"} />
+                  <DynamicIcon iconName={'ChevronDown'} size={'12'} />
                 </span>
               </div>
             ))}
@@ -99,11 +98,11 @@ const Devices = () => {
             {devices.map((device: any, index: number) => (
               <div key={device.id} className="relative">
                 <DevicePreview device={device} hasToggle={true} />
-                {room === "livingRoom" && index === 0 && (
+                {room === 'livingRoom' && index === 0 && (
                   <div
                     className={twMerge(
-                      showHotspot ? "" : "pointer-events-none",
-                      "absolute top-0 left-0 w-[200%] h-[200%]"
+                      showHotspot ? '' : 'pointer-events-none',
+                      'absolute top-0 left-0 w-[200%] h-[200%]'
                     )}
                   >
                     <div className="w-full h-full" id="device"></div>

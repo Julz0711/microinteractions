@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { Slider } from "./Slider";
-import { useSelector } from "react-redux";
-import { AppState } from "../../store/store";
-import "./Slider.css";
-import { twMerge } from "tailwind-merge";
+import { Slider } from './Slider';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../store/store';
+import './Slider.css';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   step: number;
@@ -15,12 +14,14 @@ type Props = {
 };
 
 const SliderWithValue = (props: Props) => {
-  const {hasMicrointeractions, isOn} = useSelector(
+  const { hasMicrointeractions, isOn } = useSelector(
     (state: AppState) => state.app
   );
 
   const handleSliderChange = (value: number) => {
-    const newValue = Math.round(value / props.step + (props.hasExtraMeasurements ?? 0));
+    const newValue = Math.round(
+      value / props.step + (props.hasExtraMeasurements ?? 0)
+    );
     props.onChange(newValue);
   };
 
@@ -32,7 +33,7 @@ const SliderWithValue = (props: Props) => {
           hasGradient={false}
           isHorizontal={true}
           isPx={false}
-          size={"100"}
+          size={'100'}
           value={props.value}
           step={props.step}
           clickable={true}
@@ -50,19 +51,19 @@ const SliderWithValue = (props: Props) => {
                     props.step === 33.333
                       ? {
                           transform:
-                            "translateX(" +
+                            'translateX(' +
                             (17 +
                               (props.step + 2.7) * index +
                               (20 / props.step) * index) +
-                            "px)",
+                            'px)'
                         }
                       : {
                           transform:
-                            "translateX(" +
+                            'translateX(' +
                             (17 +
                               props.step * index +
                               (20 / props.step) * index) +
-                            "px)",
+                            'px)'
                         }
                   }
                 />
@@ -71,9 +72,12 @@ const SliderWithValue = (props: Props) => {
           </div>
         )}
       </div>
-      <div className={twMerge("sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark font-bold shadow-2xl",
-        isOn ? "bg-light" : "bg-dark/20"
-      )}>
+      <div
+        className={twMerge(
+          'sliderValue h-12 w-20 max-w-24 flex items-center justify-center rounded-md text-dark font-bold shadow-2xl',
+          isOn ? 'bg-light' : 'bg-dark/20'
+        )}
+      >
         {props.value}
         {props.measure}
       </div>

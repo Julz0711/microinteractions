@@ -1,11 +1,10 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { AppState } from "../../store/store";
-import { devices } from "../../data/data";
-import { DeviceBox } from "./UI/DeviceBox";
-import { twMerge } from "tailwind-merge";
-import { time } from "console";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../store/store';
+import { devices } from '../../data/data';
+import { DeviceBox } from './UI/DeviceBox';
+import { twMerge } from 'tailwind-merge';
+import { useState, useEffect } from 'react';
 
 export interface DeviceGridProps {
   activeAnimationFinished: boolean;
@@ -43,7 +42,7 @@ export const DeviceGrid = (props: DeviceGridProps) => {
   return (
     <div
       className={twMerge(
-        "absolute w-[276px] h-80 left-1/2 bottom-24 -translate-x-1/2"
+        'absolute w-[276px] h-80 left-1/2 bottom-24 -translate-x-1/2'
       )}
     >
       {deviceboxes && deviceboxes}
