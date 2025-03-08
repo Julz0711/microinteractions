@@ -7,15 +7,20 @@ import Button from '../components/Button';
 import PasswordStrengthBar from '../components/PasswordStrengthBar';
 import { useSelector } from 'react-redux';
 import { AppState } from '../store/store';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
 
+  const navigate = useNavigate();
+  const [initialValid, setInitialValid] = useState(true);
+
   const validationSchema = Yup.object({
     username: Yup.string()
-      .min(4, 'Username muss mindestens 4 Zeichen lang sein.')
+      .min(4, 'Benutzername muss mindestens 4 Zeichen lang sein.')
       .required('Username ist erforderlich'),
     email: Yup.string()
       .email('Geben Sie eine gültige E-Mail-Adresse ein.')
@@ -39,9 +44,10 @@ const Register = () => {
       confirmPassword: ''
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log('Registration successful', values);
-    }
+    onSubmit: () => {
+      navigate('/');
+    },
+    validateOnMount: false
   });
 
   return (
@@ -136,12 +142,26 @@ const Register = () => {
                   : ''
               }
             />
-            <Button
-              label={' Account erstellen'}
-              style={'btn-primary'}
-              link={'/'}
-              disabled={!formik.isValid}
-            ></Button>
+            {!hasMicrointeractions && Object.keys(formik.errors).length > 0 && (
+              <ul>
+                {Object.values(formik.errors).map((error, index) => (
+                  <li key={index} className="text-red px-2">
+                    {error}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {hasMicrointeractions ? (
+              <Button
+                label={' Account erstellen'}
+                style={'btn-primary'}
+                disabled={!formik.isValid}
+              ></Button>
+            ) : (
+              <button type="submit" className="btn-full bg-red">
+                Account erstellen
+              </button>
+            )}
           </form>
         </div>
       </div>

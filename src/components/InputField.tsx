@@ -85,7 +85,6 @@ const InputField: React.FC<InputFieldProps> = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
           autoComplete="off"
-          required
           className={twMerge(
             `w-full h-14 pl-12 pr-4 ring-2 bg-inactive duration-150 font-normal border-none rounded-md focus:outline-none focus:ring-4 focus:ring-purple`,
             hasIcon ? 'pl-10' : 'pl-4',
