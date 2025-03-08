@@ -1,4 +1,3 @@
-import React from 'react';
 import DynamicIcon from '../../DynamicIcon';
 import { Category } from '../../../types/dashboard.types';
 import { twMerge } from 'tailwind-merge';
@@ -9,9 +8,6 @@ import Rhapsody from '../../../assets/bohemian_rhapsody.jpg';
 import { Temperature } from '../../SVGAnimations/Temperature';
 import { useActiveDevices } from '../../../Hooks/useActiveDevices';
 import { useEffect, useState } from 'react';
-import Lottie from 'react-lottie';
-
-import bulbAnim from '../../../assets/lottie/BulbOn.json';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Equalizer } from '../../SVGAnimations/Equalizer';
 import Roomba from '../../SVGAnimations/Roomba/Roomba';

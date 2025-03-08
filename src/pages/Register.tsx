@@ -7,7 +7,6 @@ import Button from '../components/Button';
 import PasswordStrengthBar from '../components/PasswordStrengthBar';
 import { useSelector } from 'react-redux';
 import { AppState } from '../store/store';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -16,7 +15,6 @@ const Register = () => {
   );
 
   const navigate = useNavigate();
-  const [initialValid, setInitialValid] = useState(true);
 
   const validationSchema = Yup.object({
     username: Yup.string()

@@ -1,18 +1,17 @@
-import DynamicIcon from "../DynamicIcon";
-import SliderWithValue from "../Slider/SliderWithValue";
-import styles from "./AirComponent.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsOn } from "../../store/reducer";
-import { useState, useEffect, useRef } from "react";
-import { AppState } from "../../store/store";
-import { gsap } from "gsap";
-import AirSlider from "../Slider/AirSlider";
+import DynamicIcon from '../DynamicIcon';
+import styles from './AirComponent.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsOn } from '../../store/reducer';
+import { useState, useEffect, useRef } from 'react';
+import { AppState } from '../../store/store';
+import { gsap } from 'gsap';
+import AirSlider from '../Slider/AirSlider';
 
 export function AirComponent() {
   const dispatch = useDispatch();
   const [strengthValue, setStrengthValue] = useState(2);
   const [timerValue, setTimerValue] = useState(3);
-  const [iconColor, setIconColor] = useState("text-green");
+  const [, setIconColor] = useState('text-green');
   const [hours, setHours] = useState(timerValue);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -30,11 +29,11 @@ export function AirComponent() {
       tl.current.to(fan.current, {
         rotate: 360,
         duration: 4,
-        ease: "none",
+        ease: 'none'
       });
       gsap.to(tl.current, {
         timeScale: strengthValue,
-        duration: 1.5,
+        duration: 1.5
       });
     }
   }, [fan]);
@@ -54,14 +53,14 @@ export function AirComponent() {
 
   useEffect(() => {
     if (!isOn) {
-      setIconColor("text-dark/20");
+      setIconColor('text-dark/20');
       setStrengthValue(0);
       setTimerValue(0);
       setHours(0);
       setMinutes(0);
       setSeconds(0);
     } else {
-      setIconColor("text-green");
+      setIconColor('text-green');
       if (strengthValue === 0) setStrengthValue(1);
       setTimerValue(1);
       setHours(timerValue);
@@ -128,15 +127,15 @@ export function AirComponent() {
       <div className="flex flex-col items-center gap-2 w-full">
         <div ref={hasMicrointeractions ? fan : null}>
           <DynamicIcon
-            iconName={"Fan"}
+            iconName={'Fan'}
             color={
               hasMicrointeractions
                 ? strengthValue === 0
-                  ? "text-dark/30"
-                  : "text-light/50"
-                : "text-dark/50"
+                  ? 'text-dark/30'
+                  : 'text-light/50'
+                : 'text-dark/50'
             }
-            size={"150"}
+            size={'150'}
           />
         </div>
         {hasMicrointeractions && (
@@ -145,7 +144,7 @@ export function AirComponent() {
             <div className="flex gap-5 text-center">
               <div className="flex flex-col font-normal">
                 <span className="countdown font-bold text-3xl">
-                  <span style={{ "--value": hours } as React.CSSProperties}>
+                  <span style={{ '--value': hours } as React.CSSProperties}>
                     02
                   </span>
                 </span>
@@ -153,7 +152,7 @@ export function AirComponent() {
               </div>
               <div className="flex flex-col font-normal">
                 <span className="countdown font-bold text-3xl">
-                  <span style={{ "--value": minutes } as React.CSSProperties}>
+                  <span style={{ '--value': minutes } as React.CSSProperties}>
                     24
                   </span>
                 </span>
@@ -161,7 +160,7 @@ export function AirComponent() {
               </div>
               <div className="flex flex-col font-normal">
                 <span className="countdown font-bold text-3xl">
-                  <span style={{ "--value": seconds } as React.CSSProperties}>
+                  <span style={{ '--value': seconds } as React.CSSProperties}>
                     06
                   </span>
                 </span>
@@ -182,12 +181,12 @@ export function AirComponent() {
                 <AirSlider
                   step={33.33}
                   value={1}
-                  measure={""}
+                  measure={''}
                   range={3}
                   onChange={(value) => {
                     handleSliderChange(value);
                   }}
-                  custom={isOn ? styles.solid : styles.off + " inactive"}
+                  custom={isOn ? styles.solid : styles.off + ' inactive'}
                 />
               </td>
             </tr>
@@ -203,8 +202,8 @@ export function AirComponent() {
                   onChange={(value) => {
                     setTimerValue(value);
                   }}
-                  measure={"h"}
-                  custom={isOn ? styles.solid : styles.off + " inactive"}
+                  measure={'h'}
+                  custom={isOn ? styles.solid : styles.off + ' inactive'}
                 />
               </td>
             </tr>

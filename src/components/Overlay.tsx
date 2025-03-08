@@ -1,9 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { twMerge } from "tailwind-merge";
-import { Category, HierarchyStep } from "../types/dashboard.types";
-import { useSelector } from "react-redux";
-import { AppState } from "../store/store";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from 'framer-motion';
+import { twMerge } from 'tailwind-merge';
+import { Category, HierarchyStep } from '../types/dashboard.types';
+import { useSelector } from 'react-redux';
+import { AppState } from '../store/store';
+import { useEffect, useState } from 'react';
 
 export interface IOverlayProps {
   isMenuOpen: boolean;
@@ -13,35 +13,35 @@ export function Overlay(props: IOverlayProps) {
   const hierarchy = useSelector((state: AppState) => state.app.hierarchy);
   const category = useSelector((state: AppState) => state.app.category);
   const isOn = useSelector((state: AppState) => state.app.isOn);
-  const [fadeColor, setFadeColor] = useState("rgba(255, 255, 255, 0.3)");
+  const [fadeColor, setFadeColor] = useState('rgba(255, 255, 255, 0.3)');
 
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
 
   useEffect(() => {
-    if (!hasMicrointeractions | (hierarchy == HierarchyStep.Device && isOn)) {
+    if (!hasMicrointeractions || (hierarchy == HierarchyStep.Device && isOn)) {
       switch (category) {
         case Category.Lights:
-          setFadeColor("rgba(239, 133, 85, 0.25)");
+          setFadeColor('rgba(239, 133, 85, 0.25)');
           break;
         case Category.Heat:
-          setFadeColor("rgba(190, 55, 95, 0.17)");
+          setFadeColor('rgba(190, 55, 95, 0.17)');
           break;
         case Category.Entertainment:
-          setFadeColor("rgba(96, 36, 108, 0.25)");
+          setFadeColor('rgba(96, 36, 108, 0.25)');
           break;
         case Category.Air:
-          setFadeColor("rgba(28, 165, 142, 0.25)");
+          setFadeColor('rgba(28, 165, 142, 0.25)');
           break;
         case Category.Household:
-          setFadeColor("rgba(38, 51, 129, 0.25)");
+          setFadeColor('rgba(38, 51, 129, 0.25)');
           break;
         default:
-          setFadeColor("rgba(255, 255, 255, 0.25)");
+          setFadeColor('rgba(255, 255, 255, 0.25)');
       }
     } else {
-      setFadeColor("rgba(255, 255, 255, 0.05)");
+      setFadeColor('rgba(255, 255, 255, 0.05)');
     }
   }, [category, hierarchy, isOn]);
 
@@ -50,10 +50,10 @@ export function Overlay(props: IOverlayProps) {
       {(props.isMenuOpen || hierarchy == HierarchyStep.Device) && (
         <motion.div
           className={twMerge(
-            "fixed h-full w-full inset-0 backdrop-blur-[2px]",
+            'fixed h-full w-full inset-0 backdrop-blur-[2px]',
             hierarchy == HierarchyStep.Device
-              ? "backdrop-blur-[20px] z-90"
-              : "z-80"
+              ? 'backdrop-blur-[20px] z-90'
+              : 'z-80'
           )}
           initial={hasMicrointeractions ? { opacity: 0 } : { opacity: 1 }}
           animate={{ opacity: 1, backgroundColor: fadeColor }}
@@ -62,7 +62,7 @@ export function Overlay(props: IOverlayProps) {
             hasMicrointeractions ? { duration: 0.4 } : { duration: 0 }
           }
           key={1}
-          style={{ width: "100%" }}
+          style={{ width: '100%' }}
         />
       )}
 
@@ -70,10 +70,10 @@ export function Overlay(props: IOverlayProps) {
         <motion.div
           key={2}
           className={twMerge(
-            "fixed h-full w-full inset-0 backdrop-blur-[15px]",
+            'fixed h-full w-full inset-0 backdrop-blur-[15px]',
             hierarchy == HierarchyStep.Device
-              ? "backdrop-blur-[40px] z-90"
-              : "z-80"
+              ? 'backdrop-blur-[40px] z-90'
+              : 'z-80'
           )}
           initial={hasMicrointeractions ? { opacity: 0 } : { opacity: 1 }}
           animate={{ opacity: 1, backgroundColor: fadeColor }}
@@ -81,7 +81,7 @@ export function Overlay(props: IOverlayProps) {
           transition={
             hasMicrointeractions ? { duration: 0.2 } : { duration: 0 }
           }
-          style={{ width: "100%" }}
+          style={{ width: '100%' }}
         />
       )}
     </AnimatePresence>

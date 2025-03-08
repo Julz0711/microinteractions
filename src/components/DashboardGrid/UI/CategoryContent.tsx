@@ -1,13 +1,13 @@
-import * as React from "react";
-import { twMerge } from "tailwind-merge";
-import { getColor, getShadow, getTextColor } from "../../../helpers/helpers";
-import { Category, HierarchyStep } from "../../../types/dashboard.types";
-import DynamicIcon from "../../DynamicIcon";
-import { DeviceGrid } from "../DeviceGrid";
-import { useSelector } from "react-redux";
-import { AppState } from "../../../store/store";
-import { CategoryOverview } from "./CategoryOverview";
-import { useActiveDevices } from "../../../Hooks/useActiveDevices";
+import * as React from 'react';
+import { twMerge } from 'tailwind-merge';
+import { getColor, getShadow } from '../../../helpers/helpers';
+import { Category, HierarchyStep } from '../../../types/dashboard.types';
+import DynamicIcon from '../../DynamicIcon';
+import { DeviceGrid } from '../DeviceGrid';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../store/store';
+import { CategoryOverview } from './CategoryOverview';
+import { useActiveDevices } from '../../../Hooks/useActiveDevices';
 
 export interface ICategoryContentProps {
   thisCategory: Category;
@@ -20,7 +20,7 @@ export interface ICategoryContentProps {
 export function CategoryContent(props: ICategoryContentProps) {
   const { hierarchy, category } = useSelector((state: AppState) => state.app);
   const activeDevices = useActiveDevices({
-    thisCategory: props.thisCategory,
+    thisCategory: props.thisCategory
   });
 
   return (
@@ -28,19 +28,19 @@ export function CategoryContent(props: ICategoryContentProps) {
       className={twMerge(
         activeDevices > 0 && hierarchy === HierarchyStep.SmartHomeGrid
           ? getColor(props.thisCategory) +
-              " shadow-lg " +
+              ' shadow-lg ' +
               getShadow(props.thisCategory)
-          : " bg-inactive ",
-        "flex items-center justify-center max-w-full max-h-full",
+          : ' bg-inactive ',
+        'flex items-center justify-center max-w-full max-h-full',
         props.thisCategory === Category.Household && !props.active
-          ? "relative left-0 -translate-y-10"
-          : "",
-        props.active ? "rounded-full" : "rounded-md"
+          ? 'relative left-0 -translate-y-10'
+          : '',
+        props.active ? 'rounded-full' : 'rounded-md'
       )}
       style={{ width: props.size.width, height: props.size.height }}
     >
       {props.active ? (
-        <DynamicIcon iconName="Close" color={"text-dark"} />
+        <DynamicIcon iconName="Close" color={'text-dark'} />
       ) : (
         <CategoryOverview thisCategory={props.thisCategory} />
       )}

@@ -1,20 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setHierarchy, setCategory } from "../../../store/reducer";
-import { AppState } from "../../../store/store";
-import { Category, HierarchyStep } from "../../../types/dashboard.types";
-import { TopContextBar } from "../../TopContextBar";
-import { LightsComponent } from "../../DeviceSettings/LightsComponent";
-import { AirComponent } from "../../DeviceSettings/AirComponent";
-import { EntertainmentComponent } from "../../DeviceSettings/EntertainmentComponent";
-import { HeatComponent } from "../../DeviceSettings/HeatComponent";
-import HouseholdComponent from "../../DeviceSettings/HouseholdComponent";
-import OnOffButton from "../../DeviceSettings/OnOffButton";
+import { useDispatch, useSelector } from 'react-redux';
+import { setHierarchy, setCategory } from '../../../store/reducer';
+import { AppState } from '../../../store/store';
+import { Category, HierarchyStep } from '../../../types/dashboard.types';
+import { TopContextBar } from '../../TopContextBar';
+import { LightsComponent } from '../../DeviceSettings/LightsComponent';
+import { AirComponent } from '../../DeviceSettings/AirComponent';
+import { EntertainmentComponent } from '../../DeviceSettings/EntertainmentComponent';
+import { HeatComponent } from '../../DeviceSettings/HeatComponent';
+import HouseholdComponent from '../../DeviceSettings/HouseholdComponent';
+import OnOffButton from '../../DeviceSettings/OnOffButton';
 
 export function DeviceOverlay() {
   const dispatch = useDispatch();
-  const { isOn, hasMicrointeractions } = useSelector(
-    (state: AppState) => state.app
-  );
+  const { isOn } = useSelector((state: AppState) => state.app);
 
   const hierarchy = useSelector((state: AppState) => state.app.hierarchy);
   const category = useSelector((state: AppState) => state.app.category);

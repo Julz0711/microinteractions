@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DynamicIcon from './DynamicIcon';
 import { twMerge } from 'tailwind-merge';
 import { AppState } from '../store/store';
