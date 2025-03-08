@@ -34,7 +34,23 @@ const ConfettiAnimation: React.FC<ConfettiProps> = ({
     const width = (canvas.width = window.innerWidth);
     const height = (canvas.height = window.innerHeight);
     const confettiCount = 150;
-    const colors = ['red', 'blue', 'yellow', 'green', 'purple', 'orange'];
+
+    const getCSSVariableValue = (variableName: string): string => {
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue(variableName)
+        .trim();
+    };
+
+    const colors = [
+      getCSSVariableValue('--color-red'),
+      getCSSVariableValue('--color-blue'),
+      getCSSVariableValue('--color-yellow'),
+      getCSSVariableValue('--color-green'),
+      getCSSVariableValue('--color-purple'),
+      getCSSVariableValue('--color-light'),
+      getCSSVariableValue('--color-dark'),
+      getCSSVariableValue('--color-orange')
+    ];
     let isFading = false;
 
     // Initialize confetti pieces
@@ -86,7 +102,6 @@ const ConfettiAnimation: React.FC<ConfettiProps> = ({
 
     draw();
 
-    // Start fade-out after 'duration' milliseconds
     timeoutId.current = setTimeout(() => {
       isFading = true;
       fadeStartTime.current = Date.now();
