@@ -437,8 +437,8 @@ export const devices = [
   },
   {
     icon: "Air",
-    name: "Klimaanlage",
-    model: "A/C Pro",
+    name: "Ventilator",
+    model: "Fan 900",
     room: Room.Bedroom,
     isActive: true,
     isFavorite: false,
@@ -447,7 +447,7 @@ export const devices = [
   },
   {
     icon: "Air",
-    name: "Klimaanlage",
+    name: "Ventilator 2",
     model: "A/C Pro XL",
     room: Room.Bedroom,
     isActive: true,
@@ -457,7 +457,7 @@ export const devices = [
   },
   {
     icon: "Air",
-    name: "Klimaanlage",
+    name: "Ventilator 3",
     model: "A/C Pro Max",
     room: Room.Bedroom,
     isActive: true,
@@ -608,7 +608,7 @@ export const devices = [
   },
   {
     icon: "Air",
-    name: "Luftentfeuchter",
+    name: "Ventilator",
     model: "Air Pro",
     room: Room.Bathroom,
     isActive: true,
@@ -619,7 +619,7 @@ export const devices = [
   {
     icon: "Air",
     name: "Luftentfeuchter",
-    model: "Air Pro Max",
+    model: "He a Fan",
     room: Room.Bathroom,
     isActive: true,
     isFavorite: false,

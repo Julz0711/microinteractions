@@ -41,7 +41,7 @@ export const RoomGrid: React.FC<RoomGridProps> = ({
           dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
           dispatch(setCategory(null));
         },
-        hasMicrointeractions ? 300 : 400
+        hasMicrointeractions ? 300 : 200
       );
 
       return () => clearTimeout(timeout);
