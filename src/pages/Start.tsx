@@ -25,27 +25,29 @@ const Start = () => {
 
       <div>
         <span className="mt-4 font-bold">Informationen zum Test</span>
-        <ul className="w-full list-disc pl-5 text-sm font-normal space-y-2">
+        <ul className="w-full list-disc pl-5 text-sm font-normal space-y-4">
           <li>
-            Herzlich Willkommen zum Usability Test! Wir freuen uns, dass du
-            teilnimmst. In diesem Test bist Du Nutzer*in einer Smarthome App. Du
+            In diesem Test bist Du Nutzer*in einer Smarthome App. Du
             erhältst verschiedene Aufgaben, die Du zur Einrichtung und Bedienung
             Deines Smarthomes erledigen möchtest.
           </li>
           <li>
-            Bei der App handelt es sich um einen Prototype. Ihre Inhalte dienen
-            als Platzhalter zur Veranschaulichung der Benutzeroberfläche.
+            Die Inhalte der App sind
+            Platzhalter und dienen zur Veranschaulichung der Benutzeroberfläche. Für den Registrierungsprozess kannst Du eigene oder folgende Testdaten verwenden:
+            <ul className="list-disc pl-5">
+              <li><span className="font-bold">Benutzername:</span> Test</li>
+              <li><span className="font-bold">E-Mail:</span> alex.smart@home.com</li>
+              </ul>
           </li>
           <li className="mt-2">
-            Die einzelnen Aufgaben, die zu erledigen sind, findest Du in der
+            Die zu erledigen Aufgaben findest Du in der
             unteren linken Ecke deines Bildschirms im ausklappbaren Menü:
             <img src={Menu} width={"40"} />
             Zur Orientierung kannst du erledigte Aufgaben mit der Checkbox
             abhaken.
           </li>
           <li>
-            Solltest Du Schwierigkeiten beim Erledigen einer Aufgabe haben,
-            springe zur darauffolgenden Aufgabe. Nachdem Du die Aufgaben
+            Nachdem Du die Aufgaben
             erledigt hast, fülle bitte das Formular aus, das Du im Aufklappmenü
             findest.
           </li>

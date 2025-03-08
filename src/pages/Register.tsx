@@ -8,6 +8,7 @@ import PasswordStrengthBar from '../components/PasswordStrengthBar';
 import { useSelector } from 'react-redux';
 import { AppState } from '../store/store';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Register = () => {
   const hasMicrointeractions = useSelector(
@@ -15,6 +16,7 @@ const Register = () => {
   );
 
   const navigate = useNavigate();
+  const [showErrors, setshowErrors] = useState(false);
 
   const validationSchema = Yup.object({
     username: Yup.string()
@@ -47,6 +49,10 @@ const Register = () => {
     },
     validateOnMount: false
   });
+
+  const handleClick = () => {
+      setshowErrors(true);
+  }
 
   return (
     <div className="fixed inset-0 px-5 h-full flex flex-col justify-between gap-4 overflow-y-auto">
@@ -140,7 +146,7 @@ const Register = () => {
                   : ''
               }
             />
-            {!hasMicrointeractions && Object.keys(formik.errors).length > 0 && (
+            {!hasMicrointeractions && Object.keys(formik.errors).length > 0 && showErrors && (
               <ul>
                 {Object.values(formik.errors).map((error, index) => (
                   <li key={index} className="text-red px-2">
@@ -156,7 +162,7 @@ const Register = () => {
                 disabled={!formik.isValid}
               ></Button>
             ) : (
-              <button type="submit" className="btn-full bg-red">
+              <button type="submit" onClick={handleClick}className="btn-full bg-red">
                 Account erstellen
               </button>
             )}
