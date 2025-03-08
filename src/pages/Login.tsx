@@ -1,5 +1,7 @@
 import Button from "../components/Button";
 import GlowBoys from "../components/GlowBoyz";
+import AppleLogo from "../assets/icons/apple.png";
+import DynamicIcon from "../components/DynamicIcon";
 
 const Login = () => {
   return (
@@ -13,22 +15,30 @@ const Login = () => {
           Entdecke Dein Zuhause neu!
         </div>
       </div>
-      <div className="w-full flex flex-col gap-4 items-center pb-4">
+      <div className="w-full flex flex-col gap-8 items-center pb-4">
         <Button
-          icon="Google"
-          label={"Mit Google registrieren"}
+          icon="Envelope"
+          label={"Registrieren"}
           style={"btn-primary"}
           link={"/registrieren"}
         ></Button>
-        <Button
-          icon="Envelope"
-          label={"Mit E-Mail registrieren"}
-          style={"btn-secondary"}
-          link={"/registrieren"}
-        ></Button>
-        <div className="mt-4">
+        <div className="flex gap-3 items-center">
+        <span className="bg-uwu/50 flex-1 w-20 h-[2px]"></span>
+        <span className="font-bold text-uwu/50">oder</span>
+        <span className="bg-uwu/50 flex-1 w-20 h-[2px]"></span>
+        </div>
+        <div className="flex gap-4 w-full">
+        <button
+          className={"bg-light !text-black border-uwu/50 border-[1px] gap-2 items-center p-4 rounded-sm flex-auto w-1/2 flex justify-center"}
+        ><img src={AppleLogo} height={30} width={30}/> Apple</button>
+
+        <button
+          className={"bg-light !text-black border-uwu/50 border-[1px] flex gap-2 items-center p-4 rounded-sm flex-auto w-1/2 justify-center"}
+        ><DynamicIcon iconName="google_color"/> Google</button>
+        </div>
+        <div className="mt-4 text-uwu">
           Du hast bereits einen Account?{" "}
-          <span className="text-uwu font-bold cursor-pointer">Anmelden</span>
+          <span className="text-red font-bold cursor-pointer">Anmelden</span>
         </div>
       </div>
     </div>
