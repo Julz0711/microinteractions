@@ -299,7 +299,9 @@ const DeviceRegistration = () => {
             )}
             <div className="flex flex-col gap-1 items-center">
               <div className="text-[3rem] font-bold text-green">Geschafft!</div>
-              <div>Dein Gerät wurde erfolgreich hinzugefügt.</div>
+              <div className="font-normal">
+                Dein Gerät wurde erfolgreich hinzugefügt.
+              </div>
             </div>
           </div>
         );

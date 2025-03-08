@@ -357,7 +357,7 @@ export function CategoryStats(props: ICategoryStatsProps) {
                 className={twMerge(
                   'p-2 rounded-full relative flex items-center justify-center',
                   hasActiveDevices
-                    ? 'bg-light'
+                    ? ''
                     : props.devices > 0
                     ? 'bg-dark'
                     : 'bg-uwu'
@@ -367,7 +367,15 @@ export function CategoryStats(props: ICategoryStatsProps) {
                   iconName={'Pluh'}
                   color={hasActiveDevices ? 'text-green' : 'text-light'}
                 />*/}
-                <Roomba isActive={true} size={20} color="text-light" />
+                {hasActiveDevices ? (
+                  <Roomba
+                    isActive={hasActiveDevices ? true : false}
+                    size={40}
+                    color="text-uwu"
+                  />
+                ) : (
+                  <DynamicIcon iconName={'Pluh'} color={'text-light'} />
+                )}
               </div>
             ) : (
               <span className="text-uwu text-[10px] font-bold text-center">

@@ -42,7 +42,7 @@ const Roomba = (props: RoombaProps) => {
       <div
         className={twMerge(
           props.isActive
-            ? 'left-0 top-0 transform -translate-x-2 -translate-y-2'
+            ? 'left-0 top-0 transform -translate-x-[10%] -translate-y-[10%]'
             : 'top-0 left-0 transform translate-x-8 translate-y-8',
           'absolute z-[1]',
           hasMicrointeractions && props.isActive
@@ -60,7 +60,7 @@ const Roomba = (props: RoombaProps) => {
       <div
         className={twMerge(
           props.isActive
-            ? 'right-0 top-0 transform translate-x-2 -translate-y-2'
+            ? 'right-0 top-0 transform translate-x-[10%] -translate-y-[10%]'
             : 'top-0 right-0 -translate-x-8 translate-y-8',
           'absolute z-[1]',
           hasMicrointeractions && props.isActive
