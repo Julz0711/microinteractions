@@ -7,7 +7,7 @@ import Button from '../components/Button';
 import PasswordStrengthBar from '../components/PasswordStrengthBar';
 import { useSelector } from 'react-redux';
 import { AppState } from '../store/store';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
