@@ -170,20 +170,20 @@ export function Instructions() {
             Nach Abschließen aller Aufgaben: <br />
             Bearbeite diesen kurzen Fragebogen. <br />
             Dieser dauert nur ca. 3-5 Minuten.
-            {location.pathname !== '/start' && (
-              <a
-                className={'text-blue hover:text-dark font-bold underline pb-4'}
-                target="_blank"
-                href={
-                  hasMicrointeractions
+            <a
+              className={'text-blue hover:text-dark font-bold underline pb-4'}
+              target={location.pathname !== '/start' ? '_blank' : ''}
+              href={
+                location.pathname !== '/start'
+                  ? hasMicrointeractions
                     ? 'https://docs.google.com/forms/d/e/1FAIpQLSehxLLLh23hDtWpfjFUr3wb91Ag9vWfbxqTaJZScyHoY2aVzg/viewform?usp=header'
                     : 'https://docs.google.com/forms/d/e/1FAIpQLSfvJRa_eK9Eb5cLGayQy1nwPT_mzbcViHQMTPxYZ4AaYADP4Q/viewform?usp=header'
-                }
-                rel="noreferrer"
-              >
-                Zum Usability Test
-              </a>
-            )}
+                  : null
+              }
+              rel="noreferrer"
+            >
+              Zum Usability Test
+            </a>
             <hr />
             <div className="py-4">
               <a
