@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import DynamicIcon from "./DynamicIcon";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { AppState } from "../store/store";
-import { twMerge } from "tailwind-merge";
+import { useEffect, useState } from 'react';
+import DynamicIcon from './DynamicIcon';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { AppState } from '../store/store';
+import { twMerge } from 'tailwind-merge';
 
 export function Instructions() {
   const hasMicrointeractions = useSelector(
@@ -13,7 +13,7 @@ export function Instructions() {
   const location = useLocation();
 
   const initializeCheckboxes = () => {
-    const savedCheckboxes = localStorage.getItem("checkboxes");
+    const savedCheckboxes = localStorage.getItem('checkboxes');
     return savedCheckboxes
       ? JSON.parse(savedCheckboxes)
       : {
@@ -22,7 +22,7 @@ export function Instructions() {
           quest3: false,
           quest4: false,
           quest5: false,
-          quest6: false,
+          quest6: false
         };
   };
 
@@ -30,7 +30,7 @@ export function Instructions() {
   const [checkboxes, setCheckboxes] = useState(initializeCheckboxes);
 
   useEffect(() => {
-    localStorage.setItem("checkboxes", JSON.stringify(checkboxes));
+    localStorage.setItem('checkboxes', JSON.stringify(checkboxes));
   }, [checkboxes]);
 
   const handleClickMenu = () => {
@@ -41,21 +41,21 @@ export function Instructions() {
     const { name, checked } = event.target;
     setCheckboxes((prevCheckboxes: any) => ({
       ...prevCheckboxes,
-      [name]: checked,
+      [name]: checked
     }));
   };
 
-  const labelClass = "ml-1";
+  const labelClass = 'ml-1';
   return (
     <div className="fixed bg-[#cccccc] border z-[999] bottom-8 left-0 flex">
       <button
-        className={twMerge("p-2", isOpen && "rotate-180")}
+        className={twMerge('p-2', isOpen && 'rotate-180')}
         onClick={handleClickMenu}
       >
         <DynamicIcon iconName="ChevronRight" />
       </button>
       {isOpen && (
-        <div className="bg-[#ffffff] p-4 flex flex-col gap-4 max-w-92">
+        <div className="bg-[#ffffff] p-4 flex flex-col gap-4 max-w-80">
           <h1>Aufgaben</h1>
           <form>
             <input
@@ -165,14 +165,14 @@ export function Instructions() {
           Nach Abschließen aller Aufgaben: <br />
           Bearbeite diesen kurzen Fragebogen. <br />
           Dieser dauert nur ca. 3-5 Minuten.
-          {location.pathname !== "/start" && (
+          {location.pathname !== '/start' && (
             <a
-              className={"text-blue hover:text-dark font-bold underline"}
+              className={'text-blue hover:text-dark font-bold underline'}
               target="_blank"
               href={
                 hasMicrointeractions
-                  ? "https://docs.google.com/forms/d/e/1FAIpQLSehxLLLh23hDtWpfjFUr3wb91Ag9vWfbxqTaJZScyHoY2aVzg/viewform?usp=header"
-                  : "https://docs.google.com/forms/d/e/1FAIpQLSfvJRa_eK9Eb5cLGayQy1nwPT_mzbcViHQMTPxYZ4AaYADP4Q/viewform?usp=header"
+                  ? 'https://docs.google.com/forms/d/e/1FAIpQLSehxLLLh23hDtWpfjFUr3wb91Ag9vWfbxqTaJZScyHoY2aVzg/viewform?usp=header'
+                  : 'https://docs.google.com/forms/d/e/1FAIpQLSfvJRa_eK9Eb5cLGayQy1nwPT_mzbcViHQMTPxYZ4AaYADP4Q/viewform?usp=header'
               }
               rel="noreferrer"
             >
