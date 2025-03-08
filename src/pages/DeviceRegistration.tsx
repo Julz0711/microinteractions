@@ -445,21 +445,6 @@ const DeviceRegistration = () => {
               )}
             </div>
           </div>
-          {!hasMicrointeractions && (
-            <div className="w-full flex flex-col gap-2 items-center">
-              <div className="w-full text-center font-bold">
-                {formData.deviceName}
-              </div>
-
-              <div className="w-full text-center font-bold">
-                {formData.category}
-              </div>
-
-              <div className="w-full text-center font-bold">
-                {formData.room}
-              </div>
-            </div>
-          )}
           {renderStep()}
           <button className="btn-xl" onClick={() => navigate('/dashboard')}>
             Zum Dashboard
