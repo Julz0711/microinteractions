@@ -1,0 +1,60 @@
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.confetti-particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-red);
+  opacity: 0.7;
+  animation: confetti-fall 5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+.confetti-particle:nth-child(odd) {
+  background-color: var(--color-red);
+}
+
+.confetti-particle:nth-child(even) {
+  background-color: var(--color-green);
+}
+
+.confetti-particle:nth-child(3n) {
+  background-color: var(--color-blue);
+}
+
+.confetti-particle:nth-child(4n) {
+  background-color: var(--color-yellow);
+}
+
+.confetti-particle:nth-child(5n) {
+  background-color: var(--color-purple);
+}
+
+.confetti-particle:nth-child(6n) {
+  background-color: var(--color-orange);
+}
+
+.confetti-particle:nth-child(7n) {
+  background-color: var(--color-light);
+}
+
+.confetti-particle:nth-child(8n) {
+  background-color: var(--color-dark);
+}
