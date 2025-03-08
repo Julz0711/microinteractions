@@ -5,11 +5,13 @@ import InputField from "../components/InputField";
 import { devices } from "../data/data";
 import { getRoomName } from "../helpers/helpers";
 import { Room } from "../types/types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import Hotspot from "../components/Hotspot/Hotspot";
 import { twMerge } from "tailwind-merge";
 import Roomba from "../components/SVGAnimations/Roomba/Roomba";
+import { setCategory, setHierarchy } from "../store/reducer";
+import { HierarchyStep } from "../types/dashboard.types";
 
 const filters = [
   { name: "Status", selected: "Alle" },
@@ -24,9 +26,12 @@ const Devices = () => {
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [showHotspot, setShowHotspot] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const hotspotSeen = localStorage.getItem("deviceHotspotSeen");
+    dispatch(setHierarchy(HierarchyStep.SmartHomeGrid));
+    dispatch(setCategory(null));
     if (!hotspotSeen) {
       setShowHotspot(true);
     }

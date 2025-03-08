@@ -112,7 +112,7 @@ export function Instructions() {
               onChange={handleCheckboxChange}
             />
             <label className={labelClass} htmlFor="quest6">
-              Stelle den Ventilator im Schlafzimmer auf volle Stärke und stelle
+              Stelle einen Ventilator im Schlafzimmer auf volle Stärke und stelle
               einen Timer von 4h.
             </label>
             <br />
@@ -124,7 +124,7 @@ export function Instructions() {
               onChange={handleCheckboxChange}
             />
             <label className={labelClass} htmlFor="quest7">
-              Starte den Staubsaugerroboter im Flur.
+              Gehe im Flur zur Kategorie Haushalt und starte den Staubsaugerroboter.
             </label>
             <br />
             <input
