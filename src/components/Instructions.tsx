@@ -49,13 +49,13 @@ export function Instructions() {
   return (
 <>
     <button
-    className={twMerge('bottom-8 left-[-1px] z-[999] fixed p-2 bg-uwu border', isOpen && 'rotate-180')}
+    className={twMerge('bottom-12 left-[-1px] z-[999] fixed p-2 bg-uwu border', isOpen && 'rotate-180')}
     onClick={handleClickMenu}
   >
     <DynamicIcon iconName="ChevronRight" />
   </button>
   {isOpen && (
-    <div className="fixed bg-[#ffffff] border z-[999] bottom-8 left-10 flex overflow-y-auto h-96">
+    <div className="fixed bg-[#ffffff] border z-[999] bottom-12 left-10 flex overflow-y-auto h-96">
         <div className=" p-4 flex flex-col gap-4 max-w-80">
           <h1>Aufgaben</h1>
           <form>
