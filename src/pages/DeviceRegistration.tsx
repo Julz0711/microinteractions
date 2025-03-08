@@ -293,7 +293,9 @@ const DeviceRegistration = () => {
         return (
           <div className="w-full flex flex-col gap-8 items-center">
             {hasMicrointeractions && (
-              <ConfettiAnimation duration={2000} fadeDuration={1000} />
+              <div className="pointer-events-none">
+                <ConfettiAnimation duration={2000} fadeDuration={1000} />
+              </div>
             )}
             <div className="flex flex-col gap-1 items-center">
               <div className="text-[3rem] font-bold text-green">Geschafft!</div>
