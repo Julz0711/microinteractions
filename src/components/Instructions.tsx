@@ -47,15 +47,16 @@ export function Instructions() {
 
   const labelClass = 'ml-1';
   return (
-    <div className="fixed bg-[#cccccc] border z-[999] bottom-8 left-0 flex">
-      <button
-        className={twMerge('p-2', isOpen && 'rotate-180')}
-        onClick={handleClickMenu}
-      >
-        <DynamicIcon iconName="ChevronRight" />
-      </button>
-      {isOpen && (
-        <div className="bg-[#ffffff] p-4 flex flex-col gap-4 max-w-80">
+<>
+    <button
+    className={twMerge('bottom-8 left-[-1px] z-[999] fixed p-2 bg-uwu border', isOpen && 'rotate-180')}
+    onClick={handleClickMenu}
+  >
+    <DynamicIcon iconName="ChevronRight" />
+  </button>
+  {isOpen && (
+    <div className="fixed bg-[#ffffff] border z-[999] bottom-8 left-10 flex overflow-y-auto h-96">
+        <div className=" p-4 flex flex-col gap-4 max-w-80">
           <h1>Aufgaben</h1>
           <form>
             <input
@@ -180,7 +181,8 @@ export function Instructions() {
             </a>
           )}
         </div>
-      )}
     </div>
+      )}
+    </>
   );
 }
