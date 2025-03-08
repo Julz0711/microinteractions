@@ -184,15 +184,19 @@ export function Instructions() {
             >
               Zum Usability Test
             </a>
-            <hr />
-            <div className="py-4">
-              <a
-                href="/login"
-                className="font-bold text-uwu text-sm hover:text-dark"
-              >
-                Gibt es Probleme? Neu starten
-              </a>
-            </div>
+            {location.pathname !== '/start' && (
+              <>
+                <hr />
+                <div className="py-4">
+                  <a
+                    href="/login"
+                    className="font-bold text-uwu text-sm hover:text-dark"
+                  >
+                    Gibt es Probleme? Neu starten
+                  </a>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
