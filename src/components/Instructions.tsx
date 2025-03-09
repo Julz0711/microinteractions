@@ -197,7 +197,7 @@ export function Instructions() {
                   htmlFor="quest9"
                   className="cursor-pointer p-2"
                 >
-                  Gehe zur Geräteübersicht und entferne eine Leselampe im
+                  Gehe zur Geräteübersicht. Entferne eine Leselampe im
                   Wohnzimmer.
                 </label>
                 <br />

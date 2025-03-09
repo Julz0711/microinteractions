@@ -33,7 +33,8 @@ const Start = () => {
           </li>
           <li>
             Die Inhalte der App sind Platzhalter und dienen zur
-            Veranschaulichung der Benutzeroberfläche.
+            Veranschaulichung der Benutzeroberfläche. Daher werden sich die
+            Gerätestatus nicht aktualisieren.
           </li>
           <li className="mt-2">
             Die zu erledigen Aufgaben findest Du in der unteren linken Ecke
@@ -50,9 +51,9 @@ const Start = () => {
             <p>
               Wir verwenden PostHog zur Erfassung anonymisierter Nutzungsdaten.
               Die Daten werden nicht an Dritte weitergegeben und lediglich zur
-              Analyse des Nutzungsverhaltens genutzt. Um uns bei der User
-              Research bestmöglich zu unterstützen, bitten wir Dich, mögliche
-              Adblocker zu deaktiveren.
+              Analyse des Nutzungsverhaltens genutzt. Optional: Um uns
+              bestmöglich zu unterstützen, bitten wir Dich, mögliche Adblocker
+              zu deaktiveren.
             </p>
             <a
               href="https://posthog.com/"
@@ -78,7 +79,7 @@ const Start = () => {
           </li>
 
           <li>
-            Dieser Test dauert ca. 10 Minuten. <b>Viel Spaß!</b>
+            Der Test samt Fragebogen dauert ca. 10 Minuten. <b>Viel Spaß!</b>
           </li>
         </ul>
       </div>
