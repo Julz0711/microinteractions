@@ -1,16 +1,16 @@
-import DynamicIcon from '../../DynamicIcon';
-import { Category } from '../../../types/dashboard.types';
-import { twMerge } from 'tailwind-merge';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../../store/store';
-import './WaveAnimation.css';
-import Rhapsody from '../../../assets/bohemian_rhapsody.jpg';
-import { Temperature } from '../../SVGAnimations/Temperature';
-import { useActiveDevices } from '../../../Hooks/useActiveDevices';
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Equalizer } from '../../SVGAnimations/Equalizer';
-import Roomba from '../../SVGAnimations/Roomba/Roomba';
+import DynamicIcon from "../../DynamicIcon";
+import { Category } from "../../../types/dashboard.types";
+import { twMerge } from "tailwind-merge";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../store/store";
+import "./WaveAnimation.css";
+import Rhapsody from "../../../assets/bohemian_rhapsody.jpg";
+import { Temperature } from "../../SVGAnimations/Temperature";
+import { useActiveDevices } from "../../../Hooks/useActiveDevices";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Equalizer } from "../../SVGAnimations/Equalizer";
+import Roomba from "../../SVGAnimations/Roomba/Roomba";
 
 export interface ICategoryStatsProps {
   category: Category;
@@ -31,13 +31,13 @@ export function CategoryStats(props: ICategoryStatsProps) {
   const variants = {
     enter: () => ({
       scale: 0,
-      opacity: 0
+      opacity: 0,
     }),
     center: { scale: 1, opacity: 1 },
     exit: () => ({
       scale: 0,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   switch (props.category) {
@@ -49,40 +49,40 @@ export function CategoryStats(props: ICategoryStatsProps) {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="w-full flex flex-col items-center justify-center"
           >
             {hasActiveDevices ? (
               <div
                 className={twMerge(
-                  'p-4 w-14 rounded-full flex items-center justify-center',
+                  "p-4 w-14 rounded-full flex items-center justify-center",
                   hasActiveDevices
-                    ? 'bg-light'
+                    ? "bg-light"
                     : props.devices > 0
-                    ? 'bg-light'
-                    : 'bg-uwu'
+                    ? "bg-light"
+                    : "bg-uwu"
                 )}
               >
-                <DynamicIcon iconName={'Lamp'} color={'text-yellow'} />
+                <DynamicIcon iconName={"Lamp"} color={"text-yellow"} />
                 <span
                   className={twMerge(
-                    'rounded-full bg-radial to-transparent to-60% w-12 h-12 absolute animate-light opacity-35',
-                    hasActiveDevices ? 'from-yellow' : 'from-transparent'
+                    "rounded-full bg-radial to-transparent to-60% w-12 h-12 absolute animate-light opacity-35",
+                    hasActiveDevices ? "from-yellow" : "from-transparent"
                   )}
                 />
               </div>
             ) : (
               <div
                 className={twMerge(
-                  'p-4 w-14 rounded-full flex items-center justify-center',
+                  "p-4 w-14 rounded-full flex items-center justify-center",
                   hasActiveDevices
-                    ? 'bg-dark'
+                    ? "bg-dark"
                     : props.devices > 0
-                    ? 'bg-dark'
-                    : 'bg-uwu'
+                    ? "bg-dark"
+                    : "bg-uwu"
                 )}
               >
-                <DynamicIcon iconName={'Lamp'} color={'text-white'} />
+                <DynamicIcon iconName={"Lamp"} color={"text-white"} />
               </div>
             )}
           </motion.div>
@@ -90,13 +90,13 @@ export function CategoryStats(props: ICategoryStatsProps) {
       ) : (
         <div
           className={twMerge(
-            'p-4 rounded-full flex items-center justify-center',
-            hasActiveDevices ? 'bg-light' : 'bg-dark'
+            "p-4 rounded-full flex items-center justify-center",
+            hasActiveDevices ? "bg-light" : "bg-dark"
           )}
         >
           <DynamicIcon
-            iconName={'Lamp'}
-            color={hasActiveDevices ? 'text-yellow' : 'text-white'}
+            iconName={"Lamp"}
+            color={hasActiveDevices ? "text-yellow" : "text-white"}
           />
         </div>
       );
@@ -112,10 +112,10 @@ export function CategoryStats(props: ICategoryStatsProps) {
               {props.devices > 0 ? (
                 <div
                   className={twMerge(
-                    'text-xs flex justify-center flex-col items-center gap-2 text-dark'
+                    "text-xs flex justify-center flex-col items-center gap-2 text-dark"
                   )}
                 >
-                  <DynamicIcon iconName={'Temp'} color="text-dark" size="40" />
+                  <DynamicIcon iconName={"Temp"} color="text-dark" size="40" />
                   <span className="font-bold text-sm">21°C</span>
                 </div>
               ) : (
@@ -131,19 +131,19 @@ export function CategoryStats(props: ICategoryStatsProps) {
           {hasActiveDevices ? (
             <div
               className={twMerge(
-                'text-xs flex justify-center flex-col items-center gap-2 text-light'
+                "text-xs flex justify-center flex-col items-center gap-2 text-light"
               )}
             >
-              <DynamicIcon iconName={'Temp'} color="text-light" size="40" />
+              <DynamicIcon iconName={"Temp"} color="text-light" size="40" />
               <span className="font-bold text-sm">21°C</span>
             </div>
           ) : (
             <div
               className={twMerge(
-                'text-xs flex justify-center flex-col items-center gap-2 text-dark'
+                "text-xs flex justify-center flex-col items-center gap-2 text-dark"
               )}
             >
-              <DynamicIcon iconName={'Temp'} color="text-dark" size="40" />
+              <DynamicIcon iconName={"Temp"} color="text-dark" size="40" />
               <span className="font-bold text-sm">21°C</span>
             </div>
           )}
@@ -174,9 +174,9 @@ export function CategoryStats(props: ICategoryStatsProps) {
                 <Equalizer />
               </div>
               <div className="flex gap-2">
-                <DynamicIcon iconName={'PreviousSong'} color="text-light" />
-                <DynamicIcon iconName={'Pause'} color="text-light" />
-                <DynamicIcon iconName={'NextSong'} color="text-light" />
+                <DynamicIcon iconName={"PreviousSong"} color="text-light" />
+                <DynamicIcon iconName={"Pause"} color="text-light" />
+                <DynamicIcon iconName={"NextSong"} color="text-light" />
               </div>
             </>
           ) : (
@@ -184,11 +184,11 @@ export function CategoryStats(props: ICategoryStatsProps) {
               {props.devices > 0 ? (
                 <div
                   className={twMerge(
-                    'p-4 rounded-full flex items-center justify-center',
-                    props.devices > 0 ? 'bg-dark' : 'bg-uwu'
+                    "p-4 rounded-full flex items-center justify-center",
+                    props.devices > 0 ? "bg-dark" : "bg-uwu"
                   )}
                 >
-                  <DynamicIcon iconName={'Entertainment'} color="text-light" />
+                  <DynamicIcon iconName={"Entertainment"} color="text-light" />
                 </div>
               ) : (
                 <span className="text-uwu text-xs font-bold text-center">
@@ -199,9 +199,9 @@ export function CategoryStats(props: ICategoryStatsProps) {
           )}
         </>
       ) : (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           {hasActiveDevices ? (
-            <div className="flex justify-center flex-col items-center gap-2">
+            <div className="flex justify-center flex-col items-center gap-2 w-full">
               <div className="flex gap-2 max-w-full relative">
                 <img
                   src={Rhapsody}
@@ -220,9 +220,9 @@ export function CategoryStats(props: ICategoryStatsProps) {
               </div>
               <div className="absolute bottom-0 left-0 opacity-30 invert translate-y-3 scale-85"></div>
               <div className="flex gap-2">
-                <DynamicIcon iconName={'PreviousSong'} color="text-light" />
-                <DynamicIcon iconName={'Pause'} color="text-light" />
-                <DynamicIcon iconName={'NextSong'} color="text-light" />
+                <DynamicIcon iconName={"PreviousSong"} color="text-light" />
+                <DynamicIcon iconName={"Pause"} color="text-light" />
+                <DynamicIcon iconName={"NextSong"} color="text-light" />
               </div>
             </div>
           ) : (
@@ -230,11 +230,11 @@ export function CategoryStats(props: ICategoryStatsProps) {
               {props.devices > 0 ? (
                 <div
                   className={twMerge(
-                    'p-4  rounded-full flex items-center justify-center',
-                    props.devices > 0 ? 'bg-dark' : 'bg-uwu'
+                    "p-4  rounded-full flex items-center justify-center",
+                    props.devices > 0 ? "bg-dark" : "bg-uwu"
                   )}
                 >
-                  <DynamicIcon iconName={'Entertainment'} color="text-light" />
+                  <DynamicIcon iconName={"Entertainment"} color="text-light" />
                 </div>
               ) : (
                 <span className="text-uwu text-xs font-bold text-center">
@@ -252,42 +252,42 @@ export function CategoryStats(props: ICategoryStatsProps) {
             <>
               <div className="flex gap-1 flex-col items-center">
                 <DynamicIcon
-                  iconName={'Fan'}
-                  color={twMerge('text-light', 'animate-fan text-light')}
+                  iconName={"Fan"}
+                  color={twMerge("text-light", "animate-fan text-light")}
                 />
                 <div className="flex gap-1">
                   <span
-                    className={twMerge('w-1 h-1 rounded-full', 'bg-light')}
+                    className={twMerge("w-1 h-1 rounded-full", "bg-light")}
                   ></span>
                   <span
-                    className={twMerge('w-1 h-1 rounded-full', 'bg-light')}
+                    className={twMerge("w-1 h-1 rounded-full", "bg-light")}
                   ></span>
                   <span
-                    className={twMerge('w-1 h-1 rounded-full', ' bg-[#167565]')}
+                    className={twMerge("w-1 h-1 rounded-full", " bg-[#167565]")}
                   ></span>
                 </div>
               </div>
               <div className="relative pointer-events-none">
                 <div
                   className={twMerge(
-                    ' w-10 h-10 flex flex-col rounded-full overflow-hidden relative bg-green'
+                    " w-10 h-10 flex flex-col rounded-full overflow-hidden relative bg-green"
                   )}
                 >
                   <div
                     className={twMerge(
-                      ' bg-[url(/public/Wave.svg)] bg-repeat-x top-2 opacity-100 w-10 h-10 absolute ',
-                      hasMicrointeractions ? 'waveAnimation' : ''
+                      " bg-[url(/public/Wave.svg)] bg-repeat-x top-2 opacity-100 w-10 h-10 absolute ",
+                      hasMicrointeractions ? "waveAnimation" : ""
                     )}
                   ></div>
                   <div
                     className={twMerge(
-                      ' bg-[url(/public/Wave.svg)] bg-repeat-x top-[5px] opacity-40 w-10 h-10 absolute ',
-                      hasMicrointeractions ? 'waveAnimation2' : ''
+                      " bg-[url(/public/Wave.svg)] bg-repeat-x top-[5px] opacity-40 w-10 h-10 absolute ",
+                      hasMicrointeractions ? "waveAnimation2" : ""
                     )}
                   ></div>
                   <div
                     className={twMerge(
-                      'font-bold text-center mt-4 text-xs z-10 text-green'
+                      "font-bold text-center mt-4 text-xs z-10 text-green"
                     )}
                   >
                     60%
@@ -300,11 +300,11 @@ export function CategoryStats(props: ICategoryStatsProps) {
               {props.devices > 0 ? (
                 <div
                   className={twMerge(
-                    'p-4 rounded-full flex items-center justify-center',
-                    props.devices > 0 ? 'bg-dark' : 'bg-uwu'
+                    "p-4 rounded-full flex items-center justify-center",
+                    props.devices > 0 ? "bg-dark" : "bg-uwu"
                   )}
                 >
-                  <DynamicIcon iconName={'Air'} color="text-light" />
+                  <DynamicIcon iconName={"Air"} color="text-light" />
                 </div>
               ) : (
                 <span className="text-uwu text-xs font-bold text-center">
@@ -320,20 +320,20 @@ export function CategoryStats(props: ICategoryStatsProps) {
             <>
               <div
                 className={twMerge(
-                  'text-xs justify-center flex flex-col items-center gap-2',
-                  hasActiveDevices ? 'text-light' : 'text-uwu'
+                  "text-xs justify-center flex flex-col items-center gap-2",
+                  hasActiveDevices ? "text-light" : "text-uwu"
                 )}
               >
-                <DynamicIcon iconName={'Fan'} color="text-light" />
+                <DynamicIcon iconName={"Fan"} color="text-light" />
                 <span className="font-bold">Mittel</span>
               </div>
               <div
                 className={twMerge(
-                  'text-xs justify-center flex flex-col items-center gap-2',
-                  hasActiveDevices ? 'text-light' : 'text-uwu'
+                  "text-xs justify-center flex flex-col items-center gap-2",
+                  hasActiveDevices ? "text-light" : "text-uwu"
                 )}
               >
-                <DynamicIcon iconName={'Humidity'} color="text-light" />
+                <DynamicIcon iconName={"Humidity"} color="text-light" />
                 <span className="font-bold">60%</span>
               </div>
             </>
@@ -351,12 +351,12 @@ export function CategoryStats(props: ICategoryStatsProps) {
             {hasMicrointeractions && props.devices > 0 ? (
               <div
                 className={twMerge(
-                  'p-2 rounded-full relative flex items-center justify-center',
+                  "p-2 rounded-full relative flex items-center justify-center",
                   hasActiveDevices
-                    ? ''
+                    ? ""
                     : props.devices > 0
-                    ? 'bg-dark'
-                    : 'bg-uwu'
+                    ? "bg-dark"
+                    : "bg-uwu"
                 )}
               >
                 {/*<DynamicIcon
@@ -370,7 +370,7 @@ export function CategoryStats(props: ICategoryStatsProps) {
                     color="text-uwu"
                   />
                 ) : (
-                  <DynamicIcon iconName={'Pluh'} color={'text-light'} />
+                  <DynamicIcon iconName={"Pluh"} color={"text-light"} />
                 )}
               </div>
             ) : (
@@ -378,21 +378,21 @@ export function CategoryStats(props: ICategoryStatsProps) {
                 {props.devices > 0 ? (
                   <div
                     className={twMerge(
-                      'p-2 rounded-full flex items-center justify-center',
+                      "p-2 rounded-full flex items-center justify-center",
                       hasActiveDevices
-                        ? 'bg-light'
+                        ? "bg-light"
                         : props.devices > 0
-                        ? 'bg-dark'
-                        : 'bg-uwu'
+                        ? "bg-dark"
+                        : "bg-uwu"
                     )}
                   >
                     <DynamicIcon
-                      iconName={'Pluh'}
-                      color={hasActiveDevices ? 'text-green' : 'text-light'}
+                      iconName={"Pluh"}
+                      color={hasActiveDevices ? "text-green" : "text-light"}
                     />
                   </div>
                 ) : (
-                  'Keine Geräte registriert'
+                  "Keine Geräte registriert"
                 )}
               </span>
             )}
