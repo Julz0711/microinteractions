@@ -60,7 +60,7 @@ export function Instructions() {
       {isOpen && (
         <>
           <div
-            className="fixed top-0 h-full w-full left-0 z-[998] bg-dark/20"
+            className="sm:hidden fixed top-0 h-full w-full left-0 z-[998] bg-dark/20"
             onClick={handleClickMenu}
           />
           <div className="fixed bg-[#ffffff] border z-[999] bottom-12 left-10 flex overflow-y-auto h-96">
@@ -113,8 +113,8 @@ export function Instructions() {
                   htmlFor="quest4"
                   className="cursor-pointer p-2"
                 >
-                  Reduziere die Helligkeit und Farbtemperatur einer Lampe aus
-                  dem Wohnzimmer. Schalte sie andschließend aus.
+                  Erhöhe die Helligkeit und Farbtemperatur einer Lampe aus dem
+                  Wohnzimmer. Schalte sie andschließend aus.
                 </label>
                 <br />
                 <input

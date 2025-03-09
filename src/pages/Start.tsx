@@ -67,8 +67,13 @@ const Start = () => {
                 type="checkbox"
                 className="checkbox checkbox-md checkbox-primary"
                 onChange={handleCheckboxChange}
+                id="consent"
+                name="consent"
               />
-              <span>Einverstanden</span>
+
+              <label htmlFor="consent" className="cursor-pointer p-2">
+                Einverstanden
+              </label>
             </div>
           </li>
 
