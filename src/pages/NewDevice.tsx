@@ -14,19 +14,19 @@ const NewDevice = () => {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
-  const positions = [
-    { top: -50, left: -70, icon: "Laptop" },
-    { top: 40, left: 100, icon: "Lamp" },
-    { top: 100, left: -20, icon: "Pluh" },
+  const devices = [
+    { top: -50, left: -100, icon: "Laptop", name: "Workstation L" },
+    { top: 40, left: 90, icon: "Lamp", name: "Smart Lamp" },
+    { top: 120, left: -20, icon: "Pluh", name: "Homepod" },
   ];
   const iconVariants = {
-    hidden: { opacity: 0, scale: 0.15 },
+    hidden: { opacity: 0, scale: 0.8 },
     visible: (index: number) => ({
       opacity: 1,
       scale: 1,
       transition: {
         delay: hasMicrointeractions ? 0.5 + 0.95 * index : 1 + 0.95 * index,
-        duration: hasMicrointeractions ? 0.5 : 0,
+        duration: hasMicrointeractions ? 0.2 : 0,
       },
     }),
   };
@@ -96,24 +96,29 @@ const NewDevice = () => {
                   : "bg-red scale-[5] opacity-15"
               )}
             ></div>
-            {positions.map((position, index) => (
+            {devices.map((device, index) => (
               <motion.div
                 onClick={() => {
                   navigate("/geraet-registrieren");
                 }}
                 key={index}
-                className="cursor-pointer absolute w-12 h-12 flex items-center justify-center rounded-full bg-red"
-                style={{ top: position.top, left: position.left }}
+                className="cursor-pointer absolute flex justify-center items-center gap-1 flex-col"
+                style={{ top: device.top, left: device.left }}
                 custom={index}
                 initial="hidden"
                 animate="visible"
                 variants={iconVariants}
               >
-                <DynamicIcon
-                  iconName={position.icon}
-                  color="text-light"
-                  size={"24"}
-                />
+                <div className=" w-12 h-12 flex items-center justify-center rounded-full bg-red">
+                  <DynamicIcon
+                    iconName={device.icon}
+                    color="text-light"
+                    size={"24"}
+                  />
+                </div>
+                <span className="text-xs font-bold whitespace-nowrap">
+                  {device.name}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -123,12 +128,12 @@ const NewDevice = () => {
         <p className="w-3/4">
           Tippe auf das Gerät, das hinzugefügt werden soll
         </p>
-        <div className="relative w-1/3 flex justify-center">
+        {/* <div className="relative w-1/3 flex justify-center">
           <div className="bg-light p-2 flex z-20">oder</div>
           <hr className="w-full absolute top-1/2 -translate-y-1/2 z-10"></hr>
-        </div>
+        </div> */}
       </div>
-      <div className="grow-0 w-full bg-dark/80 p-4 rounded-md flex flex-col gap-4">
+      {/* <div className="grow-0 w-full bg-dark/80 p-4 rounded-md flex flex-col gap-4">
         <p className="text-center text-light text-sm">
           Das Gerät wir nicht angezeigt? Stelle sicher, dass es angeschaltet, in
           der Nähe Deines Routers und erreichbar ist.
@@ -139,7 +144,7 @@ const NewDevice = () => {
           isLarge={true}
           link={""}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

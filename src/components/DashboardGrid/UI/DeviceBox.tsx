@@ -81,20 +81,23 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
           </div>
         )}
         <div className="flex gap-2 justify-center flex-col items-center">
-          <button
+          {/* <button
             onClick={(e) => {
               e.stopPropagation();
               toggleActiveState();
             }}
             className="flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none  checked:bg-green"
           >
+          </button> */}
+
+          <div className="flex bg-light p-2 justify-center items-center rounded-full overflow-hidden border-none">
             <DynamicIcon
-              iconName={"OnOff"}
+              iconName={device.icon}
               color={
                 isDeviceActive ? getTextColor(device.category) : "text-dark"
               }
             />
-          </button>
+          </div>
           {buttonState === "visible" && (
             <h3
               className={twMerge(
