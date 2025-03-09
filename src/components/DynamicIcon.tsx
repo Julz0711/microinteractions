@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ReactSVG } from "react-svg";
-import Close from "../assets/icons/Close.svg";
 
 interface DynamicIconProps {
   iconName: string;
@@ -9,7 +8,11 @@ interface DynamicIconProps {
   color?: string;
 }
 
-const DynamicIcon: React.FC<DynamicIconProps> = ({ iconName, size, color }) => {
+const DynamicIcon: React.FC<DynamicIconProps> = ({
+  iconName,
+  size = "24",
+  color,
+}) => {
   const [iconUrl, setIconUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -39,7 +42,10 @@ const DynamicIcon: React.FC<DynamicIconProps> = ({ iconName, size, color }) => {
       }}
     />
   ) : (
-    <ReactSVG src={Close} className={twMerge(size, color)} />
+    <span
+      className="loading loading-spinner text-uwu"
+      style={{ height: parseInt(size), width: parseInt(size) }}
+    ></span>
   );
 };
 
