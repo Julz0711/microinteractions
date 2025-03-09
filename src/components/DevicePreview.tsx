@@ -167,11 +167,6 @@ const DevicePreview = ({
     <>
       <motion.div
         onClick={!hasToggle ? toggleActiveState : undefined}
-        onMouseDown={hasMicrointeractions ? handleLongPressStart : undefined}
-        onMouseUp={hasMicrointeractions ? handleLongPressEnd : undefined}
-        onMouseLeave={hasMicrointeractions ? handleLongPressEnd : undefined}
-        onTouchStart={hasMicrointeractions ? handleLongPressStart : undefined}
-        onTouchEnd={hasMicrointeractions ? handleLongPressEnd : undefined}
         initial={
           hasMicrointeractions ? onActiveAnimationBox.initial : undefined
         }
@@ -296,7 +291,7 @@ const DevicePreview = ({
               className={`text-uwu ${
                 isSmall
                   ? "text-[0.65rem]"
-                  : "text-xs flex gap-1 justify-between"
+                  : "text-xs flex gap-1 justify-between w-full"
               }`}
             >
               {isBoxActive
@@ -308,8 +303,8 @@ const DevicePreview = ({
               {hasToggle && (
                 <button
                   className={twMerge(
-                    isBoxActive ? "" : "text-dark",
-                    "text-[1rem] flex flex-row items-center justify-between rounded-sm gap-1 cursor-pointer"
+                    isBoxActive ? "text-dark" : "text-dark",
+                    "text-[1rem] flex flex-row items-center justify-between rounded-sm gap-1 cursor-pointer hover:text-dark/70"
                   )}
                   onClick={() => {
                     setShowModal(true);

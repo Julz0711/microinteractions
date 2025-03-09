@@ -41,6 +41,14 @@ const Roomba = (props: RoombaProps) => {
       )}
       <div
         className={twMerge(
+          "absolute rounded-full",
+          props.isActive ? "bg-green-300" : "bg-transparent",
+          `top-1/2 left-1/2 z-50 transform -translate-x-1/2 -translate-y-1/2 animate-pulse`
+        )}
+        style={{ width: props.size / 6, height: props.size / 6 }}
+      ></div>
+      <div
+        className={twMerge(
           props.isActive
             ? "left-0 top-0 -translate-x-[10%] -translate-y-[10%]"
             : "top-0 left-0 translate-x-8 translate-y-8",
