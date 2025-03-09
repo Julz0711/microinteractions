@@ -124,9 +124,10 @@ const NewDevice = () => {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col items-center gap-2 text-center text-uwu z-60">
+      <div className="w-full flex flex-col items-center gap-2 text-center text-dark font-bold z-60 mb-2">
         <p className="w-3/4">
-          Tippe auf das Gerät, das hinzugefügt werden soll
+          Tippe auf das Gerät, <br />
+          das hinzugefügt werden soll
         </p>
         {/* <div className="relative w-1/3 flex justify-center">
           <div className="bg-light p-2 flex z-20">oder</div>
