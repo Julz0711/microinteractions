@@ -155,7 +155,7 @@ const Register = () => {
               showErrors && (
                 <ul>
                   {Object.values(formik.errors).map((error, index) => (
-                    <li key={index} className="text-red px-2">
+                    <li key={index} className="text-red font-normal px-2">
                       {error}
                     </li>
                   ))}
@@ -171,7 +171,7 @@ const Register = () => {
               <button
                 type="submit"
                 onClick={handleClick}
-                className="btn-full bg-red"
+                className="btn-full bg-red hover:bg-purple transition duration-150"
               >
                 Account erstellen
               </button>
