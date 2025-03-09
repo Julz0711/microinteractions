@@ -227,7 +227,7 @@ const DevicePreview = ({
                 className={`absolute toggle ${
                   isSmall ? "toggle-md" : "toggle-lg"
                 } rounded-full before:rounded-full top-4 border-none right-3 text-light bg-uwu checked:bg-green`}
-                defaultChecked={isToggleOn}
+                checked={isToggleOn}
               />
             )}
           </div>
@@ -266,7 +266,7 @@ const DevicePreview = ({
               : ""
           }
         >
-          <div className="relative w-full overflow-hidden">
+          <div className="relative overflow-hidden">
             <motion.span
               ref={hasMicrointeractions ? textRef : undefined}
               className="block whitespace-nowrap"
@@ -287,7 +287,7 @@ const DevicePreview = ({
               }
               whileHover={{ x: "0%", transition: { duration: 0.5 } }}
             >
-              <span className="text-xs"> {device.name} </span>
+              <span className="text-xs">{device.name}</span>
             </motion.span>
           </div>
 
@@ -296,7 +296,7 @@ const DevicePreview = ({
               className={`text-uwu ${
                 isSmall
                   ? "text-[0.65rem]"
-                  : "text-xs flex justify-between w-full"
+                  : "text-xs flex gap-1 justify-between"
               }`}
             >
               {isBoxActive
@@ -308,7 +308,7 @@ const DevicePreview = ({
               {hasToggle && (
                 <button
                   className={twMerge(
-                    isBoxActive ? "" : " text-dark",
+                    isBoxActive ? "" : "text-dark",
                     "text-[1rem] flex flex-row items-center justify-between rounded-sm gap-1 cursor-pointer"
                   )}
                   onClick={() => {
@@ -319,18 +319,20 @@ const DevicePreview = ({
                   <DynamicIcon iconName={"Edit"} size={"16"} />
                 </button>
               )}
+              {hasRoomName && (
+                <div
+                  className={`text-uwu font-normal flex flex-row gap-1 items-center ${
+                    isSmall ? "text-[0.65rem]" : "text-xs"
+                  }`}
+                >
+                  <span>•</span>
+                  <div>
+                    {device.room ? getRoomName(device.room as Room) : ""}
+                  </div>
+                </div>
+              )}
             </div>
           ) : null}
-          {hasRoomName && (
-            <div
-              className={`text-uwu font-normal flex flex-row gap-1 items-center ${
-                isSmall ? "text-[0.65rem]" : "text-xs"
-              }`}
-            >
-              <span>•</span>
-              <div>{device.room ? getRoomName(device.room as Room) : ""}</div>
-            </div>
-          )}
         </div>
       </motion.div>
 
