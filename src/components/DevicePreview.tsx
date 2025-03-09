@@ -97,7 +97,7 @@ const DevicePreview = ({
     toggleButtonState();
     toggleActiveState();
   };
-
+  /*
   const handleLongPressStart = () => {
     setIsLongPress(false);
     longPressTimeout.current = setTimeout(() => {
@@ -125,6 +125,7 @@ const DevicePreview = ({
       transition: { duration: 0.3 },
     });
   };
+  */
 
   const handleSettingsButtonClick = () => {
     setShowModal(true);
