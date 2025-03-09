@@ -45,7 +45,7 @@ export function Instructions() {
     }));
   };
 
-  const labelClass = "ml-1";
+  const labelClass = "ml-1 cursor-pointer p-2";
   return (
     <>
       <button
@@ -75,11 +75,7 @@ export function Instructions() {
                   checked={checkboxes.quest1}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest1"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest1">
                   Registriere Dich in der App. Für den Registrierungsprozess
                   kannst Du eine ausgedachte E-Mail-Adresse verwenden.
                 </label>
@@ -92,11 +88,7 @@ export function Instructions() {
                   checked={checkboxes.quest2}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest2"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest2">
                   Füge den Homepod als neues Gerät hinzu. ("Neu"-Button)
                 </label>
                 <br />
@@ -108,11 +100,7 @@ export function Instructions() {
                   checked={checkboxes.quest4}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest4"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest4">
                   Erhöhe die Helligkeit und Farbtemperatur einer Lampe aus dem
                   Wohnzimmer. Schalte sie andschließend aus.
                 </label>
@@ -125,11 +113,7 @@ export function Instructions() {
                   checked={checkboxes.quest5}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest5"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest5">
                   Stelle die Heizung im Badezimmer auf 24 Grad.
                 </label>
                 <br />
@@ -141,11 +125,7 @@ export function Instructions() {
                   checked={checkboxes.quest6}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest6"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest6">
                   Stelle einen Ventilator im Schlafzimmer auf volle Stärke und
                   stelle einen Timer von 4h.
                 </label>
@@ -158,11 +138,7 @@ export function Instructions() {
                   checked={checkboxes.quest7}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest7"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest7">
                   Gehe im Flur zur Kategorie Haushalt und starte den
                   Staubsaugerroboter.
                 </label>
@@ -175,11 +151,7 @@ export function Instructions() {
                   checked={checkboxes.quest8}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest8"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest8">
                   Gehe in der Küche zur Kategorie Entertainment und schalte den
                   Bluetooth Lautsprecher an.
                 </label>
@@ -192,11 +164,7 @@ export function Instructions() {
                   checked={checkboxes.quest9}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest9"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest9">
                   Gehe zur Geräteübersicht. Entferne eine Leselampe im
                   Wohnzimmer.
                 </label>
@@ -209,11 +177,7 @@ export function Instructions() {
                   checked={checkboxes.quest10}
                   onChange={handleCheckboxChange}
                 />
-                <label
-                  className={labelClass}
-                  htmlFor="quest10"
-                  className="cursor-pointer p-2"
-                >
+                <label className={labelClass} htmlFor="quest10">
                   Gehe zum Dashboard und aktiviere/deaktiviere eine
                   Szene/Favorit/Zeitplan Deiner Wahl.
                 </label>
