@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import DynamicIcon from './DynamicIcon';
-import { twMerge } from 'tailwind-merge';
-import { AppState } from '../store/store';
-import { useSelector } from 'react-redux';
+import { useState } from "react";
+import DynamicIcon from "./DynamicIcon";
+import { twMerge } from "tailwind-merge";
+import { AppState } from "../store/store";
+import { useSelector } from "react-redux";
 
 interface InputFieldProps {
   type: string;
@@ -29,7 +29,7 @@ const InputField: React.FC<InputFieldProps> = ({
   error,
   hasIcon = true,
   isSearch = false,
-  isValid
+  isValid,
 }) => {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
@@ -58,10 +58,10 @@ const InputField: React.FC<InputFieldProps> = ({
           <div
             className={`absolute transform duration-150 pointer-events-none ${
               value || isFocused
-                ? 'top-2 text-[10px] font-bold opacity-100'
-                : 'top-1/2 font-normal text-sm opacity-50 -translate-y-1/2'
-            } ${isFocused ? 'text-purple' : 'text-uwu'} ${
-              hasIcon ? 'pl-10' : 'pl-4'
+                ? "top-2 text-[10px] font-bold opacity-100"
+                : "top-1/2 font-normal text-sm opacity-50 -translate-y-1/2"
+            } ${isFocused ? "text-purple" : "text-dark/80"} ${
+              hasIcon ? "pl-10" : "pl-4"
             }`}
           >
             {placeholder}
@@ -69,16 +69,16 @@ const InputField: React.FC<InputFieldProps> = ({
         ) : (
           <div
             className={twMerge(
-              'absolute top-1/2 -translate-y-1/2 pointer-events-none text-uwu font-normal',
-              hasIcon ? 'pl-10' : 'pl-4',
-              isFocused || value ? 'opacity-0' : 'opacity-100'
+              "absolute top-1/2 -translate-y-1/2 pointer-events-none text-uwu font-normal",
+              hasIcon ? "pl-10" : "pl-4",
+              isFocused || value ? "opacity-0" : "opacity-100"
             )}
           >
             {placeholder}
           </div>
         )}
         <input
-          type={type === 'password' && showPassword ? 'text' : type}
+          type={type === "password" && showPassword ? "text" : type}
           name={name}
           value={value}
           onChange={change}
@@ -87,38 +87,38 @@ const InputField: React.FC<InputFieldProps> = ({
           autoComplete="off"
           className={twMerge(
             `w-full h-14 pl-12 pr-4 ring-2 bg-inactive duration-150 font-normal border-none rounded-md focus:outline-none focus:ring-4 focus:ring-purple`,
-            hasIcon ? 'pl-10' : 'pl-4',
+            hasIcon ? "pl-10" : "pl-4",
             hasMicrointeractions
               ? twMerge(
-                  !error && value ? 'ring-green' : 'ring-uwu',
-                  isFocused || value ? 'font-bold text-sm pt-6 pb-2' : 'py-3',
-                  error && 'ring-red'
+                  !error && value ? "ring-green" : "ring-uwu",
+                  isFocused || value ? "font-bold text-sm pt-6 pb-2" : "py-3",
+                  error && "ring-red"
                 )
-              : twMerge('py-4', 'ring-uwu', error && 'ring-red')
+              : twMerge("py-4", "ring-uwu", error && "ring-red")
           )}
         />
         {hasIcon && (
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <DynamicIcon
-              iconName={icon || 'defaultIcon'}
+              iconName={icon || "defaultIcon"}
               size="20"
-              color={twMerge(isFocused ? 'text-purple' : 'text-dark')}
+              color={twMerge(isFocused ? "text-purple" : "text-dark")}
             />
           </div>
         )}
-        {type === 'password' && hasMicrointeractions && (
+        {type === "password" && hasMicrointeractions && (
           <div
             className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
             onClick={handleTogglePassword}
           >
             <DynamicIcon
-              iconName={showPassword ? 'Eye_hide' : 'Eye'}
+              iconName={showPassword ? "Eye_hide" : "Eye"}
               size="20"
               color="text-dark"
             />
           </div>
         )}
-        {type !== 'password' &&
+        {type !== "password" &&
         hasMicrointeractions &&
         hasIcon &&
         !isSearch &&
@@ -126,7 +126,7 @@ const InputField: React.FC<InputFieldProps> = ({
         value &&
         isValid ? (
           <div className="absolute text-green inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-            <DynamicIcon iconName={'Check'} size={'24'} />
+            <DynamicIcon iconName={"Check"} size={"24"} />
           </div>
         ) : null}
       </div>
