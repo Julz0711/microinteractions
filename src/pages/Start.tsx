@@ -27,29 +27,26 @@ const Start = () => {
         <span className="mt-4 font-bold">Informationen zum Test</span>
         <ul className="w-full list-disc pl-5 text-sm font-normal space-y-4">
           <li>
-            In diesem Test bist Du Nutzer*in einer Smarthome App. Du
-            erhältst verschiedene Aufgaben, die Du zur Einrichtung und Bedienung
-            Deines Smarthomes erledigen möchtest.
+            In diesem Test bist Du Nutzer*in einer Smarthome App. Du erhältst
+            verschiedene Aufgaben, die Du zur Einrichtung und Bedienung Deines
+            Smarthomes erledigen möchtest.
           </li>
           <li>
-            Die Inhalte der App sind
-            Platzhalter und dienen zur Veranschaulichung der Benutzeroberfläche. Für den Registrierungsprozess kannst Du eigene oder folgende Testdaten verwenden:
-            <ul className="list-disc pl-5">
-              <li><span className="font-bold">Benutzername:</span> Test</li>
-              <li><span className="font-bold">E-Mail:</span> alex.smart@home.com</li>
-              </ul>
+            Die Inhalte der App sind Platzhalter und dienen zur
+            Veranschaulichung der Benutzeroberfläche. Für den
+            Registrierungsprozess kannst Du eine ausgedachte E-Mail-Adresse
+            verwenden.
           </li>
           <li className="mt-2">
-            Die zu erledigen Aufgaben findest Du in der
-            unteren linken Ecke deines Bildschirms im ausklappbaren Menü:
+            Die zu erledigen Aufgaben findest Du in der unteren linken Ecke
+            deines Bildschirms im ausklappbaren Menü:
             <img src={Menu} width={"40"} />
             Zur Orientierung kannst du erledigte Aufgaben mit der Checkbox
             abhaken.
           </li>
           <li>
-            Nachdem Du die Aufgaben
-            erledigt hast, fülle bitte das Formular aus, das Du im Aufklappmenü
-            findest.
+            Nachdem Du die Aufgaben erledigt hast, fülle bitte das Formular aus,
+            das Du im Aufklappmenü findest.
           </li>
           <li className="space-y-2">
             <p>

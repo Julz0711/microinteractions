@@ -86,7 +86,7 @@ export function Instructions() {
                   onChange={handleCheckboxChange}
                 />
                 <label className={labelClass} htmlFor="quest2">
-                  Füge ein neues Gerät hinzu. ("Neu"-Button)
+                  Füge den Homepod als neues Gerät hinzu. ("Neu"-Button)
                 </label>
                 <br />
                 <input
@@ -144,7 +144,8 @@ export function Instructions() {
                   onChange={handleCheckboxChange}
                 />
                 <label className={labelClass} htmlFor="quest8">
-                  Starte den Bluetooth Lautsprecher in der Küche.
+                  Gehe in der Küche zur Kategorie Entertainment und schalte den
+                  Bluetooth Lautsprecher an.
                 </label>
                 <br />
                 <input
@@ -187,7 +188,9 @@ export function Instructions() {
                 }
                 rel="noreferrer"
               >
-                Zum Usability Test
+                {location.pathname === "/start"
+                  ? "Den Link zur Beantwortung der Fragen erhältst nach Abschluss der Aufgaben."
+                  : "Zum Usability Test"}
               </a>
               {location.pathname !== "/start" && (
                 <>
