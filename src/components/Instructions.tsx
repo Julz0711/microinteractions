@@ -69,105 +69,151 @@ export function Instructions() {
               <form>
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest1"
                   name="quest1"
                   checked={checkboxes.quest1}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest1">
-                  Registriere Dich in der App.
+                <label
+                  className={labelClass}
+                  htmlFor="quest1"
+                  className="cursor-pointer p-2"
+                >
+                  Registriere Dich in der App. Für den Registrierungsprozess
+                  kannst Du eine ausgedachte E-Mail-Adresse verwenden.
                 </label>
                 <br />
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest2"
                   name="quest2"
                   checked={checkboxes.quest2}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest2">
+                <label
+                  className={labelClass}
+                  htmlFor="quest2"
+                  className="cursor-pointer p-2"
+                >
                   Füge den Homepod als neues Gerät hinzu. ("Neu"-Button)
                 </label>
                 <br />
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest4"
                   name="quest4"
                   checked={checkboxes.quest4}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest4">
+                <label
+                  className={labelClass}
+                  htmlFor="quest4"
+                  className="cursor-pointer p-2"
+                >
                   Reduziere die Helligkeit und Farbtemperatur einer Lampe aus
                   dem Wohnzimmer. Schalte sie andschließend aus.
                 </label>
                 <br />
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest5"
                   name="quest5"
                   checked={checkboxes.quest5}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest5">
+                <label
+                  className={labelClass}
+                  htmlFor="quest5"
+                  className="cursor-pointer p-2"
+                >
                   Stelle die Heizung im Badezimmer auf 24 Grad.
                 </label>
                 <br />
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest6"
                   name="quest6"
                   checked={checkboxes.quest6}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest6">
+                <label
+                  className={labelClass}
+                  htmlFor="quest6"
+                  className="cursor-pointer p-2"
+                >
                   Stelle einen Ventilator im Schlafzimmer auf volle Stärke und
                   stelle einen Timer von 4h.
                 </label>
                 <br />
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest7"
                   name="quest7"
                   checked={checkboxes.quest7}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest7">
+                <label
+                  className={labelClass}
+                  htmlFor="quest7"
+                  className="cursor-pointer p-2"
+                >
                   Gehe im Flur zur Kategorie Haushalt und starte den
                   Staubsaugerroboter.
                 </label>
                 <br />
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest8"
                   name="quest8"
                   checked={checkboxes.quest8}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest8">
+                <label
+                  className={labelClass}
+                  htmlFor="quest8"
+                  className="cursor-pointer p-2"
+                >
                   Gehe in der Küche zur Kategorie Entertainment und schalte den
                   Bluetooth Lautsprecher an.
                 </label>
                 <br />
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest9"
                   name="quest9"
                   checked={checkboxes.quest9}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest9">
+                <label
+                  className={labelClass}
+                  htmlFor="quest9"
+                  className="cursor-pointer p-2"
+                >
                   Gehe zur Geräteübersicht und entferne eine Leselampe im
                   Wohnzimmer.
                 </label>
                 <br />
                 <input
                   type="checkbox"
+                  className="checkbox checkbox-primary checkbox-sm"
                   id="quest10"
                   name="quest10"
                   checked={checkboxes.quest10}
                   onChange={handleCheckboxChange}
                 />
-                <label className={labelClass} htmlFor="quest10">
+                <label
+                  className={labelClass}
+                  htmlFor="quest10"
+                  className="cursor-pointer p-2"
+                >
                   Gehe zum Dashboard und aktiviere/deaktiviere eine
                   Szene/Favorit/Zeitplan Deiner Wahl.
                 </label>

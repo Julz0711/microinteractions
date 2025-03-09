@@ -33,9 +33,7 @@ const Start = () => {
           </li>
           <li>
             Die Inhalte der App sind Platzhalter und dienen zur
-            Veranschaulichung der Benutzeroberfläche. Für den
-            Registrierungsprozess kannst Du eine ausgedachte E-Mail-Adresse
-            verwenden.
+            Veranschaulichung der Benutzeroberfläche.
           </li>
           <li className="mt-2">
             Die zu erledigen Aufgaben findest Du in der unteren linken Ecke
