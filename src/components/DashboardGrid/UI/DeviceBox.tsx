@@ -22,7 +22,6 @@ export const DeviceBox = ({ device, canvasRef, index }: DeviceProps) => {
   const {
     buttonState,
     previousState,
-    toggleActiveState,
     toggleMenuState,
     isDeviceActive,
     isMenuOpen,

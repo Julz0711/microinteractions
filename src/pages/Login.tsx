@@ -21,7 +21,7 @@ const Login = () => {
           label={"Registrieren"}
           style={"btn-primary"}
           link={"/registrieren"}
-          islarge
+          isLarge
         ></Button>
         <div className="flex gap-3 items-center">
           <span className="bg-uwu/50 flex-1 w-20 h-[2px]"></span>

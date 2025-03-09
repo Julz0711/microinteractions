@@ -3,7 +3,6 @@ import { AppState } from "../store/store";
 import { TopContextBar } from "../components/TopContextBar";
 import { twMerge } from "tailwind-merge";
 import DynamicIcon from "../components/DynamicIcon";
-import Button from "../components/Button";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
