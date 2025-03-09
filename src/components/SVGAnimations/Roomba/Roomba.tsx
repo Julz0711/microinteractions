@@ -1,4 +1,3 @@
-import React from "react";
 import { twMerge } from "tailwind-merge";
 import RoombaIcon from "../../../assets/icons/Roomba.svg";
 import DynamicIcon from "../../DynamicIcon";
