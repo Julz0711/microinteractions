@@ -81,6 +81,7 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
             isPx={true}
             size={"250"}
             range={8}
+            value={sliderValue - 18}
             clickable={true}
             onChange={(value) => handleSliderChange(value + 18)}
           />

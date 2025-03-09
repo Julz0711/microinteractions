@@ -165,8 +165,7 @@ export function Instructions() {
                   onChange={handleCheckboxChange}
                 />
                 <label className={labelClass} htmlFor="quest9">
-                  Gehe zur Geräteübersicht. Entferne eine Leselampe im
-                  Wohnzimmer.
+                  Gehe zum Reiter Geräte. Entferne eine Leselampe im Wohnzimmer.
                 </label>
                 <br />
                 <input
