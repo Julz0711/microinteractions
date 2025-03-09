@@ -1,14 +1,14 @@
-import DynamicIcon from './DynamicIcon';
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
-import { useSelector } from 'react-redux';
-import { AppState } from '../store/store';
-import { Device, Room } from '../types/types';
-import { getColor, getRoomName, getTextColor } from '../helpers/helpers';
-import Lottie from 'react-lottie';
-import toggleLottie from '../assets/lottie/toggle_v4.json';
-import TrashBinAnimation from '../assets/lottie/TrashBinAnimation.json';
-import { twMerge } from 'tailwind-merge';
+import DynamicIcon from "./DynamicIcon";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { useSelector } from "react-redux";
+import { AppState } from "../store/store";
+import { Device, Room } from "../types/types";
+import { getColor, getRoomName, getTextColor } from "../helpers/helpers";
+import Lottie from "react-lottie";
+import toggleLottie from "../assets/lottie/toggle_v4.json";
+import TrashBinAnimation from "../assets/lottie/TrashBinAnimation.json";
+import { twMerge } from "tailwind-merge";
 
 interface DeviceBoxProps {
   device: Device;
@@ -19,14 +19,14 @@ interface DeviceBoxProps {
 
 const onActiveAnimationBox = {
   initial: { scale: 1 },
-  transition: { duration: 0.4, easing: 'ease' }
+  transition: { duration: 0.4, easing: "ease" },
 };
 
 const DevicePreview = ({
   device,
   hasToggle,
   hasRoomName,
-  isSmall
+  isSmall,
 }: DeviceBoxProps) => {
   const [isBoxActive, setIsBoxActive] = useState(false);
   const [isToggleOn, setIsToggleOn] = useState(false);
@@ -75,10 +75,10 @@ const DevicePreview = ({
 
     const timeout = setTimeout(checkOverflow, 100);
 
-    window.addEventListener('resize', checkOverflow);
+    window.addEventListener("resize", checkOverflow);
     return () => {
       clearTimeout(timeout);
-      window.removeEventListener('resize', checkOverflow);
+      window.removeEventListener("resize", checkOverflow);
     };
   }, [device.name]);
 
@@ -109,7 +109,7 @@ const DevicePreview = ({
 
     controls.start({
       scale: 1.05,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.3 },
     });
   };
 
@@ -122,7 +122,7 @@ const DevicePreview = ({
 
     controls.start({
       scale: 1,
-      transition: { duration: 0.3 }
+      transition: { duration: 0.3 },
     });
   };
 
@@ -154,14 +154,14 @@ const DevicePreview = ({
     autoplay: true,
     animationData: TrashBinAnimation,
     rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
+      preserveAspectRatio: "xMidYMid slice",
+    },
   };
 
   useEffect(() => {}, [showModal]);
 
   const modalBtn =
-    'font-bold text-dark text-lg hover:text-dark/70 cursor-pointer flex flex-row gap-2 items-center';
+    "font-bold text-dark text-lg hover:text-dark/70 cursor-pointer flex flex-row gap-2 items-center";
 
   return (
     <>
@@ -182,21 +182,21 @@ const DevicePreview = ({
         className={`relative flex justify-start min-w-32 overflow-hidden ${
           hasToggle
             ? isSmall
-              ? 'h-24 items-end py-2 px-2'
+              ? "h-24 items-end py-2 px-2"
               : twMerge(
-                  hasMicrointeractions ? 'h-32' : 'h-38',
-                  'items-end py-4 px-4'
+                  hasMicrointeractions ? "h-32" : "h-32",
+                  "items-end py-4 px-4"
                 )
             : isSmall
-            ? 'items-center pl-2 pr-3 py-2 cursor-pointer gap-2'
-            : 'items-center pl-3 pr-4 py-3 cursor-pointer gap-2'
+            ? "items-center pl-2 pr-3 py-2 cursor-pointer gap-2"
+            : "items-center pl-3 pr-4 py-3 cursor-pointer gap-2"
         } font-bold rounded-md select-none ${
           hasMicrointeractions
             ? isBoxActive
-              ? 'device-box-active'
-              : 'device-box-inactive'
-            : ''
-        } ${isBoxActive ? 'shadow-active bg-light' : 'bg-inactive'}`}
+              ? "device-box-active"
+              : "device-box-inactive"
+            : ""
+        } ${isBoxActive ? "shadow-active bg-light" : "bg-inactive"}`}
       >
         {hasToggle && (
           <div>
@@ -211,8 +211,8 @@ const DevicePreview = ({
                     autoplay: false,
                     animationData: toggleLottie,
                     rendererSettings: {
-                      preserveAspectRatio: 'xMidYMid slice'
-                    }
+                      preserveAspectRatio: "xMidYMid slice",
+                    },
                   }}
                   height={30}
                   width={65}
@@ -225,7 +225,7 @@ const DevicePreview = ({
                 onClick={handleToggleClick}
                 type="checkbox"
                 className={`absolute toggle ${
-                  isSmall ? 'toggle-md' : 'toggle-lg'
+                  isSmall ? "toggle-md" : "toggle-lg"
                 } rounded-full before:rounded-full top-4 border-none right-3 text-light bg-uwu checked:bg-green`}
                 defaultChecked={isToggleOn}
               />
@@ -237,11 +237,11 @@ const DevicePreview = ({
             hasToggle
               ? isBoxActive
                 ? twMerge(
-                    'absolute top-3 left-3 p-2',
+                    "absolute top-3 left-3 p-2",
                     getColor(device.category)
                   )
-                : 'absolute top-3 left-3 p-2 bg-dark'
-              : ''
+                : "absolute top-3 left-3 p-2 bg-dark"
+              : ""
           } text-light rounded-full`}
         >
           <div className="z-90">
@@ -249,12 +249,12 @@ const DevicePreview = ({
               iconName={device.icon}
               color={
                 hasToggle
-                  ? 'text-light'
+                  ? "text-light"
                   : isBoxActive
                   ? getTextColor(device.category)
-                  : 'text-black'
+                  : "text-black"
               }
-              size={isSmall ? '16' : '25'}
+              size={isSmall ? "16" : "25"}
             />
           </div>
         </div>
@@ -262,8 +262,8 @@ const DevicePreview = ({
         <div
           className={
             device.additionalInfo
-              ? 'z-20 flex flex-col items-start justify-start w-full gap-0'
-              : ''
+              ? "z-20 flex flex-col items-start justify-start w-full gap-0"
+              : ""
           }
         >
           <div className="relative w-full overflow-hidden">
@@ -272,62 +272,64 @@ const DevicePreview = ({
               className="block whitespace-nowrap"
               animate={
                 isOverflowing
-                  ? { x: ['0px', `${-(textWidth - parentWidth)}px`, '0px'] }
-                  : { x: '0px' }
+                  ? { x: ["0px", `${-(textWidth - parentWidth)}px`, "0px"] }
+                  : { x: "0px" }
               }
               transition={
                 isOverflowing
                   ? {
                       repeat: Infinity,
                       duration: 6,
-                      ease: 'linear',
-                      times: [0, 0.45, 1]
+                      ease: "linear",
+                      times: [0, 0.45, 1],
                     }
                   : undefined
               }
-              whileHover={{ x: '0%', transition: { duration: 0.5 } }}
+              whileHover={{ x: "0%", transition: { duration: 0.5 } }}
             >
               <span className="text-xs"> {device.name} </span>
             </motion.span>
           </div>
 
-          <div className="flex flex-row gap-1 items-center font-normal">
-            {device.additionalInfo ? (
-              <div
-                className={`text-uwu ${isSmall ? 'text-[0.65rem]' : 'text-xs'}`}
-              >
-                {isBoxActive
-                  ? device.additionalInfo.length > 0
-                    ? device.additionalInfo
-                    : 'Aus'
-                  : 'Aus'}
-              </div>
-            ) : null}
-            {hasRoomName && (
-              <div
-                className={`text-uwu font-normal flex flex-row gap-1 items-center ${
-                  isSmall ? 'text-[0.65rem]' : 'text-xs'
-                }`}
-              >
-                <span>•</span>
-                <div>{device.room ? getRoomName(device.room as Room) : ''}</div>
-              </div>
-            )}
-          </div>
-          {!hasMicrointeractions && hasToggle && (
-            <button
-              className={twMerge(
-                isBoxActive ? 'bg-inactive' : 'bg-uwu',
-                'text-[0.75rem] w-full mt-2 flex flex-row items-center justify-between py-1 px-2 rounded-sm gap-1 cursor-pointer'
-              )}
-              onClick={() => {
-                setShowModal(true);
-                setIsModalVisible(true);
-              }}
+          {device.additionalInfo ? (
+            <div
+              className={`text-uwu ${
+                isSmall
+                  ? "text-[0.65rem]"
+                  : "text-xs flex justify-between w-full"
+              }`}
             >
-              Mehr Optionen
-              <DynamicIcon iconName={'ChevronRight'} size={'12'} />
-            </button>
+              {isBoxActive
+                ? device.additionalInfo.length > 0
+                  ? device.additionalInfo
+                  : "Aus"
+                : "Aus"}
+
+              {hasToggle && (
+                <button
+                  className={twMerge(
+                    isBoxActive ? "" : " text-dark",
+                    "text-[1rem] flex flex-row items-center justify-between rounded-sm gap-1 cursor-pointer"
+                  )}
+                  onClick={() => {
+                    setShowModal(true);
+                    setIsModalVisible(true);
+                  }}
+                >
+                  <DynamicIcon iconName={"Edit"} size={"16"} />
+                </button>
+              )}
+            </div>
+          ) : null}
+          {hasRoomName && (
+            <div
+              className={`text-uwu font-normal flex flex-row gap-1 items-center ${
+                isSmall ? "text-[0.65rem]" : "text-xs"
+              }`}
+            >
+              <span>•</span>
+              <div>{device.room ? getRoomName(device.room as Room) : ""}</div>
+            </div>
           )}
         </div>
       </motion.div>
@@ -337,7 +339,7 @@ const DevicePreview = ({
           {isModalVisible && (
             <motion.div
               className={twMerge(
-                'fixed inset-0 h-full w-full z-[9999999] flex flex-col gap-8 py-4 items-center justify-around bg-light/30 backdrop-blur-[20px]'
+                "fixed inset-0 h-full w-full z-[9999999] flex flex-col gap-8 py-4 items-center justify-around bg-light/30 backdrop-blur-[20px]"
               )}
               initial={
                 hasMicrointeractions ? { scale: 0, opacity: 0 } : undefined
@@ -361,13 +363,13 @@ const DevicePreview = ({
                   {confirmDelete ? (
                     <div className="flex flex-col gap-4 w-full h-full items-center justify-center">
                       <div className="font-bold text-dark text-2xl flex flex-row gap-2 items-center">
-                        <DynamicIcon iconName={'Trash'} size={'28'} />
+                        <DynamicIcon iconName={"Trash"} size={"28"} />
                         Gerät löschen
                       </div>
                       <p className="w-4/5 text-center">
                         Bist du dir sicher, dass du dieses Gerät löschen
                         möchtest? Dieser Vorgang kann nicht rückgängig gemacht
-                        werden.{' '}
+                        werden.{" "}
                       </p>
                       <div className="flex gap-4 mt-2">
                         <button
@@ -395,12 +397,12 @@ const DevicePreview = ({
                   ) : (
                     <>
                       <div
-                        className={twMerge('flex flex-col gap-4 items-center')}
+                        className={twMerge("flex flex-col gap-4 items-center")}
                       >
                         <div
                           className={twMerge(
                             getColor(device.category),
-                            'p-4 rounded-full'
+                            "p-4 rounded-full"
                           )}
                         >
                           <DynamicIcon
@@ -417,29 +419,29 @@ const DevicePreview = ({
                           className={modalBtn}
                           onClick={handleSettingsButtonClick}
                         >
-                          <DynamicIcon iconName={'Settings'} size={'20'} />
+                          <DynamicIcon iconName={"Settings"} size={"20"} />
                           Einstellungen
                         </button>
                         <button className={modalBtn} onClick={() => {}}>
-                          <DynamicIcon iconName={'Edit'} size={'20'} />
+                          <DynamicIcon iconName={"Edit"} size={"20"} />
                           Bearbeiten
                         </button>
                         <button className={modalBtn} onClick={() => {}}>
-                          <DynamicIcon iconName={'Plus'} size={'20'} />
+                          <DynamicIcon iconName={"Plus"} size={"20"} />
                           Zu Szene hinzufügen
                         </button>
                         <button className={modalBtn} onClick={() => {}}>
-                          <DynamicIcon iconName={'Plus'} size={'20'} />
+                          <DynamicIcon iconName={"Plus"} size={"20"} />
                           Zu Zeitplan hinzufügen
                         </button>
                         <button
                           className={twMerge(
                             modalBtn,
-                            'text-red hover:text-purple'
+                            "text-red hover:text-purple"
                           )}
                           onClick={handleDeleteClick}
                         >
-                          <DynamicIcon iconName={'Trash'} size={'20'} />
+                          <DynamicIcon iconName={"Trash"} size={"20"} />
                           Gerät löschen
                         </button>
                       </ul>

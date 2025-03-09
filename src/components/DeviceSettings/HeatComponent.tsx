@@ -8,6 +8,7 @@ import { Category } from "../../types/dashboard.types";
 import { AppState } from "../../store/store";
 import { Slider } from "../Slider/Slider";
 import DynamicIcon from "../DynamicIcon";
+import { twMerge } from "tailwind-merge";
 
 interface HeatComponentProps {
   isOn: boolean;
@@ -37,7 +38,12 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
   }, [isOn]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-16 w-4/5 mx-auto">
+    <div
+      className={twMerge(
+        "flex flex-col items-center justify-center w-4/5 mx-auto",
+        hasMicrointeractions ? "gap-16" : "gap-4"
+      )}
+    >
       <div className="flex w-full flex-col items-center justify-center gap-2">
         {hasMicrointeractions ? (
           <Temperature
@@ -79,8 +85,10 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
             onChange={(value) => handleSliderChange(value + 18)}
           />
           <div className="w-full text-center flex gap-4 items-center justify-center">
-          <DynamicIcon iconName={"Temp"} size="48" />
-          <span className="w-20 font-bold">Ziel: {Math.floor(sliderValue)}°C</span>
+            <DynamicIcon iconName={"Temp"} size="48" />
+            <span className="w-20 font-bold">
+              Ziel: {Math.floor(sliderValue)}°C
+            </span>
           </div>
         </>
       )}
