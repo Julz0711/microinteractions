@@ -44,9 +44,12 @@ const Profile = () => {
         <div className="font-bold text-xl text-dark">Alex Smart</div>
       </div>
       <div className="p-4 rounded-md border-2 border-red w-full flex flex-col gap-2 items-start justify-start">
-        <h2 className="font-bold">Hier geht es zum Usability-Test:</h2>
+        <p className="font-normal">
+          Nachdem du alle Aufgaben erledigt hast, geht es hier zum
+          Usability-Test:
+        </p>
         <a
-          className="btn-sm"
+          className="btn-sm font-bold"
           target="_blank"
           href={
             hasMicrointeractions
