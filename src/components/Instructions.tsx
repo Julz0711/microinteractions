@@ -198,7 +198,7 @@ export function Instructions() {
                 rel="noreferrer"
               >
                 {location.pathname === "/start"
-                  ? "Den Link zur Beantwortung der Fragen erhältst nach Abschluss der Aufgaben."
+                  ? "Den Link zur Beantwortung der Fragen findest Du nach Abschluss der Aufgaben hier."
                   : "Zum Usability Test"}
               </a>
               {location.pathname !== "/start" && (
