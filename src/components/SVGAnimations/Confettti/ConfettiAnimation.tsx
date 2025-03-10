@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 interface ConfettiProps {
-  duration?: number; // Duration before fade-out (default: 5000ms)
-  fadeDuration?: number; // Time for fade-out effect (default: 1000ms)
+  duration?: number;
+  fadeDuration?: number;
 }
 
 interface ConfettiPiece {
@@ -17,7 +17,7 @@ interface ConfettiPiece {
 
 const ConfettiAnimation: React.FC<ConfettiProps> = ({
   duration = 5000,
-  fadeDuration = 1000
+  fadeDuration = 1000,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const confettiPieces = useRef<ConfettiPiece[]>([]);
@@ -28,7 +28,7 @@ const ConfettiAnimation: React.FC<ConfettiProps> = ({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const width = (canvas.width = window.innerWidth);
@@ -42,18 +42,17 @@ const ConfettiAnimation: React.FC<ConfettiProps> = ({
     };
 
     const colors = [
-      getCSSVariableValue('--color-red'),
-      getCSSVariableValue('--color-blue'),
-      getCSSVariableValue('--color-yellow'),
-      getCSSVariableValue('--color-green'),
-      getCSSVariableValue('--color-purple'),
-      getCSSVariableValue('--color-light'),
-      getCSSVariableValue('--color-dark'),
-      getCSSVariableValue('--color-orange')
+      getCSSVariableValue("--color-red"),
+      getCSSVariableValue("--color-blue"),
+      getCSSVariableValue("--color-yellow"),
+      getCSSVariableValue("--color-green"),
+      getCSSVariableValue("--color-purple"),
+      getCSSVariableValue("--color-light"),
+      getCSSVariableValue("--color-dark"),
+      getCSSVariableValue("--color-orange"),
     ];
     let isFading = false;
 
-    // Initialize confetti pieces
     confettiPieces.current = Array.from({ length: confettiCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height - height,
@@ -61,7 +60,7 @@ const ConfettiAnimation: React.FC<ConfettiProps> = ({
       color: colors[Math.floor(Math.random() * colors.length)],
       rotation: Math.random() * 360,
       speedX: Math.random() * 5 - 1,
-      speedY: Math.random() * 6 + 2
+      speedY: Math.random() * 6 + 2,
     }));
 
     const draw = () => {
@@ -118,7 +117,7 @@ const ConfettiAnimation: React.FC<ConfettiProps> = ({
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: 'fixed', top: 0, left: 0, zIndex: 9999 }}
+      style={{ position: "fixed", top: 0, left: 0, zIndex: 9999 }}
     />
   );
 };

@@ -14,7 +14,6 @@ export default function Scrolldown({
 }: ScrolldownProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Handle item click (selecting an item)
   const handleItemClick = (index: number) => {
     setActiveIndex(index);
     onSelect(items[index]);
@@ -22,7 +21,6 @@ export default function Scrolldown({
 
   return (
     <div className="relative w-full">
-      {/* Carousel Container */}
       <div className="carousel carousel-vertical rounded-box h-40 w-full border-2 border-dark">
         {items.map((item, index) => (
           <div
