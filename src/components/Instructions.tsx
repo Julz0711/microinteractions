@@ -102,7 +102,7 @@ export function Instructions() {
                 />
                 <label className={labelClass} htmlFor="quest4">
                   Erhöhe die Helligkeit und Farbtemperatur einer Lampe aus dem
-                  Wohnzimmer. Schalte sie andschließend aus.
+                  Wohnzimmer. Schalte sie anschließend aus.
                 </label>
                 <br />
                 <input
