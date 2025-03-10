@@ -10,12 +10,12 @@ export function NoDevicesPlaceholder() {
   return (
     <div className="w-4/5 mx-auto flex flex-col gap-1 pt-12 sm:pt-36 justify-center items-center">
       <div className="pt-8">
-        <GlowBoyz isGray={true} />
+        {hasMicrointeractions && <GlowBoyz isGray={true} />}
       </div>
       <div className="text-lg font-bold mt-8">
         Noch keine Geräte registriert
       </div>
-      <p className="text-center">
+      <p className="text-center font-normal">
         Bitte füge dein erstes Gerät zu einem Raum hinzu.
       </p>
       <div className="pl-16">{hasMicrointeractions && <AnimatedArrow />}</div>

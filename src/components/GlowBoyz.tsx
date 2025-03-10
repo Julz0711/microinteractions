@@ -7,9 +7,10 @@ import DynamicIcon from "./DynamicIcon";
 
 type GlowBoyzProps = {
   isGray?: boolean;
+  isHidden?: boolean;
 };
 
-const GlowBoyz: React.FC<GlowBoyzProps> = ({ isGray }) => {
+const GlowBoyz: React.FC<GlowBoyzProps> = ({ isGray, isHidden }) => {
   const hasMicrointeractions = useSelector(
     (state: AppState) => state.app.hasMicrointeractions
   );
@@ -21,7 +22,7 @@ const GlowBoyz: React.FC<GlowBoyzProps> = ({ isGray }) => {
         "relative"
       )}
     >
-      {hasMicrointeractions && (
+      {!isHidden && (
         <>
           <span className="absolute left-1/2 top-1/2 transform -translate-x-[45%] -translate-y-[45%] z-[1] bg-light w-[20%] h-[25%] flex justify-center items-center border rounded-sm pb-1 border-uwu/50">
             <DynamicIcon iconName="Home" size="24" color="text-uwu/50" />
