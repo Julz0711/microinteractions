@@ -1,7 +1,7 @@
-import RandomizeAppState from "../components/RandomizeAppState";
-import Menu from "../assets/img/menu.png";
-import { useState } from "react";
-import posthog from "posthog-js";
+import RandomizeAppState from '../components/RandomizeAppState';
+import Menu from '../assets/img/menu.png';
+import { useState } from 'react';
+import posthog from 'posthog-js';
 
 const Start = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -10,10 +10,10 @@ const Start = () => {
     setIsChecked(checked);
     if (checked) {
       posthog.opt_in_capturing();
-      posthog.capture("opt_in_capturing", { status: "opted_in" });
+      posthog.capture('opt_in_capturing', { status: 'opted_in' });
     } else {
       posthog.opt_out_capturing();
-      posthog.capture("opt_out_capturing", { status: "opted_out" });
+      posthog.capture('opt_out_capturing', { status: 'opted_out' });
     }
   };
 
@@ -39,7 +39,7 @@ const Start = () => {
           <li className="mt-2">
             Die zu erledigen Aufgaben findest Du in der unteren linken Ecke
             deines Bildschirms im ausklappbaren Menü:
-            <img src={Menu} width={"40"} />
+            <img src={Menu} width={'40'} className="rotate-180" />
             Zur Orientierung kannst du erledigte Aufgaben mit der Checkbox
             abhaken.
           </li>
