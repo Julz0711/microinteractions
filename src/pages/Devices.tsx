@@ -7,7 +7,6 @@ import { getRoomName } from "../helpers/helpers";
 import { Room } from "../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../store/store";
-import Hotspot from "../components/Hotspot/Hotspot";
 import { twMerge } from "tailwind-merge";
 import { setCategory, setHierarchy } from "../store/reducer";
 import { HierarchyStep } from "../types/dashboard.types";
@@ -36,10 +35,10 @@ const Devices = () => {
     }
   }, []);
 
-  const handleHotspotNext = () => {
+  /*const handleHotspotNext = () => {
     localStorage.setItem("deviceHotspotSeen", "true");
     setShowHotspot(false);
-  };
+  };*/
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
