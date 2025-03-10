@@ -11,7 +11,7 @@ const RandomizeAppState = (props: RandomizerProps) => {
   const navigate = useNavigate();
 
   const randomizeMicrointeractions = () => {
-    const randomValue = Math.random() >= 0.5;
+    const randomValue = Math.random() >= 0.3;
     dispatch(setHasMicrointeractions(randomValue));
     navigate("/login");
   };
