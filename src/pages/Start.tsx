@@ -34,7 +34,8 @@ const Start = () => {
           <li>
             Die Inhalte der App sind Platzhalter und dienen zur
             Veranschaulichung der Benutzeroberfläche. Daher werden sich die
-            Gerätestatus nicht aktualisieren.
+            Gerätestatus nicht aktualisieren. <br/>
+            <span className='font-bold'>Die Daten, die Du in der App einträgst, werden nicht gespeichert.</span>
           </li>
           <li className="mt-2">
             Die zu erledigen Aufgaben findest Du in der unteren linken Ecke
