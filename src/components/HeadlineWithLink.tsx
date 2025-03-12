@@ -10,7 +10,7 @@ interface HeadlineProps {
 const HeadlineWithLink: React.FC<HeadlineProps> = ({ headline, link }) => {
   return (
     <Link to={link} className="hover:text-uwu">
-      <h2 className="text-h2">
+      <h2 className="text-h2 font-bold">
         <span className="flex flex-row gap-1 items-center">
           {headline}
           <DynamicIcon iconName="ChevronRight" size="14" color="text-uwu" />
