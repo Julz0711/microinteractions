@@ -169,7 +169,9 @@ export function AirComponent() {
             </div>
           </>
         ) : (
-          <span className="font-bold">Noch aktiv bis: 10:41</span>
+          <span className="font-bold">
+            {isOn ? "Noch aktiv bis: 10:41" : "Das Gerät ist ausgeschaltet"}
+          </span>
         )}
       </div>
       <div className="flex flex-col items-center gap-2 w-6/7">
