@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { Temperature } from "../SVGAnimations/Temperature";
 import { Category } from "../../types/dashboard.types";
 import { AppState } from "../../store/store";
-import { Slider } from "../Slider/Slider";
 import DynamicIcon from "../DynamicIcon";
 import { twMerge } from "tailwind-merge";
 
