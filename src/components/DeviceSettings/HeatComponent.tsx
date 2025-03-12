@@ -55,9 +55,10 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
           />
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 ">
-            <div className="text-3xl text-red font-bold w-full text-center">
-              Raumtemperatur:
-              <br /> 22°C
+            <DynamicIcon iconName={"Temp"} size="80" color={"text-red"} />
+            <div className="text-2xl text-red font-bold w-full text-center">
+              22°C
+              <br />
             </div>
           </div>
         )}
@@ -76,21 +77,19 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
         />
       ) : (
         <>
-          <Slider
-            hasGradient={false}
-            isPx={true}
-            size={"250"}
-            range={8}
-            value={sliderValue - 18}
-            clickable={true}
-            onChange={(value) => handleSliderChange(value + 18)}
-          />
           <div className="w-full text-center flex gap-4 items-center justify-center">
-            <DynamicIcon iconName={"Temp"} size="48" />
-            <span className="w-20 font-bold">
-              Ziel: {Math.floor(sliderValue)}°C
-            </span>
+            <span className="w-40 font-bold text-center">Heiztemperatur</span>
           </div>
+          <HeatSlider
+            value={4}
+            measure={"°C"}
+            range={8}
+            onChange={(value) => {
+              handleSliderChange(value + 18);
+            }}
+            custom={isOn ? styles.solid : styles.off + " inactive"}
+            step={0.1}
+          />
         </>
       )}
     </div>
