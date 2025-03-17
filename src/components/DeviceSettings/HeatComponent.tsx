@@ -20,7 +20,7 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
   );
 
   const handleSliderChange = (value: number) => {
-    setSliderValue(value + 0.1);
+    setSliderValue(value);
     if (value - 18 === 0) {
       dispatch(setIsOn(false));
     } else {
@@ -40,7 +40,7 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
     <div
       className={twMerge(
         "flex flex-col items-center justify-center w-4/5 mx-auto",
-        hasMicrointeractions ? "gap-16" : "gap-4"
+        hasMicrointeractions ? "gap-16" : "gap-2"
       )}
     >
       <div className="flex w-full flex-col items-center justify-center gap-2">
@@ -55,7 +55,7 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
         ) : (
           <div className="flex flex-col items-center justify-center gap-2 ">
             <DynamicIcon iconName={"Temp"} size="80" color={"text-red"} />
-            <div className="text-2xl text-red font-bold w-full text-center">
+            <div className="text-2xl text-light font-bold w-full text-center">
               22°C
               <br />
             </div>
@@ -76,8 +76,10 @@ export function HeatComponent({ isOn }: HeatComponentProps) {
         />
       ) : (
         <>
-          <div className="w-full text-center flex gap-4 items-center justify-center">
-            <span className="w-40 font-bold text-center">Heiztemperatur</span>
+          <div className="w-full text-center flex gap-4 items-center justify-center mb-4">
+            <span className="w-32 font-bold text-center text-light drop-shadow-[0_0_10px_rgba(0,0,0,.4)] opacity-80">
+              Ziel: {sliderValue}°C
+            </span>
           </div>
           <HeatSlider
             value={4}
