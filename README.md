@@ -1,50 +1,51 @@
-# React + TypeScript + Vite
+# Microinteractions
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A mobile-style smart-home prototype for exploring how small animations and feedback change everyday interactions.
 
-Currently, two official plugins are available:
+Browse rooms and devices, adjust lights and heating, and compare the interface with microinteractions enabled or disabled. The interface and guided tasks are in German.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What you can explore
 
-## Expanding the ESLint configuration
+- **Smart-home dashboard:** navigate rooms, device categories, and individual controls.
+- **Device interactions:** change brightness, color temperature, heating, fan settings, and entertainment or household device states.
+- **Onboarding flows:** try registration, adding a device, and removing devices.
+- **Motion and feedback:** animated page changes, sliders, SVG effects, Lottie animations, and carousel pickers.
+- **Guided evaluation:** an expandable task checklist walks through the main flows; the microinteraction preference and checklist are saved locally.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This is an interactive UI prototype using local application state and sample devices. Registration screens and device controls demonstrate the experience; they do not connect to a real smart-home service.
 
-- Configure the top-level `parserOptions` property like this:
+## Run locally
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Use Node.js 22 LTS and npm.
+
+```sh
+git clone https://github.com/Julz0711/microinteractions.git
+cd microinteractions
+npm ci
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Open the URL printed by Vite. Start at `/start` for onboarding or `/dashboard` to explore the populated dashboard. Open the task panel using the arrow at the left edge.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Development
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start Vite locally. |
+| `npm run host` | Expose the development server to other devices on your network. |
+| `npm run build` | Check TypeScript and produce a build in `dist/`. |
+| `npm run preview` | Preview the production build. |
+| `npm run lint` | Run ESLint. |
+
+## How it is built
+
+React and TypeScript provide the interface, Redux Toolkit coordinates state, and React Router handles the flows. Framer Motion, GSAP, Lottie, and custom SVG components supply the animation layer; Tailwind CSS styles the UI.
+
+| Path | Responsibility |
+| --- | --- |
+| [src/pages/](src/pages/) | Dashboard, device, profile, and onboarding screens. |
+| [src/components/](src/components/) | Device controls, animated UI, task panel, and navigation. |
+| [src/store/](src/store/) | Redux state and the microinteraction preference. |
+| [src/Hooks/](src/Hooks/) | Device, category, and animation hooks. |
+| [src/data/](src/data/) | Sample content. |
+| [src/routes/Router.tsx](src/routes/Router.tsx) | Routes and animated page transitions. |
